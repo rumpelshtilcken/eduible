@@ -1,0 +1,16 @@
+{
+  "name": "eduible",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://ak8912_@bitbucket.org/eduible/eduible-web.git",
+  "author": "intellection",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next"
+  },
+  "dependencies": {
+    "next": "^2.4.5",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
