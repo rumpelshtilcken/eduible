@@ -1,2 +1,6 @@
-import React from "react";
-export default () => <div> Hello World!</div>;
+import Card from '../components/Card';
+
+export default () =>
+  (<div>
+    <Card />
+  </div>);
