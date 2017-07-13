@@ -13,7 +13,7 @@
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer');
 const csrf = require('lusca').csrf();
 const uuid = require('uuid/v4');
 const passportStrategies = require('./passport-strategies');
@@ -121,9 +121,9 @@ exports.configure = (
     }
 
     const token = uuid();
-    const verificationUrl = `${(serverUrl || `http://${req.headers.host}`) +
+    /* const verificationUrl = `${(serverUrl || `http://${req.headers.host}`) +
       path}/email/signin/${token}`;
-
+*/
     // Create verification token save it to database
     // @FIXME Improve error handling
     User.findOrCreate({ where: { email } })
