@@ -6,7 +6,6 @@
   "author": "intellection",
   "scripts": {
     "lint:js": "eslint --fix .",
-    "lint:css": "stylelint \"{pages,components}/**/*.css\"",
     "lint": "npm-run-all --parallel lint:*",
     "pretest": "npm run lint",
     "test": "npm run lint",
