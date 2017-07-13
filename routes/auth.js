@@ -40,15 +40,15 @@ exports.configure = (
     // always refetch session info after N seconds has elapsed since last
     // checked. Sensible values are between 0 (always check the server) and a
     // few minutes.
-    clientMaxAge = 60000,
+    clientMaxAge = 60000
     // URL of the server (e.g. 'http://www.example.com'). Used when sending
     // sign in links in emails. Autodetects to hostname if null.
-    serverUrl = null,
+    // serverUrl = null,
     // Mailserver configuration for nodemailer (defaults to localhost if null)
-    mailserver = null,
+    // mailserver = null,
     // From email address should match email account specified in mailserver
     // or you may not be able to send emails.
-    fromEmail = 'noreply@localhost.localdomain'
+    // fromEmail = 'noreply@localhost.localdomain'
   } = {}
 ) => {
   if (app === null) {
@@ -170,7 +170,7 @@ exports.configure = (
     res.redirect('/');
   });
 };
-
+/*
 // @TODO Argument validation
 function sendVerificationEmail({ mailserver, fromEmail, toEmail, url }) {
   nodemailer.createTransport(mailserver).sendMail({
@@ -186,3 +186,4 @@ function sendVerificationEmail({ mailserver, fromEmail, toEmail, url }) {
   });
   // console.log('Generated sign in link ' + url + ' for ' + toEmail)
 }
+*/
