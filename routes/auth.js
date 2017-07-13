@@ -13,7 +13,7 @@
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer');
 const csrf = require('lusca').csrf();
 const uuid = require('uuid/v4');
 const passportStrategies = require('./passport-strategies');
@@ -40,15 +40,15 @@ exports.configure = (
     // always refetch session info after N seconds has elapsed since last
     // checked. Sensible values are between 0 (always check the server) and a
     // few minutes.
-    clientMaxAge = 60000,
+    clientMaxAge = 60000
     // URL of the server (e.g. 'http://www.example.com'). Used when sending
     // sign in links in emails. Autodetects to hostname if null.
-    serverUrl = null,
+    // serverUrl = null,
     // Mailserver configuration for nodemailer (defaults to localhost if null)
-    mailserver = null,
+    // mailserver = null,
     // From email address should match email account specified in mailserver
     // or you may not be able to send emails.
-    fromEmail = 'noreply@localhost.localdomain'
+    // fromEmail = 'noreply@localhost.localdomain'
   } = {}
 ) => {
   if (app === null) {
@@ -95,9 +95,7 @@ exports.configure = (
   });
 
   // Add route to get CSRF token via AJAX
-  server.get(`${path}/csrf`, (req, res) =>
-    res.json({ csrfToken: res.locals._csrf })
-  );
+  server.get(`${path}/csrf`, (req, res) => res.json({ csrfToken: res.locals._csrf }));
 
   // Return session info
   server.get(`${path}/session`, (req, res) => {
@@ -123,43 +121,26 @@ exports.configure = (
     }
 
     const token = uuid();
-    const verificationUrl = `${(serverUrl || `http://${req.headers.host}`) + path}/email/signin/${token}`;
-
+    /* const verificationUrl = `${(serverUrl || `http://${req.headers.host}`) +
+      path}/email/signin/${token}`;
+*/
     // Create verification token save it to database
     // @FIXME Improve error handling
-    User.one({ email }, (err, user) => {
-      if (err) {
+    User.findOrCreate({ where: { email } })
+      .spread(user => user.update({ token }))
+      .then(() => {
+        console.log('success');
+        console.log(token);
+        // sendVerificationEmail({
+        //   mailserver,
+        //   fromEmail,
+        //   toEmail: email,
+        //   url: verificationUrl
+        // });
+      })
+      .catch((err) => {
         throw err;
-      }
-      if (user) {
-        user.token = token;
-        user.save((err) => {
-          if (err) {
-            throw err;
-          }
-
-          sendVerificationEmail({
-            mailserver,
-            fromEmail,
-            toEmail: email,
-            url: verificationUrl
-          });
-        });
-      } else {
-        User.create({ email, token }, (err) => {
-          if (err) {
-            throw err;
-          }
-
-          sendVerificationEmail({
-            mailserver,
-            fromEmail,
-            toEmail: email,
-            url: verificationUrl
-          });
-        });
-      }
-    });
+      });
 
     return app.render(req, res, `${pages}/check-email`, req.params);
   });
@@ -168,33 +149,19 @@ exports.configure = (
     if (!req.params.token) {
       return res.redirect(`${path}/signin`);
     }
-
     // Look up user by token
-    User.one({ token: req.params.token }, (err, user) => {
-      if (err) {
-        return res.redirect(`${path}/error/email`);
-      }
-      if (user) {
-        // Reset token and mark as verified
-        user.token = null;
-        user.verified = true;
-        user.save((err) => {
-          // @TODO Improve error handling
-          if (err) {
-            return res.redirect(`${path}/error/email`);
-          }
-          // Having validated to the token, we log the user with Passport
-          req.logIn(user, (err) => {
-            if (err) {
-              return res.redirect(`${path}/error/email`);
-            }
-            return res.redirect(`${path}/signin?action=signin_email`);
-          });
+    User.findOne({ where: { token: req.params.token } })
+      .spread((user) => {
+        console.log(user);
+        user.update({
+          token: null,
+          verified: null
+          /*  req.logIn(user => {
+        return res.redirect(`${path}/signin?action=signin_email`);
+      })*/
         });
-      } else {
-        return res.redirect(`${path}/error/email`);
-      }
-    });
+      })
+      .catch(res.redirect(`${path}/error/email`));
   });
 
   server.post(`${path}/signout`, (req, res) => {
@@ -203,7 +170,7 @@ exports.configure = (
     res.redirect('/');
   });
 };
-
+/*
 // @TODO Argument validation
 function sendVerificationEmail({ mailserver, fromEmail, toEmail, url }) {
   nodemailer.createTransport(mailserver).sendMail({
@@ -219,3 +186,4 @@ function sendVerificationEmail({ mailserver, fromEmail, toEmail, url }) {
   });
   // console.log('Generated sign in link ' + url + ' for ' + toEmail)
 }
+*/
