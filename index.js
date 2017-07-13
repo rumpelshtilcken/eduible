@@ -1,6 +1,5 @@
 const express = require('express');
 const next = require('next');
-const orm = require('orm');
 const smtpTransport = require('nodemailer-smtp-transport');
 const auth = require('./routes/auth');
 
@@ -28,8 +27,7 @@ process.env.PORT = process.env.PORT || 80;
 // Configure a database to store user profiles and email sign in tokens
 // Database connection string for ORM (e.g. MongoDB/Amazon Redshift/SQL DB…)
 // By default it uses SQL Lite to create a DB in /tmp/eduible.db
-process.env.DB_CONNECTION_STRING =
-  process.env.DB_CONNECTION_STRING || 'sqlite:///tmp/eduible.db';
+process.env.DB_CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'sqlite:///tmp/eduible.db';
 
 // Secret used to encrypt session data stored on the server
 process.env.SESSION_SECRET = process.env.SESSION_SECRET || 'change-me';
@@ -38,16 +36,11 @@ process.env.SESSION_SECRET = process.env.SESSION_SECRET || 'change-me';
 // e.g. For a Google Mail account (@gmail.com) set EMAIL_SERVICE to 'gmail'
 // See nodemailer documentation for other values for EMAIL_SERVICE.
 let mailserver = null;
-if (
-  process.env.EMAIL_SERVER &&
-  process.env.EMAIL_USERNAME &&
-  process.env.EMAIL_PASSWORD
-) {
+if (process.env.EMAIL_SERVER && process.env.EMAIL_USERNAME && process.env.EMAIL_PASSWORD) {
   mailserver = smtpTransport({
     host: process.env.EMAIL_SERVER,
     port: process.env.EMAIL_PORT || 25,
-    secure: !!(process.env.EMAIL_SECURE &&
-      process.env.EMAIL_SECURE.match(/true/i)),
+    secure: !!(process.env.EMAIL_SECURE && process.env.EMAIL_SECURE.match(/true/i)),
     auth: {
       user: process.env.EMAIL_USERNAME,
       pass: process.env.EMAIL_PASSWORD
@@ -117,9 +110,7 @@ app
     // A simple example of a custom route
     // Says requests to '/route/{anything}' will be handled by 'pages/routing.js'
     // and the {anything} part will be pased to the page in parameters.
-    server.get('/route/:id', (req, res) =>
-      app.render(req, res, '/routing', req.params)
-    );
+    server.get('/route/:id', (req, res) => app.render(req, res, '/routing', req.params));
 
     // Default catch-all handler to allow Next.js to handle all other routes
     server.all('*', (req, res) => handle(req, res));
@@ -135,9 +126,7 @@ app
       if (err) {
         throw err;
       }
-      console.log(
-        `> Ready on http://localhost:${process.env.PORT} [${process.env.NODE_ENV}]`
-      );
+      console.log(`> Ready on http://localhost:${process.env.PORT} [${process.env.NODE_ENV}]`);
     });
   })
   .catch((err) => {
