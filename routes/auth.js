@@ -13,7 +13,7 @@
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
-// const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 const csrf = require('lusca').csrf();
 const uuid = require('uuid/v4');
 const passportStrategies = require('./passport-strategies');
@@ -40,15 +40,15 @@ exports.configure = (
     // always refetch session info after N seconds has elapsed since last
     // checked. Sensible values are between 0 (always check the server) and a
     // few minutes.
-    clientMaxAge = 60000
+    clientMaxAge = 60000,
     // URL of the server (e.g. 'http://www.example.com'). Used when sending
     // sign in links in emails. Autodetects to hostname if null.
-    // serverUrl = null,
+    serverUrl = null,
     // Mailserver configuration for nodemailer (defaults to localhost if null)
-    // mailserver = null,
+    mailserver = null,
     // From email address should match email account specified in mailserver
     // or you may not be able to send emails.
-    // fromEmail = 'noreply@localhost.localdomain'
+    fromEmail = 'noreply@localhost.localdomain'
   } = {}
 ) => {
   if (app === null) {
@@ -121,9 +121,8 @@ exports.configure = (
     }
 
     const token = uuid();
-    /* const verificationUrl = `${(serverUrl || `http://${req.headers.host}`) +
+    const verificationUrl = `${(serverUrl || `http://${req.headers.host}`) +
       path}/email/signin/${token}`;
-*/
     // Create verification token save it to database
     // @FIXME Improve error handling
     User.findOrCreate({ where: { email } })
@@ -131,12 +130,12 @@ exports.configure = (
       .then(() => {
         console.log('success');
         console.log(token);
-        // sendVerificationEmail({
-        //   mailserver,
-        //   fromEmail,
-        //   toEmail: email,
-        //   url: verificationUrl
-        // });
+        sendVerificationEmail({
+        //  mailserver,
+      //    fromEmail,
+          toEmail: email,
+          url: verificationUrl
+        });
       })
       .catch((err) => {
         throw err;
@@ -151,17 +150,18 @@ exports.configure = (
     }
     // Look up user by token
     User.findOne({ where: { token: req.params.token } })
-      .spread((user) => {
+      .then((user) => {
         console.log(user);
-        user.update({
+        return user.update({
           token: null,
-          verified: null
-          /*  req.logIn(user => {
-        return res.redirect(`${path}/signin?action=signin_email`);
-      })*/
+          verified: true
         });
       })
-      .catch(res.redirect(`${path}/error/email`));
+      .then(() => {
+        console.log('=========');
+        req.logIn(() => res.redirect(`${path}/signin?action=signin_email`));
+      })
+      .catch(() => res.redirect(`${path}/error/email`));
   });
 
   server.post(`${path}/signout`, (req, res) => {
@@ -170,20 +170,33 @@ exports.configure = (
     res.redirect('/');
   });
 };
-/*
+
 // @TODO Argument validation
-function sendVerificationEmail({ mailserver, fromEmail, toEmail, url }) {
-  nodemailer.createTransport(mailserver).sendMail({
-    to: toEmail,
-    from: fromEmail,
-    subject: 'Sign in link',
-    text: `Use the link below to sign in:\n\n${url}\n\n`
-  }, (err) => {
-    // @TODO Handle errors
-    if (err) {
-      console.log(`Error sending email to ${toEmail}`, err);
+function sendVerificationEmail({ toEmail, url }) {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    secure: false,
+    port: 25,
+    auth: {
+      user: 'kasaselya91@gmail.com',
+      pass: 'Shorachka123'
+    },
+    tls: {
+      rejectUnauthorised: false
     }
   });
-  // console.log('Generated sign in link ' + url + ' for ' + toEmail)
+  const HelperOptions = {
+    from: '"Assel Kassembekova" <kasaselya91@gmail.com>',
+    to: toEmail,
+    subject: 'Sign in link',
+    text: `Use the link below to sign in:\n\n${url}\n\n`
+  };
+
+  transporter.sendMail(HelperOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+    }
+    console.log('The message was sent');
+    console.log(info);
+  });
 }
-*/
