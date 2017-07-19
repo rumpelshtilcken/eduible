@@ -2,9 +2,9 @@
   "name": "eduible",
   "version": "0.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "nodemon server/index.js --config .nodemonrc",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "node server/index.js -p $PORT",
     "heroku-postbuild": "npm run build"
   },
   "engines": {
@@ -16,5 +16,14 @@
     "next": "^2.4.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.1",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "nodemon": "^1.11.0",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-easy-import": "^2.1.0",
+    "postcss-loader": "^2.0.6",
+    "raw-loader": "^0.5.1"
   }
 }
