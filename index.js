@@ -5,7 +5,7 @@ const next = require('next');
 const DEV = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 3000;
 
-const app = next({ dir: '.', DEV });
+const app = next({ dir: '.', dev: DEV });
 const handler = app.getRequestHandler();
 
 const runServer = async () => {
