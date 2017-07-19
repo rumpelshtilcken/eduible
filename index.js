@@ -3,7 +3,7 @@ const next = require('next');
 // import router from './router';
 
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+const app = next({ dir: '.', dev });
 const handler = app.getRequestHandler();
 
 const runServer = async () => {
