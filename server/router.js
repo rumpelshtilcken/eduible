@@ -1,7 +1,7 @@
 const validator = require('email-validator');
 
 const express = require('express');
-const models = require('../server/models');
+const models = require('./models');
 
 const router = express.Router();
 

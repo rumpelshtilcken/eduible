@@ -1,11 +1,10 @@
 .box {
   height: 48px;
   width: 100%;
-  background-color: #8D55E6;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background: linear-gradient(to right, #8D55E6 , #AE8EE0);
+  background: linear-gradient(to right, #8d55e6, #ae8ee0);
 }
 
 .logo {

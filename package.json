@@ -13,9 +13,10 @@
     "commitmsg": "validate-commit-msg",
     "precommit": "lint-staged",
     "prepush": "npm test",
-    "dev": "sequelize db:migrate && NODE_ENV=development PORT=3000 node index.js",
+    "dev": "sequelize db:migrate && NODE_ENV=development PORT=3000 node server/index.js",
     "build": "next build",
-    "start": "node index.js"
+    "start": "node server/index.js",
+    "now": "now"
   },
   "config": {
     "validate-commit-msg": {
@@ -50,6 +51,7 @@
     "email-validator": "^1.0.7",
     "express": "^4.15.3",
     "express-session": "^1.15.3",
+    "global": "^4.3.2",
     "isomorphic-fetch": "^2.2.1",
     "lusca": "^1.4.1",
     "next": "^2.4.5",
@@ -57,6 +59,7 @@
     "nodemailer": "^4.0.1",
     "nodemailer-smtp-transport": "^2.7.4",
     "normalize.css": "^7.0.0",
+    "now": "^7.2.4",
     "now-logs": "^0.0.7",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",

@@ -4,28 +4,28 @@ h1 {
 }
 
 p {
-  line-height: normal;
-  letter-spacing: normal;
   font: normal normal normal 23px/1.4em Effra, serif;
 }
 
-input, button {
+input,
+button {
   box-sizing: border-box;
   width: 70%;
   max-width: 300px;
   height: 33px;
   padding: 0;
-  border: 3px solid #8D55E6;
+  border: 3px solid #8d55e6;
   margin: 0;
 }
+
 input::placeholder {
   padding-left: 5px;
   font-size: 14px;
-  color: #9E9B9D;
+  color: #9e9b9d;
 }
 
 button {
-  background-color: #8D55E6;
+  background-color: #8d55e6;
   color: white;
   margin-top: 10px;
 }

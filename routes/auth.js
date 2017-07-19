@@ -14,7 +14,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const nodemailer = require('nodemailer');
-const csrf = require('lusca').csrf();
+// const csrf = require('lusca').csrf();
 const uuid = require('uuid/v4');
 const passportStrategies = require('./passport-strategies');
 
