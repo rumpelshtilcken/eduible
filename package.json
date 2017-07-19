@@ -2,9 +2,9 @@
   "name": "eduible",
   "version": "0.0.0",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "next",
     "build": "next build",
-    "start": "node index.js -p $PORT"
+    "start": "next start -p $PORT"
   },
   "engines": {
     "node": "8.1.4"
