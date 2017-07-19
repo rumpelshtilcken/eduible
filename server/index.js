@@ -10,10 +10,11 @@ const runServer = async () => {
   await app.prepare();
   const server = express();
 
+  server.set('port', (process.env.PORT || 3000));
   server.use('/api/v1', router);
   server.get('*', (req, res) => handler(req, res));
 
-  server.listen(process.env.PORT || 3000, (err) => {
+  server.listen(server.get('port'), (err) => {
     if (err) throw err;
     console.log('> Ready on http://localhost:3000');
   });
