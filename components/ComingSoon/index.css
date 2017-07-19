@@ -1,0 +1,55 @@
+h1 {
+  font-family: Effra;
+  font-size: 33px;
+}
+
+p {
+  line-height: normal;
+  letter-spacing: normal;
+  font: normal normal normal 23px/1.4em Effra, serif;
+}
+
+input, button {
+  box-sizing: border-box;
+  width: 70%;
+  max-width: 300px;
+  height: 33px;
+  padding: 0;
+  border: 3px solid #8D55E6;
+  margin: 0;
+}
+input::placeholder {
+  padding-left: 5px;
+  font-size: 14px;
+  color: #9E9B9D;
+}
+
+button {
+  background-color: #8D55E6;
+  color: white;
+  margin-top: 10px;
+}
+
+.container {
+  width: calc(100vw - 30px);
+  height: calc(100vh - 48px - 30px - 36px);
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-family: Effra;
+}
+
+.AnalogClock {
+  z-index: -1;
+}

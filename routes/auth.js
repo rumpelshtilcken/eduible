@@ -45,10 +45,10 @@ exports.configure = (
     // sign in links in emails. Autodetects to hostname if null.
     serverUrl = null,
     // Mailserver configuration for nodemailer (defaults to localhost if null)
-    mailserver = null,
+    mailserver = null
     // From email address should match email account specified in mailserver
     // or you may not be able to send emails.
-    fromEmail = 'noreply@localhost.localdomain'
+    // fromEmail = 'noreply@localhost.localdomain'
   } = {}
 ) => {
   if (app === null) {
@@ -84,7 +84,7 @@ exports.configure = (
 
   // Add CSRF to all POST requests
   // (If you want to add exceptions to paths you can do that here)
-  server.use(csrf);
+  // server.use(csrf);
 
   // With sessions connfigured (& before routes) we need to configure Passport
   // and trigger passport.initialize() before we add any routes
@@ -128,10 +128,8 @@ exports.configure = (
     User.findOrCreate({ where: { email } })
       .spread(user => user.update({ token }))
       .then(() => {
-        console.log('success');
-        console.log(token);
         sendVerificationEmail({
-        //  mailserver,
+          mailserver,
       //    fromEmail,
           toEmail: email,
           url: verificationUrl
@@ -158,7 +156,6 @@ exports.configure = (
         });
       })
       .then(() => {
-        console.log('=========');
         req.logIn(() => res.redirect(`${path}/signin?action=signin_email`));
       })
       .catch(() => res.redirect(`${path}/error/email`));
@@ -172,8 +169,9 @@ exports.configure = (
 };
 
 // @TODO Argument validation
-function sendVerificationEmail({ toEmail, url }) {
+function sendVerificationEmail({ mailserver, toEmail, url }) {
   const transporter = nodemailer.createTransport({
+    mailserver,
     service: 'gmail',
     secure: false,
     port: 25,
@@ -191,12 +189,10 @@ function sendVerificationEmail({ toEmail, url }) {
     subject: 'Sign in link',
     text: `Use the link below to sign in:\n\n${url}\n\n`
   };
-
   transporter.sendMail(HelperOptions, (error, info) => {
     if (error) {
       console.log(error);
     }
-    console.log('The message was sent');
     console.log(info);
   });
 }

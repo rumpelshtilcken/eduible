@@ -1,0 +1,19 @@
+@import 'normalize.css';
+
+@font-face {
+  font-family: Effra;
+  src: url("/static/fonts/Effra_Std_Rg.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Effra;
+  src: url("/static/fonts/Effra_Std_Rg.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+.content {
+  font-family: 'Effra', sans-serif;
+}

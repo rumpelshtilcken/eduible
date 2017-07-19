@@ -2,6 +2,7 @@ const express = require('express');
 const next = require('next');
 const smtpTransport = require('nodemailer-smtp-transport');
 const auth = require('./routes/auth');
+const comingsoon = require('./routes/comingsoon');
 const models = require('./models');
 
 // Load environment variables from .env file if present
@@ -72,6 +73,8 @@ app
     // Says requests to '/route/{anything}' will be handled by 'pages/routing.js'
     // and the {anything} part will be pased to the page in parameters.
     server.get('/route/:id', (req, res) => app.render(req, res, '/routing', req.params));
+
+    server.use('/comingSoon', comingsoon)
 
     // Default catch-all handler to allow Next.js to handle all other routes
     server.all('*', (req, res) => handle(req, res));
