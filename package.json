@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://ak8912_@bitbucket.org/eduible/eduible-web.git",
-  "author": "intellection",
+  "engines": {
+    "node": "7.10.0"
+  },
   "scripts": {
     "lint:js": "eslint --fix .",
     "lint:css": "stylelint \"{pages,components}/**/*.css\"",
