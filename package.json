@@ -2,9 +2,9 @@
   "name": "eduible",
   "version": "0.0.0",
   "scripts": {
-    "dev": "nodemon server/index.js --config .nodemonrc",
+    "dev": "next",
     "build": "next build",
-    "start": "node server/index.js -p $PORT",
+    "start": "next start -p $PORT",
     "heroku-postbuild": "npm run build"
   },
   "engines": {
