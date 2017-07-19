@@ -18,7 +18,7 @@
     "dev": "sequelize db:migrate && NODE_ENV=development PORT=3000 node server/index.js",
     "build": "next build",
     "start": "node server/index.js",
-    "now": "now"
+    "heroku-postbuild": "npm run build"
   },
   "config": {
     "validate-commit-msg": {
@@ -61,7 +61,6 @@
     "nodemailer": "^4.0.1",
     "nodemailer-smtp-transport": "^2.7.4",
     "normalize.css": "^7.0.0",
-    "now": "^7.2.4",
     "now-logs": "^0.0.7",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
