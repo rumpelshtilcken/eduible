@@ -34,7 +34,6 @@ class ComingSoon extends Component {
     // TODO validate email
 
     validator.validate_async(this.input.value, ((err, isValidEmail) => {
-      console.log(this.input.value);
       if (isValidEmail) {
         fetch('http://localhost:3000/comingsoon', {
           method: 'POST',
@@ -59,7 +58,7 @@ class ComingSoon extends Component {
       }
     }));
   };
-// eslint-disable-no-return-assign
+  // eslint-disable-no-return-assign
   render() {
     return (
       <div>

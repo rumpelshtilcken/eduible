@@ -12,7 +12,8 @@ const runServer = async () => {
 
   server.use('/api/v1', router);
   server.get('*', (req, res) => handler(req, res));
-
+  server.get('/route/:id', (req, res) => app.render(req, res, '/routing', req.params));
+  server.all('*', (req, res) => handle(req, res));
   server.listen(3000, (err) => {
     if (err) throw err;
     console.log('> Ready on http://localhost:3000');
