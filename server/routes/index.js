@@ -1,12 +1,13 @@
 const validator = require('email-validator');
 
 const express = require('express');
-const models = require('../models');
+const models = require('../server/models');
 
 const router = express.Router();
 
 // POST new user
 router.post('/', (req, res) => {
+  console.log(req.body.email);
   const email = req.body.email || null;
   validator.validate_async(email, ((err, isValidEmail) => {
     if (isValidEmail) {

@@ -5,6 +5,7 @@
     "react/jsx-filename-extension": "off",
     "react/react-in-jsx-scope": "off",
     "jsx-a11y/html-has-lang": "off",
+    "jsx-a11y/href-no-hash": "off",
     "react/require-default-props": "off",
     "react/forbid-prop-types": "off",
     "no-underscore-dangle": "off",
