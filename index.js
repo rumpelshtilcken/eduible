@@ -19,10 +19,9 @@ const runServer = async () => {
   server.use(bodyParser.urlencoded({ extended: true }));
   // server.use('/api/v1', router);
   server.get('*', (req, res) => handler(req, res));
-  server.use('/comingSoon', comingsoon);
+  //server.use('/comingSoon', comingsoon);
 
   server.listen(PORT, (err) => {
-    console.log('====');
     if (err) throw err;
     console.log('> Ready on http://localhost:3000');
   });
