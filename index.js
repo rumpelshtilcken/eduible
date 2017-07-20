@@ -1,6 +1,6 @@
 const express = require('express');
 const next = require('next');
-// const comingsoon = require('../server/routes/comingsoon');
+const comingsoon = require('../server/routes/comingsoon');
 // import router from './router';
 const bodyParser = require('body-parser');
 
@@ -19,7 +19,7 @@ const runServer = async () => {
   server.use(bodyParser.urlencoded({ extended: true }));
   // server.use('/api/v1', router);
   server.get('*', (req, res) => handler(req, res));
-  //server.use('/comingSoon', comingsoon);
+  server.use('/comingSoon', comingsoon);
 
   server.listen(PORT, (err) => {
     if (err) throw err;
