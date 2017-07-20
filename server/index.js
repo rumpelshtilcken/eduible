@@ -20,16 +20,6 @@ const runServer = async () => {
   // server.use('/api/v1', router);
   server.get('*', (req, res) => handler(req, res));
   server.use('/comingSoon', comingsoon);
-  server.get('/route/:id', (req, res) => app.render(req, res, '/routing', req.params));
-  // Default catch-all handler to allow Next.js to handle all other routes
-  server.all('*', (req, res) => handler(req, res));
-
-  // Set vary header (good practice)
-  // Note: This overrides any existing 'Vary' header but is okay in this app
-  server.use((req, res, next) => {
-    res.setHeader('Vary', 'Accept-Encoding');
-    next();
-  });
 
   server.listen(PORT, (err) => {
     console.log('====');
