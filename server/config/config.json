@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "eduibleuser",
+    "password": null,
+    "database": "eduibledb",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
