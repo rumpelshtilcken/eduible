@@ -31,7 +31,8 @@
     "react-dom": "^15.6.1",
     "react-modal": "^2.2.2",
     "sequelize": "^3.12.2",
-    "sequelize-cli": "^2.1.0"
+    "sequelize-cli": "^2.1.0",
+    "webpack": "^3.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -53,7 +54,6 @@
     "raw-loader": "^0.5.1",
     "stylelint": "^8.0.0",
     "stylelint-config-standard": "^17.0.0",
-    "validate-commit-msg": "^2.12.2",
-    "webpack": "^3.3.0"
+    "validate-commit-msg": "^2.12.2"
   }
 }
