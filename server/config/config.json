@@ -7,8 +7,8 @@
     "dialect": "postgres"
   },
   "production": {
-    "database": "postgres://dobyvjrvwzikrw:eb1612293ef6bf904b8f257b5d04439258895a490e653b8c2eb2446b300ec8d6@ec2-23-23-227-188.compute-1.amazonaws.com:5432/d4vlsobh150nq3",
+    "database": "HEROKU_POSTGRESQL_RED_URL",
     "dialect": "postgres",
-    "use_env_variable": "postgres://dobyvjrvwzikrw:eb1612293ef6bf904b8f257b5d04439258895a490e653b8c2eb2446b300ec8d6@ec2-23-23-227-188.compute-1.amazonaws.com:5432/d4vlsobh150nq3"
+    "use_env_variable": "HEROKU_POSTGRESQL_RED_URL"
   }
 }
