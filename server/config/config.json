@@ -7,8 +7,8 @@
     "dialect": "postgres"
   },
   "production": {
-    "database": "DATABASE_URL",
+    "database": "postgres://dobyvjrvwzikrw:eb1612293ef6bf904b8f257b5d04439258895a490e653b8c2eb2446b300ec8d6@ec2-23-23-227-188.compute-1.amazonaws.com:5432/d4vlsobh150nq3",
     "dialect": "postgres",
-    "use_env_variable": "DATABASE_URL"
+    "use_env_variable": "postgres://dobyvjrvwzikrw:eb1612293ef6bf904b8f257b5d04439258895a490e653b8c2eb2446b300ec8d6@ec2-23-23-227-188.compute-1.amazonaws.com:5432/d4vlsobh150nq3"
   }
 }
