@@ -7,8 +7,8 @@
     "dialect": "postgres"
   },
   "production": {
-    "database": "HEROKU_POSTGRESQL_RED_URL",
+    "database": "DATABASE_URL",
     "dialect": "postgres",
-    "use_env_variable": "HEROKU_POSTGRESQL_RED_URL"
+    "use_env_variable": "DATABASE_URL"
   }
 }
