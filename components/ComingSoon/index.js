@@ -35,7 +35,7 @@ class ComingSoon extends Component {
 
     validator.validate_async(this.input.value, ((err, isValidEmail) => {
       if (isValidEmail) {
-        fetch('https://localhost:3000/comingsoon', {
+        fetch('https://eduible.herokuapp.com/comingsoon', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
