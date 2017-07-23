@@ -1,6 +1,6 @@
 const express = require('express');
 const next = require('next');
-const comingsoon = require('../server/routes/comingsoon');
+const comingsoon = require('./server/routes/comingsoon');
 // import router from './router';
 const bodyParser = require('body-parser');
 
