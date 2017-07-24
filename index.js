@@ -19,7 +19,7 @@ const runServer = async () => {
   server.use(bodyParser.urlencoded({ extended: true }));
   // server.use('/api/v1', router);
   server.get('*', (req, res) => handler(req, res));
-  server.use('/comingSoon', comingsoon);
+  server.use('/api/v1', comingsoon);
 
   server.listen(PORT, (err) => {
     if (err) throw err;

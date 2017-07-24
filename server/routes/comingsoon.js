@@ -6,7 +6,7 @@ const models = require('../models');
 const router = express.Router();
 
 // POST new user
-router.post('/', (req, res) => {
+router.post('/comingsoon', (req, res) => {
   const email = req.body.email || null;
   console.log(email);
   validator.validate_async(email, ((err, isValidEmail) => {

@@ -35,7 +35,7 @@ class ComingSoon extends Component {
 
     validator.validate_async(this.input.value, ((err, isValidEmail) => {
       if (isValidEmail) {
-        fetch('http://localhost:3000/comingsoon', {
+        fetch('/api/v1/comingsoon', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
