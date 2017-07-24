@@ -2,9 +2,9 @@
   "name": "eduible",
   "version": "0.0.0",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "sequelize db:migrate && node index.js",
     "build": "next build",
-    "start": "node index.js -p $PORT",
+    "start": "sequelize db:migrate && node index.js -p $PORT",
     "heroku-postbuild": "npm run build"
   },
   "engines": {
