@@ -22,7 +22,10 @@ const customStyle = {
     height: '20px',
     backgroundColor: 'white',
     top: '300px',
-    left: '340px'
+    left: '40%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 };
 
