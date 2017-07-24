@@ -21,7 +21,8 @@ const customStyle = {
     width: '400px',
     height: '20px',
     backgroundColor: 'white',
-    top: '300px'
+    top: '300px',
+    left: '340px'
   }
 };
 
@@ -62,13 +63,15 @@ class ComingSoon extends Component {
   render() {
     return (
       <div>
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          style={customStyle}
-          contentLabel="Example Modal"
-        >
-          <div className="modal">Thank you for subsribing!</div>
-        </Modal>
+        <div className="modalPosition">
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            style={customStyle}
+            contentLabel="Example Modal"
+          >
+            <div className="modal">Thank you for subsribing!</div>
+          </Modal>
+        </div>
         <div className="container">
           <circle>
             <h1>Our website is launching soon</h1>
