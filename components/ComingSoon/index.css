@@ -92,11 +92,11 @@ button {
   padding: 15px;
 
   @media screen and (min-width: 768px) {
-    background: url('/static/middleimage.jpg') center center /cover no-repeat;
+    background: url('/static/middleImage.jpg') center center /cover no-repeat;
   }
 
   @media screen and (min-width: 1000px) {
-    background: url('/static/biggerimage.jpg') center center /cover no-repeat;
+    background: url('/static/biggerImage.jpg') center center /cover no-repeat;
   }
 }
 
