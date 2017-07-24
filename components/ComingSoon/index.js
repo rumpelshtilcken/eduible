@@ -35,7 +35,7 @@ class ComingSoon extends Component {
 
     validator.validate_async(this.input.value, ((err, isValidEmail) => {
       if (isValidEmail) {
-        fetch('https://eduible.herokuapp.com/comingsoon', {
+        fetch('http://localhost:3000/comingsoon', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -70,10 +70,12 @@ class ComingSoon extends Component {
           <div className="modal">Thank you for subsribing!</div>
         </Modal>
         <div className="container">
-          <h1>Our website is launching soon</h1>
-          <p>Sign up now and be the first when we go live: </p>
-          <input ref={el => (this.input = el)} type="string" name="email" className="input" placeholder="john.doe@example.com" />
-          <button className="subscribeButton" onClick={this.handleClick}>NOTIFY ME</button>
+          <circle>
+            <h1>Our website is launching soon</h1>
+            <p>Sign up now and be the first when we go live: </p>
+            <input ref={el => (this.input = el)} type="string" name="email" className="input" placeholder="john.doe@example.com" />
+            <button className="subscribeButton" onClick={this.handleClick}>Notify Me</button>
+          </circle>
           <style jsx>{stylesheet}</style>
         </div>
       </div>

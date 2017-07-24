@@ -1,45 +1,104 @@
 h1 {
   font-family: Effra;
-  font-size: 33px;
+  font-size: 20px;
+  color: #3f3f3f;
+  font-weight: 400;
+  width: 168px;
+  height: 54px;
+  padding-bottom: 5px;
+  margin-bottom: 0px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 36px;
+    width: 100%;
+ }
 }
 
 p {
-  line-height: normal;
-  letter-spacing: normal;
-  font: normal normal normal 23px/1.4em Effra, serif;
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-bottom: 5px;
+  margin-bottom: 0px;
+  width: 236px;
+  height: 54px;
+  font-size: 18px;
+  color: #3f3f3f;
+  font-weight: lighter;
+  font-family: Effra;
+
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+    width: 100%;
+ }
 }
 
 input, button {
   box-sizing: border-box;
   width: 70%;
   max-width: 300px;
-  height: 33px;
+  height: 50px;
   padding: 0;
-  border: 3px solid #8D55E6;
+  border: 3px solid #ad8be1;
   margin: 0;
 }
+
+circle {
+	width: 350px;
+	height: 350px;
+	background: white;
+	-moz-border-radius: 330px;
+	-webkit-border-radius: 330px;
+	border-radius: 330px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  opacity: 0.7;
+
+  @media screen and (min-width: 768px) {
+    width: 688px;
+  	height: 688px;
+  	background: white;
+  	-moz-border-radius: 688px;
+  	-webkit-border-radius: 688px;
+  	border-radius: 688px;
+ }
+
+}
+
 input::placeholder {
   padding-left: 5px;
   font-size: 14px;
-  color: #9E9B9D;
+  color: #777777;
 }
 
 button {
-  background-color: #8D55E6;
+  background-color: #ad8be1;
   color: white;
   margin-top: 10px;
+  font-size: 18px;
+  font-weight: lighter;
 }
 
 .container {
   width: calc(100vw - 30px);
-  height: calc(100vh - 48px - 30px - 36px);
-  background-color: white;
+  height: calc(100vh - 48px - 30px - 36px - 36px);
+  background: url('/static/Image.jpg') center center /cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   flex-direction: column;
   padding: 15px;
+
+  @media screen and (min-width: 768px) {
+    background: url('/static/middleimage.jpg') center center /cover no-repeat;
+  }
+
+  @media screen and (min-width: 1000px) {
+    background: url('/static/biggerimage.jpg') center center /cover no-repeat;
+  }
 }
 
 .modal {
