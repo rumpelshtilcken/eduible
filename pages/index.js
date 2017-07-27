@@ -1,8 +1,15 @@
 import Page from '../components/Page';
+import Layout from '../components/Layout';
+import MainPage from '../components/MainPage';
+
 
 class Homepage extends Page {
   render() {
-    return <div session={this.props.session} />;
+    return (
+      <Layout title="Eduible" session={this.props.session}>
+        <MainPage />
+      </Layout>
+    );
   }
 }
 
