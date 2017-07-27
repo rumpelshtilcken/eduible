@@ -1,0 +1,4 @@
+./pages/**/*.test.js
+./components/**/*.test.js
+./server/**/*.test.js
+--reporter spec

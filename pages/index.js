@@ -1,13 +1,13 @@
 import Page from '../components/Page';
 import Layout from '../components/Layout';
-import ComingSoon from '../components/ComingSoon';
+import MainPage from '../components/MainPage';
 
 
 class Homepage extends Page {
   render() {
     return (
       <Layout title="Eduible" session={this.props.session}>
-        <ComingSoon />
+        <MainPage />
       </Layout>
     );
   }
