@@ -28,7 +28,7 @@ describe('Local Authentication', () => {
 
     it('/signup should create new user from passed post params in db', async () => {
       const signupUser = {
-        email: 'kasaselya91@mail.ru',
+        email: 'kasaselsya91@mail.ru',
         password: 'adadad',
         confirmPassword: 'adadad'
       };
@@ -42,7 +42,7 @@ describe('Local Authentication', () => {
 
     it('/signup should hash password and store hashed version in db', async () => {
       const signupUser = {
-        email: 'kasaselya91@mail.ru',
+        email: 'kasasesdalsya91@mail.ru',
         password: 'adadad',
         confirmPassword: 'adadad'
       };
@@ -56,7 +56,7 @@ describe('Local Authentication', () => {
 
     it('/signup should send an access_token as jwt', async () => {
       const signupUser = {
-        email: 'kasaselya91@mail.ru',
+        email: 'kasaseslsya91@mail.ru',
         password: 'adadad',
         confirmPassword: 'adadad'
       };
@@ -65,6 +65,76 @@ describe('Local Authentication', () => {
         .send(signupUser);
 
       expect(jwt.verify(res.body.access_token, config.JWT_SECRET)).to.be.ok;
+    });
+
+    it('/signup should respond 401 if user model is empty', async () => {
+      try {
+        await chai.request(server)
+          .post('/signup')
+          .send({});
+      } catch (e) {
+        expect(e.status).to.equal(401);
+        return expect(e.response.body.message).to.equal('you should fill the email and password field');
+      }
+      expect(false).to.be.ok;
+    });
+
+    it('/signup should respond 401 if email contains invalid email', async () => {
+      const signupUser = {
+        email: 'kasaselya91',
+        password: 'adadad',
+        confirmPassword: 'adadad'
+      };
+      try {
+        await chai.request(server)
+          .post('/signup')
+          .send(signupUser);
+      } catch (e) {
+        console.log('error', e.response.body.message);
+        expect(e.status).to.equal(401);
+        return expect(e.response.body.message).to.equal('invalid email');
+      }
+      expect(false).to.be.ok;
+    });
+
+    it('/signup should respond 401 if password not equal confirm password', async () => {
+      const signupUser = {
+        email: 'kasaselya91@gmail.com',
+        password: 'adadad',
+        confirmPassword: 'adadasd'
+      };
+      try {
+        await chai.request(server)
+          .post('/signup')
+          .send(signupUser);
+      } catch (e) {
+        console.log('error', e.response.body.message);
+        expect(e.status).to.equal(401);
+        return expect(e.response.body.message).to.equal('it should be same as your password');
+      }
+      expect(false).to.be.ok;
+    });
+
+    it('/signup should respond 401 if email already exists', async () => {
+      await models.User.create({
+        email: 'kasaselya91@gmail.com',
+        password: 'adadad',
+        confirmPassword: 'adadad'
+      });
+      const signupUser = {
+        email: 'kasaselya91@gmail.com',
+        password: 'adadad',
+        confirmPassword: 'adadad'
+      };
+      try {
+        await chai.request(server)
+          .post('/signup')
+          .send(signupUser);
+      } catch (e) {
+        expect(e.status).to.equal(401);
+        return expect(e.response.body.message).to.equal('email already exists');
+      }
+      expect(false).to.be.ok;
     });
   });
 });
