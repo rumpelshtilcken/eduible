@@ -3,9 +3,10 @@ const next = require('next');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const comingsoon = require('./routes/comingsoon');
+const config = require('./config');
 
-const DEV = process.env.NODE_ENV !== 'production';
-const PORT = process.env.PORT || 3000;
+const { NODE_ENV, PORT } = config;
+const DEV = NODE_ENV !== 'production';
 
 const app = next({ dir: '.', dev: DEV });
 const handler = app.getRequestHandler();
