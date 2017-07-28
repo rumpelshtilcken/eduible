@@ -25,7 +25,6 @@ const runServer = async () => {
 
 
   // error handlers
-
   // development error handler
   // will print stacktrace
   if (DEV) {
