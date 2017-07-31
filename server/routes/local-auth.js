@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const models = require('../models');
 const config = require('../config');
 const validator = require('validator');
-const passport = require('./passport');
+const passport = require('passport');
 const { Strategy: LocalStrategy } = require('passport-local');
 
 const authRoutes = express.Router();
@@ -15,7 +15,6 @@ const localOptions = {
 
 // Register local strategies with passport
 passport.use('signup', new LocalStrategy(localOptions, async (req, email, password, done) => {
-  console.log('here now');
   console.log('+++++++++++', email, password, req.body.confirmPassword);
   if (!validator.isEmail(email)) {
     return done(null, false, { message: 'invalid email' });

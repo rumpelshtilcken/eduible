@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const comingsoon = require('./routes/comingsoon');
 const config = require('./config');
+const authRoutes = require('./routes/local-auth');
+const facebookRoutes = require('./routes/facebook-auth');
+
 
 const { NODE_ENV, PORT } = config;
 const DEV = NODE_ENV !== 'production';
@@ -21,6 +24,8 @@ const runServer = async () => {
   server.use(passport.initialize());
 
   server.use('/api/v1', comingsoon);
+  server.use('/api/v1/auth/local', authRoutes);
+  server.use('/api/v1/auth/facebook', facebookRoutes);
   server.get('*', (req, res) => handler(req, res));
 
 
