@@ -7,7 +7,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const authRouter = require('./auth');
+const authRouter = require('./local-auth');
 const models = require('../models');
 const config = require('../config');
 
@@ -118,8 +118,7 @@ describe('Local Authentication', () => {
     it('/signup should respond 401 if email already exists', async () => {
       await models.User.create({
         email: 'kasaselya91@gmail.com',
-        password: 'adadad',
-        confirmPassword: 'adadad'
+        password: 'adadad'
       });
       const signupUser = {
         email: 'kasaselya91@gmail.com',
@@ -135,6 +134,74 @@ describe('Local Authentication', () => {
         return expect(e.response.body.message).to.equal('email already exists');
       }
       expect(false).to.be.ok;
+    });
+    // TODO send verification email and test
+  });
+
+  describe('Signin functionality', () => {
+    let server;
+
+    beforeEach(async () => {
+      // cleanup database and setup a new server on each test
+      await models.sequelize.sync({ force: true });
+      server = express();
+      server.use(bodyParser.json());
+      server.use(authRouter);
+    });
+
+    it('/signin should respond 401 if email doesnt exist', async () => {
+      const signinUser = {
+        email: 'kasaselya91@gmail.com',
+        password: 'adadad',
+        confirmPassword: 'adadad'
+      };
+      try {
+        await chai.request(server)
+          .post('/signin')
+          .send(signinUser);
+      } catch (e) {
+        expect(e.status).to.equal(401);
+        return expect(e.response.body.message).to.equal('user doesnt exist');
+      }
+      expect(false).to.be.ok;
+    });
+
+    it('/signin should respond 401 if wrong password', async () => {
+      await models.User.create({
+        email: 'kasaselya91@gmail.com',
+        password: 'adadad'
+      });
+      const signinUser = {
+        email: 'kasaselya91@gmail.com',
+        password: 'adadasd',
+        confirmPassword: 'adadad'
+      };
+      try {
+        await chai.request(server)
+          .post('/signin')
+          .send(signinUser);
+      } catch (e) {
+        expect(e.status).to.equal(401);
+        return expect(e.response.body.message).to.equal('password is wrong');
+      }
+      expect(false).to.be.ok;
+    });
+
+    it('/signin should send an access_token as jwt', async () => {
+      await models.User.create({
+        email: 'kasaselya91@gmail.com',
+        password: 'adadad'
+      });
+      const signinUser = {
+        email: 'kasaselya91@gmail.com',
+        password: 'adadad',
+        confirmPassword: 'adadad'
+      };
+      const res = await chai.request(server)
+        .post('/signin')
+        .send(signinUser);
+
+      expect(jwt.verify(res.body.access_token, config.JWT_SECRET)).to.be.ok;
     });
   });
 });
