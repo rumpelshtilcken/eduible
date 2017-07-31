@@ -5,6 +5,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const express = require('express');
 const bodyParser = require('body-parser');
+const passport = require('./passport');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const authRouter = require('./local-auth');
@@ -90,7 +91,6 @@ describe('Local Authentication', () => {
           .post('/signup')
           .send(signupUser);
       } catch (e) {
-        console.log('error', e.response.body.message);
         expect(e.status).to.equal(401);
         return expect(e.response.body.message).to.equal('invalid email');
       }
@@ -104,11 +104,12 @@ describe('Local Authentication', () => {
         confirmPassword: 'adadasd'
       };
       try {
-        await chai.request(server)
+        const res = await chai.request(server)
           .post('/signup')
           .send(signupUser);
+
+        console.log(res.body);
       } catch (e) {
-        console.log('error', e.response.body.message);
         expect(e.status).to.equal(401);
         return expect(e.response.body.message).to.equal('it should be same as your password');
       }
@@ -130,6 +131,7 @@ describe('Local Authentication', () => {
           .post('/signup')
           .send(signupUser);
       } catch (e) {
+        console.log('error_______', e.response.body.message);
         expect(e.status).to.equal(401);
         return expect(e.response.body.message).to.equal('email already exists');
       }
@@ -173,7 +175,7 @@ describe('Local Authentication', () => {
       });
       const signinUser = {
         email: 'kasaselya91@gmail.com',
-        password: 'adadasd',
+        password: 'adadsad',
         confirmPassword: 'adadad'
       };
       try {
@@ -181,6 +183,7 @@ describe('Local Authentication', () => {
           .post('/signin')
           .send(signinUser);
       } catch (e) {
+        console.log('pass', e.response.body.message)
         expect(e.status).to.equal(401);
         return expect(e.response.body.message).to.equal('password is wrong');
       }

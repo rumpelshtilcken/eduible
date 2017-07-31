@@ -23,6 +23,7 @@
     "next": "^2.4.7",
     "normalize-css": "^2.3.1",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "pg": "^4.4.3",
     "pg-hstore": "^2.3.2",
@@ -36,6 +37,7 @@
     "react-modal": "^2.2.2",
     "sequelize": "^3.12.2",
     "sequelize-cli": "^2.1.0",
+    "validator": "^8.0.0",
     "webpack": "^3.3.0"
   },
   "devDependencies": {

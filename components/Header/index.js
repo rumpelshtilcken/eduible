@@ -1,5 +1,5 @@
 const Modal = require('react-modal');
-const Component = require('react');
+const { Component } = require('react');
 
 const stylesheet = require('./index.css');
 
@@ -25,16 +25,6 @@ class Header extends Component {
         <div className="logo">
           <img src={'/static/eduible.svg'} alt={'logo'} />
         </div>
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          contentLabel="Example Modal"
-          content={{
-            base: 'content'
-          }}
-          overlay={{
-            base: 'overlay'
-          }}
-        >
           <div className="container">
             <div className="inputBox">
               <h1>SIGN UP</h1>
@@ -53,7 +43,6 @@ class Header extends Component {
               <button className="loginButton">Log in here</button>
             </div>
           </div>
-        </Modal>
         <button className="button" onClick={this.handleClick}>SIGN UP</button>
       </div>
       <style jsx>{stylesheet}</style>
