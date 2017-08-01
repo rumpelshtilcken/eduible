@@ -25,25 +25,23 @@ passport.use('signup', new LocalStrategy(localOptions, async (req, email, passwo
   if (password !== req.body.confirmPassword) {
     return done(null, false, { message: 'it should be same as your password' });
   }
-  const existingUser = await models.User.findOne({ where: { email } });
-  console.log('-----------', email, password);
+  const existingUser = await models.User.findOne({ where: { 'local.email': email } });
   if (existingUser !== null) {
     return done(null, false, { message: 'email already exists' });
   }
   const newUser = await models.User.create({
-    email,
-    password: await bcrypt.hash(password, 10)
+    'local.email': email,
+    'local.password': await bcrypt.hash(password, 10)
   });
   return done(null, newUser);
 }));
 
 passport.use('signin', new LocalStrategy(localOptions, async (req, email, password, done) => {
-  const signinUser = await models.User.findOne({ where: { email } });
+  const signinUser = await models.User.findOne({ where: { 'local.email': email } });
   if (signinUser === null) {
     done(null, false, { message: 'user doesnt exist' });
   }
-  if (await bcrypt.compare(password, signinUser.password)) {
-    console.log('password, signinUser.password', password, signinUser.password);
+  if (await bcrypt.compare(password, signinUser.local.password)) {
     done(null, false, { message: 'password is wrong' });
   }
   return done(null, signinUser);
