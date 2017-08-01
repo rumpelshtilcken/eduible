@@ -5,7 +5,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const express = require('express');
 const bodyParser = require('body-parser');
-const passport = require('passport');
+// const passport = require('passport');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const authRouter = require('./local-auth');
@@ -183,7 +183,7 @@ describe('Local Authentication', () => {
           .post('/signin')
           .send(signinUser);
       } catch (e) {
-        console.log('pass', e.response.body.message)
+        console.log('pass', e.response.body.message);
         expect(e.status).to.equal(401);
         return expect(e.response.body.message).to.equal('password is wrong');
       }

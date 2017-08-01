@@ -6,7 +6,7 @@ const Footer = () => (
       <h1>COPYRIGHT(C)2017 </h1>
     </div>
   </div>
-    <style jsx>{stylesheet}</style>
+  <style jsx>{stylesheet}</style>
   </header>
 );
 
