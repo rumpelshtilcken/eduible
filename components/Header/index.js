@@ -1,10 +1,9 @@
 const Modal = require('react-modal');
 const { Component } = require('react');
 
+import fetch from 'isomorphic-unfetch';
+
 const stylesheet = require('./index.css');
-
-require('isomorphic-fetch');
-
 
 class Header extends Component {
   state = {
@@ -19,6 +18,43 @@ class Header extends Component {
       confirmPassword_input: ''
     });
   };
+
+  handleClick = () => {
+    // TODO validate email
+
+    validator.validate_async(this.input.value, ((err, isValidEmail) => {
+      if (isValidEmail) {
+        fetch('/api/v1/comingsoon', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: this.input.value
+          })
+        }).then(() => {
+          this.input.value = null;
+          this.setState({
+            modalIsOpen: true
+          });
+          setTimeout(() => {
+            this.setState({
+              modalIsOpen: false
+            });
+          }, 2000);
+        });
+      }
+    }));
+  };
+
+  handleFacebookClick = () => {
+    window.location = '/api/v1/auth/facebook/signin';
+    // fetch('/api/v1/auth/facebook/signin').then((res) => {
+    //   console.log('Finished', res);
+    // }).catch(err => console.log(err));
+  };
+
   render() {
     return (
       <header><div className="box">
@@ -36,7 +72,7 @@ class Header extends Component {
             <input ref={el => (this.state.confirmPassword_input = el)} type="string" name="confrimPassword" className="input" />
             <button className="continueButton">CONTINUE</button>
             <p>OR SIGN UP USING</p>
-            <button className="facebookButton">FACEBOOK</button>
+            <button className="facebookButton" onClick={this.handleFacebookClick}>FACEBOOK</button>
             <button className="googleButton">GOOGLE</button>
             <img src={'/static/Line.jpg'} alt={'Line'} className="image" />
             <p>ALREADY A MEMBER</p>
