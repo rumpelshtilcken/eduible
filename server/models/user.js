@@ -1,15 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    local: {
-      email: DataTypes.STRING,
-      password: DataTypes.STRING
-    },
-    facebook: {
-      id: String,
-      token: String,
-      email: String,
-      name: String
-    }
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    facebookEmail: DataTypes.STRING,
+    facebookId: DataTypes.STRING,
+    facebookToken: DataTypes.STRING,
+    facebookName: DataTypes.STRING
   });
   return User;
 };
