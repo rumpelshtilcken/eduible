@@ -1,12 +1,15 @@
 import stylesheet from './index.css';
 
 const Footer = () => (
-  <header><div className="box">
-    <div className="text">
-      <h1>COPYRIGHT(C)2017 </h1>
+  <header>
+    <div className="container">
+      <div className="leftSide">
+        <button className="menu">EXTRA MENU</button>
+        <button className="menu">EXTRA MENU</button>
+      </div>
+      <div className="copyright">COPYRIGHT (C) 2017</div>
     </div>
-  </div>
-  <style jsx>{stylesheet}</style>
+    <style jsx>{stylesheet}</style>
   </header>
 );
 

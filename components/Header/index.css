@@ -1,24 +1,20 @@
-:root {
-  --font: Effra;
-  --boxHeight: 28.21px;
-  --boxWidth: 184px;
-}
-
-.box {
-  height: 48px;
-  width: 100%;
-  background-color: #8D55E6;
+.container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: flex-start;
-  background: linear-gradient(to right, #8D55E6 , #AE8EE0);
-  flex-wrap: wrap;
-  flex-direction: row;
+  height: 52px;
+  background-color: #f9f9f9;
+  position: relative;
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,.08);
+  z-index: 2;
 }
 
 .logo {
-  padding-left: 16px;
-  width: 90%;
+  background: url('/static/icon-colored.png') center center no-repeat;
+  background-size: cover;
+  width: 92px;
+  height: 26px;
+  margin: 15px 0 10px 16px;
 }
 
 .button {

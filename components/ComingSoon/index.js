@@ -6,7 +6,6 @@ import stylesheet from './index.css';
 
 const validator = require('email-validator');
 
-
 require('isomorphic-fetch');
 
 const customStyle = {
