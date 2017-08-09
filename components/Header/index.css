@@ -10,11 +10,8 @@
 }
 
 .logo {
-  background: url('/static/icon-colored.png') center center no-repeat;
-  background-size: cover;
-  width: 92px;
-  height: 26px;
-  margin: 15px 0 10px 16px;
+  padding-left: 16px;
+  width: 90%;
 }
 
 .button {
