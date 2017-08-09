@@ -8,12 +8,13 @@ const config = require('../config');
 const facebookRoutes = express.Router();
 
 const facebookOptions = {
-  clientID: '1930827900538994',
-  clientSecret: '5a6084a00d497bf36d5d22850d3e673b',
+  clientID: '503270650015067',
+  clientSecret: '1346436d8ac6ff4e4dd7d6548fe12b89',
   callbackURL: 'http://localhost:3000/api/v1/auth/facebook/callback'
 };
 
 passport.use('signin', new FacebookStrategy(facebookOptions, async (req, accessToken, refreshToken, profile, done) => {
+  console.log(accessToken);
   console.log('Passport use');
   console.log(profile);
   if (!req.user) {

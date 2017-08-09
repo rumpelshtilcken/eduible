@@ -2,7 +2,7 @@
   "name": "eduible",
   "version": "0.0.0",
   "scripts": {
-    "dev": "sequelize db:migrate && nodemon server/index.js --config .nodemonrc",
+    "dev": "next",
     "build": "next build",
     "start": "sequelize db:migrate && node server/index.js",
     "heroku-postbuild": "npm run build",
