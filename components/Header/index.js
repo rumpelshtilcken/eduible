@@ -1,67 +1,58 @@
-const Modal = require('react-modal');
-const { Component } = require('react');
+import Modal from 'react-modal';
+import { Component } from 'react';
 
-import fetch from 'isomorphic-unfetch';
+import fetch from 'isomorphic-fetch';
+import stylesheet from './index.css';
+import modalStylesheet from './modal.css';
 
-const stylesheet = require('./index.css');
+const validator = require('email-validator');
+
+require('isomorphic-fetch');
+
 
 class Header extends Component {
-  state = {
-    modalIsOpen: false
+  constructor() {
+    super();
+    this.state = {
+      showModal: false,
+      email_input: '',
+      password_input: '',
+      confirmPassword_input: ''
+    };
+
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
+  handleOpenModal() {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal() {
+    this.setState({ showModal: false });
   }
 
   handleClick = () => {
     this.setState({
-      modalIsOpen: true,
+      showModal: true,
       email_input: '',
       password_input: '',
       confirmPassword_input: ''
     });
   };
-
-  handleClick = () => {
-    // TODO validate email
-
-    validator.validate_async(this.input.value, ((err, isValidEmail) => {
-      if (isValidEmail) {
-        fetch('/api/v1/comingsoon', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            email: this.input.value
-          })
-        }).then(() => {
-          this.input.value = null;
-          this.setState({
-            modalIsOpen: true
-          });
-          setTimeout(() => {
-            this.setState({
-              modalIsOpen: false
-            });
-          }, 2000);
-        });
-      }
-    }));
-  };
-
-  handleFacebookClick = () => {
-    window.location = '/api/v1/auth/facebook/signin';
-    // fetch('/api/v1/auth/facebook/signin').then((res) => {
-    //   console.log('Finished', res);
-    // }).catch(err => console.log(err));
-  };
-
   render() {
     return (
       <header><div className="box">
         <div className="logo">
           <img src={'/static/eduible.svg'} alt={'logo'} />
         </div>
-        <div className="container">
+        <Modal
+          isOpen={this.state.showModal}
+          contentLabel="onRequestClose Example"
+          onRequestClose={this.handleCloseModal}
+          className="Modal"
+          overlayClassName="OverlayModal"
+        >
           <div className="inputBox">
             <h1>SIGN UP</h1>
             <p>EMAIL</p>
@@ -72,16 +63,16 @@ class Header extends Component {
             <input ref={el => (this.state.confirmPassword_input = el)} type="string" name="confrimPassword" className="input" />
             <button className="continueButton">CONTINUE</button>
             <p>OR SIGN UP USING</p>
-            <button className="facebookButton" onClick={this.handleFacebookClick}>FACEBOOK</button>
+            <button className="facebookButton">FACEBOOK</button>
             <button className="googleButton">GOOGLE</button>
-            <img src={'/static/Line.jpg'} alt={'Line'} className="image" />
             <p>ALREADY A MEMBER</p>
             <button className="loginButton">Log in here</button>
           </div>
-        </div>
-        <button className="button" onClick={this.handleClick}>SIGN UP</button>
+        </Modal>
+        <button className="button" onClick={this.handleOpenModal}>SIGN UP</button>
       </div>
       <style jsx>{stylesheet}</style>
+      <style jsx global>{modalStylesheet}</style>
       </header>
     );
   }
