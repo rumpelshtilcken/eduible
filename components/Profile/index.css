@@ -1,0 +1,195 @@
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header {
+    width: 100%;
+    box-shadow: 0 10px 10px #ccc;
+    margin-bottom: 10px;
+    @media screen and (min-width: 768px) {
+     box-shadow: none;
+    
+    }
+}
+.header__image {
+    height: 160px;
+    background: url('/static/prof/page-small.svg') center center no-repeat;
+    background-size: cover;
+    @media screen and (min-width: 768px) {
+    width: 100%;
+    background: url('/static/prof/page-medium.svg') center center /contain no-repeat;
+   
+ }
+}
+.profile_edit{
+    width: 48px;
+    position: relative;
+    left: +85%;
+    border-radius: 100%;
+    @media screen and (min-width: 768px) {
+    }
+}
+.profile__avatar {
+    position: relative; 
+    top: -45px;
+    width: 90px;
+    border-radius: 100%;
+    height: 90px;
+    margin: auto;
+    background: url('/static/prof/Bitmap.jpg') center center no-repeat;
+    background-size: cover;
+    margin-bottom: - 100px;
+    @media screen and (min-width: 768px) {
+    float: left;
+     position: relative; 
+     top: -90;;
+    }
+    
+}
+
+.profile__list {
+    position: relative; 
+    top: -45px;
+    list-style-type: none;
+    text-align: center;
+    font-family: Effra; 
+     @media screen and (min-width: 768px) {
+     width: 100%;
+     float: left;
+      display: inline-block;
+     
+     
+     
+     }
+}
+
+
+
+.profile__title {
+    color: #383838;
+    font-family: Effra;  
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 18px;
+}
+
+.profile__icon {
+    margin-right: 3px;
+    width: 10px;
+    height: 10px;
+}
+
+.profile__text {
+    color: #afafaf;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: Effra;  
+    text-transform: uppercase;
+}
+
+.profile_line {
+    width: 100%;
+    height: 40px;
+    margin-top: -10px;
+    margin-bottom: -20px;
+
+}
+
+.profile_box {
+    border-radius: 4px;
+    border-size: 10px;
+    background-color: f9f9f9;
+    width: 90%;
+    min-height: 80px;
+    margin: 5% auto;
+    box-shadow: 2px 10px 10px #ccc;
+    @media screen and (min-width: 768px) {
+        
+    }
+}
+
+.meeting_button_inperson{
+    float: left;
+    margin-left: 7%;
+    margin-bottom: auto;
+    font-size: 11px;
+    font-family: Effra;  
+    width: 40%; 
+    height: 22px;      
+    background-color: #BEFCAF;
+    color: white;
+    border:none;
+    border-radius: 10px;
+}
+.meeting_button_online{
+    float: right;
+    margin-right: 7%;
+    font-size: 11px;
+    font-family: Effra;  
+    width: 40%;    
+    height: 22px; 
+    background-color: #BEFCAF;  
+    color: white;
+    border:none;
+    border-radius: 10px;
+}
+.box_title {
+    width: 80%;
+    float: left;
+    font-size: 11px;
+    text-align: left;
+    font-family: Effra;    
+    padding: 16px;
+    font-weight: bold;
+}
+.box_edit{
+    width: 20%;
+    float: right;
+    margin-left: 15px;
+    width: 38px;
+}
+    
+.about_content{
+    font-size: 11px;
+    font-family: Effra;
+    padding:15px;
+}
+.calendar_days{
+    margin-left: 15%;
+    width: 70%;
+}
+.calendar_caption{
+    font-size: 11px;
+    font-family: Effra;
+    padding:15px;
+}
+
+.calendar_button{
+
+   width: 100%; 
+   background-color: #BEFCAF;
+   color: white;
+   border:none;
+   border-radius: 10px;
+}
+.active{
+    background-color: #46F61A;
+}
+.unactive{
+    background-color: #BEFCAF;
+    }
+.calendar_table{
+    width:100%;
+     font-size: 11px;
+    font-family: Effra;
+}
+.calendar_left{
+    width: 5px;
+    margin-left: +88%;
+}
+td{
+    width: 11%;
+}
