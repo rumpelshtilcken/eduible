@@ -1,0 +1,161 @@
+:root {
+  --font: Effra;
+  --boxHeight: 28.21px;
+  --boxWidth: 184px;
+}
+
+h1, p {
+  font-family: var(--font);
+  color: #626262;
+}
+
+input::placeholder {
+  padding-left: 5px;
+  font-size: 9px;
+  color: #777777;
+}
+
+p {
+  font-size: 11px;
+  margin: 0;
+  padding-bottom: 4px;
+
+  @media screen and (min-width: 375px) {
+ 
+  }
+
+  @media screen and (min-width: 414px) {
+    
+  }
+}
+
+input {
+  margin-bottom: 18.79px;
+  border-color: #d9d9d9;
+  border-radius: 5px;
+  border-style: double;
+  height: 100%;
+  width: 100%;
+
+  @media screen and (min-width: 375px) {
+   
+  }
+
+  @media screen and (min-width: 414px) {
+    
+  }
+}
+
+.signUpText {
+  font-family: var(--font);
+  color: #626262;
+  width: 100%;
+  text-align: center;
+  font-size: 17px;
+  display: block;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 19px;
+  justify-content: center;
+
+  @media screen and (min-width: 768px) {
+    font-size: 17px;
+    width: 100%;
+    margin-top: 23px;
+    margin-bottom: 14px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 23px;
+    margin-top: 33px;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+}
+
+.secondSign p{
+  text-align: left;
+  font-family: var(--font);
+  color: #626262;
+  width: 201px;
+  font-size: 15px;
+  display: block;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 19px;
+  justify-content: center;
+
+  @media screen and (min-width: 768px) {
+    font-size: 13px;
+    width: 100%;
+    text-align: center;
+    margin-top: 3px;
+    margin-bottom: 7px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 23px;
+    margin-top: 33px;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+}
+
+.codeForm {
+  width: 190px;
+  margin: auto;
+  display: block;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    width: 100%;
+    flex-flow: row;
+  }
+}
+.codeInput {
+  diaplay: block;
+  font-size: 12px;
+  margin: auto;
+  border-color: #d9d9d9;
+  color: #d9d9d9;
+  text-align: left;
+  border-radius: 5px;
+  border-style: double;
+  height: 28px;
+  width: 184px;
+  margin-bottom: 5px;
+  
+  @media screen and (min-width: 768px) {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+.codeInput::placeholder {
+  font-size: 13px;
+  margin: auto;
+  color: #d9d9d9;
+  text-align: left;
+}
+
+.sendAgain {
+  padding-left: 0px;
+  font-size: 12px;
+  color: #d9d9d9;
+  text-align: left;
+  width: 190px;
+}
+
+.createButton {
+  margin: auto;
+  height: 28px;
+  width: 190px;
+  color: white;
+  display: block;
+  font-family: var(--font);
+  border: 0;
+  margin-top: 17px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  background-color: #7262bf;
+  border-radius: 4px;
+}
