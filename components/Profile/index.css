@@ -4,9 +4,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+}
+.content{
+     background-color: #f9f9f9;
 }
 .container{
+    margin: auto;
+    width: 100%;
     background-color: #f9f9f9;
+     @media screen and (min-width: 768px) {
+     width: 100%;
+     }
+    @media screen and (min-width: 1024px) {
+     width: 100%;
+     }
 }
 
 .profile_header {
@@ -27,12 +39,19 @@
     width: 100%;
     background: url('/static/prof/page-small.svg') center center no-repeat;
     background-size: cover;
-    @media screen and (min-width: 768px) {
-    margin: auto; 
+    margin: auto;
+    @media screen and (min-width: 768px) { 
     background: url('/static/prof/page-medium.svg') center center /contain no-repeat;
-    width: 680px;     
+    width: 730px;    
+    height: 168px;     
  }
-}
+    @media screen and (min-width: 1024px) {  
+    position: relative;
+    left: -12%;
+    background: url('/static/prof/page-large.svg') center center /contain no-repeat;
+    width: 900px; 
+    height: 210px;
+}}
 .profile__edit{
     width: 48px;
     position: relative;
@@ -58,6 +77,12 @@
     position: relative; 
     top: -112px;
     left: -35%;
+    }
+    @media screen and (min-width: 1024px) {
+    weight: 110px;
+    top: -125px;
+    left: -50%;
+    
     }
     
 }
@@ -122,11 +147,14 @@
 
 }
 .bottom{
-    background-color: #f9f9f9;
-     @media screen and (min-width: 768px) {
-    width: 674px;
-    height: 1000px;
     margin: auto;
+    @media screen and (min-width: 768px) {
+    width: 710px;
+    height: 1000px;
+   
+    }
+    @media screen and (min-width: 1024px) {
+    width: 900px;
      }
 }
 .profile_box {
@@ -145,7 +173,7 @@
     }
 }
 .box_title {
-    width: 76%;
+    width: 70%;
     float: left;
     font-size: 11px;
     text-align: left;
@@ -166,8 +194,12 @@
     float: left;
     width: 70%;
     margin: auto;
-
-      }
+    height: 134px;
+    }
+    @media screen and (min-width: 1024px) {
+    width: 50%;
+    height: 140px;
+    }
 }   
 .about_content{
     font-size: 11px;
@@ -184,7 +216,14 @@
      top: -12%;
      padding-bottom: 10px;
      height: 134px;
-      }
+    }
+    @media screen and (min-width: 1024px) {
+    width: 16%;
+    left: -28%;
+    height: 140px;
+    left: -32%;
+    }
+
 }
 .meeting_buttons{
     @media screen and (min-width: 768px) {
@@ -210,8 +249,8 @@
     display: block;
     width: 60%;
     margin: auto;
-    margin-bottom: 10%;
-    margin-top: 10%;
+    margin-top: 15px;
+    margin-bottom: 15px;
     }
 
 }
@@ -231,6 +270,7 @@
     margin: auto; 
     width: 60%;  
     display: block;
+    
     }
 
 }
@@ -247,10 +287,16 @@
      float: left;
      width: 70%;   
      margin: auto;
-     position: relative;
+     height: 134px;
      top: -10%;
 
       }
+    @media screen and (min-width: 1024px) {
+    width: 29.5%;
+    left: +20%;
+    top: -12%;
+    height: 140px;
+    }
 }
 
 .calendar_days{
