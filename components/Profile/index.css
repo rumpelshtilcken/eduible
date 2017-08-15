@@ -6,19 +6,11 @@
     box-sizing: border-box;
 
 }
-.content{
-     background-color: #f9f9f9;
-}
+
 .container{
-    margin: auto;
     width: 100%;
     background-color: #f9f9f9;
-     @media screen and (min-width: 768px) {
-     width: 100%;
-     }
-    @media screen and (min-width: 1024px) {
-     width: 100%;
-     }
+  
 }
 
 .profile_header {
@@ -58,8 +50,10 @@
     left: +85%;
     border-radius: 100%;
     @media screen and (min-width: 768px) {
-    position: relative;
-    left: +90%;
+    left: +91%;
+    }
+    @media screen and (min-width: 1024px) {
+    left: +93%;
     
     }
 }
@@ -74,7 +68,6 @@
     background-size: cover;
     margin-bottom: - 100px;
     @media screen and (min-width: 768px) {
-    position: relative; 
     top: -112px;
     left: -35%;
     }
@@ -95,7 +88,6 @@
     font-family: Effra;  
     
      @media screen and (min-width: 768px) {
-      position: relative;
       top: -140px;
       left: -10%;
       width: 70%;
@@ -161,7 +153,6 @@
     background-color: #ffff;
     border-radius: 4px;
     border-size: 10px;
-    background-color: f9f9f9;
     width: 90%;
     min-height: 80px;
     margin: 5% auto;
