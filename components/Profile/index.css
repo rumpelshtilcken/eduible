@@ -94,6 +94,9 @@
       display:flex;  
       float: right;
     }
+    @media screen and (min-width: 1024px) {
+     top: -148px;
+    }
 }
 
 
@@ -126,7 +129,7 @@
     margin-top: -10px;
     margin-bottom: -20px;
     @media screen and (min-width: 768px) {
-        display: none;
+    display: none;
     }
 }
 
