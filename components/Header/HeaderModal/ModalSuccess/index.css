@@ -3,6 +3,25 @@
   --boxHeight: 28.21px;
   --boxWidth: 184px;
 }
+.ssylka {
+  font-size: 12px;
+  color: #d9d9d9;
+  margin: auto;
+  width: 191px;
+  margin-top: 29px;
+  @media screen and (min-width: 768px) {
+    padding-top: 8px;
+    font-size: 11px;
+    margin-top: 8px;
+    width: 399px;
+  }
+  @media screen and (min-width: 1440px) {
+    padding-top: 11px;
+    font-size: 12px;
+    margin-top: 8px;
+    width: 441px;
+  }
+}
 
 h1, p {
   font-family: var(--font);
@@ -54,26 +73,26 @@ input {
   font-size: 17px;
   display: block;
   margin: auto;
-  margin-top: 25px;
-  margin-bottom: 19px;
+  margin-top: 44px;
+  margin-bottom: 31px;
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    font-size: 17px;
+    font-size: 21px;
     width: 100%;
-    margin-top: 23px;
-    margin-bottom: 14px;
+    margin-top: 37px;
+    margin-bottom: 29px;
   }
 
   @media screen and (min-width: 1440px) {
-    font-size: 23px;
-    margin-top: 33px;
+    font-size: 25px;
+    margin-top: 44px;
     width: 100%;
     margin-bottom: 25px;
   }
 }
 
-.secondSign p{
+.firstTxt p{
   text-align: left;
   font-family: var(--font);
   color: #626262;
@@ -81,8 +100,8 @@ input {
   font-size: 15px;
   display: block;
   margin: auto;
-  margin-top: 25px;
-  margin-bottom: 19px;
+  margin-top: 19px;
+  margin-bottom: 7px;
   justify-content: center;
 
   @media screen and (min-width: 768px) {
@@ -90,29 +109,38 @@ input {
     width: 100%;
     text-align: center;
     margin-top: 3px;
-    margin-bottom: 7px;
+    margin-bottom: 13px;
   }
-
   @media screen and (min-width: 1440px) {
-    font-size: 23px;
-    margin-top: 33px;
+    font-size: 15px;
     width: 100%;
-    margin-bottom: 25px;
+    text-align: center;
+    margin-top: 3px;
+    margin-bottom: 13px;
   }
 }
+
 
 .codeForm {
   width: 190px;
   margin: auto;
+  margin-top: 33px;
   display: block;
   @media screen and (min-width: 768px) {
     display: flex;
-    width: 100%;
+    width: 429px;
     flex-flow: row;
+    margin-top: 21px;
+  }
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    width: 477px;
+    flex-flow: row;
+    margin-top: 35px;
   }
 }
 .codeInput {
-  diaplay: block;
+  display: block;
   font-size: 12px;
   margin: auto;
   border-color: #d9d9d9;
@@ -125,8 +153,10 @@ input {
   margin-bottom: 5px;
   
   @media screen and (min-width: 768px) {
-    margin-right: 0;
-    margin-left: 0;
+    margin-right: 9px; 
+  }
+  @media screen and (min-width: 1440px) {
+    width: 223px;
   }
 }
 
@@ -138,24 +168,48 @@ input {
 }
 
 .sendAgain {
+  display: block;
+  margin: auto;
   padding-left: 0px;
   font-size: 12px;
   color: #d9d9d9;
   text-align: left;
   width: 190px;
+  margin-top: 13px;
+  @media screen and (min-width: 768px) {
+    margin-left: 9px; 
+    width: 222px;
+  }
+  @media screen and (min-width: 768px) {
+    margin-left: 9px; 
+    font-size: 12px;
+    width: 229px;
+  }
 }
 
 .createButton {
   margin: auto;
   height: 28px;
-  width: 190px;
+  width: 193px;
   color: white;
   display: block;
   font-family: var(--font);
   border: 0;
-  margin-top: 17px;
+  margin-top: 27px;
   font-size: 12px;
   letter-spacing: 1px;
   background-color: #7262bf;
   border-radius: 4px;
+  @media screen and (min-width: 768px) {
+    width: 429px;
+    margin-top: 22px;
+    height: 33px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 475px;
+    height: 34px;
+    margin-top: 31px;
+  }
 }
+
+

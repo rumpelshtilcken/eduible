@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import ModalDefault from './ModalDefault';
 import ModalSuccess from './ModalSuccess';
+import stylessheet from './index.css';
 
 // const validator = require('email-validator');
 
@@ -44,10 +45,12 @@ class HeaderModal extends Component {
         isOpen={this.props.isModalOpen}
         contentLabel="onRequestClose Example"
         onRequestClose={this.handleRequestClose}
-        className={this.props.className}
-        overlayClassName={this.props.overlayClassName}
+        className="HeaderModal"
+        overlayClassName="OverlayModal"
       >
         {this.renderModalContent()}
+
+        <style global>{stylessheet}</style>
       </Modal>
     );
   }

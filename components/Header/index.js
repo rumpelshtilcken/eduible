@@ -26,8 +26,8 @@ class Header extends Component {
           </div>
           <HeaderModal
             isModalOpen={this.state.isModalOpen}
-            className={stylesSheet.HeaderModal}
-            overlayClassName={stylesSheet.OverlayModal}
+            className="HeaderModal"
+            overlayClassName="OverlayModal"
             onRequestClose={this.handleRequestClose}
           />
 
