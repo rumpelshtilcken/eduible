@@ -2,30 +2,29 @@ import styles from './index.css';
 
 const ModalSuccess = () => (
   <div className="secondSign">
-    <h1 className="signUpText">SIGN UP</h1>
+    <p className="signUpText">JOIN AS PROFESSIONAL</p>
     <div className="firstTxt">
-      <p>A verification code has been sent to your email address.</p>
-      <p>
-            Please enter the code below to verify your email and finish the
-            registration process
-      </p>
+      <p className="share">Share your knowledge and experience. Start now - it’s free</p>
     </div>
     <form className="codeForm">
+      <p>JOB TITLE</p>
       <input
         type="string"
         name="fullname"
         className="codeInput"
-        placeholder="a233jnk4kl4k"
+        placeholder="IT developer"
       />
-      <button className="sendAgain">
-        {' '}Did not receive the code? Send again
-      </button>
+      <p className="company">COMPANY</p>
+      <input
+        type="string"
+        name="fullname"
+        className="codeInput"
+        placeholder="facebook"
+      />
     </form>
-    <button className="createButton">CREATE ACCOUNT</button>
-    <p className="ssylka">
-            By creating an account, you agree to &nbsp;
-      <a href="">Eduible’s Terms and Conditions and Privacy Policy.</a>
-    </p>
+    <p className="provide">Providing your job title and company name  will help users find you on Eduible</p>
+    <button className="continueButton">CONTINUE</button>
+    <a href="" className="ssylka">skip this step</a>
     <style jsx>{styles}</style>
   </div>
 );
