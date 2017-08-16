@@ -1,0 +1,13 @@
+  .inputBox{
+   display: block;
+  margin: auto;
+  width: 190px;
+  } 
+  .skip{
+    width:100%;
+    margin: auto;
+  }
+  .continueButton{
+    width: 192px;
+    margin: auto;
+  }
