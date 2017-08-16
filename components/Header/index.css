@@ -37,6 +37,24 @@
   overflow: hidden;
 }
 
+
+.buttonJoin {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  font-size: 12px;
+  font-family: var(--font);
+  border: none;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  cursor:pointer;
+  overflow: hidden;
+}
+
+
 .HeaderModal {
   height: 555px;
   background-color: white;
