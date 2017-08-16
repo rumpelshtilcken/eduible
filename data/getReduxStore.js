@@ -1,7 +1,7 @@
 
-import { compose, createStore } from 'redux';
-import { autoRehydrate } from 'redux-persist';
-import thunk from 'redux-thunk';
+import { createStore } from 'redux';
+// import { autoRehydrate } from 'redux-persist';
+// import thunk from 'redux-thunk';
 
 import Reducers from './reducers';
 
@@ -9,14 +9,14 @@ let reduxStore = null;
 
 const getReduxStore = (initialState = {}) => {
   if (!process.browser || !reduxStore) {
-    const universalMiddlewares = [thunk];
+    // const universalMiddlewares = [thunk];
 
-    const middlewares = process.browser ? compose(
-      autoRehydrate(),
-      universalMiddlewares,
-    ) : universalMiddlewares;
+    // const middlewares = process.browser ? compose(
+    //   autoRehydrate(),
+    //   universalMiddlewares,
+    // ) : universalMiddlewares;
 
-    const newReduxStore = createStore(Reducers, initialState, middlewares);
+    const newReduxStore = createStore(Reducers, initialState);
     if (!process.browser) {
       return newReduxStore;
     }
