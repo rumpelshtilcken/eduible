@@ -40,7 +40,6 @@ class HeaderModal extends Component {
     : <ModalDefault onOpenModal={this.handleOpenModal} />);
 
   render() {
-    console.log(this.state.showSuccess);
     return (
       <Modal
         isOpen={this.props.isModalOpen}
