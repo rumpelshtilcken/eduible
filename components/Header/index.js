@@ -18,7 +18,7 @@ class Header extends Component {
 
   handleRequestClose = () => this.setState({ isModalOpen: false });
 
-  handleSignUpButtonClik = () => console.log('handle') || this.setState({ isModalOpen: true });
+  handleSignUpButtonClik = () => this.setState({ isModalOpen: true });
 
   handleJoinButtonClik = () => console.log('handleJoin') || this.setState({ isModalJoinOpen: true });
   render() {
