@@ -12,7 +12,7 @@ require('isomorphic-fetch');
 
 class HeaderModal extends Component {
     state = {
-      showSuccess: true,
+      showSuccess: false,
       emailInput: '',
       passwordInput: '',
       confirmPasswordInput: ''
@@ -40,6 +40,7 @@ class HeaderModal extends Component {
     : <ModalDefault onOpenModal={this.handleOpenModal} />);
 
   render() {
+    console.log(this.state.showSuccess);
     return (
       <Modal
         isOpen={this.props.isModalOpen}
