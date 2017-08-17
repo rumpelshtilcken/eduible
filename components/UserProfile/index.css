@@ -1,3 +1,54 @@
 .container {
-    background: red;
+	/* TODO: replace when header and footer styles are correct */
+	min-height: 100vh;
+	/* end of replace */
+	padding: 20px 10px;
+	background-color: #F9F9F9;
+
+	@media screen and (min-width: 768px) {
+		padding: 20px 34px;
+	}
+
+	@media screen and (min-width: 1024px) {
+		padding: 30px 0;
+	}
+}
+
+.pageBlockWrapper {
+	@media screen and (min-width: 1024px) {
+		width: 900px;
+		margin: 0 auto;
+		display: flex;
+	}
+}
+
+.pageBlock {
+	width: 100%;
+	min-height: 90px;
+	margin: 0 auto 20px auto;
+	background: white;
+	border-radius: 9px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .22);
+
+	@media screen and (min-width: 1024px) {
+		width: 900px;
+	}
+}
+
+.pageBlock_halfRound {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.tabMenu {
+	@media screen and (min-width: 1024px) {
+		width: 150px;
+		margin-right: 20px;
+	}
+}
+
+.universities {
+	@media screen and (min-width: 1024px) {
+		width: 730px;
+	}
 }

@@ -1,8 +1,20 @@
+import { Component } from 'react';
 import stylesheet from './index.css';
 
-export default () => (
-  <div className="container">
-    Hello
-    <style jsx>{stylesheet}</style>
-  </div>
-);
+class UserProfile extends Component {
+  render() {
+    return (
+      <div className="container">
+        <div className="pageBlock pageBlock_halfRound" />
+        <div className="pageBlockWrapper">
+          <div className="tabMenu pageBlock" />
+          <div className="universities pageBlock" />
+        </div>
+        <style jsx>{stylesheet}</style>
+      </div>
+    );
+  }
+}
+
+export default UserProfile;
+
