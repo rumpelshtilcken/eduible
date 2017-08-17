@@ -7,8 +7,8 @@ const config = [
     title: 'BROWSE...',
     input: {
       type: 'file',
-      name: 'photo',
-      className: 'inputfile'
+      className: 'inputfile',
+      id: 'photo'
     }
 
   }];
@@ -17,11 +17,10 @@ const config = [
 class ModalDefault extends Component {
   renderInput = item => (
     <div>
-      <p>{item.title}</p>
       <input
         type={item.input.type}
-        name={item.input.name}
         className={item.input.className}
+        id={item.input.id}
       />
       <style jsx>{styles}</style>
     </div>
@@ -34,11 +33,12 @@ class ModalDefault extends Component {
         <div className="caption">Add photo to your profile </div>
         <div className="captionGray">Ant profile is more appealing when a person's face is associated with it.</div>
         <div className="inputBox">
-          <a href="">Browse...</a>
-          {config.map(this.renderInput)}
-          <label className="label" for="photo"/>
-          <img classname="browse" src="/static/borwse.svg" />
-          <img className="edit"  src="/static/edit.svg" />
+          <div className="browseAndEdit">
+            <label htmlFor="photo" className="label">Browse...</label>
+            {config.map(this.renderInput)}
+      
+            <img className="edit" src="/static/edit.svg" alt="edit" />
+          </div>
           <div className="captionGray">skip this step</div>
           <button className="addButton" onClick={onOpenModal}>
             ADD
