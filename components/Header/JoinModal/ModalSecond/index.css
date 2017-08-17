@@ -14,14 +14,21 @@
   @media screen and (min-width: 768px) {
     padding-top: 8px;
     font-size: 11px;
-    margin-top: 8px;
-    width: 399px;
+    margin-top: -69px;
+    margin-left: -69px;
+    width: 67px;
   }
-  @media screen and (min-width: 1440px) {
-    padding-top: 11px;
-    font-size: 12px;
-    margin-top: 8px;
-    width: 441px;
+}
+.firstColumn {
+  @media screen and (min-width: 768px) {
+    width: 183px;
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    margin-top: 0;
+    justify-content: left;
+    float: left;
+    margin-left: 0px;
   }
 }
 
@@ -52,11 +59,9 @@
   background-color: #7262bf;
   margin-bottom: 4px;
   @media screen and (min-width: 768px) {
-    width: 433px;
-  }
-  @media screen and (min-width: 1440px) {
-    margin-top: 21px;
-    width: 489px;
+    width: 369px;
+    margin-top: 111px;
+    margin-left: -230px; 
   }
 }
 
@@ -70,8 +75,10 @@
   margin-top: 13px;
   margin-bottom: 16px;
   @media screen and (min-width: 768px) {
-    width: 284px;
+    width: 139px;
     margin-bottom: 22px;
+    margin-top: 17px;
+    line-height: 15px;
   }
 }
 h1, p {
@@ -132,20 +139,33 @@ input {
     font-size: 21px;
     width: 100%;
     margin-top: 37px;
-    margin-bottom: 29px;
+    margin-bottom: 5px;
   }
 
   @media screen and (min-width: 1440px) {
-    font-size: 25px;
+    font-size: 23px;
     margin-top: 44px;
     width: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
   }
 }
 .codeForm p {
   color: #626262;
 }
-
+.secondColumn {
+  @media screen and (min-width: 768px) {
+    width: 139px;
+    justify-content: right;
+  }
+}
+.columns {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    width: 369px;
+    flex-flow: row;
+    margin: auto;
+  }
+}
 .company {
   margin-top: 19px;
 }
@@ -156,16 +176,11 @@ input {
   display: block;
   @media screen and (min-width: 768px) {
     display: flex;
-    width: 429px;
-    flex-flow: row;
-    margin-top: 21px;
+    width: 183px;
+    flex-flow: column;
+    margin-top: 0px;
   }
-  @media screen and (min-width: 1440px) {
-    display: flex;
-    width: 477px;
-    flex-flow: row;
-    margin-top: 35px;
-  }
+  
 }
 .codeInput {
   display: block;
@@ -182,9 +197,6 @@ input {
   
   @media screen and (min-width: 768px) {
     margin-right: 9px; 
-  }
-  @media screen and (min-width: 1440px) {
-    width: 223px;
   }
 }
 
@@ -232,11 +244,6 @@ input {
     width: 429px;
     margin-top: 22px;
     height: 33px;
-  }
-  @media screen and (min-width: 1440px) {
-    width: 475px;
-    height: 34px;
-    margin-top: 31px;
   }
 }
 
