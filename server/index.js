@@ -1,12 +1,12 @@
-const express = require('express');
-const next = require('next');
+const authRoutes = require('./routes/local-auth');
 const bodyParser = require('body-parser');
-const passport = require('passport');
-const cors = require('cors');
 const comingsoon = require('./routes/comingsoon');
 const config = require('./config');
-const authRoutes = require('./routes/local-auth');
+const cors = require('cors');
+const express = require('express');
 const facebookRoutes = require('./routes/facebook-auth');
+const next = require('next');
+const passport = require('passport');
 
 const { NODE_ENV, PORT } = config;
 const DEV = NODE_ENV !== 'production';
@@ -24,7 +24,6 @@ const runServer = async () => {
   server.use(passport.initialize());
 
   server.use(cors());
-
 
   server.use('/api/v1', comingsoon);
   server.use('/api/v1/auth/local', authRoutes);
