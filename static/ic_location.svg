@@ -1,0 +1,12 @@
+<svg width="7" height="10" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Location Icon</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-9323 6663)">
+<g id="Location Icon">
+<use xlink:href="#path0_fill" transform="translate(9323 -6663)" fill="#46F61A"/>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 5.78607 1.02568C 5.14584 0.364798 4.29485 0 3.38974 0C 2.48353 0 1.63276 0.364798 0.992313 1.02568C -0.1916 2.24997 -0.339174 4.55245 0.673967 5.94795L 3.38974 10L 6.10021 5.95343C 7.11777 4.55245 6.9702 2.24997 5.78607 1.02568ZM 3.42097 4.74845C 2.73855 4.74845 2.18359 4.175 2.18359 3.46983C 2.18359 2.76535 2.73855 2.19189 3.42097 2.19189C 4.10273 2.19189 4.65768 2.76535 4.65768 3.46983C 4.65768 4.175 4.10273 4.74845 3.42097 4.74845Z"/>
+</defs>
+</svg>
