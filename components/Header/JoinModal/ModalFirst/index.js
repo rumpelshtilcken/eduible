@@ -82,27 +82,34 @@ class ModalFirst extends Component {
       <div>
         <p className="sign">JOIN AS PROFESSIONAL</p>
         <p className="share">Share your knowledge and experience. Start now - it’s free</p>
+        
         <div className="signUp">
-          <div className="inputBox">
-            <div className="in1">
-              {config.map(this.renderInput)}
+          <div className="firstColumn">
+            <div className="inputBox">
+              <div className="in1">
+                {config.map(this.renderInput)}
+              </div>
             </div>
-            <div className="in2">
-              {config2.map(this.renderInput)}
-            </div>
-            <button className="continueButton" onClick={onOpenJoinModal}>
-              CONTINUE
-            </button>
           </div>
-          <div className="together">
-            <div className="inputBox2">
-              <p>OR JOIN WITH</p>
-              <button className="facebookButton">LINKEDIN</button>
-              <img alt="" id="line" src="static/Line123.jpg" />
+          <div className="secondColumn">
+            <div className="inputBox1">
+              <div className="in2">
+                {config2.map(this.renderInput)}
+              </div>
+              <button className="continueButton" onClick={onOpenJoinModal}>
+                CONTINUE
+              </button>
             </div>
-            <div className="inputBox3">
-              <p>ALREADY A MEMBER?</p>
-              <button className="loginButton">Log in here</button>
+            <div className="together">
+              <div className="inputBox2">
+                <p>OR JOIN WITH</p>
+                <button className="facebookButton">LINKEDIN</button>
+              </div>
+              <div className="inputBox3">
+                <img alt="" id="line" src="static/Line123.jpg" />
+                <p>ALREADY A MEMBER?</p>
+                <button className="loginButton">Log in here</button>
+              </div>
             </div>
           </div>
         </div>
