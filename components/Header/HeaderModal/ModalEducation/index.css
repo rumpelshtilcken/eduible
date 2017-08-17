@@ -1,13 +1,96 @@
-  .inputBox{
-   display: block;
-  margin: auto;
-  width: 190px;
+
+  .form{
+    display: block;
+    margin-top: 50px;
+    width: 100%;  
+    @media screen and (min-width: 768px) {
+      margin-top: 20px;
+
+    }
   } 
-  .skip{
-    width:100%;
+
+  .caption{
+    font-size: 12px;
+    width: 200px;
     margin: auto;
+    text-align: center;
+    font-family: Effra;
+    margin-bottom: 20px;
+    @media screen and (min-width: 768px) {
+    width: 300px;
+    font-size: 15px;
+    }
+    @media screen and (min-width: 1440px) {
+    width: 300px; 
+    font-size: 17px;
+    }
   }
-  .continueButton{
-    width: 192px;
+ .captionGray{
+    color: #d9d9d9;
+    font-size: 11px;
+    width: 200px;
     margin: auto;
+    text-align: center;
+    font-family: Effra;
+    margin-bottom: 26px;
+     @media screen and (min-width: 768px) {
+    width: 300px;
+    font-size: 13px;
+    
+    }
+  }
+
+  p {
+    font-size: 11px;
+    font-family: Effra;
+    margin: 0px;
+    padding-bottom: 4px;
+  }
+  .inputBox {
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+    width: 190px;
+    @media screen and (min-width: 768px) {
+      width: 45%;
+      display: inline-block;
+      margin: 2.5%;
+  }
+  }
+  input{
+    box-sizing: border-box;
+    border-radius: 5px;
+    height: 32px;
+    width: 100%;
+    padding: 0 8px;
+    border: 1px solid #D9D9D9;
+  }
+  
+  .skip{
+    font-size: 12px;
+    color: #d9d9d9;
+    margin: 35%;
+    width: 100%;
+    margin-top: 29px;
+      @media screen and (min-width: 768px) {
+      margin: 43%;
+      }
+  }
+  .addButton{
+    height: 32px;
+    width: 190px;
+    color: white;
+    font-family: var(--font);
+    border: 0;
+    border-radius: 5px;
+    background-color: #7262bf;
+    margin-top: 16px;
+    margin-bottom: 26px;
+    margin-left: 12%;
+      @media screen and (min-width: 768px) {
+      width: 96%;
+      margin: 10px;
+      
+      
+      }
   }

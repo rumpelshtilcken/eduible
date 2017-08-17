@@ -22,7 +22,7 @@ const config = [
     }
   },
   {
-    title: 'Start YEAR',
+    title: 'START YEAR',
     input: {
       type: 'string',
       name: 'start_year',
@@ -43,7 +43,7 @@ const config = [
 
 class ModalEducation extends Component {
   renderInput = item => (
-    <div>
+    <div className="inputBox">
       <p>{item.title}</p>
       <input
         type={item.input.type}
@@ -61,13 +61,13 @@ class ModalEducation extends Component {
     return (
       <div className="form">
         <div className="caption">Lets add university, Major and Year studied to your profile.</div>
-        <div className="captionGray"> It will increase att</div>
+        <div className="captionGray"> It will increase attractivness of your profile by users who are willing to take same academic pathway.</div>
         <div className>
-          <div className="inputBox">
+          <div>
             {config.map(this.renderInput)}
             <a className="skip" href="" >skip this step</a>
-            <button className="continueButton" onClick={onOpenModal}>
-              CONTINUE
+            <button className="addButton" onClick={onOpenModal}>
+              ADD
             </button>
           </div>
         </div>
