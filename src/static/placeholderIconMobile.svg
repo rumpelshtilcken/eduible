@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="7px" height="10px" viewBox="0 0 7 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Placeholder Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Video-Chat-Mobile" transform="translate(-142.000000, -329.000000)" fill="#46F61A">
+            <g id="Professional" transform="translate(87.000000, 304.000000)">
+                <g id="Location" transform="translate(55.000000, 23.000000)">
+                    <path d="M5.78606529,3.025682 C5.14583789,2.36479854 4.2948524,2 3.38974141,2 C2.48352581,2 1.63276124,2.36479854 0.992312921,3.025682 C-0.191599653,4.24997146 -0.339174499,6.55244835 0.673966584,7.94795115 L3.38974141,12 L6.10021414,7.95342997 C7.11777363,6.55244835 6.97019879,4.24997146 5.78606529,3.025682 Z M3.42067027,6.74854469 C2.73824706,6.74854469 2.18329495,6.17509417 2.18329495,5.46992352 C2.18329495,4.76543774 2.73824706,4.19198722 3.42067027,4.19198722 C4.10243071,4.19198722 4.65738282,4.76543774 4.65738282,5.46992352 C4.65738282,6.17509417 4.10243071,6.74854469 3.42067027,6.74854469 Z" id="Placeholder-Icon"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

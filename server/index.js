@@ -12,7 +12,11 @@ import graphqlRouter from 'routes/graphql';
 const { NODE_ENV, PORT } = config;
 const dev = NODE_ENV !== 'production';
 
+<<<<<<< HEAD
 const app = next({ dir: 'app', dev });
+=======
+const app = next({ dir: 'src', dev: DEV });
+>>>>>>> feat: move front-end code to src directory
 const handler = app.getRequestHandler();
 
 const runServer = async () => {
