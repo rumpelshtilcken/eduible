@@ -85,9 +85,7 @@ class ComingSoon extends Component {
               Notify Me
             </button>
           </circle>
-          <style jsx>
-            {stylesheet}
-          </style>
+          <style jsx>{stylesheet}</style>
         </div>
       </div>
     );

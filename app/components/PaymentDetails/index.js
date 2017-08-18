@@ -5,8 +5,8 @@ import { BookingHeader } from 'components';
 import PaymentDetailsHeader from './PaymentDetailsHeader';
 import PaymnetDetailsForm from './PaymentDetailsForm';
 
-const PaymentDetails = ({ onBackButtonClick }) =>
-  (<div>
+const PaymentDetails = ({ onBackButtonClick }) => (
+  <div>
     <BookingHeader
       onBackButtonClick={onBackButtonClick}
       elements={[
@@ -27,7 +27,8 @@ const PaymentDetails = ({ onBackButtonClick }) =>
       ]}
     />
     <PaymnetDetailsForm />
-  </div>);
+  </div>
+);
 
 PaymentDetails.propTypes = {
   onBackButtonClick: PropTypes.func.isRequired

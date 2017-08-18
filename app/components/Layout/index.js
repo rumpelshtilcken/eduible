@@ -5,12 +5,12 @@ import Header from '../Header';
 import Footer from '../Footer';
 import stylesheet from './index.css';
 
-const Layout = ({ children, title = 'Eduible', session = false, headerLinks, footerLinks } = {}) =>
-  (<div className="content">
+const Layout = (
+  { children, title = 'Eduible', session = false, headerLinks, footerLinks } = {}
+) => (
+  <div className="content">
     <Head>
-      <title>
-        {title}
-      </title>
+      <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link href="https://fonts.googleapis.com/css?family=Effra" rel="stylesheet" />
@@ -18,15 +18,13 @@ const Layout = ({ children, title = 'Eduible', session = false, headerLinks, foo
     <Header headerLinks={headerLinks} />
 
     {children}
-    <Footer
-      footerLinks={footerLinks}
-      copyright={'COPYRIGHT (C) 2017'}
-    />
+    <Footer footerLinks={footerLinks} copyright={'COPYRIGHT (C) 2017'} />
 
     <style jsx global>
       {stylesheet}
     </style>
-  </div>);
+  </div>
+);
 
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
