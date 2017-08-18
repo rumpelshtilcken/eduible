@@ -39,7 +39,7 @@ class ModalDefault extends Component {
       
             <img className="edit" src="/static/edit.svg" alt="edit" />
           </div>
-          <div className="captionGray">skip this step</div>
+          <div className="skip">skip this step</div>
           <button className="addButton" onClick={onOpenModal}>
             ADD
           </button>
