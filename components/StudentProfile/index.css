@@ -1,7 +1,13 @@
+*,
+*:before,
+*:after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style-type: none;
+}
+
 .container {
-	/* TODO: replace when header and footer styles are correct */
-	min-height: 100vh;
-	/* end of replace */
 	padding: 20px 10px;
 	background-color: #F9F9F9;
 
@@ -17,8 +23,9 @@
 .pageBlockWrapper {
 	@media screen and (min-width: 1024px) {
 		width: 900px;
-		margin: 0 auto;
+		margin: auto;
 		display: flex;
+		align-items: start;
 	}
 }
 
@@ -27,14 +34,11 @@
 	min-height: 40px;
 	padding: 15px;
 	margin: 0 auto 20px auto;
+	position: relative;
 	background: white;
 	border-radius: 9px;
 	box-sizing: border-box;
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .22);
-
-	@media screen and (min-width: 768px) {
-		padding: 20px;
-	}
 
 	@media screen and (min-width: 1024px) {
 		width: 900px;
@@ -73,7 +77,6 @@
 .userLocation {
 	font-size: 11px;
 	text-transform: uppercase;
-	margin: 0;
 }
 
 .userName { color: #383838 }
@@ -126,7 +129,6 @@
 }
 
 .tabMenu {
-	list-style-type: none;
 	padding: 0;
 
 	@media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -141,12 +143,13 @@
 }
 
 .tabMenu li {
-	padding: 13px 23px;
+	padding: 15px 25px;
 	border-bottom: 1px solid #efefef;
 	color: #383838;
 	font-size: 11px;
 	cursor: pointer;
 
+	&:last-of-type { border-bottom: none }
 	&.active {
 		color: #8045dd;
 		font-weight: 700;
@@ -169,7 +172,79 @@
 }
 
 .universities {
+	display: flex;
+	flex-direction: row;
+
 	@media screen and (min-width: 1024px) {
 		width: 730px;
 	}
+}
+
+.universityLogo {
+	min-width: 38px;
+	height: 38px;
+	margin-right: 16px;
+	background: url('/static/hogwarts.png') center center no-repeat;
+	background-size: cover;
+
+	@media screen and (min-width: 768px) {
+		min-width: 97px;
+		height: 97px;
+		margin-right: 12px;
+	}
+}
+
+.universityWrapper {
+	margin-top: -5px;
+
+	@media screen and (min-width: 768px) {
+		display: flex;
+	}
+}
+
+.universityInfo {
+	margin-bottom: 20px;
+
+	@media screen and (min-width: 768px) {
+		width: 200px;
+		margin: 0;
+		margin-right: 25px;
+	}
+}
+
+.universityHeading {
+	display: inline-block;
+	color: #383838;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.universityDescription {
+	margin: 10px 0 3px;
+	color: #AFAFAF;
+	font-size: 9px;
+	line-height: 14px;
+}
+
+.readMore, .universityRemove {
+	font-size: 9px;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.readMore { color: #383838 }
+.universityRemove {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	color: #898989;
+}
+
+.change {
+	margin-left: 10px;
+	color: #898989;
+	font-size: 9px;
+	text-decoration: none;
 }
