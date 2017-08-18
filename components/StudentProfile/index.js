@@ -47,6 +47,23 @@ class StudentProfile extends Component {
               <div className="universityCourse">
                 <h2 className="universityHeading">Computer science</h2>
                 <a href="#" className="change">Change</a>
+                <div className="universityCourseStats">
+                  <div className="chartWrapper">
+                    <div className="chart" />
+                    <a href="#" className="howCalculated">How is it calculated?</a>
+                  </div>
+                  <div className="universityTipsWrapper">
+                    <ul className="universityTips">
+                      <li>Sign up for an English course</li>
+                      <li>Talk to a professional who studied at this university</li>
+                      <li>Pray that you have successfully passed the exam</li>
+                    </ul>
+                    <a href="#" className="moreTips">
+                      <span className="tipsCount">6</span>
+                      &nbsp;more tips
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

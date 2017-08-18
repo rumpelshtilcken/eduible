@@ -5,6 +5,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	list-style-type: none;
+	text-decoration: none;
 }
 
 .container {
@@ -68,7 +69,7 @@
 	width: 62px;
 	height: 62px;
 	margin-right: 17px;
-	background: url('/static/user_profile_photo.png') center center no-repeat;
+	background: url('/static/user_profile_photo.jpeg') center center no-repeat;
 	background-size: cover;
 	border-radius: 100%;
 }
@@ -184,7 +185,7 @@
 	min-width: 38px;
 	height: 38px;
 	margin-right: 16px;
-	background: url('/static/hogwarts.png') center center no-repeat;
+	background: url('/static/hogwarts.jpeg') center center no-repeat;
 	background-size: cover;
 
 	@media screen and (min-width: 768px) {
@@ -213,6 +214,7 @@
 }
 
 .universityHeading {
+	margin-bottom: 10px;
 	display: inline-block;
 	color: #383838;
 	font-size: 11px;
@@ -222,16 +224,17 @@
 }
 
 .universityDescription {
-	margin: 10px 0 3px;
+	margin-bottom: 3px;
 	color: #AFAFAF;
 	font-size: 9px;
 	line-height: 14px;
 }
 
-.readMore, .universityRemove {
+.readMore,
+.universityRemove,
+.moreTips {
 	font-size: 9px;
 	font-weight: 700;
-	text-decoration: none;
 }
 
 .readMore { color: #383838 }
@@ -246,5 +249,59 @@
 	margin-left: 10px;
 	color: #898989;
 	font-size: 9px;
-	text-decoration: none;
+}
+
+.chartWrapper {
+	margin: 10px 0 20px;
+
+	@media screen and (min-width: 768px) {
+		margin: 0;
+		margin-right: 20px;
+		display: inline-block;
+	}
+}
+
+.chart {
+	width: 60px;
+	height: 60px;
+	margin-bottom: 5px;
+}
+
+.howCalculated {
+	display: block;
+	color: #9B9B9B;
+	font-size: 6px;
+}
+
+.universityTipsWrapper {
+	@media screen and (min-width: 768px) {
+		display: inline-block;
+	}
+}
+
+.universityTips li {
+	padding-left: 13px;
+	margin-bottom: 5px;
+	position: relative;
+	color: #383838;
+	font-size: 9px;
+	line-height: 14px;
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 4px;
+		left: 0;
+		width: 10px;
+		height: 6px;
+		background: url('/static/ic_check.svg') center center no-repeat;
+	}
+}
+
+.moreTips {
+	color: #383838;
+
+	@media screen and (min-width: 768px) {
+		margin-left: 13px;
+	}
 }
