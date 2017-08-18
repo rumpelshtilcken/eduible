@@ -1,12 +1,19 @@
-.container {
+:root {
+  --font: Effra;
+  --boxHeight: 28.21px;
+  --boxWidth: 184px;
+}
+
+.box {
+  height: 48px;
+  width: 100%;
+  background-color: #8D55E6;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 52px;
-  background-color: #f9f9f9;
-  position: relative;
-  box-shadow: 0 2px 3px 0 rgba(0,0,0,.08);
-  z-index: 2;
+  justify-content: flex-start;
+  background: linear-gradient(to right, #8D55E6 , #AE8EE0);
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .logo {

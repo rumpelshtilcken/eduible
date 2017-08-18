@@ -2,11 +2,8 @@ import { Component } from 'react';
 
 import JoinModal from './JoinModal';
 
-// import fetch from 'isomorphic-fetch';
 import HeaderModal from './HeaderModal';
 import stylesSheet from './index.css';
-
-// const validator = require('email-validator');
 
 require('isomorphic-fetch');
 
@@ -20,7 +17,8 @@ class Header extends Component {
 
   handleSignUpButtonClik = () => this.setState({ isModalOpen: true });
 
-  handleJoinButtonClik = () => console.log('handleJoin') || this.setState({ isModalJoinOpen: true });
+  handleJoinButtonClik = () => this.setState({ isModalJoinOpen: true });
+
   render() {
     return (
       <header>
@@ -39,7 +37,7 @@ class Header extends Component {
             className="JoinModal"
             overlayClassName="OverlayModal"
             onRequestClose={this.handleRequestClose}
-          /> 
+          />
           <button className="buttonJoin" onClick={this.handleJoinButtonClik}>
             JOIN AS PROFESSIONAL
           </button>
