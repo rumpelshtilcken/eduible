@@ -15,7 +15,7 @@ const ModalSuccess = () => (
             name="fullname"
             className="codeInput"
             placeholder="IT developer"
-          />  
+          />
           <p className="company">COMPANY</p>
           <input
             type="string"
