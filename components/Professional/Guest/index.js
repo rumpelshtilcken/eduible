@@ -8,9 +8,12 @@ class Guest extends Component {
   };
   render() {
     return (
-      <div className="container">
+      <body>
+        <div className="container">
         Hello White
-      </div>
+        </div>
+        <style jsx>{stylesSheet}</style>
+      </body>
     );
   }
 }
