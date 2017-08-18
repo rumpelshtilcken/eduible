@@ -1,0 +1,23 @@
+.box {
+  height: 36px;
+  width: 100%;
+  background-color: white;
+  border-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: white;
+  box-shadow: 0 -3px 3px -4px #000;
+
+}
+
+h1 {
+  font-size: 11px;
+}
+
+.text {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-right: 15px;
+}

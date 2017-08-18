@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  position: relative;
+  box-shadow: 0 -1px 2px 0 rgba(0,0,0,.08);
+
+  @media screen and (min-width: 768px) {
+    justify-content: space-between;
+  }
+}
+
+.copyright {
+  font-size: 9px;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 15px;
+  }
+}
+
+.leftSide {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    z-index: 0;
+  }
+}
+
+.menu {
+  margin-right: 69px;
+  border: 0;
+  background-color: transparent;
+}
