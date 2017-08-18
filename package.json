@@ -68,11 +68,7 @@
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "babel-plugin-module-resolver": "^2.7.1",
-<<<<<<< HEAD
     "chai": "^4.1.1",
-=======
-    "chai": "^4.1.0",
->>>>>>> feat: change root of front end
     "chai-http": "^3.0.0",
     "eslint": "^4.2.0",
     "eslint-config-airbnb": "^15.0.2",
