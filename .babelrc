@@ -6,11 +6,9 @@
         "extensions": ["css$"]
       }
     ],
-    [
-      "module-resolver", {
-        "root": ["./src"]
-      }
-    ]
+    ["module-resolver", {
+      "root": ["./src"]
+    }]
   ],
   "presets": [
     "next/babel"
