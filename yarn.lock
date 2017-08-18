@@ -4751,11 +4751,17 @@ moment@2.x.x, "moment@>= 2.9.0", moment@^2.11.2, moment@^2.13.0, moment@^2.16.0,
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> feat: move front-end code to src directory
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
 
+<<<<<<< HEAD
+>>>>>>> feat: move front-end code to src directory
+=======
 >>>>>>> feat: move front-end code to src directory
 ms@2.0.0, ms@^2.0.0:
   version "2.0.0"
@@ -6619,11 +6625,17 @@ semver@^4.1.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.6.tgz#300bc6e0e86374f7ba61068b5b1ecd57fc6532da"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> feat: move front-end code to src directory
 semver@~5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
 
+<<<<<<< HEAD
+>>>>>>> feat: move front-end code to src directory
+=======
 >>>>>>> feat: move front-end code to src directory
 send@0.15.4, send@^0.15.3:
   version "0.15.4"
@@ -7511,11 +7523,17 @@ validate-npm-package-license@^3.0.1:
     spdx-expression-parse "~1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> feat: move front-end code to src directory
 validator@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/validator/-/validator-6.3.0.tgz#47ce23ed8d4eaddfa9d4b8ef0071b6cf1078d7c8"
 
+<<<<<<< HEAD
+>>>>>>> feat: move front-end code to src directory
+=======
 >>>>>>> feat: move front-end code to src directory
 validator@^8.0.0:
   version "8.1.0"
