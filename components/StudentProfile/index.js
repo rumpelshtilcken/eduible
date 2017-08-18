@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import stylesheet from './index.css';
 
-class UserProfile extends Component {
+class StudentProfile extends Component {
   render() {
     return (
       <div className="container">
@@ -18,13 +18,19 @@ class UserProfile extends Component {
               <p className="userLocation">Miami, FL</p>
             </div>
           </div>
-          <div className="editIcon" />
-          <div className="editButton">
+          <div className="edit editIcon" />
+          <div className="edit editButton">
             <button>Edit profile</button>
           </div>
         </div>
         <div className="pageBlockWrapper">
-          <div className="tabMenu pageBlock" />
+          <ul className="tabMenu pageBlock">
+            <li className="active">Universities</li>
+            <li>Grades</li>
+            <li>Conversations
+              <span className="notifyDot" />
+            </li>
+          </ul>
           <div className="universities pageBlock" />
         </div>
         <style jsx>{stylesheet}</style>
@@ -33,5 +39,5 @@ class UserProfile extends Component {
   }
 }
 
-export default UserProfile;
+export default StudentProfile;
 

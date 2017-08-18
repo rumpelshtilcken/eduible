@@ -1,15 +1,15 @@
 import Page from '../components/Page';
 import Layout from '../components/Layout';
-import UserProfile from '../components/UserProfile';
+import StudentProfile from '../components/StudentProfile';
 
-class UserProfilePage extends Page {
+class StudentProfilePage extends Page {
   render() {
     return (
       <Layout title="Eduible" session={this.props.session}>
-        <UserProfile />
+        <StudentProfile />
       </Layout>
     );
   }
 }
 
-export default UserProfilePage;
+export default StudentProfilePage;
