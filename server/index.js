@@ -11,7 +11,7 @@ const passport = require('passport');
 const { NODE_ENV, PORT } = config;
 const DEV = NODE_ENV !== 'production';
 
-const app = next({ dir: '.', dev: DEV });
+const app = next({ dir: 'src', dev: DEV });
 const handler = app.getRequestHandler();
 
 const runServer = async () => {
