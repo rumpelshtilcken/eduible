@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 import { RoundedButton, SideMoreLayout, SelectDropdown, Textarea } from 'components';
 
@@ -41,6 +42,17 @@ class CallRequestForm extends Component {
 
   handleTimeChange = event =>
     this.setState({ time: event.target.value });
+
+  handleRequestCallClick = (event) => {
+    event.preventDefault();
+
+    this.props.onRequestCallClick({
+      message: this.state.message,
+      estimatedLength: this.state.estimatedLength,
+      date: this.state.date,
+      time: this.state.time
+    });
+  };
 
   render() {
     return (
@@ -107,7 +119,7 @@ class CallRequestForm extends Component {
         <div className="bottomContainer">
           <p>By scheduling a call you agree with our <u>Terms of Service.</u></p>
           <div className="buttonContainer">
-            <RoundedButton title="Request a Call" type="submit" />
+            <RoundedButton onClick={this.handleRequestCallClick} title="Request a Call" type="submit" />
           </div>
         </div>
         <style jsx>{stylessheet}</style>
@@ -115,5 +127,9 @@ class CallRequestForm extends Component {
     );
   }
 }
+
+CallRequestForm.propTypes = {
+  onRequestCallClick: PropTypes.func.isRequired
+};
 
 export default CallRequestForm;

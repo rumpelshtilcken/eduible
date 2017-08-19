@@ -1,21 +1,18 @@
-import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import CallRequestHeader from './CallRequestHeader';
 import CallRequestForm from './CallRequestForm';
 
-class CallRequest extends Component {
-  handleOnBackButtonClick = () => {};
-  handleSelectChange = event => console.log('Chosen: ', event.target.value);
+const CallRequest = ({ onBackButtonClick, onRequestCallClick }) => (
+  <div>
+    <CallRequestHeader onBackButtonClick={onBackButtonClick} />
+    <CallRequestForm onRequestCallClick={onRequestCallClick} />
+  </div>
+);
 
-  render() {
-    return (
-      <div>
-        <CallRequestHeader onBackButtonClick={this.handleOnBackButtonClick} />
-
-        <CallRequestForm handleSelectChange={this.handleSelectChange} />
-      </div>
-    );
-  }
-}
+CallRequest.propTypes = {
+  onBackButtonClick: PropTypes.func.isRequired,
+  onRequestCallClick: PropTypes.func.isRequired
+};
 
 export default CallRequest;
