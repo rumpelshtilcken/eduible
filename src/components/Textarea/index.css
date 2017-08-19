@@ -13,7 +13,7 @@
   height: 80%;
   width: 80%;
   resize: none;
+  border: 0;
   overflow: hidden;
   color: #AFAFAF;
-  padding: 7px 10px;
 }
