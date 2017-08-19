@@ -8,8 +8,12 @@ import Main from './Main';
 import Menu from './Menu';
 import Page from './Page';
 import PaymentDetails from './PaymentDetails';
+import RoundedButton from './RoundedButton';
 import SearchUniversity from './SearchUniversity';
+import SelectDropdown from './SelectDropdown';
 import Session from './Session';
+import SideMoreLayout from './SideMoreLayout';
+import Textarea from './Textarea';
 
 export {
   CallRequest,
@@ -22,6 +26,10 @@ export {
   Menu,
   Page,
   PaymentDetails,
+  RoundedButton,
   SearchUniversity,
-  Session
+  SelectDropdown,
+  Session,
+  SideMoreLayout,
+  Textarea
 };
