@@ -1,3 +1,5 @@
+const Theme = require('./src/static');
+
 module.exports = {
   plugins: [
     require('postcss-easy-import')(), // keep this first
@@ -5,9 +7,7 @@ module.exports = {
       features: {
         autoprefixer: false, // turn off autoprefixer, style-jsx already has one
         customProperties: {
-          variables: {
-            colorPrimary: '#51a9f2'
-          }
+          variables: Theme
         }
       }
     })
