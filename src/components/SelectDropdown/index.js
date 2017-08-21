@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import stylesheet from './index.css';
 
 const SelectDropdown = ({ key, onChange, options, value }) =>
-  (<select key={key || value} onChange={onChange} value={value}>
+  (<select key={key} onChange={onChange} value={value}>
     {options.map(opt =>
-      (<option key={opt.value || opt.key} value={opt.value}>
+      (<option key={opt.key || opt.value} value={opt.value}>
         {opt.label}
       </option>)
     )}
