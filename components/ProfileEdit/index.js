@@ -13,13 +13,15 @@ class ModalDefault extends Component {
         <div className="profile">
           <div className="photos">
             <img className="photo" src="/static/Profile Picture.svg" />
-            <img className="uploadbutton" src="/static/Profile Background Image.svg" />
+            <img className="uploadButton" src="/static/Profile Background Image.svg" />
           </div>
-          <div className="label">Full Name</div>
-          <input className="input" type="text" placeholder="Miguel Carrera" />
-          <div className="label">Date Of Birth</div>
-          <input className="input" type="text" placeholder="04/08/1984" />
-          <img className="calendar" src="/static/Calendar Icon.svg" />
+          <div className="step"><div className="step_child">
+            <div className="label">Full Name</div>
+            <input className="input" type="text" placeholder="Miguel Carrera" /></div>
+          <div className="step_child"><div className="label">Date Of Birth</div>
+            <input className="input" type="text" placeholder="04/08/1984" />
+            <img className="calendar" src="/static/Calendar Icon.svg" /></div>
+          </div>
           <div className="label">About</div>
           <textarea className="input about" placeholder="lalaland" />
           <div className="label">Set Estimated Coast</div>
