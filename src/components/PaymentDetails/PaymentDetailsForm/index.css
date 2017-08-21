@@ -1,0 +1,64 @@
+.container {
+  width: 275px;
+  height: 310px;
+  margin: 16px auto 171px auto;
+}
+
+p {
+  font-size: 11px;
+  font-weight: normal;
+  color: #626262;
+  font-family: "Effra";
+  margin: 0;
+}
+
+.formTitle {
+  font-size: 18px;
+  color: var(--black);
+  margin: auto;
+  text-align: center;
+}
+
+.formElementTitle {
+  margin: 20px 0 5px 0;
+}
+
+.priceTotalContainer {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin: 20px 0 70px 0;
+}
+
+.priceTotal {
+  font-size: 18px;
+  text-align: center;
+  min-width: 100px;
+  margin-right: 20px;
+  margin-left: 14px;
+  color: var(--black);
+}
+
+.buttonContainer {
+  min-width: 129px;
+  height: 29px;
+  margin-right: 15px;
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.checkbox {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.checkboxTitle {
+  font-family: "Effra";
+  font-size: 11px;
+  color: #626262;
+}
