@@ -1,3 +1,4 @@
+import BookingHeader from './BookingHeader';
 import CallRequest from './CallRequest';
 import CommingSoon from './ComingSoon';
 import Footer from './Footer';
@@ -14,8 +15,10 @@ import SelectDropdown from './SelectDropdown';
 import Session from './Session';
 import SideMoreLayout from './SideMoreLayout';
 import Textarea from './Textarea';
+import TextInput from './TextInput';
 
 export {
+  BookingHeader,
   CallRequest,
   CommingSoon,
   Footer,
@@ -31,5 +34,6 @@ export {
   SelectDropdown,
   Session,
   SideMoreLayout,
-  Textarea
+  Textarea,
+  TextInput
 };
