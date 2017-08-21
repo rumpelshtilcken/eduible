@@ -32,11 +32,14 @@ class ModalDefault extends Component {
             <option >Per day</option>
           </select>
           <div className="label">Suggest Day When You're Free to Talk</div>
-          <button className="button">Open Calendar</button>
-          <input className="input" type="text" placeholder="Blah Blah" />
+          <div className="step2">
+            <button className="button">Open Calendar</button>
+            <input className="input comment" type="text" placeholder="Blah Blah" /></div>
           <div className="label">Change Password</div>
-          <input className="input pass" type="text" placeholder="Current Password" />
-          <input className="input" type="text" placeholder="New Password" />
+          <div className="passwords">
+            <input className="input pass" type="text" placeholder="Current Password" />
+            <input className="input" type="text" placeholder="New Password" />
+          </div>
           <div className="buttons">
             <button className="button cancel">Cancel</button>
             <button className="button save">Save Updates</button>

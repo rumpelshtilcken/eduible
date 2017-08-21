@@ -77,6 +77,12 @@ li{
 .photos{
   display: flex;
   justify-content: space-between;
+
+ @media screen and (min-width: 768px) {
+   margin-bottom: 20px;
+
+ }
+
 }
 .photo{
   position: left;
@@ -91,13 +97,28 @@ li{
    }
 }
 .step{
+  @media screen and (min-width: 768px) {
   display: flex;
-  justify-content: space-between;
+  width: 96%;
+  justify-content: space-between;}
 }
 .step_child{
-  width: 40%;
+  @media screen and (min-width: 768px) {
+  width: 46%;}
 }
-
+.step2{
+  @media screen and (min-width: 768px) {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  height: 50px;
+}
+}
+.comment{
+   @media screen and (min-width: 768px) {
+  margin: 10px;
+  margin-right: 0px;}
+}
 
 .label{
   font-size: 11px;
@@ -110,7 +131,7 @@ li{
 .input{
   width: 94%;
   border-radius: 4px;
-  height: 24px;
+  height: 28px;
   border: 1px solid #D9D9D9;
   background: #F9F9F9;
   padding: 0px 10px;
@@ -125,7 +146,7 @@ li{
   height: 28px;
 }
 .select{
-  margin-left: 3px;
+  margin-left: 2%;
   height: 30px; 
   width: 77%;
 }
@@ -144,6 +165,19 @@ li{
   top: -20px;
   left: +95%;
 }
+.passwords{
+  margin-bottom: 10px;  
+  @media screen and (min-width: 768px) {
+  display: flex;
+  justify-content: space-between;}
+  
+}
+.pass{
+  margin-bottom: 10px;  
+  @media screen and (min-width: 768px) {
+  margin-right: 10px; 
+}
+}
 .buttons{
   display: flex;
   width: 100%;
@@ -151,8 +185,9 @@ li{
   height: 40px;
   justify-content: space-between;
   padding-bottom: 20px;
-}
-
+  @media screen and (min-width: 768px) {
+  margin-top: 20px;
+}}
 .cancel{
   display: inline;
   float: left;
@@ -164,8 +199,4 @@ li{
   display: inline;
   width: 140px;
   float: right;
-
-}
-.pass{
-  margin-bottom: 10px;
 }
