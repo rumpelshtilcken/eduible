@@ -31,12 +31,12 @@ const customStyle = {
 class ComingSoon extends Component {
   state = {
     modalIsOpen: false
-  }
+  };
 
   handleClick = () => {
     // TODO validate email
 
-    validator.validate_async(this.input.value, ((err, isValidEmail) => {
+    validator.validate_async(this.input.value, (err, isValidEmail) => {
       if (isValidEmail) {
         fetch('/api/v1/comingsoon', {
           method: 'POST',
@@ -59,18 +59,14 @@ class ComingSoon extends Component {
           }, 2000);
         });
       }
-    }));
+    });
   };
   // eslint-disable-no-return-assign
   render() {
     return (
       <div>
         <div className="modalPosition">
-          <Modal
-            isOpen={this.state.modalIsOpen}
-            style={customStyle}
-            contentLabel="Example Modal"
-          >
+          <Modal isOpen={this.state.modalIsOpen} style={customStyle} contentLabel="Example Modal">
             <div className="modal">Thank you for subsribing!</div>
           </Modal>
         </div>
@@ -78,10 +74,20 @@ class ComingSoon extends Component {
           <circle>
             <h1>Our website is launching soon</h1>
             <p>Sign up now and be the first when we go live: </p>
-            <input ref={el => (this.input = el)} type="string" name="email" className="input" placeholder="john.doe@example.com" />
-            <button className="subscribeButton" onClick={this.handleClick}>Notify Me</button>
+            <input
+              ref={el => (this.input = el)}
+              type="string"
+              name="email"
+              className="input"
+              placeholder="john.doe@example.com"
+            />
+            <button className="subscribeButton" onClick={this.handleClick}>
+              Notify Me
+            </button>
           </circle>
-          <style jsx>{stylesheet}</style>
+          <style jsx>
+            {stylesheet}
+          </style>
         </div>
       </div>
     );
