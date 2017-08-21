@@ -1,76 +1,70 @@
 .container {
-    width: 275px;
-    height: 400px;
-    margin: auto;
-    margin-top: 25px;
-    margin-bottom: 57px;
-    @media (min-width: 768px) {
-        width:350px;
-        height: 387px;
-        margin-bottom: 70px;
-    }
+  width: 275px;
+  height: 400px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 57px;
+  @media (min-width: 768px) {
+    width: 350px;
+    height: 387px;
+    margin-bottom: 70px;
+  }
 }
 
 p {
-    font-size: 11px;
-    font-weight: normal;
-    color: #626262;
-    font-family: "Effra";
-    margin: 0;
+  font-size: 11px;
+  font-weight: normal;
+  color: #626262;
+  font-family: "Effra";
+  margin: 0;
 }
 
 .formTitle {
-    font-size: 18px;
-    color: var(--black);
-    margin: auto;
-    text-align: center;
+  font-size: 18px;
+  color: var(--black);
+  margin: auto;
+  text-align: center;
 }
 
 .formElementTitle {
-    margin: 20px 0 5px 0;
+  margin: 20px 0 5px 0;
 }
 
 .messageTitle {
-    color: #AFAFAF;
-    text-align: left;
+  color: #afafaf;
+  text-align: left;
 }
 
 .formTextareaContainer {
-    height: 95px;
+  height: 95px;
 }
 
 .dynamicText {
-    font-size: 0;
-    position: absolute;
-    @media (min-width: 768px) {
-      font-size: 11px;
-      position: relative;
-    }
+  font-size: 0;
+  position: absolute;
+  @media (min-width: 768px) {
+    font-size: 11px;
+    position: relative;
   }
+}
 
 .bottomContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0 70px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0 70px 0;
 
-    @media (min-width: 768px){
-        flex-direction: row;
-    }
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 
 .buttonContainer {
-    width: 126px;
-    height: 29px;
-    margin-top: 15px;
-    @media (min-width: 768px){
-        margin-left: 34px;
-    }
+  width: 126px;
+  height: 29px;
+  margin-top: 15px;
+  @media (min-width: 768px) {
+    margin-left: 34px;
+  }
 }
-
-/* #btn:active {
-  background-color: #7262BF;
-  box-shadow: 0 1px #666;
-  transform: translateY(.1px);
-} */
