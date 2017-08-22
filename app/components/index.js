@@ -27,6 +27,7 @@ import SideMoreLayout from './SideMoreLayout';
 import StudentProfile from './StudentProfile';
 import StudentProfileCard from './StudentProfileCard';
 import TabMenu from './TabMenu';
+import StudentProfileEdit from './StudentProfileEdit';
 import Textarea from './Textarea';
 import TextInput from './TextInput';
 import VideoChat from './VideoChat';
@@ -61,6 +62,7 @@ export {
   StudentProfile,
   StudentProfileCard,
   TabMenu,
+  StudentProfileEdit,
   Textarea,
   TextInput,
   VideoChat
