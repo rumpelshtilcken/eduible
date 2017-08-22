@@ -91,16 +91,19 @@ li{
   width: 90px;
   position: left;
   background: url('/static/Profile Picture.svg') center no-repeat;
+  cursor: pointer;
   
 }
 .uploadButton{
   position: right;
+  cursor: pointer;
   width: 80%;
   background: url('/static/Profile Background Image.svg') center no-repeat;
    @media screen and (min-width: 768px) {
    width: 400px;
    background: url('/static/ProfileBackgroundImage(large).svg') center no-repeat; 
    border-radius: 7px;
+
    }
 }
 .step{
@@ -185,6 +188,7 @@ position: absolute;
   border: none;
   margin: 10px 0px 10px;
   font-size: 11px;
+  cursor: pointer;
 }
 .calendar{
   position: relative;
