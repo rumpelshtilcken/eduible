@@ -1,5 +1,4 @@
 .container {
-  display: block;
   background-color: #f9f9f9;
 }
 
@@ -50,30 +49,30 @@
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .12);
 }
 
 .searchBar::-webkit-input-placeholder {
-    /* WebKit, Blink, Edge */
-    color: #afafaf;
-    font-size: 11px;
+  /* WebKit, Blink, Edge */
+  color: #afafaf;
+  font-size: 11px;
 }
 .searchBar:-moz-placeholder {
-    /* Mozilla Firefox 4 to 18 */
-    color: #afafaf;
-    font-size: 11px;
-    opacity: 1;
+  /* Mozilla Firefox 4 to 18 */
+  color: #afafaf;
+  font-size: 11px;
+  opacity: 1;
 }
 .searchBar::-moz-placeholder {
-    /* Mozilla Firefox 19+ */
-    color: #afafaf;
-    font-size: 11px;
-    opacity: 1;
+  /* Mozilla Firefox 19+ */
+  color: #afafaf;
+  font-size: 11px;
+  opacity: 1;
 }
 .searchBar:-ms-input-placeholder {
-    /* Internet Explorer 10-11 */
-    color: #afafaf;
-    font-size: 11px;
+  /* Internet Explorer 10-11 */
+  color: #afafaf;
+  font-size: 11px;
 }
 
 .filterButton {
@@ -85,10 +84,10 @@
 }
 
 .hr {
-    border: none;
-    background-color: #979797;
-    height: 24px;
-    width: 1px;
+  border: none;
+  background-color: #979797;
+  height: 24px;
+  width: 1px;
 }
 
 .universitiesWrap {
@@ -120,7 +119,7 @@
   border: none;
   border-radius: 4px;
   margin-bottom: 12px;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.15);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .15);
 }
 
 .filterCheckboxes {
@@ -153,7 +152,7 @@
   width: 15px;
   height: 15px;
   background: #fff;
-  box-shadow: 0 0 2px 0 rgba(0,0,0,.05);
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, .05);
   margin-top: -2px;
 }
 
@@ -170,7 +169,7 @@
   @media screen and (min-width: 768px) {
     width: 80%;
     margin-right: 45px;
-  } 
+  }
 }
 
 .filterLabels {
@@ -188,133 +187,4 @@
   display: inline-block;
   margin: 15px 70px 15px 0;
   margin-right: 70px;
-}
-
-.universityCard {
-  background-color: #fff;
-  margin-top: 12px;
-  margin-left: 15px;
-  border-radius: 9px;
-  padding: 13px;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.22);
-
-  @media screen and (min-width: 768px) {
-    display: flex;
-    margin-top: 0;
-    padding-right: 27px;
-  }
-}
-
-.universityLogoWrapper {
-  display: flex;
-}
-
-.universityLogo {
-  background: url('/static/uni-logo-placeholder.jpg') center center no-repeat;
-  background-size: cover;
-  width: 70px;
-  height: 70px;
-  border-radius: 7px;
-
-  @media screen and (min-width: 768px) {
-    width: 110px;
-    height: 110px;
-  }
-}
-
-.detailsWrap {
-  display: flex;
-
-  @media screen and (min-width: 768px) {
-    flex-wrap: wrap;
-    flex-direction: column-reverse;
-    margin-left: 15px;
-  }
-}
-
-.ranking {
-  color: #afafaf;
-  font-size: 11px;
-  margin-left: 10px;
-  margin-top: 18px;
-
-  @media screen and (min-width: 768px) {
-    margin: 0;
-  }
-}
-
-.details {
-  display: block;
-  width: 70%;
-  margin-left: 22px;
-  margin-top: -77px;
-
-  @media screen and (min-width: 768px) {
-    width: 100%;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
-
-.description {
-  display: block;
-}
-
-.title {
-  color: #383838;
-  font-size: 11px;
-}
-
-.about {
-  color: #afafaf;
-  font-size: 11px;
-  height: 40px;
-}
-
-.facts {
-  display: none;
-
-  @media screen and (min-width: 1024px) {
-    display: block;
-    width: 165px;
-    height: 100%;
-    margin-left: 20px;
-  }
-}
-
-.fact {
-  display: inline-block;
-  color: #d9d9d9;
-  font-size: 11px;
-  margin: 10px;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-
-  @media screen and (min-width: 768px) {
-    display: block;
-    width: 126px;
-    margin-bottom: -20px;
-  }
-}
-
-.button {
-  border: none;
-  background-color: #7262BF;
-  color: white;
-  border-radius: 15px;
-  width: 85px;
-  height: 30px;
-  font-size: 11px;
-
-  @media screen and (min-width: 768px) {
-    display: block;
-    width: 126px;
-    margin-bottom: 15px;
-  }
 }

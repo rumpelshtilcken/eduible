@@ -1,18 +1,18 @@
+import { UniversityType } from 'types/common';
+
+import FoundedUniversity from './FoundedUniversity';
+import Search from './Search';
 import stylesheet from './index.css';
 
-const SearchUniversity = () => (
-  <div className="container">
+const SearchUniversity = ({ universities }) =>
+  (<div className="container">
     <div className="sortButtonsWrap">
       <div className="sortButtons">
         <button className="sortButton">SORT BY</button>
         <hr className="hr" />
         <button className="filterButton">FILTER</button>
       </div>
-      <div className="searchBlock">
-        <p className="searchTitle">Browse through more than 5000+
-            universities in the US</p>
-        <input className="searchBar" placeholder="search by university, major,college…" />
-      </div>
+      <Search />
     </div>
     <div className="universitiesWrap">
       <div className="leftSide">
@@ -43,35 +43,17 @@ const SearchUniversity = () => (
           <p className="filterOption">SORT OPTION</p>
           <p className="filterOption">OTHER OPTION</p>
         </div>
-        <div className="universityCard">
-          <div className="universityLogoWrapper">
-            <div className="universityLogo" />
-          </div>
-          <div className="detailsWrap">
-            <p className="ranking">RANKING</p>
-            <div className="details">
-              <div className="description">
-                <p className="title">TITLE</p>
-                <p className="about">short description short description short
-                    short description short description short</p>
-              </div>
-              <div className="facts">
-                <p className="fact">FACT 1</p>
-                <p className="fact">FACT 2</p>
-                <p className="fact">FACT 3</p>
-                <p className="fact">FACT 4</p>
-              </div>
-              <div className="buttons">
-                <button className="button">action button</button>
-                <button className="button">action button</button>
-              </div>
-            </div>
-          </div>
-        </div>
+
+        {universities.map(univer => <FoundedUniversity key={univer.title} univer={univer} />)}
       </div>
     </div>
-    <style jsx>{stylesheet}</style>
-  </div>
-);
+    <style jsx>
+      {stylesheet}
+    </style>
+  </div>);
+
+SearchUniversity.propTypes = {
+  universities: UniversityType
+};
 
 export default SearchUniversity;
