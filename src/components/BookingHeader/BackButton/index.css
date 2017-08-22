@@ -4,6 +4,7 @@
   align-items: center;
   background-color: transparent;
   border: hidden;
+  outline: none;
   height: 100%;
   max-width: 43px;
   margin: 0 20px;

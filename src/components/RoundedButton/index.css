@@ -9,14 +9,9 @@
   border: 0;
   background-color: #7262BF;
   color: var(--white);
+  outline: none;
   border-radius: 15px;
   font-weight: bold;
   font-size: 11px;
   font-family: 'Effra';
 }
-
-/* #btn:active {
-background-color: #7262BF;
-box-shadow: 0 1px #666;
-transform: translateY(.1px);
-} */
