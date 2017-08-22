@@ -104,6 +104,12 @@
     flex-flow: row;
     margin-bottom: 25px;
   }
+  @media screen and (min-width: 1440px) {
+    display: block;
+    width: 150px;
+    margin-bottom: 553px;
+    margin-right: 20px;
+  }
 }
 .navigation p {
   font-size: 11px;
@@ -116,6 +122,12 @@
     margin-top: 13px;
     margin-bottom: 13px;
   }
+  @media screen and (min-width: 1440px) {
+    margin: auto;
+  margin-left: 23px;
+    margin-top: 13px;
+    margin-bottom: 14px;
+  }
 }
 .line {
   margin: 0 auto;
@@ -124,6 +136,9 @@
   width: 99%;
   @media screen and (min-width: 768px) {
     display: none;
+  }
+  @media screen and (min-width: 1440px) {
+    display: block;
   }
 }
 .conv {
@@ -137,6 +152,12 @@
   @media screen and (min-width: 768px) {
     margin: auto;
     margin-right:5px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-right:5px;
+    margin-left: 23px;
+    margin-bottom: 14px;
+    margin-top: 13px;
   }
 }
 .conv img {
@@ -208,7 +229,11 @@
 .second {
   display: flex;
   flex-flow: row;
-  width: 615px;;
+  @media screen and (min-width: 768px){
+  display: flex;
+  flex-flow: row;
+  width: 81%;
+}
 }
 .calendar {
   margin: auto;
@@ -271,5 +296,16 @@
   width: 199px;
   @media screen and (min-width: 768px) {
     margin-top: 25px;
+  }
+}
+.secondPart {
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    flex-flow: row;
+  }
+}
+.confer {
+  @media screen and (min-width: 1440px) {
+    width: 1200px;
   }
 }
