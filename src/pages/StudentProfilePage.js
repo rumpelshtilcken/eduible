@@ -1,15 +1,15 @@
+
 import { Component } from 'react';
+import StudentProfileContainer from 'containers/StudentProfileContainer';
 
-import { StudentProfileEdit } from 'components';
-
-class CallRequestPage extends Component {
+class StudentProfilePage extends Component {
   handleNotifyMeButtonClick = () => {
     // TODO: navigate back
   };
 
   render() {
-    return <StudentProfileEdit onNotifyMeButtonClick={this.handleNotifyMeButtonClick} />;
+    return <StudentProfileContainer onNotifyMeButtonClick={this.handleNotifyMeButtonClick} />;
   }
 }
 
-export default CallRequestPage;
+export default StudentProfilePage;
