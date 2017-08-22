@@ -27,7 +27,7 @@ const ModalSuccess = () => (
       </div>
       <div className="secondColumn">
         <p className="provide">Providing your job title and company name  will help users find you on Eduible</p>
-        <button className="continueButton" onClick="openThird()">CONTINUE</button>
+        <button className="continueButton" >CONTINUE</button>
         <a href="" className="ssylka">skip this step</a>
       </div>
     </div>
