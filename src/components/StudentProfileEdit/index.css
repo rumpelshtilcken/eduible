@@ -152,18 +152,34 @@
   border-radius: 4px;
   padding-bottom: 19px;
   margin-bottom: 10px;
+  display: block;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-flow: row;
+  }
 }
 .secondConversation {
   box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.15);
   border-radius: 4px;
   margin-bottom: 20px;
   padding-bottom: 19px;
+  display: block;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-flow: row;
+  }
 }
 .history {
   box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.15);
   border-radius: 4px;
   margin-bottom: 60px;
   padding-bottom: 19px;
+  display: block;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 109px;
+  }
 }
 .first {
   display: flex;
@@ -192,6 +208,7 @@
 .second {
   display: flex;
   flex-flow: row;
+  width: 615px;;
 }
 .calendar {
   margin: auto;
@@ -201,28 +218,30 @@
 .calendar img {
   margin: auto;
   display: block;
+  margin-bottom: 7px;
 }
 .calendar p{
   font-size: 11px;
   text-align: center;
-  margin-top: 7px;
   margin-bottom: 0;
   color: #383838;
 }
 .duration {
   margin: auto;
   width: 39px;
+  margin-top: 5px;
   height: 50px;
+  margin-right: 29px;
 }
 .duration img {
   margin: auto;
   display: block;
+  margin-bottom: 7px;
 }
 .duration p{
   color: #383838;
   font-size: 11px;
   text-align: center;
-  margin-top: 7px;
   margin-bottom: 0;
 }
 
@@ -233,12 +252,24 @@
   border-width: 0;
   color: white;
   height: 29px;
+  margin: auto;
   margin-right: 20px;
   margin-top: 5px;
+  @media screen and (min-width: 768px) {
+    margin-top: 37px;
+  }
 }
 .confer p {
   font-size: 11px;
   color: #626262;
   margin-top: 0;
   margin-bottom: 10px;
+}
+.together {
+  display: flex;
+  flex-flow: row;
+  width: 199px;
+  @media screen and (min-width: 768px) {
+    margin-top: 25px;
+  }
 }

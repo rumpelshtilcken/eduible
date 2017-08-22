@@ -38,13 +38,15 @@ class StudentProfileEdit extends Component {
                   </div>
                 </div>
                 <div className="second">
-                  <div className="calendar">
-                    <img src="/static/Calendar.svg" alt="" />
-                    <p>16 AUG, 2017</p>
-                  </div>
-                  <div className="duration">
-                    <img src="/static/clock.svg" alt="" />
-                    <p>3:30 PM</p>
+                  <div className="together">
+                    <div className="calendar">
+                      <img src="/static/Calendar.svg" alt="" />
+                      <p>16 AUG, 2017</p>
+                    </div>
+                    <div className="duration">
+                      <img src="/static/clock.svg" alt="" />
+                      <p>3:30 PM</p>
+                    </div>
                   </div>
                   <button className="connectBtn">Connect</button>
                 </div>
@@ -58,13 +60,15 @@ class StudentProfileEdit extends Component {
                   </div>
                 </div>
                 <div className="second">
-                  <div className="calendar">
-                    <img src="/static/Calendar.svg" alt="" />
-                    <p>16 AUG, 2017</p>
-                  </div>
-                  <div className="duration">
-                    <img src="/static/clock.svg" alt="" />
-                    <p>3:30 PM</p>
+                  <div className="together">
+                    <div className="calendar">
+                      <img src="/static/Calendar.svg" alt="" />
+                      <p>16 AUG, 2017</p>
+                    </div>
+                    <div className="duration">
+                      <img src="/static/clock.svg" alt="" />
+                      <p>3:30 PM</p>
+                    </div>
                   </div>
                   <button className="connectBtn">Connect</button>
                 </div>
@@ -79,13 +83,15 @@ class StudentProfileEdit extends Component {
                   </div>
                 </div>
                 <div className="second">
-                  <div className="calendar">
-                    <img src="/static/Calendar.svg" alt="" />
-                    <p>16 AUG, 2017</p>
-                  </div>
-                  <div className="duration">
-                    <img src="/static/clock.svg" alt="" />
-                    <p>3:30 PM</p>
+                  <div className="together">
+                    <div className="calendar">
+                      <img src="/static/Calendar.svg" alt="" />
+                      <p>16 AUG, 2017</p>
+                    </div>
+                    <div className="duration">
+                      <img src="/static/clock.svg" alt="" />
+                      <p>3:30 PM</p>
+                    </div>
                   </div>
                   <button className="connectBtn">History</button>
                 </div>
