@@ -22,6 +22,7 @@ import SearchUniversity from './SearchUniversity';
 import SelectDropdown from './SelectDropdown';
 import Session from './Session';
 import SideMoreLayout from './SideMoreLayout';
+import StudentProfile from './StudentProfile';
 import Textarea from './Textarea';
 import TextInput from './TextInput';
 import VideoChat from './VideoChat';
@@ -53,5 +54,6 @@ export {
   SideMoreLayout,
   Textarea,
   TextInput,
-  VideoChat
+  VideoChat,
+  StudentProfile
 };
