@@ -12,25 +12,28 @@ class ModalDefault extends Component {
         <div className="title"> Profile Edit</div>
         <div className="profile">
           <div className="photos">
-            <img className="photo" src="/static/Profile Picture.svg" />
-            <img className="uploadButton" src="/static/Profile Background Image.svg" />
+            <label htmlFor="inputPhoto" className="photo" />
+            <input type="file" accept="image/*" className="inputH" id="inputPhoto" />
+            <label htmlFor="inputBack" className="uploadButton" />
+            <input type="file" accept="image/*" className="inputH" id="inputBack" />
           </div>
           <div className="step"><div className="step_child">
             <div className="label">Full Name</div>
             <input className="input" type="text" placeholder="Miguel Carrera" /></div>
           <div className="step_child"><div className="label">Date Of Birth</div>
-            <input className="input" type="text" placeholder="04/08/1984" />
-            <img className="calendar" src="/static/Calendar Icon.svg" /></div>
+            <input className="input" type="date" defaultValue="1994-08-27" />
+          </div>
           </div>
           <div className="label">About</div>
           <textarea className="input about" placeholder="lalaland" />
           <div className="label">Set Estimated Coast</div>
-          <input className="input small" type="text" placeholder="$5" />
-          <select className="input select" autoFocus>
-            <option >Per minute</option>
-            <option >Per hour</option>
-            <option >Per day</option>
-          </select>
+          <div className="dollarSign"><input className="input small" type="text" pattert="\d" placeholder="5" />
+            <select className="input select" autoFocus>
+              <option >Per minute</option>
+              <option >Per hour</option>
+              <option >Per day</option>
+            </select>
+          </div>
           <div className="label">Suggest Day When You're Free to Talk</div>
           <div className="step2">
             <button className="button">Open Calendar</button>

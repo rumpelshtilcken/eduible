@@ -15,15 +15,12 @@
     width: 96%;
     border-radius: 10px;
     margin: auto;
-    @media screen and (min-width: 768px) {
-    float: left;
-    width: 28%;
-    margin-left: -10%;
-    margin-top: 12%;
-    }
-    @media screen and (min-width: 1024px) {
-      
-    }
+      @media screen and (min-width: 768px) {
+      float: left;
+      width: 28%;
+      margin-left: -10%;
+      margin-top: 16%;
+      }
 }
 
 ul{
@@ -37,14 +34,14 @@ li{
 }
 
 .link{
-    font-size: 13px;
-    border-radius: 4px;
-    width: 100%;
-    padding: 14px 10px;
-    color: black;
-    text-align: left; 
-    text-decoration: none;
-    display: inline-block;
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+  padding: 14px 10px;
+  color: black;
+  text-align: left; 
+  text-decoration: none;
+  display: inline-block;
   
 }
 .current{
@@ -52,9 +49,9 @@ li{
   width: 95%;
   border-radius: 0px;
   border-bottom: 1px solid #ccc;  
-  @media screen and (min-width: 768px) {
-  width: 86%;
-  }
+    @media screen and (min-width: 768px) {
+    width: 86%;
+    }
 }
 .title{
   text-align: center;
@@ -77,23 +74,33 @@ li{
 .photos{
   display: flex;
   justify-content: space-between;
-
- @media screen and (min-width: 768px) {
-   margin-bottom: 20px;
-
- }
+  height: 100px;
+    @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+  }
+}
+.inputH{
+ visibility:hidden;
+  position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
 
 }
 .photo{
+  width: 90px;
   position: left;
-  width: 20%;
+  background: url('/static/Profile Picture.svg') center no-repeat;
+  
 }
 .uploadButton{
   position: right;
   width: 80%;
   background: url('/static/Profile Background Image.svg') center no-repeat;
    @media screen and (min-width: 768px) {
-   background: url('/static/Profile Background Image (large).svg')  center no-repeat;
+   width: 400px;
+   background: url('/static/ProfileBackgroundImage(large).svg') center no-repeat; 
+   border-radius: 7px;
    }
 }
 .step{
@@ -115,7 +122,7 @@ li{
 }
 }
 .comment{
-   @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
   margin: 10px;
   margin-right: 0px;}
 }
@@ -135,20 +142,39 @@ li{
   border: 1px solid #D9D9D9;
   background: #F9F9F9;
   padding: 0px 10px;
+  color: #6A6A6A;
+  font-family: Effra;
 }
+
+
+
+
 .input.about{
   height: 130px;
   resize: none;
 }
 .small{
-  width: 14%;
-  padding-left: 10px;
+  width: 10%;
+  padding-left: 18px;
   height: 28px;
+}
+.dollarSign{
+position:relative;
+padding-left: 0px;
+font-family: Effra;
+color: #6A6A6A;
+}
+.dollarSign:after{
+position: absolute;
+    left: 9px;
+    top: 7px;
+    font-size: 13px;
+    content: '$';
 }
 .select{
   margin-left: 2%;
   height: 30px; 
-  width: 77%;
+  width: 78%;
 }
 .button{
   border-radius: 100px; 
@@ -167,15 +193,14 @@ li{
 }
 .passwords{
   margin-bottom: 10px;  
-  @media screen and (min-width: 768px) {
-  display: flex;
-  justify-content: space-between;}
-  
+    @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;}
 }
 .pass{
   margin-bottom: 10px;  
-  @media screen and (min-width: 768px) {
-  margin-right: 10px; 
+    @media screen and (min-width: 768px) {
+    margin-right: 10px; 
 }
 }
 .buttons{
@@ -185,8 +210,8 @@ li{
   height: 40px;
   justify-content: space-between;
   padding-bottom: 20px;
-  @media screen and (min-width: 768px) {
-  margin-top: 20px;
+    @media screen and (min-width: 768px) {
+    margin-top: 20px;
 }}
 .cancel{
   display: inline;
