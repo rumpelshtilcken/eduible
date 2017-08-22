@@ -18,8 +18,17 @@ const Layout = ({ children, title = 'Eduible', session = false } = {}) =>
     <Header session={session} />
 
     {children}
-    <Footer />
-    <style jsx global>{stylesheet}</style>
+    <Footer
+      urlsMenu={[
+        { url: '/', title: 'Extra menu' },
+        { url: '/PaymentRequest', title: 'Extra menu' }
+      ]}
+      copyright={'COPYRIGHT (C) 2017'}
+    />
+
+    <style jsx global>
+      {stylesheet}
+    </style>
   </div>);
 
 Layout.propTypes = {
