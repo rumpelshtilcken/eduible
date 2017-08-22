@@ -30,7 +30,7 @@ class PaymentDetailsForm extends Component {
 
   generateYear = () => {
     const MAX_EXPIRATION_YEAR = 2020;
-    const MIN_EXPIRATION_YEAR = 1975;
+    const MIN_EXPIRATION_YEAR = 2010;
     const year = [];
     let i = 0;
 
