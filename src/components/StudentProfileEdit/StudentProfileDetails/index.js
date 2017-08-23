@@ -4,6 +4,7 @@ import { Component } from 'react';
 
 import stylesheet from './index.css';
 
+
 class StudentProfileDetails extends Component {
   render() {
     return (

@@ -4,7 +4,7 @@
 import PropTypes from 'prop-types';
 import stylesheet from './index.css';
 
-const StudentProfileHeader = ({ profileImageUrl, profileName, profileLocUrl, profileLocation }) => (
+const StudentProfile = ({ profileImageUrl, profileName, profileLocUrl, profileLocation }) => (
   <div className="profile">
     <img src={profileImageUrl} alt="" />
     <div className="column">
@@ -19,7 +19,7 @@ const StudentProfileHeader = ({ profileImageUrl, profileName, profileLocUrl, pro
   </div>
 );
 
-StudentProfileHeader.propTypes = {
+StudentProfile.propTypes = {
   profileImageUrl: PropTypes.string.isRequired,
   profileName: PropTypes.string.isRequired,
   profileLocation: PropTypes.string.isRequired,
@@ -36,4 +36,4 @@ StudentProfileHeader.propTypes = {
 //   }).isRequired
 // };
 
-export default StudentProfileHeader;
+export default StudentProfile;

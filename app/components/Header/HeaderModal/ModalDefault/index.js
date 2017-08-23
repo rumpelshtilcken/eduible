@@ -59,7 +59,8 @@ const config = [{
     title: 'PASSWORD',
     input: {
       type: 'password',
-      name: 'password',
+      name: 'email',
+      className: 'input',
       placeholder: 'at least six characters'
     }
   }

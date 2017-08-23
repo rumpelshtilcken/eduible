@@ -3,12 +3,12 @@
 import stylesheet from './index.css';
 // import PropTypes from 'prop-types';
 
-import StudentProfileHeader from './StudentProfileHeader';
+import StudentProfile from './StudentProfile';
 import StudentProfileDetails from './StudentProfileDetails';
 
 const StudentProfileEdit = () =>
   (<div className="container">
-    <StudentProfileHeader
+    <StudentProfile
       profileName={'ANNA STARK'}
       profileImageUrl={'/static/anna.jpg'}
       profileLocation={'MIAMI, FL'}
