@@ -148,10 +148,6 @@ li{
   color: #6A6A6A;
   font-family: Effra;
 }
-
-
-
-
 .input.about{
   height: 130px;
   resize: none;
@@ -160,6 +156,9 @@ li{
   width: 10%;
   padding-left: 18px;
   height: 28px;
+}
+.date{
+    cursor: text;
 }
 .dollarSign{
 position:relative;

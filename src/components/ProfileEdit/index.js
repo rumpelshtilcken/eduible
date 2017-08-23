@@ -1,13 +1,26 @@
 import { Component } from 'react';
 import styles from './index.css';
 
+
+const links = [{
+  link: '/profile-edit',
+  label: 'Profile Edit',
+  className: 'link current'
+},
+{
+  link: '/pay-out',
+  label: 'Pay Out',
+  className: 'link'
+}];
+
+
 class ModalDefault extends Component {
   render() {
     return (
       <div className="component">
-        <ul className="menu" >
-          <li ><a href="" className="link current">Profile Edit</a></li>
-          <li ><a href="" className="link">Pay Out</a></li>
+        <ul className="menu" items={links} >
+          {links.map((item, index) =>
+            <li><a className={item.className} href={item.link}>{item.label}</a></li>)}
         </ul>
         <div className="title"> Profile Edit</div>
         <div className="profile">
@@ -21,13 +34,13 @@ class ModalDefault extends Component {
             <div className="label">Full Name</div>
             <input className="input" type="text" placeholder="Miguel Carrera" /></div>
           <div className="step_child"><div className="label">Date Of Birth</div>
-            <input className="input" type="date" defaultValue="1994-08-27" />
+            <input className="input date" type="date" defaultValue="1994-08-27" />
           </div>
           </div>
           <div className="label">About</div>
           <textarea className="input about" placeholder="lalaland" />
           <div className="label">Set Estimated Coast</div>
-          <div className="dollarSign"><input className="input small" type="text" pattert="\d" placeholder="5" />
+          <div className="dollarSign"><input className="input small" type="text" pattert="\d" />
             <select className="input select" autoFocus>
               <option >Per minute</option>
               <option >Per hour</option>
@@ -55,5 +68,6 @@ class ModalDefault extends Component {
     );
   }
 }
+
 
 export default ModalDefault;
