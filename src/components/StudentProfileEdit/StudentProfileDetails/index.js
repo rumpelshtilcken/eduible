@@ -4,17 +4,18 @@ import { Component } from 'react';
 
 import stylesheet from './index.css';
 
-
 class StudentProfileDetails extends Component {
+  handleChangeStyle() {
+  }
   render() {
     return (
       <div className="secondPart">
         <div className="navigation">
-          <p>Universities</p>
+          <div className="univer"><a href="" onClick={this.handleChangeStyle}>Universities</a><img id="uiverImg" src="/static/circlee.jpg" alt="" /></div>
           <img className="line" src="/static/Liine.jpg" alt="" />
-          <p>Grades</p>
+          <div className="grades"><a href="">Grades</a><img src="/static/circlee.jpg" alt="" /></div>
           <img className="line" src="/static/Liine.jpg" alt="" />
-          <div className="conv"><p className="conv">Conversations</p><img src="/static/circlee.jpg" alt="" />
+          <div className="conv"><a href="" className="conv">Conversations</a><img src="/static/circlee.jpg" alt="" />
           </div>
         </div>
         <div className="conversations">
