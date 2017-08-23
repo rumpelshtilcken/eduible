@@ -1,23 +1,30 @@
 
 // import cx from 'classnames';
 // import PropTypes from 'prop-types';
-
+import PropTypes from 'prop-types';
 import stylesheet from './index.css';
 
-const StudentProfileHeader = () => (
+const StudentProfileHeader = ({ profileImageUrl, profileName, profileLocUrl, profileLocation }) => (
   <div className="profile">
-    <img src="/static/anna.jpg" alt="" />
+    <img src={profileImageUrl} alt="" />
     <div className="column">
-      <p className="anna">ANNA STARK</p>
+      <p className="anna">{profileName}</p>
       <div className="row">
-        <img src="/static/loc.jpg" alt="" />
-        <p>MIAMI, FL</p>
+        <img src={profileLocUrl} alt="" />
+        <p>{profileLocation}</p>
       </div>
     </div>
     <button className="editBtn"><p id="edit">Edit Profile</p></button>
     <style jsx>{stylesheet}</style>
   </div>
 );
+
+StudentProfileHeader.propTypes = {
+  profileImageUrl: PropTypes.string.isRequired,
+  profileName: PropTypes.string.isRequired,
+  profileLocation: PropTypes.string.isRequired,
+  profileLocUrl: PropTypes.string.isRequired
+};
 
 // StudentProfileHeader.propTypes = {
 //   profileImageUrl: PropTypes.string.isRequired,

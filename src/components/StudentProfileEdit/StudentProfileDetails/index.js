@@ -5,53 +5,6 @@ import { Component } from 'react';
 import stylesheet from './index.css';
 
 class StudentProfileDetails extends Component {
-  // state = {
-  //   creditCardholderName: '',
-  //   creditCardNumber: '',
-  //   creditCardCVV: '',
-  //   expirationMonth: '',
-  //   expirationYear: ''
-  // };
-
-  // month = [
-  //   { value: 'january', label: 'January' },
-  //   { value: 'february', label: 'February' },
-  //   { value: 'march', label: 'March' },
-  //   { value: 'april', label: 'April' },
-  //   { value: 'may', label: 'May' },
-  //   { value: 'june', label: 'June' },
-  //   { value: 'july', label: 'July' },
-  //   { value: 'august', label: 'August' },
-  //   { value: 'september', label: 'September' },
-  //   { value: 'october', label: 'October' },
-  //   { value: 'november', label: 'November' },
-  //   { value: 'december', label: 'December' }
-  // ];
-
-  // generateYear = () => {
-  //   const MAX_EXPIRATION_YEAR = 2020;
-  //   const MIN_EXPIRATION_YEAR = 1975;
-  //   const year = [];
-  //   let i = 0;
-
-  //   for (i = MIN_EXPIRATION_YEAR; i < MAX_EXPIRATION_YEAR; i++) {
-  //     year.push({ value: i, label: i });
-  //   }
-
-  //   return year;
-  // };
-
-  // handleExpirationMonthChoose = event => this.setState({ expirationMonth: event.target.value });
-  // handleExpirationYearChoose = event => this.setState({ expirationYear: event.target.value });
-
-  // handleCreditCardNumberType = event => this.setState({ creditCardNumber: event.target.value });
-  // handleCreditCardCVVType = event => this.setState({ creditCardCVV: event.target.value });
-
-  // handleCreditCardholderNameType = event =>
-  //   this.setState({ creditCardholderName: event.target.value });
-
-  // handleRequestCallClick = () => {};
-
   render() {
     return (
       <div className="secondPart">

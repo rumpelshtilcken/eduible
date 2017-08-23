@@ -8,7 +8,12 @@ import StudentProfileDetails from './StudentProfileDetails';
 
 const StudentProfileEdit = () =>
   (<div className="container">
-    <StudentProfileHeader />
+    <StudentProfileHeader
+      profileName={'ANNA STARK'}
+      profileImageUrl={'/static/anna.jpg'}
+      profileLocation={'MIAMI, FL'}
+      profileLocUrl={'/static/loc.jpg'}
+    />
     <StudentProfileDetails />
     <style jsx>{stylesheet}</style>
   </div>);
