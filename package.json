@@ -2,7 +2,7 @@
   "name": "eduible",
   "version": "0.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "sequelize db:migrate && node server/index.js",
     "build": "next build",
     "start": "sequelize db:migrate && node server/index.js",
     "heroku-postbuild": "npm run build",
@@ -46,6 +46,7 @@
     "redux-thunk": "^2.2.0",
     "sequelize": "^4.5.0",
     "sequelize-cli": "^2.8.0",
+    "uuid": "^3.1.0",
     "validator": "^8.0.0",
     "webpack": "^3.5.5"
   },
