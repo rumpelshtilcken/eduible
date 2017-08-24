@@ -11,7 +11,7 @@ const VerificationUtils = {
     (password === confirmPassword ? false : 'Confirm password should be same as your password'),
   isUserNotExist: user => (user ? false : 'User does not exist'),
   isNotEqualPassword: async (typedPassword, dbPassword) =>
-    (bcrypt.compare(typedPassword === dbPassword) ? false : 'Password is wrong')
+    ((await bcrypt.compare(typedPassword, dbPassword)) ? false : 'Password is wrong')
 };
 
 module.exports = VerificationUtils;
