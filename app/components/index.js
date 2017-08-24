@@ -19,6 +19,7 @@ import Session from './Session';
 import SideMoreLayout from './SideMoreLayout';
 import Textarea from './Textarea';
 import TextInput from './TextInput';
+import VideoChat from './VideoChat';
 
 export {
   BookingHeader,
@@ -40,6 +41,7 @@ export {
   SelectDropdown,
   Session,
   SideMoreLayout,
+  VideoChat,
   Textarea,
   TextInput
 };
