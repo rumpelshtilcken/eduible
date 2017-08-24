@@ -1,11 +1,7 @@
-const { Strategy: LocalStrategy } = require('passport-local');
+import { Strategy as LocalStrategy } from 'passport-local';
 
-const models = require('../../../../../models');
-const {
-  isNotEqualPassword,
-  isNotValidEmail,
-  isUserNotExist
-} = require('../../../utils/VerificationUtils');
+import models from 'models';
+import { isNotEqualPassword, isNotValidEmail, isUserNotExist } from 'utils/VerificationUtils';
 
 const localOptions = {
   usernameField: 'email',
@@ -34,4 +30,4 @@ const signIn = new LocalStrategy(localOptions, async (req, email, password, done
   return done(null, signinUser);
 });
 
-module.exports = signIn;
+export default signIn;

@@ -1,15 +1,15 @@
-const { Strategy: LocalStrategy } = require('passport-local');
-const bcrypt = require('bcrypt');
-const uuidv1 = require('uuid/v1');
+import { Strategy as LocalStrategy } from 'passport-local';
 
-const {
+import bcrypt from 'bcrypt';
+import uuidv1 from 'uuid/v1';
+
+import {
   isNotValidConfirmPassword,
   isNotValidEmail,
   isNotValidPassword
-} = require('../../../utils/VerificationUtils');
-
-const models = require('../../../../../models');
-const sendEmailConfirmation = require('../../../../../mailer');
+} from 'utils/VerificationUtils';
+import models from 'models';
+import sendEmailConfirmation from 'mailer';
 
 const localOptions = {
   usernameField: 'email',
@@ -59,4 +59,4 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
   return done(null, newUser);
 });
 
-module.exports = signUp;
+export default signUp;

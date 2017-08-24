@@ -5,7 +5,7 @@ import next from 'next';
 import passport from 'passport';
 
 import config from 'config';
-import authRoutes from 'routes/profile';
+import { localAuth } from 'routes/profile';
 import comingsoon from 'routes/comingsoon';
 
 const { NODE_ENV, PORT } = config;
@@ -26,8 +26,8 @@ const runServer = async () => {
   server.use(cors());
 
   server.use('/api/v1', comingsoon);
-  server.use('/api/v1/auth/local', authRoutes.local);
-  server.use('/api/v1/auth/facebook', authRoutes.facebook);
+  server.use('/api/v1/auth/local', localAuth);
+  // server.use('/api/v1/auth/facebook', facebook);
   server.get('*', (req, res) => handler(req, res));
 
   // production error handler

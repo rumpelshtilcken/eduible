@@ -1,10 +1,10 @@
-const { Strategy: FacebookStrategy } = require('passport-facebook');
-const express = require('express');
-const passport = require('passport');
-const jwt = require('jsonwebtoken');
+import { Strategy as FacebookStrategy } from 'passport-facebook';
+import express from 'express';
+import passport from 'passport';
+import jwt from 'jsonwebtoken';
 
-const models = require('../../../../models');
-const config = require('../../../../config');
+import models from 'models';
+import config from 'config';
 
 const facebookRoutes = express.Router();
 
@@ -16,41 +16,12 @@ const facebookOptions = {
 
 passport.use(
   'signin',
-  new FacebookStrategy(facebookOptions, async (req, accessToken, refreshToken, profile, done) => {
-    console.log(accessToken);
-    console.log('Passport use');
-    console.log(profile);
-    if (!req.user) {
-      console.log('++++');
-      models.User.findOrCreate({ facebookId: profile.id }, (err, user) => {
-        console.log('-----');
-        // if (err) {
-        //   console.log('=====');
-        //   return done(err);
-        // }
-        // console.log('create new user');
-        // const newUser = new models.User();
-        // newUser.facebookId = profile.id;
-        // newUser.facebookToken = accessToken;
-        // newUser.facebookName = `${profile.name.givenName} ${profile.name.familyName}`;
-        // newUser.facebookEmail = (profile.emails[0].value || '').toLowerCase();
-        // console.log('profile: ', profile.id, accessToken, profile.name, profile.emails[0].value);
-        // newUser.save((err) => {
-        //   if (err) {
-        //     return done(err);
-        //   }
-        //   return done(null, newUser);
-        // });
-        return done(err, user);
-      });
-    }
-    return done(null, profile);
-  })
+  new FacebookStrategy(facebookOptions, async (req, accessToken, refreshToken, profile, done) =>
+    done(false, null, { message: 'sss' })
+  )
 );
 
-// facebook signin
 facebookRoutes.get('/signin', (req, res, next) => {
-  console.log('------------------------------Facebook signin server side');
   passport.authenticate(
     'signin',
     {
@@ -59,7 +30,6 @@ facebookRoutes.get('/signin', (req, res, next) => {
       scope: ['email']
     },
     (err, user, info) => {
-      console.log('Passport auth');
       if (err) {
         return next(err);
       }
@@ -92,4 +62,4 @@ facebookRoutes.get(
   }
 );
 
-module.exports = facebookRoutes;
+export default facebookRoutes;

@@ -1,7 +1,4 @@
-const localAuth = require('./auth/local');
-const facebookAuth = require('./auth/facebook');
+import localAuth from './auth/local';
+import facebookAuth from './auth/facebook';
 
-module.exports = {
-  local: localAuth,
-  facebook: facebookAuth
-};
+export { localAuth, facebookAuth };

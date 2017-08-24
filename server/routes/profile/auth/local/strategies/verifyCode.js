@@ -1,5 +1,5 @@
-const { isNotValidEmail, isUserNotExist } = require('../../../utils/VerificationUtils');
-const models = require('../../../../../models');
+import { isNotValidEmail, isUserNotExist } from 'utils/VerificationUtils';
+import models from 'models';
 
 const verifyCode = async (req, res, next) => {
   // verify and take code and email from request
@@ -44,4 +44,4 @@ const verifyCode = async (req, res, next) => {
   return res.status(201).json({ message: 'Success' });
 };
 
-module.exports = verifyCode;
+export default verifyCode;

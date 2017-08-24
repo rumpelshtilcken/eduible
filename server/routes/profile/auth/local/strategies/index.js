@@ -1,9 +1,5 @@
-const signIn = require('./signIn');
-const signUp = require('./signUp');
-const verifyCode = require('./verifyCode');
+import signIn from './signIn';
+import signUp from './signUp';
+import verifyCode from './verifyCode';
 
-module.exports = {
-  signIn,
-  signUp,
-  verifyCode
-};
+export { signIn, signUp, verifyCode };

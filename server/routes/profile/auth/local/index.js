@@ -1,15 +1,16 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import passport from 'passport';
 
-const config = require('../../../../config');
-const strategies = require('./strategies');
+import config from 'config';
+
+import { signIn, signUp, verifyCode } from './strategies';
 
 const authRoutes = express.Router();
 
 // Register local strategies with passport
-passport.use('signup', strategies.signUp);
-passport.use('signin', strategies.signIn);
+passport.use('signup', signUp);
+passport.use('signin', signIn);
 
 // Use these strategies with express routes
 const authenticate = (res, next) => (err, user, info) => {
@@ -30,6 +31,6 @@ authRoutes.post('/signin', (req, res, next) => {
   passport.authenticate('signin', authenticate(res, next))(req, res, next);
 });
 
-authRoutes.post('/verifyCode', (req, res, next) => strategies.verifyCode(req, res, next));
+authRoutes.post('/verifyCode', (req, res, next) => verifyCode(req, res, next));
 
-module.exports = authRoutes;
+export default authRoutes;
