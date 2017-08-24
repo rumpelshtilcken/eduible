@@ -1,10 +1,8 @@
 import { Provider } from 'react-redux';
 
-import Page from '../components/Page';
-import Layout from '../components/Layout';
-import VideoChat from '../components/VideoChat';
-
+import { Page, Layout } from 'components';
 import getReduxStore from 'data/getReduxStore';
+
 import VideoChatPage from './VideoChatPage';
 
 class Homepage extends Page {
