@@ -25,7 +25,9 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
     isNotValidConfirmPassword(password, req.body.confirmPassword);
 
   if (errorMessage) {
-    return done(null, false, { message: errorMessage });
+    return done(null, false, {
+      message: errorMessage
+    });
   }
 
   // verify db users
@@ -69,11 +71,32 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
   const existingUser = await models.User.findOne({
     where: {
       $or: [
+<<<<<<< HEAD
         { googleEmail: { $eq: email } },
         { email: { $eq: email } },
         { facebookEmail: { $eq: email } }
 >>>>>>> feat: introduce googleAuth
+<<<<<<< HEAD
 >>>>>>> feat: introduce googleAuth
+=======
+=======
+        {
+          googleEmail: {
+            $eq: email
+          }
+        },
+        {
+          email: {
+            $eq: email
+          }
+        },
+        {
+          facebookEmail: {
+            $eq: email
+          }
+        }
+>>>>>>> style: change import code style
+>>>>>>> style: change import code style
       ]
     }
   });
@@ -140,12 +163,16 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
       verificationCode
     });
   } catch (err) {
-    return done(null, false, { message: 'Server error' });
+    return done(null, false, {
+      message: 'Server error'
+    });
   }
 
   sendEmailConfirmation(newUser.email, verificationCode, (error, info) => {
     if (error || info.rejected.length !== 0) {
-      return done(null, false, { message: 'Message not sent' });
+      return done(null, false, {
+        message: 'Message not sent'
+      });
     }
 
     return done(null, newUser);
