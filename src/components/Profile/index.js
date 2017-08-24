@@ -38,34 +38,42 @@ class Profile extends Component {
         </div>
         <div className="bottom">
           <div className="profile_box about">
-            <div className="half"><div className="box_title">About </div><img className="box__edit" src="/static/prof/edit.svg" alt="edit" /></div>
-            <div className="about_content">
-          Вводные материалы:
-          — Кратко про GraphQL: https://vk.cc/6YoNKZ
-          — Документация GraphQL: https://vk.cc/6YoNUX
-          — Введение в GraphQL: https://vk.cc/6BT7Mo
-          — Интерактивные материалы по GraphQL: https://vk.cc/6YoO6g
-          — Учебное пособие по GraphQL: https://vk.cc/6YoObC
-          — Обучающие материалы по использованию GraphQL с React: https://vk.cc/6YoOgE</div>
+            <div className="half"><div className="box_title">About </div>
+              <button className="box__edit">
+                <img className="box__edit" src="/static/prof/edit.svg" alt="edit" />
+              </button>
+            </div>
+            <div className="about_content">Lorem ipsum dolor sit amet!
+            consectetur adipiscing elit, sed do eiusmod
+             tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+              irure dolor in reprehenderit in voluptate velit esse cillum dolore
+               eu fugiat nulla pariatur. </div>
           </div>
           <div className="profile_box meeting">
-            <div className="half"><div className="box_title">Meeting </div> <img className="box__edit" src="/static/prof/edit.svg" alt="edit" /></div>
-            <div className="meeting_buttons">
-              <button className="meeting_button_inperson">In person</button>
-              <button className="meeting_button_online active">online</button>
+            <div className="half"><div className="box_title">Price</div>
+              <button className="box__edit">
+                <img className="box__edit" src="/static/prof/edit.svg" alt="edit" />
+              </button>
+            </div>
+            <div className="meeting_clock">
+              <img src="/static/clock.jpg" alt="" />
+              <p>$5 per minute</p>
             </div>
           </div>
           <div className="profile_box calendar" >
-            <div className="half"><div className="box_title">Availability calendar (date)</div><img className="box__edit" src="/static/prof/edit.svg" alt="edit" /></div>
+            <div className="half" id="half"><div className="box_title">Availability calendar (date) <p>(September 2017)</p></div>
+            </div>
             <div><div className="calendar_caption">Usually available during the lunch time and after 4pm</div>
               <div className="box_calendar">
                 <div className="calendar_buttons">
                   <table className="calendar_table">
                     <tbody>
                       <tr>
-                        <th> </th>
+                        <th />
                         <th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th><th>SUN</th>
-                        <th> </th>
+                        <th />
                       </tr>
                       <tr>
                         <td><img className="calendar_left" src="/static/prof/left.svg" alt="left" /></td>

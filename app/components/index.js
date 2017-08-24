@@ -18,6 +18,7 @@ import ProfessionalRating from '../components/ProfessionalSearch/ProfessionalRat
 import ProfessionalSearch from './ProfessionalSearch';
 import ProgressBar from './ProgressBar';
 import ProfileEdit from './ProfileEdit';
+import Profile from './Profile';
 import RoundedButton from './RoundedButton';
 import SearchTextInput from './SearchTextInput';
 import SearchUniversity from './SearchUniversity';
@@ -53,6 +54,7 @@ export {
   ProfessionalSearch,
   ProgressBar,
   ProfileEdit,
+  Profile,
   RoundedButton,
   SearchTextInput,
   SearchUniversity,
