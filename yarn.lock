@@ -6509,6 +6509,7 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+<<<<<<< HEAD
 react-apollo@^1.4.15:
   version "1.4.15"
   resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-1.4.15.tgz#3a213d11b847da7db03c4619ac640df734f9c4b5"
@@ -6520,6 +6521,13 @@ react-apollo@^1.4.15:
     lodash.pick "^4.4.0"
     object-assign "^4.0.1"
     prop-types "^15.5.8"
+=======
+react-circular-progressbar@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/react-circular-progressbar/-/react-circular-progressbar-0.1.5.tgz#fbba63650af65cfcdcd9e0b34c23e89507721475"
+  dependencies:
+    prop-types "^15.5.10"
+>>>>>>> feat(StudentProfile): page markup finished
 
 react-deep-force-update@^2.0.1:
   version "2.1.1"

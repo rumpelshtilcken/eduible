@@ -1,77 +1,68 @@
-import { Component } from 'react';
+import Profile from './Profile';
+import TabMenu from './TabMenu';
+import University from './University';
 import stylesheet from './index.css';
 
-class StudentProfile extends Component {
-  render() {
-    return (
-      <div className="container">
-        <div className="userProfileWrapper pageBlock pageBlock_halfRound">
-          <div className="userProfile">
-            <div className="userPhoto" />
-            <div className="userInfo">
-              <h2 className="userName">Anna Stark</h2>
-              <img
-                className="locationIcon"
-                src="/static/ic_location.svg"
-                alt="location"
-              />
-              <p className="userLocation">Miami, FL</p>
-            </div>
-          </div>
-          <div className="edit editIcon" />
-          <div className="edit editButton">
-            <button>Edit profile</button>
-          </div>
-        </div>
-        <div className="pageBlockWrapper">
-          <ul className="tabMenu pageBlock">
-            <li className="active">Universities</li>
-            <li>Grades</li>
-            <li>Conversations
-              <span className="notifyDot" />
-            </li>
-          </ul>
-          <div className="universities pageBlock">
-            <div className="universityLogo" />
-            <a href="#" className="universityRemove">Remove from list</a>
-            <div className="universityWrapper">
-              <div className="universityInfo">
-                <h2 className="universityHeading universityTitle">Hogwarts</h2>
-                <p className="universityDescription">
-                  Hogwarts Castle is a large, seven-storey high building
-                  supported by magic, with a hundred and forty two staircases
-                  throughout its many towers and turrets and very deep dungeons.
-                </p>
-                <a href="#" className="readMore">Read more</a>
-              </div>
-              <div className="universityCourse">
-                <h2 className="universityHeading">Computer science</h2>
-                <a href="#" className="change">Change</a>
-                <div className="universityCourseStats">
-                  <div className="chartWrapper">
-                    <div className="chart" />
-                    <a href="#" className="howCalculated">How is it calculated?</a>
-                  </div>
-                  <div className="universityTipsWrapper">
-                    <ul className="universityTips">
-                      <li>Sign up for an English course</li>
-                      <li>Talk to a professional who studied at this university</li>
-                      <li>Pray that you have successfully passed the exam</li>
-                    </ul>
-                    <a href="#" className="moreTips">
-                      <span className="tipsCount">6</span>
-                      &nbsp;more tips
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <style jsx>{stylesheet}</style>
-      </div>
-    );
+const universities = [
+  {
+    image: '/static/hogwarts.jpg',
+    title: 'Hogwarts',
+    description: 'Hogwarts Castle is a large, seven-storey high building supported by magic, with a hundred and forty two staircases throughout its many towers and turrets and very deep dungeons.',
+    course: 'Computer science',
+    percentage: 75,
+    tips: [
+      'Sign up for an English course',
+      'Talk to a professional who studied at this university',
+      'Pray that you have successfully passed the exam',
+      'Sign up for an English courses',
+      'Talk to a professional who studied at this universitys',
+      'Pray that you have successfully passed the exams'
+    ]
+  },
+  {
+    image: '/static/harvard.jpg',
+    title: 'Harvard',
+    description: 'Hogwarts Castle is a large, seven-storey high building supported by magic, with a hundred and forty two staircases throughout its many towers and turrets and very deep dungeons.',
+    course: 'Graphic design',
+    percentage: 84,
+    tips: [
+      'Sign up for an English course',
+      'Talk to a professional who studied at this university'
+    ]
+  },
+  {
+    image: '/static/cambridge.jpg',
+    title: 'Cambridge',
+    description: 'Hogwarts Castle is a large, seven-storey high building supported by magic, with a hundred and forty two staircases throughout its many towers and turrets and very deep dungeons.',
+    course: 'Computer science',
+    percentage: 100,
+    tips: [
+      'Sign up for an English course'
+    ]
   }
-}
+];
+
+const StudentProfile = () =>
+  (<div className="container">
+    <Profile />
+    <div className="collapseContainer">
+      <TabMenu />
+      <div className="universities">
+        {
+          universities.map(university =>
+            (<University
+              image={university.image}
+              title={university.title}
+              description={university.description}
+              course={university.course}
+              percentage={university.percentage}
+              tips={university.tips}
+            />)
+          )
+        }
+      </div>
+    </div>
+    <style jsx>{stylesheet}</style>
+  </div>);
 
 export default StudentProfile;

@@ -1,0 +1,96 @@
+.wrapper {
+	@media screen and (min-width: 1024px) {
+		width: 730px;
+	}
+}
+
+.content {
+	position: relative;
+	display: flex;
+	margin: 16px 20px 13px 16px;
+}
+
+.universityLogo {
+	min-width: 38px;
+	height: 38px;
+	margin-right: 16px;
+	background-position: center center;
+	background-size: contain;
+	background-repeat: no-repeat;
+
+	@media screen and (min-width: 768px) {
+		min-width: 97px;
+		height: 97px;
+		margin-right: 12px;
+	}
+}
+
+.universityInfo,
+.universityCourse,
+.progressBar,
+.universityTipsWrapper {
+	@media screen and (min-width: 768px) {
+		display: inline-block;
+		vertical-align: top;
+	}
+}
+
+.universityInfo {
+	margin-bottom: 20px;
+
+	@media screen and (min-width: 768px) {
+		width: 200px;
+		margin: 0;
+		margin-right: 25px;
+	}
+}
+
+.universityHeading {
+	margin: 0 0 10px;
+	font-size: 11px;
+	font-weight: 700;
+	color: #383838;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.universityDescription {
+	margin: 0 0 3px;
+	font-size: 9px;
+	color: #AFAFAF;
+	line-height: 14px;
+}
+
+.readMore,
+.universityRemove {
+	font-size: 9px;
+	font-weight: 700;
+	color: #383838;
+	text-decoration: none;
+}
+
+.universityRemove {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #898989;
+}
+
+.progressBar {
+	width: 60px;
+	margin-bottom: 20px;
+	text-align: center;
+
+	@media screen and (min-width: 768px) {
+		margin: 0;
+		margin-right: 20px;
+	}
+}
+
+.howCalculated {
+	display: block;
+	margin-top: 5px;
+	font-size: 6px;
+	color: #9B9B9B;
+	text-decoration: none;
+}

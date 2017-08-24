@@ -2,10 +2,13 @@
   "name": "eduible",
   "version": "0.0.0",
   "scripts": {
-    "dev": "sequelize db:migrate && nodemon server/index.js --config .nodemonrc",
-    "build": "npm run clean && next build app && babel server -d dist && cp server/config/config.json dist/config/config.json",
+    "dev":
+      "sequelize db:migrate && nodemon server/index.js --config .nodemonrc",
+    "build":
+      "npm run clean && next build app && babel server -d dist && cp server/config/config.json dist/config/config.json",
     "clean": "rimraf dist && mkdir dist",
-    "start": "NODE_ENV=production npm run build && sequelize db:migrate && node dist",
+    "start":
+      "NODE_ENV=production npm run build && sequelize db:migrate && node dist",
     "heroku-postbuild": "npm run build",
     "test": "NODE_ENV=test mocha --opts .mocharc"
   },
@@ -54,6 +57,7 @@
     "rc-slider": "^8.3.1",
     "react": "^15.6.1",
     "react-apollo": "^1.4.15",
+    "react-circular-progressbar": "^0.1.5",
     "react-dom": "^15.6.1",
     "react-modal": "^2.2.4",
     "react-redux": "^5.0.6",
@@ -65,7 +69,6 @@
     "sequelize-cli": "^2.8.0",
     "uuid": "^3.1.0",
     "validator": "^8.0.0",
-    "uuid": "^3.1.0",
     "webpack": "^3.5.5"
   },
   "devDependencies": {
