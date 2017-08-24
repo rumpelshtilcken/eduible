@@ -1,4 +1,6 @@
-import { Strategy as LocalStrategy } from 'passport-local';
+import {
+  Strategy as LocalStrategy
+} from 'passport-local';
 
 import bcrypt from 'bcrypt';
 import uuidv1 from 'uuid/v1';
@@ -9,14 +11,16 @@ import {
   isNotValidPassword
 } from 'utils/VerificationUtils';
 import models from 'models';
-import { sendEmailConfirmation } from 'mailer';
+import {
+  sendEmailConfirmation
+} from 'mailer';
 
 const localOptions = {
   usernameField: 'email',
   passReqToCallback: true
 };
 
-const signUp = new LocalStrategy(localOptions, async (req, email, password, done) => {
+const signUp = new LocalStrategy(localOptions, async(req, email, password, done) => {
   // verify request inputs inputs
   const errorMessage =
     isNotValidEmail(email) ||
@@ -24,23 +28,38 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
     isNotValidConfirmPassword(password, req.body.confirmPassword);
 
   if (errorMessage) {
-    return done(null, false, { message: errorMessage });
+    return done(null, false, {
+      message: errorMessage
+    });
   }
 
   // verify db users
   const existingUser = await models.User.findOne({
     where: {
-      $or: [
-        { googleEmail: { $eq: email } },
-        { email: { $eq: email } },
-        { facebookEmail: { $eq: email } }
+      $or: [{
+          googleEmail: {
+            $eq: email
+          }
+        },
+        {
+          email: {
+            $eq: email
+          }
+        },
+        {
+          facebookEmail: {
+            $eq: email
+          }
+        }
       ]
     }
   });
 
   if (existingUser) {
     if (existingUser.email !== null) {
-      return done(null, false, { message: 'email already exists' });
+      return done(null, false, {
+        message: 'email already exists'
+      });
     }
 
     // When user previously logged in with facebook or google account
@@ -53,7 +72,9 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
         existingUser.save();
         return done(null, existingUser);
       } catch (e) {
-        return done(null, false, { message: 'Server error' });
+        return done(null, false, {
+          message: 'Server error'
+        });
       }
     }
   }
@@ -70,12 +91,16 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
       verificationCode
     });
   } catch (err) {
-    return done(null, false, { message: 'Server error' });
+    return done(null, false, {
+      message: 'Server error'
+    });
   }
 
   sendEmailConfirmation(newUser.email, verificationCode, (error, info) => {
     if (error || info.rejected.length !== 0) {
-      return done(null, false, { message: 'Message not sent' });
+      return done(null, false, {
+        message: 'Message not sent'
+      });
     }
 
     return done(null, newUser);
