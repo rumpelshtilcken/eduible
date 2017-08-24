@@ -1,17 +1,17 @@
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const express = require('express');
-const next = require('next');
-const passport = require('passport');
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import express from 'express';
+import next from 'next';
+import passport from 'passport';
 
-const authRoutes = require('./routes/profile');
-const comingsoon = require('./routes/comingsoon');
-const config = require('./config');
+import config from 'config';
+import authRoutes from 'routes/profile';
+import comingsoon from 'routes/comingsoon';
 
 const { NODE_ENV, PORT } = config;
-const DEV = NODE_ENV !== 'production';
+const dev = NODE_ENV !== 'production';
 
-const app = next({ dir: 'src', dev: DEV });
+const app = next({ dir: 'app', dev });
 const handler = app.getRequestHandler();
 
 const runServer = async () => {

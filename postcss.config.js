@@ -1,4 +1,4 @@
-const Theme = require('./src/static');
+const Theme = require('./app/static');
 
 module.exports = {
   plugins: [

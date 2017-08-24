@@ -11,33 +11,31 @@ import stylessheet from './index.css';
 require('isomorphic-fetch');
 
 class HeaderModal extends Component {
-    state = {
+  state = {
+    showSuccess: true,
+    emailInput: '',
+    passwordInput: '',
+    confirmPasswordInput: ''
+  };
+
+  handleRequestClose = () => {
+    this.setState({ showSuccess: false });
+    this.props.onRequestClose();
+  };
+
+  handleOpenModal = () => this.setState({ showSuccess: true });
+
+  handleClick = () => {
+    this.setState({
       showSuccess: false,
-      emailInput: '',
-      passwordInput: '',
-      confirmPasswordInput: ''
-    };
+      email_input: '',
+      password_input: '',
+      confirmPassword_input: ''
+    });
+  };
 
-    handleRequestClose = () => {
-      this.setState({ showSuccess: false });
-      this.props.onRequestClose();
-    }
-
-    handleOpenModal = () =>
-      this.setState({ showSuccess: true });
-
-    handleClick = () => {
-      this.setState({
-        showSuccess: true,
-        email_input: '',
-        password_input: '',
-        confirmPassword_input: ''
-      });
-    };
-
-  renderModalContent = () => (this.state.showSuccess ?
-    <ModalSuccess />
-    : <ModalDefault onOpenModal={this.handleOpenModal} />);
+  renderModalContent = () =>
+    (this.state.showSuccess ? <ModalSuccess /> : <ModalDefault onOpenModal={this.handleOpenModal} />);
 
   render() {
     return (
@@ -50,7 +48,9 @@ class HeaderModal extends Component {
       >
         {this.renderModalContent()}
 
-        <style global>{stylessheet}</style>
+        <style global>
+          {stylessheet}
+        </style>
       </Modal>
     );
   }
@@ -58,8 +58,6 @@ class HeaderModal extends Component {
 
 HeaderModal.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
-  className: PropTypes.string.isRequired,
-  overlayClassName: PropTypes.string.isRequired,
   onRequestClose: PropTypes.func.isRequired
 };
 
