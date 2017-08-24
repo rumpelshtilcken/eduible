@@ -16,7 +16,7 @@ class CallRequestHeader extends Component {
       key: 'ProfesstionalBasicInfo',
       component: (
         <ProfesstionalBasicInfo
-          profileName={'Miguela Carbera'}
+          profileName={'Miguel Carrera'}
           profileImageUrl={'/static/miguel.jpg'}
         />
       )
