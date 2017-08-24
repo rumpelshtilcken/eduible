@@ -14,11 +14,20 @@ const transporter = nodemailer.createTransport({
 
 /* eslint-disable import/no-mutable-exports */
 let sendEmailConfirmation = (userEmail, activationCode, callback) => {
-  callback(null, { rejected: [] });
+  callback(null, {
+    rejected: []
+  });
 };
 /* eslint-disable no-unused-vars */
-let sendPasswordReset = ({ email, passwordResetLink, notSend, callback }) => {
-  callback(null, { rejected: [] });
+let sendPasswordReset = ({
+  email,
+  passwordResetLink,
+  notSend,
+  callback
+}) => {
+  callback(null, {
+    rejected: []
+  });
 };
 /* eslint-enable no-unused-vars */
 /* eslint-enable import/no-mutable-exports */
@@ -27,7 +36,10 @@ if (config.NODE_ENV !== 'test') {
   // send mail with defined transport object
   sendEmailConfirmation = (userEmail, activationCode, callback) => {
     const mailOptions = {
-      from: { name: 'Eduible', address: 'adilkhankenzhetaev@gmail.com' }, // sender address
+      from: {
+        name: 'Eduible',
+        address: 'adilkhankenzhetaev@gmail.com'
+      }, // sender address
       to: userEmail, // list of receivers
       subject: 'Hello, email verification',
       text: `Thank you for registration! It is your activation code ${activationCode},If not you please click link below`,
@@ -37,9 +49,17 @@ if (config.NODE_ENV !== 'test') {
     transporter.sendMail(mailOptions, callback);
   };
 
-  sendPasswordReset = ({ email, passwordResetLink, notSend, callback }) => {
+  sendPasswordReset = ({
+    email,
+    passwordResetLink,
+    notSend,
+    callback
+  }) => {
     const mailOptions = {
-      from: { name: 'Eduible', address: 'adilkhankenzhetaev@gmail.com' }, // sender address
+      from: {
+        name: 'Eduible',
+        address: 'adilkhankenzhetaev@gmail.com'
+      }, // sender address
       to: email, // list of receivers
       subject: 'Hello, email verification',
       text: `You send password reset. Please click link: ${passwordResetLink},If not you please click link below ${notSend}`,
@@ -50,4 +70,7 @@ if (config.NODE_ENV !== 'test') {
   };
 }
 
-export { sendEmailConfirmation, sendPasswordReset };
+export {
+  sendEmailConfirmation,
+  sendPasswordReset
+};

@@ -39,7 +39,9 @@ const runServer = async () => {
   }));
   server.use(passport.initialize());
 
-  server.use('*', cors({ origin: 'http://localhost:3000' }));
+  server.use('*', cors({
+    origin: 'http://localhost:3000'
+  }));
 
   server.use('/api/v1', comingsoon);
   server.use('/api/v1/auth/local', localAuth);

@@ -16,7 +16,8 @@ class Header extends Component {
   handleRequestClose = () =>
     this.setState({
       isModalOpen: false,
-      isProfessionalOpen: false });
+      isProfessionalOpen: false
+    });
 
   handleSignUpButtonClik = () => this.setState({ isModalOpen: true });
 
@@ -40,18 +41,16 @@ class Header extends Component {
             <div className="navbar">
               <div>
                 <button className="btn" onClick={this.handleJoinButtonClik}>
-            JOIN AS PROFESSIONAL
+                  JOIN AS PROFESSIONAL
                 </button>
               </div>
               <div>
                 <button className="btn" onClick={this.handleSignUpButtonClik}>
-            SIGN UP
+                  SIGN UP
                 </button>
               </div>
               <div>
-                <button className="btn" >
-            LOGIN
-                </button>
+                <button className="btn">LOGIN</button>
               </div>
             </div>
           </div>
@@ -61,13 +60,5 @@ class Header extends Component {
     );
   }
 }
-Header.propTypes = {
-  headerLinks: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string,
-      link: PropTypes.string
-    })
-  )
 
-};
 export default Header;

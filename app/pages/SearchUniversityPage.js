@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { Layout } from 'components';
 import SearchUniversityContainer from 'containers/SearchUniversityContainer';
-import { Layout } from 'components';
 
 class SearchUniversityPage extends Component {
   handleUniversityChoose = () => {};
