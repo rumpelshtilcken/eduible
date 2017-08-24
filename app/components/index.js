@@ -71,6 +71,7 @@ export {
   StudentProfileCard,
   TabMenu,
   StudentProfileEdit,
+  VideoChat,
   Textarea,
   TextInput,
   VideoChat
