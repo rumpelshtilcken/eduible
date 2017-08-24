@@ -30,4 +30,6 @@ authRoutes.post('/signin', (req, res, next) => {
   passport.authenticate('signin', authenticate(res, next))(req, res, next);
 });
 
+authRoutes.post('/verifyCode', (req, res, next) => strategies.verifyCode(req, res, next));
+
 module.exports = authRoutes;
