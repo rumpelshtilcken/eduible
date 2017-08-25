@@ -37,6 +37,7 @@ const verifyCode = async (req, res, next) => {
   user.verified = true;
   try {
     await user.save();
+    // TODO: should redirect
   } catch (e) {
     return next(e);
   }
