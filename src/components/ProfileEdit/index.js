@@ -19,7 +19,7 @@ class ProfileEdit extends Component {
     return (
       <div className="component">
         <ul className="menu" items={links} >
-          {links.map((item, index) =>
+          {links.map(item =>
             <li><a className={item.className} href={item.link}>{item.label}</a></li>)}
         </ul>
         <div className="title"> Profile Edit</div>
