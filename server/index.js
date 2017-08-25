@@ -25,7 +25,7 @@ const app = next({
 });
 const handler = app.getRequestHandler();
 
-const runServer = async () => {
+const runServer = async() => {
   await app.prepare();
   const server = express();
 
