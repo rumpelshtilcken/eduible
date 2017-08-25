@@ -42,18 +42,21 @@ const config = [
 ];
 
 class ModalDefault extends Component {
-  renderInput = item => (
-    <div>
-      <p>{item.title}</p>
+  renderInput = item =>
+    (<div>
+      <p>
+        {item.title}
+      </p>
       <input
         type={item.input.type}
         name={item.input.name}
         className={item.input.className}
         placeholder={item.input.placeholder}
       />
-      <style jsx>{styles}</style>
-    </div>
-  );
+      <style jsx>
+        {styles}
+      </style>
+    </div>);
 
   render() {
     const { onOpenModal } = this.props;
@@ -72,7 +75,9 @@ class ModalDefault extends Component {
           <div className="together">
             <div className="inputBox2">
               <p>OR SIGN UP USING</p>
-              <button className="facebookButton">FACEBOOK</button>
+              <button className="facebookButton" onClick={this.handleFacebookButtonClick}>
+                FACEBOOK
+              </button>
               <button className="googleButton">GOOGLE</button>
               <img alt="" id="line" src="static/Line123.jpg" />
             </div>
@@ -82,7 +87,9 @@ class ModalDefault extends Component {
             </div>
           </div>
         </div>
-        <style jsx>{styles}</style>
+        <style jsx>
+          {styles}
+        </style>
       </div>
     );
   }
