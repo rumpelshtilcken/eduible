@@ -1,4 +1,5 @@
 import signIn from './signIn';
 import signUp from './signUp';
+import verifyCode from './verifyCode';
 
-export { signIn, signUp };
+export { signIn, signUp, verifyCode };

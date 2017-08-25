@@ -1,14 +1,14 @@
 /* eslint-env mocha */
 /* eslint no-unused-expressions: 0 */
 
-const bodyParser = require('body-parser');
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const express = require('express');
+import bodyParser from 'body-parser';
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import express from 'express';
 
-const models = require('../../../../../models');
+import models from 'models';
 
-const authRouter = require('../index');
+import authRouter from '../index';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -38,6 +38,9 @@ describe('Code verification functionality', () => {
     server = express();
     server.use(bodyParser.json());
     server.use(authRouter);
+    server.get('/profile', (req, res) => {
+      res.json({ message: 'Profile' });
+    });
   });
 
   it('verifyCode it should return wrong email', async () => {

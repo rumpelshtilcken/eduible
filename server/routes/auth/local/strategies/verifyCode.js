@@ -37,12 +37,10 @@ const verifyCode = async (req, res, next) => {
   user.verified = true;
   try {
     await user.save();
-    // TODO: should redirect
+    return res.status(200).json({ message: 'success' });
   } catch (e) {
     return next(e);
   }
-
-  return res.status(201).json({ message: 'Success' });
 };
 
 export default verifyCode;
