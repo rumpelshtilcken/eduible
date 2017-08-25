@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import stylesheet from '../index.css';
+import stylesheet from './index.css';
 
 const UserBox = ({ username, usertext }) => (
   <div className="dialog">

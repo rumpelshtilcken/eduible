@@ -3,11 +3,17 @@ import ChatBox from './ChatBox';
 import ProfileBox from './ProfileBox';
 import stylesheet from './index.css';
 
-const VideoChat = () =>
+const VideoChat = ({ name, city, icon, imgUrl, timer }) =>
   (
     <div className="container">
       <VideoBox />
-      <ProfileBox />
+      <ProfileBox
+        name={name}
+        city={city}
+        icon={icon}
+        imgUrl={imgUrl}
+        timer={timer}
+      />
       <ChatBox />
       <style jsx>{stylesheet}</style>
     </div>);

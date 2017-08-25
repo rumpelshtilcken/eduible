@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import stylesheet from '../index.css';
-import TextInputBox from './TextInputBox';
-import DialogBox from './DialogBox';
+import stylesheet from './Dialog/index.css';
+import { DialogBox, TextInputBox } from './Dialog';
 
 class ChatBox extends Component {
   render() {
