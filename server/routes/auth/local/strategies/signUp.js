@@ -55,8 +55,6 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
 
     return done(null, newUser);
   });
-
-  return done(null, newUser);
 });
 
 export default signUp;

@@ -20,6 +20,7 @@ const authenticate = (res, next) => (err, user, info) => {
   if (!user) {
     return res.status(401).json(info);
   }
+
   return res.status(201).json({ access_token: jwt.sign({ id: user.id }, config.JWT_SECRET) });
 };
 

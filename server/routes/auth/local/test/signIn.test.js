@@ -1,17 +1,17 @@
 /* eslint-env mocha */
 /* eslint no-unused-expressions: 0 */
 
-const bcrypt = require('bcrypt');
-const bodyParser = require('body-parser');
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const express = require('express');
-const jwt = require('jsonwebtoken');
+import bcrypt from 'bcrypt';
+import bodyParser from 'body-parser';
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import express from 'express';
+import jwt from 'jsonwebtoken';
 
-const config = require('../../../../../config');
-const models = require('../../../../../models');
+import config from 'config';
+import models from 'models';
 
-const authRouter = require('../index');
+import authRoutes from '../index';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -69,7 +69,7 @@ describe('Signin functionality', () => {
     await models.sequelize.sync({ force: true });
     server = express();
     server.use(bodyParser.json());
-    server.use(authRouter);
+    server.use(authRoutes);
   });
 
   TestsInfo.sameTests.map(test =>
