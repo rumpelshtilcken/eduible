@@ -1,4 +1,4 @@
-import stylesheet from '../index.css';
+import stylesheet from './index.css';
 
 const imgUrl = '/static/sendButtonMobile.svg';
 
