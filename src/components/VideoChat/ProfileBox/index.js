@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import stylesheet from '../index.css';
+import stylesheet from './index.css';
 
 const ProfileBox = ({ name, imgUrl, icon, city, timer }) => (
   <div className="section2">
@@ -22,25 +22,20 @@ const ProfileBox = ({ name, imgUrl, icon, city, timer }) => (
       </div>
     </div>
     <div className="profile-timer">
-      <p id="timer">{timer}</p>
+      <p id="timer">{timer.hour}:{timer.minutes}</p>
     </div>
     <style jsx>{stylesheet}</style>
   </div>
 );
-
-ProfileBox.defaultProps = {
-  name: 'Miguel Carrera',
-  imgUrl: '/static/miguel.jpg',
-  icon: 'static/placeholderIcon.svg',
-  city: 'Miami, FL',
-  timer: 0.59
-};
 
 ProfileBox.propTypes = {
   name: PropTypes.string.isRequired,
   imgUrl: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
-  timer: PropTypes.number.isRequired
+  timer: PropTypes.shape({
+    hour: PropTypes.number.isRequired,
+    minutes: PropTypes.number.isRequired
+  }).isRequired
 };
 export default ProfileBox;
