@@ -47,24 +47,26 @@ class HeaderModal extends Component {
     />);
 
   render() {
-    return (<Modal isOpen ={
-        this.props.isModalOpen
-      }
-      contentLabel ="onRequestClose Example"
-      onRequestClose= {
-        this.handleRequestClose
-      }
-      className= "HeaderModal"
-      overlayClassName ="OverlayModal"
+    return (<Modal
+isOpen ={
+      this.props.isModalOpen
+    }
+    contentLabel ="onRequestClose Example"
+    onRequestClose ={
+      this.handleRequestClose
+    }
+    className= "HeaderModal"
+    overlayClassName= "OverlayModal"
         >
       {
         this.renderModalContent()
       }
 
       <style global
-          > {
+          >
+        {
           stylessheet
-        } </style> </Modal>
+        } </style> </Modal >
     );
   }
 }
