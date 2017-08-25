@@ -21,7 +21,7 @@ class ModalSuccess extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email: 'adilkhankenzhetaev@gmail.com',
+        email: 'adilhan_96@bk.ru',
         verificationCode: this.state.verificationCode
       })
     })

@@ -12,7 +12,7 @@ require('isomorphic-fetch');
 
 class HeaderModal extends Component {
   state = {
-    showSuccess: true,
+    showSuccess: false,
     emailInput: '',
     passwordInput: '',
     confirmPasswordInput: ''

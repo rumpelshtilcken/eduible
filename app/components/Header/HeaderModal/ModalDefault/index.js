@@ -70,6 +70,21 @@ class ModalDefault extends Component {
       .catch(err => console.log(('Error': err)));
   };
 
+  handleFacebookButtonClick = () => {
+    fetch('/api/v1/auth/facebook/', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((res) => {
+        console.log('Response: ', res);
+        this.props.onOpenModal(this.state.email);
+      })
+      .catch(err => console.log(('Error': err)));
+  };
+
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -106,7 +121,9 @@ class ModalDefault extends Component {
           <div className="together">
             <div className="inputBox2">
               <p>OR SIGN UP USING</p>
-              <button className="facebookButton">FACEBOOK</button>
+              <button className="facebookButton" onClick={this.handleFacebookButtonClick}>
+                FACEBOOK
+              </button>
               <button className="googleButton">GOOGLE</button>
               <img alt="" id="line" src="static/Line123.jpg" />
             </div>
