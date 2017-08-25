@@ -1,4 +1,6 @@
+--require ignore-styles
 ./pages/**/*.test.js
 ./components/**/*.test.js
 ./server/**/*.test.js
 --reporter spec
+--compilers js:babel-register
