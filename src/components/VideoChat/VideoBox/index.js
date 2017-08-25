@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import stylesheet from '../index.css';
+import stylesheet from './index.css';
 
 class VideoBox extends Component {
   render() {
