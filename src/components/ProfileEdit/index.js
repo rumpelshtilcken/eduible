@@ -14,7 +14,7 @@ const links = [{
 }];
 
 
-class ModalDefault extends Component {
+class ProfileEdit extends Component {
   render() {
     return (
       <div className="component">
@@ -33,7 +33,7 @@ class ModalDefault extends Component {
           <div className="step"><div className="step_child">
             <div className="label">Full Name</div>
             <input className="input" type="text" placeholder="Miguel Carrera" /></div>
-          <div className="step_child"><div className="label">Date Of Birth</div>
+            <div className="step_child"><div className="label">Date Of Birth</div>
             <input className="input date" type="date" defaultValue="1994-08-27" />
           </div>
           </div>
@@ -70,4 +70,4 @@ class ModalDefault extends Component {
 }
 
 
-export default ModalDefault;
+export default ProfileEdit;
