@@ -4,6 +4,7 @@ import config from 'config';
 // Create transport for all email activities
 // TODO: use host
 // Write your own email
+<<<<<<< HEAD
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
@@ -26,6 +27,24 @@ let sendPasswordReset = ({ email, passwordResetLink, notSend, callback }) => {
 if (config.NODE_ENV !== 'test') {
   // send mail with defined transport object
   sendEmailConfirmation = (userEmail, activationCode, callback) => {
+=======
+// eslint-disable-next-line
+let emailConfirmation = (userEmail, activationCode, callback) => {
+  callback(null, { rejected: [] });
+};
+
+if (config.NODE_ENV !== 'test') {
+  const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'adilkhankenzhetaev@gmail.com',
+      pass: 'R33030adcw14a14027!'
+    }
+  });
+
+  // send mail with defined transport object
+  emailConfirmation = (userEmail, activationCode, callback) => {
+>>>>>>> feat(Mailer): doesn't send an email on test mode
     const mailOptions = {
       from: { name: 'Eduible', address: 'adilkhankenzhetaev@gmail.com' }, // sender address
       to: userEmail, // list of receivers
@@ -36,6 +55,7 @@ if (config.NODE_ENV !== 'test') {
 
     transporter.sendMail(mailOptions, callback);
   };
+<<<<<<< HEAD
 
   sendPasswordReset = ({ email, passwordResetLink, notSend, callback }) => {
     const mailOptions = {
@@ -51,3 +71,8 @@ if (config.NODE_ENV !== 'test') {
 }
 
 export { sendEmailConfirmation, sendPasswordReset };
+=======
+}
+
+export default emailConfirmation;
+>>>>>>> feat(Mailer): doesn't send an email on test mode
