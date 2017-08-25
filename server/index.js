@@ -1,12 +1,14 @@
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
+import expressJwt from 'express-jwt';
 import next from 'next';
 import passport from 'passport';
 
 import config from 'config';
-import { localAuth, facebookAuth } from 'routes/profile';
+import { localAuth, facebookAuth } from 'routes/auth';
 import comingsoon from 'routes/comingsoon';
+import graphqlRouter from 'routes/graphql';
 
 const { NODE_ENV, PORT } = config;
 const dev = NODE_ENV !== 'production';
@@ -28,6 +30,7 @@ const runServer = async () => {
   server.use('/api/v1', comingsoon);
   server.use('/api/v1/auth/local', localAuth);
   server.use('/api/v1/auth/facebook', facebookAuth);
+  server.use('/graphql', graphqlRouter);
   server.get('*', (req, res) => handler(req, res));
 
   // production error handler
