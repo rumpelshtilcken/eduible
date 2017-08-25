@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
+import expressJwt from 'express-jwt';
 import next from 'next';
 import passport from 'passport';
 import config from 'config';
