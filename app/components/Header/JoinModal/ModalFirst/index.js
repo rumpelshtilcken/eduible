@@ -73,7 +73,7 @@ class ModalFirst extends Component {
       name= {
         item.input.name
       }
-      className ={
+      className= {
         item.input.className
       }
       placeholder ={
@@ -90,37 +90,41 @@ handleOpenModalSecond = () => {
 
 render() {
   return (<div >
-    <p className= "sign"
+    <p className ="sign"
     >
     JOIN AS PROFESSIONAL </p> <p className="share" >
     Share your knowledge and experience.Start now - it’ s free </p>
 
-    <div className ="signUp"
+    <div className= "signUp"
     >
       <div className ="firstColumn"
     >
-        <div className ="inputBox"
+      <div className= "inputBox"
     >
-          <div className= "in1"
-    > {
+          <div className ="in1"
+    >
+            {
               config.map(this.renderInput)
-            } </div> </div > </div> <div className="secondColumn" > <div className="inputBox1" > <div className ="in2"
-    > {
-          config2.map(this.renderInput)
-        } </div> <button
-        className= "continueButton"
-        onClick ={
-          this.handleOpenModalSecond
-        }
+            } </div> </div > </div> <div className="secondColumn" > <div className ="inputBox1"
+    >
+        <div className= "in2"
+    >
+      {
+            config2.map(this.renderInput)
+          } </div> <button
+          className= "continueButton"
+          onClick= {
+            this.handleOpenModalSecond
+          }
     >
     CONTINUE </button> </div > <div className= "together" >
-      <div className ="inputBox2"
+        <div className= "inputBox2"
     >
           <p > OR JOIN WITH </p> <button className="facebookButton" >
-    LINKEDIN </button> </div > <div className ="inputBox3" >
+    LINKEDIN </button> </div > <div className= "inputBox3" >
           <img alt= ""
             id ="line"
-      src= "static/Line123.jpg"
+      src ="static/Line123.jpg"
     />
           <p > ALREADY A MEMBER ? </p> <button className="loginButton" >
     Log in here </button> </div > </div> </div > </div> <style jsx > {
