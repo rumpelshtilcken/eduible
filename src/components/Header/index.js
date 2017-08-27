@@ -13,7 +13,10 @@ class Header extends Component {
     isModalJoinOpen: false
   };
 
-  handleRequestClose = () => this.setState({ isModalOpen: false });
+  handleRequestClose = () => {
+    this.setState({ isModalJoinOpen: false });
+    this.setState({ isModalOpen: false });
+  }
 
   handleSignUpButtonClik = () => this.setState({ isModalOpen: true });
 

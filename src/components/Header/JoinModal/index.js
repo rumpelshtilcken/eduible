@@ -22,9 +22,6 @@ class JoinModal extends Component {
       this.props.onRequestClose();
     }
 
-    handleOpenModal = () =>
-      this.setState({ showSuccess: true });
-
     render() {
       return (
         <Modal
