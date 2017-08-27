@@ -76,8 +76,7 @@ class ModalFirst extends Component {
     </div>
   );
 
-
-  handleOpenModalSecond() {
+  handleOpenModalSecond = () => {
 
   }
 
@@ -100,7 +99,7 @@ class ModalFirst extends Component {
               <div className="in2">
                 {config2.map(this.renderInput)}
               </div>
-              <button className="continueButton" onClick={this.handleOpenModalSecond.bind(this)}>
+              <button className="continueButton" onClick={this.handleOpenModalSecond}>
                 CONTINUE
               </button>
             </div>

@@ -1,20 +1,19 @@
 import PropTypes from 'prop-types';
 import stylesheet from './index.css';
 
-const UserBox = ({ username, usertext }) => (
+const UserBox = user_data => (
   <div className="dialog">
     <div className="dialog-username">
-      <h5>{username}</h5>
+      <h5>{user_data.username}</h5>
     </div>
     <div className="dialog-text">
-      <p>{usertext}</p>
+      <p>{user_data.usertext}</p>
     </div>
     <style jsx>{stylesheet}</style>
   </div>
 );
 
 UserBox.propTypes = {
-  username: PropTypes.string.isRequired,
-  usertext: PropTypes.string.isRequired
+  user_data: PropTypes.objectOf(PropTypes.string.isRequired)
 };
 export default UserBox;
