@@ -11,15 +11,25 @@
     width: 730px;    
     height: 168px;     
     padding-bottom: 17px;
+     margin-top: 21px;
  }
-    @media screen and (min-width: 1440px) {  
+    @media screen and (min-width: 1024px) {  
     background: url('/static/prof/page-large.svg') center center /contain no-repeat;
-    width: 900px; 
+    width: 955px; 
     height: 210px;
+    margin-top: 24px;
 }}
 .profileImg {
     width: 90px;
     display: block;
     margin: auto;
     padding-top: 109px;
+    @media screen and (min-width: 768px) {
+        margin-left: 23px;
+        padding-top: 57px;
+    }
+    @media screen and (min-width: 1024px) {
+        margin-left: 50px;
+        padding-top: 89px;
+    }
 }

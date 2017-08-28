@@ -16,8 +16,23 @@
     margin: auto;
     display: block;
     text-align: center;
+    @media screen and (min-width: 768px) {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+      @media screen and (min-width: 1024px) {
+        margin-left: 5px;
+        margin-right: 0px;
+    }
 }
-
+.profile__content {
+@media  screen and (min-width: 768px) {
+        width: 144px;
+}
+@media  screen and (min-width: 1024px) {
+        width: 177px;
+}
+}
 .profile_header {
     width: 100%;
     box-shadow: 0 10px 10px #ccc;
@@ -43,7 +58,7 @@
     height: 168px;     
      padding-bottom: 17px;
  }
-    @media screen and (min-width: 1440px) {  
+    @media screen and (min-width: 1024px) {  
     position: relative;
     left: -12%;
     background: url('/static/prof/page-large.svg') center center /contain no-repeat;
@@ -112,8 +127,16 @@
     color: #383838;
     font-family: Effra;  
     font-size: 13px;
-
     letter-spacing: 1px;
+    @media screen and (min-width: 768px){
+        width: 144px;
+        font-size: 12px;
+
+    }
+     @media screen and (min-width: 1024px){
+        width: 177px;
+font-size: 13px;
+    }
 }
 
 .profile__icon {
@@ -128,6 +151,10 @@
     font-size: 11px;
     font-family: Effra;  
     text-transform: uppercase;
+  @media screen and (min-width: 768px){
+        font-size: 11px;
+
+    }
 }
 
 .profile_line {
@@ -143,7 +170,7 @@
 
 .profile__item{
       @media screen and (min-width: 768px) {
-     width: 80%;   
+     width: 100%;   
       }
 
 

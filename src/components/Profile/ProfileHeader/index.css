@@ -10,6 +10,21 @@
 .lists {
     margin: auto;
     margin-top: 55px;
+      @media screen and (min-width: 768px) {
+        display: flex;
+        flex-flow: row;
+        width: 633px;
+        margin-top: -77px;
+        padding-left: 121px;
+    }
+    @media screen and (min-width: 1024px) {
+        display: flex;
+        flex-flow: row;
+        width: 777px;
+        margin-top: -77px;
+        padding-left: 177px;
+    }
+
 }
 .request {
     width: 127px;
@@ -22,4 +37,11 @@
     display: block;
     margin-top: 20px;
     border-width: 0px;
+
+    @media screen and (min-width: 768px) {
+        margin-left: 33px;
+    }
+      @media screen and (min-width: 1024px) {
+        margin-left: 99px;
+    }
 }
