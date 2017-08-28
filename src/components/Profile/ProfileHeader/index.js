@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import ProfileImg from './ProfileImg';
 import ProfileBox from './ProfileBox';
 import stylesheet from './index.css';
@@ -34,7 +36,7 @@ const user = {
 
 const ProfileHeader = () => (
   <div className="profile_header">
-    <ProfileImg user={user.imgUrl} />
+    <div><ProfileImg imgUrl={user.imgUrl} /></div>
     <div className="lists">{user.data.map(x =>
       (<ProfileBox
         text={x.text}
@@ -47,4 +49,9 @@ const ProfileHeader = () => (
   </div>
 );
 
+ProfileHeader.propTypes = {
+  user: PropTypes.shape({
+    imgUrl: PropTypes.string.isRequired,
+    data: PropTypes.arrayOf(PropTypes.string).isRequired })
+};
 export default ProfileHeader;

@@ -186,67 +186,6 @@ th {
     display: block;
     clear: both;
 }
-
-.calendar{
-
-    @media screen and (min-width: 768px) {
-     position: relative;
-     float: left;
-     width: 100%;   
-     margin: auto;
-     height: 77px;
-     top: -10%;
-
-      }
-    @media screen and (min-width: 1440px) {
-    width: 29.5%;
-    left: +20%;
-    top: -12%;
-    height: 140px;
-    order: -1;
-    }
-}
-
-.calendar_days{
-    margin-left: 15%;
-    width: 70%;
-}
-.calendar_caption{
-    font-size: 11px;
-    font-family: Effra;
-    padding: 15px;
-    @media screen and (min-width: 768px) {
-        padding-top: 5px;
-        width: 50%;
-        margin-right: 0;
-    }
-     @media screen and (min-width: 1440px) {
-        padding-top: 5px;
-        width: 100%;
-        margin-right: 0;
-    }
-    
-}
-
-.calendar_button{
-   width: 100%; 
-   background-color: #BEFCAF;
-   color: white;
-   border:none;
-   border-radius: 10px;
-   height: 21px;
-}
-
-.calendar_table{
-    width:100%;
-    font-size: 11px;
-    font-family: Effra;
-    padding-bottom: 10px;
-}
-.calendar_left{
-    width: 5px;
-    margin-left: +88%;
-}
 td{
     width: 11%;
     height: 21px;
@@ -254,12 +193,6 @@ td{
 
 tr {
     margin-top: 7px;
-}
-.active{
-    background-color: #46F61A;
-}
-.unactive{
-    background-color: #BEFCAF;
 }
 #half {
     @media screen and (min-width: 768px) {

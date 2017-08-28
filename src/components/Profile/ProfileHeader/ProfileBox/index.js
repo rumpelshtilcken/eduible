@@ -14,3 +14,4 @@ const ProfileBox = ({ text, location_imgUrl, location_text }) => (
 );
 
 export default ProfileBox;
+

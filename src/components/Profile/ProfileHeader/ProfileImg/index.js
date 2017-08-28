@@ -1,10 +1,15 @@
+import PropTypes from 'prop-types';
+
 import stylesheet from './index.css';
 
-const ProfileImg = ({ user }) => (
+const ProfileImg = ({ imgUrl }) => (
   <div className="header__image">
-    <div className="profileImg"><img src={user} alt="" /></div>
+    <div className="profileImg"><img src={imgUrl} alt="" /></div>
     <style jsx>{stylesheet}</style>
   </div>
 );
 
+ProfileImg.propTypes = {
+  imgUrl: PropTypes.string.isRequired
+};
 export default ProfileImg;
