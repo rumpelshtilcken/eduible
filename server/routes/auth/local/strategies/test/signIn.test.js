@@ -11,7 +11,7 @@ import jwt from 'jsonwebtoken';
 import config from 'config';
 import models from 'models';
 
-import authRoutes from '../index';
+import authRoutes from '../../index';
 
 chai.use(chaiHttp);
 const expect = chai.expect;

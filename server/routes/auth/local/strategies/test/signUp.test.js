@@ -11,7 +11,7 @@ import jwt from 'jsonwebtoken';
 import config from 'config';
 import models from 'models';
 
-import authRouter from '../index';
+import authRouter from '../../index';
 
 const InvalidInputsTest = require('./invalidInput');
 

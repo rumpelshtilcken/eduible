@@ -8,7 +8,7 @@ import express from 'express';
 
 import models from 'models';
 
-import authRouter from '../index';
+import authRouter from '../../index';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -49,7 +49,7 @@ describe('Forgot password functionality', () => {
     try {
       await chai.request(server).post('/forgottenPassword').send({});
     } catch (e) {
-      expect(e.status).to.equal(400);
+      expect(e.status).to.equal(422);
       return expect(e.response.body.message).to.equal('You should send email');
     }
 
@@ -60,7 +60,7 @@ describe('Forgot password functionality', () => {
     try {
       await chai.request(server).post('/forgottenPassword').send({ email: notValidEmail.email });
     } catch (e) {
-      expect(e.status).to.equal(400);
+      expect(e.status).to.equal(422);
       return expect(e.response.body.message).to.equal(notValidEmail.errorMessage);
     }
 
@@ -76,7 +76,7 @@ describe('Forgot password functionality', () => {
 
       await chai.request(server).post('/forgottenPassword').send({ email: wrongEmail.email });
     } catch (e) {
-      expect(e.status).to.equal(400);
+      expect(e.status).to.equal(422);
       return expect(e.response.body.message).to.equal(wrongEmail.errorMessage);
     }
 

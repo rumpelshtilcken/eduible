@@ -8,7 +8,7 @@ import express from 'express';
 
 import models from 'models';
 
-import authRouter from '../index';
+import authRouter from './index';
 
 chai.use(chaiHttp);
 const expect = chai.expect;

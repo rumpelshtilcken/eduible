@@ -4,21 +4,21 @@ import { isNotValidEmail, isUserNotExist } from 'utils/VerificationUtils';
 import { sendPasswordReset } from 'mailer';
 import models from 'models';
 
-const forgotPassword = async (req, res, next) => {
-  // 400 - Bad Request
-  // This response means that server could not understand the request due to invalid syntax.
+const forgottenPassword = async (req, res, next) => {
+  // 422 - Unprocessable Entity
+  // The request was well-formed but was unable to be followed due to semantic errors.
 
   let errorMessage = req.body.email ? false : 'You should send email';
 
   if (errorMessage) {
-    return res.status(400).json({ message: errorMessage });
+    return res.status(422).json({ message: errorMessage });
   }
 
   // email validation
   const email = req.body.email;
   errorMessage = isNotValidEmail(email);
   if (errorMessage) {
-    return res.status(400).json({ message: errorMessage });
+    return res.status(422).json({ message: errorMessage });
   }
 
   // fetch user and check for existense
@@ -26,7 +26,7 @@ const forgotPassword = async (req, res, next) => {
   errorMessage = isUserNotExist(user);
 
   if (errorMessage) {
-    return res.status(400).json({ message: errorMessage });
+    return res.status(422).json({ message: errorMessage });
   }
 
   // generate tempPassword and to the user
@@ -35,7 +35,7 @@ const forgotPassword = async (req, res, next) => {
     user.tempPassword = tempPassword;
     await user.save();
 
-    const passwordResetLink = `http://localhost:3000/forgottenPassword/reset/${tempPassword}`;
+    const passwordResetLink = `http://localhost:3000/forgottenPassword/resetPassword?token=${tempPassword}`;
     const notSend = 'http://localhost:3000/forgottenPassword/notSend';
 
     sendPasswordReset({
@@ -55,4 +55,4 @@ const forgotPassword = async (req, res, next) => {
   }
 };
 
-export default forgotPassword;
+export default forgottenPassword;
