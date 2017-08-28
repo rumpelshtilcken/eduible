@@ -10,17 +10,17 @@ require('isomorphic-fetch');
 class Header extends Component {
   state = {
     isModalOpen: false,
-    isModalJoinOpen: false
+    isOpen: false
   };
 
   handleRequestClose = () => {
-    this.setState({ isModalJoinOpen: false });
+    this.setState({ isOpen: false });
     this.setState({ isModalOpen: false });
   }
 
   handleSignUpButtonClik = () => this.setState({ isModalOpen: true });
 
-  handleJoinButtonClik = () => this.setState({ isModalJoinOpen: true });
+  handleJoinButtonClik = () => this.setState({ isOpen: true });
 
   render() {
     return (
@@ -36,7 +36,7 @@ class Header extends Component {
             onRequestClose={this.handleRequestClose}
           />
           <JoinModal
-            isModalJoinOpen={this.state.isModalJoinOpen}
+            isOpen={this.state.isOpen}
             className="JoinModal"
             overlayClassName="OverlayModal"
             onRequestClose={this.handleRequestClose}

@@ -35,7 +35,7 @@ export {
   SelectDropdown,
   Session,
   SideMoreLayout,
-  VideoChat,
   Textarea,
-  TextInput
+  TextInput,
+  VideoChat
 };
