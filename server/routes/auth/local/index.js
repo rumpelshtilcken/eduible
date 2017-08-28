@@ -6,6 +6,7 @@ import config from 'config';
 
 import { forgottenPassword, resetPassword } from './forgottenPassword';
 import { signIn, signUp } from './strategies';
+import resendConfirmationEmail from './resendConfirmationEmail';
 import verifyCode from './verifyCode';
 
 const authRoutes = express.Router();
@@ -33,6 +34,10 @@ authRoutes.post('/signup', (req, res, next) => {
 authRoutes.post('/signin', (req, res, next) => {
   passport.authenticate('signin', authenticate(res, next))(req, res, next);
 });
+
+authRoutes.post('/resendConfirmationEmail', (req, res, next) =>
+  resendConfirmationEmail(req, res, next)
+);
 
 authRoutes.post('/verifyCode', (req, res, next) => verifyCode(req, res, next));
 
