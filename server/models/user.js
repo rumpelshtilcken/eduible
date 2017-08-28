@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     facebookToken: DataTypes.STRING,
     facebookName: DataTypes.STRING,
     verificationCode: DataTypes.STRING,
-    verified: { type: DataTypes.BOOLEAN, defaultValue: false }
+    verified: { type: DataTypes.BOOLEAN, defaultValue: false },
+    tempPassword: DataTypes.STRING
   });
   return User;
 };

@@ -4,7 +4,7 @@ import passport from 'passport';
 
 import config from 'config';
 
-import { signIn, signUp, verifyCode } from './strategies';
+import { signIn, signUp, verifyCode, forgottenPassword } from './strategies';
 
 const authRoutes = express.Router();
 
@@ -33,5 +33,7 @@ authRoutes.post('/signin', (req, res, next) => {
 });
 
 authRoutes.post('/verifyCode', (req, res, next) => verifyCode(req, res, next));
+
+authRoutes.post('/forgottenPassword', (req, res, next) => forgottenPassword(req, res, next));
 
 export default authRoutes;

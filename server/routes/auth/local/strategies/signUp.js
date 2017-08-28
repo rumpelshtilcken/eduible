@@ -9,7 +9,7 @@ import {
   isNotValidPassword
 } from 'utils/VerificationUtils';
 import models from 'models';
-import sendEmailConfirmation from 'mailer';
+import { sendEmailConfirmation } from 'mailer';
 
 const localOptions = {
   usernameField: 'email',
