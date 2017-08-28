@@ -1,5 +1,6 @@
 .JoinModal {
   height: 651px;
+  width: 255px;
   background-color: white;
   border-radius: 20px;
   padding: 0;
@@ -14,7 +15,6 @@
   overflow: auto;
   outline: none;
   margin:auto;
-  width: 255px;
 
   @media screen and (min-width: 768px) {
     width: 477px;
