@@ -4,7 +4,7 @@ const Calendar = () => (
   <div className="profile_box calendar" >
     <div className="half" id="half">
       <div className="box_title">
-        Availability calendar (date) <p>(September 2017)</p>
+        <p>Availability calendar (date) (September 2017)</p>
       </div>
     </div>
     <div>

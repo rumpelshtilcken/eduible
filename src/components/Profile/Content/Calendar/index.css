@@ -37,16 +37,13 @@ th {
     padding-right: 0px;
     @media screen  and (min-width: 768px) {
         padding-bottom: 0;
+        width: 233px;
     }
     @media screen  and (min-width: 1440px) {
         padding-bottom: 0;
         width: 70%;
     }
 
-}
-.box_title p {
-    width: 103px;
-    margin-right: 0;
 }
 
 .box__edit{
@@ -170,15 +167,16 @@ th {
      float: left;
      width: 100%;   
      margin: auto;
+     margin-top: 15px;
      height: 77px;
 
       }
-    @media screen and (min-width: 1440px) {
-    width: 29.5%;
-    left: +20%;
-    top: -12%;
-    height: 140px;
-    order: -1;
+    @media screen and (min-width: 1024px) {
+    width: 290px;
+    height: 134px;
+    margin-top: 0;
+    margin-left: 20px;
+    order: 2;
     }
 }
 
@@ -192,7 +190,7 @@ th {
     padding: 15px;
     @media screen and (min-width: 768px) {
         padding-top: 5px;
-        width: 50%;
+        width: 277px;
         margin-right: 0;
     }
      @media screen and (min-width: 1440px) {
@@ -220,6 +218,12 @@ th {
     @media screen and (min-width: 768px) {
         width: 50%;
         float: right;
+        margin-top: -60px;
+    }
+    @media screen and (min-width: 1024px) {
+        width: 100%;
+        float: center;
+        margin-top: 0px;
     }
 }
 .calendar_left{

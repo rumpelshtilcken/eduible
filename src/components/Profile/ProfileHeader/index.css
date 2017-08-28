@@ -1,6 +1,5 @@
 .profile_header {
     width: 100%;
-    box-shadow: 0 10px 10px #ccc;
     margin-bottom: 10px;
     padding-bottom: 23px;
     @media screen and (min-width: 768px) {

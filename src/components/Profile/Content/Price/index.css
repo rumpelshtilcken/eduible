@@ -48,7 +48,7 @@ th {
     font-size: 9px;
 }
 .box_title {
-    width: 77%;
+    width: 77px;
     float: left;
     font-size: 11px;
     text-align: left;
@@ -99,19 +99,16 @@ th {
     padding-bottom: 15px;
     height: 139px;
     @media screen and (min-width: 768px) {
-     width: 25%;   
+     width: 240px;   
      float: right;
-     position: relative;
-     top: -12%;
      padding-bottom: 10px;
      height: 134px;
     }
-    @media screen and (min-width: 1440px) {
-    width: 16%;
-    left: -28%;
-    height: 140px;
-    left: -32%;
-    order: 2;
+    @media screen and (min-width: 1024px) {
+    width: 149px;
+    margin-top: 0;
+    margin-rigth: 0px;
+    order: 3;
     }
 
 }
