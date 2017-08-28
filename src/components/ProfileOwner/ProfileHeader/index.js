@@ -1,12 +1,11 @@
-import ProfileImg from './ProfileImg';
-import ProfileBox from './ProfileBox';
 import stylesheet from './index.css';
+import ProfileImg from './ProfileImg';
 
-const user = {
-  imgUrl: '/static/profile.png',
+const config = {
+  imgUrl: '/static/prof/edit.svg',
   data: [
     {
-      text: 'MIGUEL CARRERA',
+      text: 'Miguel Carrera',
       location:
       {
         imgUrl: '/static/prof/Location.svg',
@@ -34,15 +33,8 @@ const user = {
 
 const ProfileHeader = () => (
   <div className="profile_header">
-    <ProfileImg user={user.imgUrl} />
-    <div className="lists">{user.data.map(x =>
-      (<ProfileBox
-        text={x.text}
-        location_text={x.location.text}
-        location_imgUrl={x.location.imgUrl}
-      />
-      ))}</div>
-    <div><button className="request">Request A Call</button></div>
+    <ProfileImg config={config.imgUrl} />
+
     <style jsx>{stylesheet}</style>
   </div>
 );

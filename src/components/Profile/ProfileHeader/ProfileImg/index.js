@@ -1,9 +1,9 @@
 import stylesheet from './index.css';
 
-const ProfileImg = config => (
-  <div> <div className="header__image">
-    <img className="profile__edit" src={config.imgUrl} alt="" /></div>
-  <style jsx>{stylesheet}</style>
+const ProfileImg = ({ user }) => (
+  <div className="header__image">
+    <div className="profileImg"><img src={user} alt="" /></div>
+    <style jsx>{stylesheet}</style>
   </div>
 );
 
