@@ -62,11 +62,16 @@
 }
 
 .readMore,
-.universityRemove {
+.universityRemove,
+.howCalculated {
+	padding: 0;
+	border: none;
+	background: transparent;
 	font-size: 9px;
 	font-weight: 700;
 	color: #383838;
 	text-decoration: none;
+	text-align: left;
 }
 
 .universityRemove {
@@ -92,5 +97,4 @@
 	margin-top: 5px;
 	font-size: 6px;
 	color: #9B9B9B;
-	text-decoration: none;
 }

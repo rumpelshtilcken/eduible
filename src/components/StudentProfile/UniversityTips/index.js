@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import stylesheet from './index.css';
 
@@ -8,9 +9,12 @@ const UniversityTips = ({ tips }) => (
     <ul>
       {
         tips.map((tip, index) => (
-          index < 3 ?
-            <li key={tip}>{tip}</li> :
-            <li key={tip} className="hidden">{tip}</li>
+          <li
+            key={tip}
+            className={cx({ hidden: index > 3 })}
+          >
+            {tip}
+          </li>
         ))
       }
     </ul>

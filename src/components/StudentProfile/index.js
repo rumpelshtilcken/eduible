@@ -1,68 +1,71 @@
+import { Component } from 'react';
+import { TabMenu } from 'components';
+import PropTypes from 'prop-types';
+
 import Profile from './Profile';
-import TabMenu from './TabMenu';
-import University from './University';
+import Universities from './Universities';
+
 import stylesheet from './index.css';
 
-const universities = [
-  {
-    image: '/static/hogwarts.jpg',
-    title: 'Hogwarts',
-    description: 'Hogwarts Castle is a large, seven-storey high building supported by magic, with a hundred and forty two staircases throughout its many towers and turrets and very deep dungeons.',
-    course: 'Computer science',
-    percentage: 75,
-    tips: [
-      'Sign up for an English course',
-      'Talk to a professional who studied at this university',
-      'Pray that you have successfully passed the exam',
-      'Sign up for an English courses',
-      'Talk to a professional who studied at this universitys',
-      'Pray that you have successfully passed the exams'
-    ]
-  },
-  {
-    image: '/static/harvard.jpg',
-    title: 'Harvard',
-    description: 'Hogwarts Castle is a large, seven-storey high building supported by magic, with a hundred and forty two staircases throughout its many towers and turrets and very deep dungeons.',
-    course: 'Graphic design',
-    percentage: 84,
-    tips: [
-      'Sign up for an English course',
-      'Talk to a professional who studied at this university'
-    ]
-  },
-  {
-    image: '/static/cambridge.jpg',
-    title: 'Cambridge',
-    description: 'Hogwarts Castle is a large, seven-storey high building supported by magic, with a hundred and forty two staircases throughout its many towers and turrets and very deep dungeons.',
-    course: 'Computer science',
-    percentage: 100,
-    tips: [
-      'Sign up for an English course'
-    ]
-  }
-];
+class StudentProfile extends Component {
+  tabs = [
+    {
+      title: 'Universities',
+      isNotifiable: false
+    },
+    {
+      title: 'Grades',
+      isNotifiable: false
+    },
+    {
+      title: 'Conversations',
+      isNotifiable: true
+    }
+  ]
 
-const StudentProfile = () =>
-  (<div className="container">
-    <Profile />
-    <div className="collapseContainer">
-      <TabMenu />
-      <div className="universities">
-        {
-          universities.map(university =>
-            (<University
-              image={university.image}
-              title={university.title}
-              description={university.description}
-              course={university.course}
-              percentage={university.percentage}
-              tips={university.tips}
-            />)
-          )
-        }
+  handleEditButtonClick = () => {
+    // TODO: handle edit profile button click
+  }
+
+  handleReadMoreClick() {
+    // TODO: read more about university
+  }
+
+  handleCalculatedClick() {
+    // TODO: show how course percentage is calculated
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <Profile
+          user={this.props.user}
+          onEditButtonClick={this.handleEditButtonClick}
+        />
+        <TabMenu
+          tabs={this.tabs}
+        >
+          <Universities
+            universities={this.props.universities}
+            onRemoveFromListClick={this.props.onRemoveFromListClick}
+            onReadMoreClick={this.handleReadMoreClick}
+            onCalculatedClick={this.handleCalculatedClick}
+          />
+          <h1>Section 2 is coming</h1>
+          <h1>Section 3 is coming</h1>
+        </TabMenu>
+        <style jsx>{stylesheet}</style>
       </div>
-    </div>
-    <style jsx>{stylesheet}</style>
-  </div>);
+    );
+  }
+}
+
+StudentProfile.propTypes = {
+  user: PropTypes.object.isRequired,
+  universities: PropTypes.arrayOf(
+    PropTypes.object
+  ).isRequired,
+  onRemoveFromListClick: PropTypes.func.isRequired
+};
 
 export default StudentProfile;

@@ -1,12 +1,12 @@
-import Page from '../components/Page';
-import Layout from '../components/Layout';
-import StudentProfile from '../components/StudentProfile';
+import { Page, Layout } from 'components';
+
+import StudentProfileContainer from 'containers/StudentProfileContainer';
 
 class StudentProfilePage extends Page {
   render() {
     return (
       <Layout title="Eduible" session={this.props.session}>
-        <StudentProfile />
+        <StudentProfileContainer />
       </Layout>
     );
   }

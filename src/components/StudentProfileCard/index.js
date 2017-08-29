@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+
 import stylesheet from './index.css';
 
 const Card = ({ isHalfRound, children }) => (
@@ -14,7 +15,7 @@ const Card = ({ isHalfRound, children }) => (
 
 Card.propTypes = {
   isHalfRound: PropTypes.bool,
-  children: PropTypes.element
+  children: PropTypes.element.isRequired
 };
 
 export default Card;

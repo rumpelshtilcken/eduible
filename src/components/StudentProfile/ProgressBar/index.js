@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import CircularProgressbar from 'react-circular-progressbar';
+
 import stylesheet from './index.css';
 
 const ProgressBar = ({ percentage }) =>
@@ -12,7 +13,7 @@ const ProgressBar = ({ percentage }) =>
   </div>);
 
 ProgressBar.propTypes = {
-  percentage: PropTypes.number
+  percentage: PropTypes.number.isRequired
 };
 
 export default ProgressBar;

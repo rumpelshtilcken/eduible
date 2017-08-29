@@ -1,16 +1,28 @@
 import PropTypes from 'prop-types';
 
-import Card from '../Card';
+import { StudentProfileCard as Card } from 'components';
+
 import ProgressBar from '../ProgressBar';
 import UniversityTips from '../UniversityTips';
 
 import stylesheet from './index.css';
 
-const University = ({ image, title, description, course, percentage, tips }) =>
+const University = ({
+  image,
+  title,
+  description,
+  course,
+  percentage,
+  tips,
+  onRemoveFromListClick,
+  onReadMoreClick,
+  onCalculatedClick }) =>
   (<div className="wrapper">
     <Card>
       <div className="content">
-        <a href="#" className="universityRemove">Remove from list</a>
+        <button className="universityRemove" onClick={onRemoveFromListClick}>
+          Remove from list
+        </button>
         <div
           className="universityLogo"
           style={{ backgroundImage: `url(${image})` }}
@@ -19,13 +31,13 @@ const University = ({ image, title, description, course, percentage, tips }) =>
           <div className="universityInfo">
             <h2 className="universityHeading">{title}</h2>
             <p className="universityDescription">{description}</p>
-            <a href="#" className="readMore">Read more</a>
+            <button className="readMore" onClick={onReadMoreClick}>Read more</button>
           </div>
           <div className="universityCourse">
             <h2 className="universityHeading">{course}</h2>
             <div className="progressBar">
               <ProgressBar percentage={percentage} />
-              <a href="#" className="howCalculated">How is it calculated?</a>
+              <button className="howCalculated" onClick={onCalculatedClick}>How is it calculated?</button>
             </div>
             <div className="universityTipsWrapper">
               <UniversityTips tips={tips} />
@@ -38,12 +50,15 @@ const University = ({ image, title, description, course, percentage, tips }) =>
   </div>);
 
 University.propTypes = {
-  image: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired.isRequired,
   description: PropTypes.string.isRequired,
   course: PropTypes.string.isRequired,
   percentage: PropTypes.number.isRequired,
-  tips: PropTypes.arrayOf(PropTypes.string).isRequired
+  tips: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onRemoveFromListClick: PropTypes.func.isRequired,
+  onReadMoreClick: PropTypes.func.isRequired,
+  onCalculatedClick: PropTypes.func.isRequired
 };
 
 export default University;

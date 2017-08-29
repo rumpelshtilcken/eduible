@@ -23,6 +23,7 @@ import SelectDropdown from './SelectDropdown';
 import Session from './Session';
 import SideMoreLayout from './SideMoreLayout';
 import StudentProfile from './StudentProfile';
+import StudentProfileCard from './StudentProfileCard';
 import Textarea from './Textarea';
 import TextInput from './TextInput';
 import VideoChat from './VideoChat';
@@ -55,5 +56,6 @@ export {
   Textarea,
   TextInput,
   VideoChat,
-  StudentProfile
+  StudentProfile,
+  StudentProfileCard
 };
