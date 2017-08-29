@@ -11,7 +11,7 @@ import Main from './Main';
 import Menu from './Menu';
 import Page from './Page';
 import PaymentDetails from './PaymentDetails';
-import ProfileEdit from './ProfileEdit';
+import ProfessionalProfileEdit from './ProfessionalProfileEdit';
 import RoundedButton from './RoundedButton';
 import SearchTextInput from './SearchTextInput';
 import SearchUniversity from './SearchUniversity';
@@ -36,7 +36,7 @@ export {
   Menu,
   Page,
   PaymentDetails,
-  ProfileEdit,
+  ProfessionalProfileEdit,
   RoundedButton,
   SearchTextInput,
   SearchUniversity,
