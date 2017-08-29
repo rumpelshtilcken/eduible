@@ -4,6 +4,7 @@ import About from './About';
 import Price from './Price';
 import stylesheet from './index.css';
 import Calendar from './Calendar';
+import Conversations from './Conversations';
 
 class Content extends Component {
   render() {
@@ -12,6 +13,7 @@ class Content extends Component {
         <About />
         <Price />
         <Calendar />
+        <Conversations />
         <style jsx>{stylesheet}</style>
       </div>
     );

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+
 import stylesheet from './index.css';
 
 class ProfileEdit extends Component {

@@ -5,7 +5,7 @@ class Calendar extends Component {
   render() {
     return (
       <div className="profile_box calendar" >
-        <div className="half" id="half"><div className="box_title">Availability calendar (date) <p>(September 2017)</p></div>
+        <div className="half" id="half"><div className="box_title">Availability calendar (date) (September 2017)</div>
         </div>
         <div><div className="calendar_caption">Usually available during the lunch time and after 4pm</div>
           <div className="box_calendar">

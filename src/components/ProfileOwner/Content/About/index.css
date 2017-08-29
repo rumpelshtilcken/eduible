@@ -47,16 +47,14 @@
 }
 .about{
     @media screen and (min-width: 768px) {
-    position: relative;
-    top: -12%;
     float: left;
-    width: 70%;
+    width: 440px;
     margin: auto;
     height: 134px;
     }
-    @media screen and (min-width: 1440px) {
-    width: 50%;
-    height: 140px;
+    @media screen and (min-width: 1024px) {
+     margin-top: 0;
+      margin-left: 0;
     }
 }   
 .about_content{

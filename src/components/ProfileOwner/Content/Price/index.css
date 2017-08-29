@@ -48,7 +48,7 @@ th {
     font-size: 9px;
 }
 .box_title {
-    width: 77%;
+    width: 77px;
     float: left;
     font-size: 11px;
     text-align: left;
@@ -99,19 +99,16 @@ th {
     padding-bottom: 15px;
     height: 139px;
     @media screen and (min-width: 768px) {
-     width: 25%;   
+     width: 240px;   
      float: right;
-     position: relative;
-     top: -12%;
      padding-bottom: 10px;
      height: 134px;
     }
-    @media screen and (min-width: 1440px) {
-    width: 16%;
-    left: -28%;
-    height: 140px;
-    left: -32%;
-    order: 2;
+    @media screen and (min-width: 1024px) {
+    width: 149px;
+    margin-top: 0;
+    margin-rigth: 0px;
+    order: 3;
     }
 
 }
@@ -186,67 +183,6 @@ th {
     display: block;
     clear: both;
 }
-
-.calendar{
-
-    @media screen and (min-width: 768px) {
-     position: relative;
-     float: left;
-     width: 100%;   
-     margin: auto;
-     height: 77px;
-     top: -10%;
-
-      }
-    @media screen and (min-width: 1440px) {
-    width: 29.5%;
-    left: +20%;
-    top: -12%;
-    height: 140px;
-    order: -1;
-    }
-}
-
-.calendar_days{
-    margin-left: 15%;
-    width: 70%;
-}
-.calendar_caption{
-    font-size: 11px;
-    font-family: Effra;
-    padding: 15px;
-    @media screen and (min-width: 768px) {
-        padding-top: 5px;
-        width: 50%;
-        margin-right: 0;
-    }
-     @media screen and (min-width: 1440px) {
-        padding-top: 5px;
-        width: 100%;
-        margin-right: 0;
-    }
-    
-}
-
-.calendar_button{
-   width: 100%; 
-   background-color: #BEFCAF;
-   color: white;
-   border:none;
-   border-radius: 10px;
-   height: 21px;
-}
-
-.calendar_table{
-    width:100%;
-    font-size: 11px;
-    font-family: Effra;
-    padding-bottom: 10px;
-}
-.calendar_left{
-    width: 5px;
-    margin-left: +88%;
-}
 td{
     width: 11%;
     height: 21px;
@@ -254,12 +190,6 @@ td{
 
 tr {
     margin-top: 7px;
-}
-.active{
-    background-color: #46F61A;
-}
-.unactive{
-    background-color: #BEFCAF;
 }
 #half {
     @media screen and (min-width: 768px) {

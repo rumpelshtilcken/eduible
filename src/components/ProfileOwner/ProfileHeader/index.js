@@ -1,11 +1,14 @@
-import stylesheet from './index.css';
-import ProfileImg from './ProfileImg';
+import PropTypes from 'prop-types';
 
-const config = {
-  imgUrl: '/static/prof/edit.svg',
+import ProfileImg from './ProfileImg';
+import ProfileBox from './ProfileBox';
+import stylesheet from './index.css';
+
+const user = {
+  imgUrl: '/static/profile.png',
   data: [
     {
-      text: 'Miguel Carrera',
+      text: 'MIGUEL CARRERA',
       location:
       {
         imgUrl: '/static/prof/Location.svg',
@@ -33,10 +36,22 @@ const config = {
 
 const ProfileHeader = () => (
   <div className="profile_header">
-    <ProfileImg config={config.imgUrl} />
-
+    <div><ProfileImg imgUrl={user.imgUrl} /></div>
+    <div className="lists">{user.data.map(x =>
+      (<ProfileBox
+        text={x.text}
+        location_text={x.location.text}
+        location_imgUrl={x.location.imgUrl}
+      />
+      ))}
+    <div><button className="request">Edit Profile</button></div></div>
     <style jsx>{stylesheet}</style>
   </div>
 );
 
+ProfileHeader.propTypes = {
+  user: PropTypes.shape({
+    imgUrl: PropTypes.string.isRequired,
+    data: PropTypes.arrayOf(PropTypes.string).isRequired })
+};
 export default ProfileHeader;
