@@ -1,5 +1,8 @@
 import express from 'express';
+import jwt from 'jsonwebtoken';
 import passport from 'passport';
+
+import config from 'config';
 
 import facebookStrategy from './strategy';
 
@@ -18,9 +21,16 @@ facebookRoutes.get(
 facebookRoutes.get(
   '/callback',
   passport.authenticate('facebook', {
-    successRedirect: '/',
+    session: false,
     failureRedirect: '/'
-  })
+  }),
+  (req, res) => {
+    if (!req.user) {
+      return res.status(401).json({ message: 'Unauth' });
+    }
+
+    return res.status(201).json({ access_token: jwt.sign({ id: req.user.id }, config.JWT_SECRET) });
+  }
 );
 
 export default facebookRoutes;

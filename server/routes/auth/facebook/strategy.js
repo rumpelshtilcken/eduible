@@ -6,7 +6,7 @@ const facebookOptions = {
   clientID: '305795383220393',
   clientSecret: '68253afcc6594c2a6b15249a8d75422b',
   callbackURL: 'http://localhost:3000/api/v1/auth/facebook/callback',
-  profileFields: ['id', 'name', 'emails', 'gender']
+  profileFields: ['id', 'name', 'emails']
 };
 
 const facebookStrategy = new FacebookStrategy(
