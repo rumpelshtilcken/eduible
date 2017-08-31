@@ -40,11 +40,10 @@ const ProfileHeader = () => (
     <div className="lists">{user.data.map(x =>
       (<ProfileBox
         text={x.text}
-        location_text={x.location.text}
-        location_imgUrl={x.location.imgUrl}
+        location={x.location}
       />
       ))}
-    <div><button className="request">Request A Call</button></div></div>
+      <div><button className="request">Request A Call</button></div></div>
     <style jsx>{stylesheet}</style>
   </div>
 );

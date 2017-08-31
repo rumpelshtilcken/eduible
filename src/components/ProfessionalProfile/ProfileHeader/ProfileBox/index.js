@@ -1,6 +1,6 @@
 import stylesheet from './index.css';
 
-const ProfileBox = ({ text, location_imgUrl, location_text }) => (
+const ProfileBox = ({ text, location }) => (
   <div className="list">
     <div className="profileItem">
       <p className="profileTitle">{text}</p>

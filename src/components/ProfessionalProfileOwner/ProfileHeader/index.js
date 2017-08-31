@@ -36,12 +36,11 @@ const user = {
 
 const ProfileHeader = () => (
   <div className="profileHeader">
-    <div><ProfileImg imgUrl={user.imgUrl} /></div>
+    <div><ProfileImg /></div>
     <div className="lists">{user.data.map(x =>
       (<ProfileBox
         text={x.text}
-        location_text={x.location.text}
-        location_imgUrl={x.location.imgUrl}
+        location={x.location}
       />
       ))}
       <div><button className="request">Edit Profile</button></div></div>
@@ -51,7 +50,7 @@ const ProfileHeader = () => (
 
 ProfileHeader.propTypes = {
   user: PropTypes.shape({
-    imgUrl: PropTypes.string.isRequired,
+    imgUrl: PropTypes.string,
     data: PropTypes.arrayOf(PropTypes.string).isRequired })
 };
 export default ProfileHeader;
