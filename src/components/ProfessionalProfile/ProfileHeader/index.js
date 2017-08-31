@@ -14,6 +14,14 @@ const ProfileHeader = ({ user }) => (
       />
       ))}
       <div><button className="request">Edit Profile</button></div></div>
+    <div className="circles">
+      <div className="firstCircle">
+        <div className="circle"><p>$7</p></div>
+        <p className="price">Price</p></div>
+      <div className="secondCircle">
+        <div className="circle"><p>5</p></div>
+        <p className="price">Rating</p></div>
+    </div>
     <style jsx>{stylesheet}</style>
   </div>
 );
