@@ -50,11 +50,13 @@
 .about{
     @media screen and (min-width: 768px) {
     float: left;
-    width: 440px;
+    width: 340px;
     margin: auto;
-    height: 134px;
+    height: auto;
     }
     @media screen and (min-width: 1024px) {
+         float: left;
+    width: 440px;
      margin-top: 0;
       margin-left: 0;
     }

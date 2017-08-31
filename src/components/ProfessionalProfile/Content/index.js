@@ -6,7 +6,6 @@ import stylesheet from './index.css';
 const Content = () => (
   <div className="bottom">
     <About />
-    <Price />
     <Calendar />
     <style jsx>{stylesheet}</style>
   </div>
