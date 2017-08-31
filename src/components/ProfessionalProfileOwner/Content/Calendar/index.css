@@ -1,4 +1,4 @@
-.profile_box {
+.profileBox {
     background-color: #ffff;
     border-radius: 4px;
     border-size: 10px;
@@ -12,7 +12,7 @@
     box-shadow: 2px 2px 10px #ccc;
     }
 }
-.box_calendar {
+.boxCalendar {
     @media screen and (min-width: 768px) {
         width: 50%;
         float: right;
@@ -27,7 +27,7 @@ th {
     color: #383838;
     font-size: 9px;
 }
-.box_title {
+.boxTitle {
     width: 77%;
     float: left;
     font-size: 11px;
@@ -46,7 +46,7 @@ th {
 
 }
 
-.box__edit{
+.boxEdit{
     width: 20%;
     float: right;
     width: 38px;
@@ -78,11 +78,11 @@ th {
     }
 }
 
-.calendar_days{
+.calendarDays{
     margin-left: 15%;
     width: 70%;
 }
-.calendar_caption{
+.calendarCaption{
     font-size: 11px;
     font-family: Effra;
     padding: 15px;
@@ -99,7 +99,7 @@ th {
     
 }
 
-.calendar_button{
+.calendarButton{
    width: 100%; 
    background-color: #BEFCAF;
    color: white;
@@ -108,7 +108,7 @@ th {
    height: 21px;
 }
 
-.calendar_table{
+.calendarTable{
     width:100%;
     font-size: 11px;
     font-family: Effra;
@@ -124,7 +124,7 @@ th {
         margin-top: 0px;
     }
 }
-.calendar_left{
+.calendarLeft{
     width: 5px;
     margin-left: +88%;
 }

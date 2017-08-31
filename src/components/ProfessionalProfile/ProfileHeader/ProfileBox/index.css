@@ -19,7 +19,7 @@
         margin-right: 0px;
     }
 }
-.profile__content {
+.profileContent {
 @media  screen and (min-width: 768px) {
         width: 144px;
 }
@@ -28,7 +28,7 @@
 }
 }
 
-.profile__edit{
+.profileEdit{
     width: 48px;
     position: relative;
     left: +85%;
@@ -40,7 +40,7 @@
 
 
 
-.profile__title {
+.profileTitle {
     margin-top: 11px;
     color: #383838;
     font-family: Effra;  
@@ -57,13 +57,13 @@ font-size: 13px;
     }
 }
 
-.profile__icon {
+.profileIcon {
     margin-right: 3px;
     width: 10px;
     height: 10px;
 }
 
-.profile__text {
+.profileText {
     letter-spacing: 1px;
     color: #afafaf;
     font-size: 11px;
@@ -75,10 +75,8 @@ font-size: 13px;
     }
 }
 
-.profile__item{
+.profileItem{
       @media screen and (min-width: 768px) {
      width: 100%;   
       }
-
-
 }

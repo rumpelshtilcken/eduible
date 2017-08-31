@@ -2,13 +2,13 @@ import { Component } from 'react';
 import stylesheet from './index.css';
 
 const About = () => (
-  <div className="profile_box about">
-    <div className="half"><div className="box_title">About </div>
-      <button className="box__edit">
-        <img className="box__edit" src="/static/prof/edit.svg" alt="edit" />
+  <div className="profileBox about">
+    <div className="half"><div className="boxTitle">About </div>
+      <button className="boxEdit">
+        <img className="boxEdit" src="/static/prof/edit.svg" alt="edit" />
       </button>
     </div>
-    <div className="about_content">Lorem ipsum dolor sit amet!
+    <div className="aboutContent">Lorem ipsum dolor sit amet!
             consectetur adipiscing elit, sed do eiusmod
              tempor incididunt ut labore et dolore magna aliqua.
               Ut enim ad minim veniam, quis nostrud exercitation ullamco

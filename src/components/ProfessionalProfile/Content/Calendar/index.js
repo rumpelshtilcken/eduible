@@ -1,19 +1,19 @@
 import stylesheet from './index.css';
 
 const Calendar = () => (
-  <div className="profile_box calendar" >
+  <div className="profileBox calendar" >
     <div className="half" id="half">
-      <div className="box_title">
+      <div className="boxTitle">
         <p>Availability calendar (date) (September 2017)</p>
       </div>
     </div>
     <div>
-      <div className="calendar_caption">
+      <div className="calendarCaption">
         Usually available during the lunch time and after 4pm
       </div>
-      <div className="box_calendar">
-        <div className="calendar_buttons">
-          <table className="calendar_table">
+      <div className="boxCalendar">
+        <div className="calendarButtons">
+          <table className="calendarTable">
             <tbody>
               <tr>
                 <th />
@@ -21,14 +21,14 @@ const Calendar = () => (
                 <th />
               </tr>
               <tr>
-                <td><img className="calendar_left" src="/static/prof/left.svg" alt="left" /></td>
-                <td><button className="calendar_button mon">24</button></td>
-                <td><button className="calendar_button tue">25</button></td>
-                <td><button className="calendar_button wed">26</button></td>
-                <td><button className="calendar_button thu">27</button></td>
-                <td><button className="calendar_button friday">28</button></td>
-                <td><button className="calendar_button sat">29</button></td>
-                <td><button className="calendar_button sun">30</button></td>
+                <td><img className="calendarLeft" src="/static/prof/left.svg" alt="left" /></td>
+                <td><button className="calendarButton mon">24</button></td>
+                <td><button className="calendarButton tue">25</button></td>
+                <td><button className="calendarButton wed">26</button></td>
+                <td><button className="calendarButton thu">27</button></td>
+                <td><button className="calendarButton friday">28</button></td>
+                <td><button className="calendarButton sat">29</button></td>
+                <td><button className="calendarButton sun">30</button></td>
                 <td><img src="/static/prof/right.svg" alt="right" /></td>
               </tr>
             </tbody>

@@ -1,4 +1,4 @@
-.profile_box {
+.profileBox {
     background-color: #ffff;
     border-radius: 4px;
     border-size: 10px;
@@ -18,7 +18,7 @@
     clear: both;
 }
 
-.box_title {
+.boxTitle {
     width: 77%;
     float: left;
     font-size: 11px;
@@ -35,12 +35,12 @@
     }
 
 }
-.box_title p {
+.boxTitle p {
     width: 103px;
     margin-right: 0;
 }
 
-.box__edit{
+.boxEdit{
     display: none;
     width: 20%;
     float: right;
@@ -58,7 +58,7 @@
       margin-left: 0;
     }
 }   
-.about_content{
+.aboutContent{
     font-size: 11px;
     font-family: Effra;
     padding:15px;

@@ -35,7 +35,7 @@ const user = {
 };
 
 const ProfileHeader = () => (
-  <div className="profile_header">
+  <div className="profileHeader">
     <div><ProfileImg imgUrl={user.imgUrl} /></div>
     <div className="lists">{user.data.map(x =>
       (<ProfileBox
@@ -44,7 +44,7 @@ const ProfileHeader = () => (
         location_imgUrl={x.location.imgUrl}
       />
       ))}
-    <div><button className="request">Edit Profile</button></div></div>
+      <div><button className="request">Edit Profile</button></div></div>
     <style jsx>{stylesheet}</style>
   </div>
 );
