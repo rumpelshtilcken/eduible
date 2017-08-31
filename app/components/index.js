@@ -20,6 +20,8 @@ import ProgressBar from './ProgressBar';
 import ProfileEdit from './ProfileEdit';
 import Profile from './Profile';
 import ProfileOwner from './ProfileOwner';
+import ProfessionalProfile from './ProfessionalProfile';
+import ProfessionalProfileOwner from './ProfessionalProfileOwner';
 import RoundedButton from './RoundedButton';
 import SearchTextInput from './SearchTextInput';
 import SearchUniversity from './SearchUniversity';
@@ -57,6 +59,8 @@ export {
   ProfileEdit,
   Profile,
   ProfileOwner,
+  ProfessionalProfile,
+  ProfessionalProfileOwner,
   RoundedButton,
   SearchTextInput,
   SearchUniversity,

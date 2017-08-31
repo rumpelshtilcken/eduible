@@ -1,0 +1,84 @@
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+.list {
+    width: 150px;
+    margin: auto;
+    text-align: center;
+    @media screen and (min-width: 768px) {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+      @media screen and (min-width: 1024px) {
+        margin-left: 5px;
+        margin-right: 0px;
+    }
+}
+.profile__content {
+@media  screen and (min-width: 768px) {
+        width: 144px;
+}
+@media  screen and (min-width: 1024px) {
+        width: 177px;
+}
+}
+
+.profile__edit{
+    width: 48px;
+    position: relative;
+    left: +85%;
+    border-radius: 100%;
+    @media screen and (min-width: 768px) {
+    left: +91%;
+    }
+}
+
+
+
+.profile__title {
+    margin-top: 11px;
+    color: #383838;
+    font-family: Effra;  
+    font-size: 13px;
+    letter-spacing: 1px;
+    @media screen and (min-width: 768px){
+        width: 144px;
+        font-size: 12px;
+
+    }
+     @media screen and (min-width: 1024px){
+        width: 177px;
+font-size: 13px;
+    }
+}
+
+.profile__icon {
+    margin-right: 3px;
+    width: 10px;
+    height: 10px;
+}
+
+.profile__text {
+    letter-spacing: 1px;
+    color: #afafaf;
+    font-size: 11px;
+    font-family: Effra;  
+    text-transform: uppercase;
+  @media screen and (min-width: 768px){
+        font-size: 11px;
+
+    }
+}
+
+.profile__item{
+      @media screen and (min-width: 768px) {
+     width: 100%;   
+      }
+
+
+}
