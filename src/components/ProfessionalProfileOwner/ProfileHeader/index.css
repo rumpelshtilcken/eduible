@@ -15,7 +15,7 @@
 }
 .lists {
     margin: auto;
-    margin-top: 55px;
+    margin-top: 69px;
       @media screen and (min-width: 768px) {
         display: flex;
         flex-flow: row;
@@ -59,7 +59,7 @@
         text-align: center;
         width: 77%;
         margin: auto;
-        margin-top: -249px;
+        margin-top: -263px;
      @media screen and (min-width: 768px){
         display: flex;
         flex-flow: row;
