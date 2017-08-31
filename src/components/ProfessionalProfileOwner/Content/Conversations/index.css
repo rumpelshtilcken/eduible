@@ -43,10 +43,9 @@ button:focus {outline:0;}
 }
 #zagolovok {
   @media screen and (min-width: 768px){
-   padding-top: 249px;
+
 }
 @media screen and (min-width: 1024px){
-   padding-top: 155px;
 }
 }
 .friend img {
