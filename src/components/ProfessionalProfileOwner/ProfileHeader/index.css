@@ -3,6 +3,13 @@
     margin-bottom: 10px;
     padding-bottom: 23px;
     @media screen and (min-width: 768px) {
+        width: 730px;
+        margin: auto;
+       
+    }
+    @media screen and (min-width: 1024px) {
+        width: 955px;
+        margin: auto;
        
     }
 }
@@ -38,9 +45,112 @@
     border-width: 0px;
 
     @media screen and (min-width: 768px) {
-        margin-left: 33px;
+        margin-left: 22px;
+           margin-top: -85px;
     }
       @media screen and (min-width: 1024px) {
-        margin-left: 99px;
+        margin-left: 155px;
+           margin-top: -123px;
+    }
+}
+.circles {
+    display: flex;
+        flex-flow: row;
+        text-align: center;
+        width: 77%;
+        margin: auto;
+        margin-top: -249px;
+     @media screen and (min-width: 768px){
+        display: flex;
+        flex-flow: row;
+        text-align: center;
+        width: 140px;
+        float: right;
+        margin-right: 11px;
+        margin-top: -39px;
+    }
+     @media screen and (min-width: 1024px){
+         margin-top: -49px;
+         margin-right: 29px;
+     }
+}
+.circle {
+        text-align: center;
+        height: 50px;
+        width: 50px;
+        margin: auto;
+        margin-top: 0;
+        border-radius: 50%;
+        background-color: #f3f3f3;
+        letter-spacing: 1.5px;
+    @media screen and (min-width: 768px){
+        text-align: center;
+        height: 40px;
+        width: 40px;
+        margin: auto;
+        margin-top: 0;
+        border-radius: 50%;
+        background-color: #f3f3f3;
+        letter-spacing: 1.5px;
+    }
+    @media screen and (min-width: 1024px){
+        text-align: center;
+        height: 45px;
+        width: 45px;
+        margin: auto;
+        margin-top: 0;
+        border-radius: 50%;
+        background-color: #f3f3f3;
+        letter-spacing: 1.5px;
+    }
+}
+.price {
+    margin: 0 auto;
+    font-size: 11px;
+    margin-top: 5px;
+    @media screen and (min-width: 768px){
+        margin: 0 auto;
+        font-size: 11px;
+        margin-top: 5px;
+    }
+}
+.circle p {
+    color: #7262bf;
+    font-size: 14px;
+    margin: auto;
+    padding-top: 17px;
+    @media screen and (min-width: 768px){
+        color: #7262bf;
+        font-size: 14px;
+        margin: auto;
+        padding-top: 12px;
+    }
+    @media screen and (min-width: 1024px){
+        color: #7262bf;
+        font-size: 14px;
+        margin: auto;
+        padding-top: 15px;
+    }
+}
+.firstCircle {
+    height: 55px;
+    margin: auto;
+    float: left;
+    margin-left: 0;
+    @media screen and (min-width: 768px){
+        height: 55px;
+        margin: auto;
+        margin-left: 20px;
+    }
+}
+.secondCircle {
+    float: right;
+    height: 55px;
+    margin: auto;
+    margin-right: 0;
+    @media screen and (min-width: 768px){
+        height: 55px;
+        margin: auto;
+        margin-left: 20px;
     }
 }
