@@ -44,7 +44,7 @@ const ProfileHeader = () => (
         location_imgUrl={x.location.imgUrl}
       />
       ))}
-    <div><button className="request">Request A Call</button></div></div>
+      <div><button className="request">Request A Call</button></div></div>
     <style jsx>{stylesheet}</style>
   </div>
 );

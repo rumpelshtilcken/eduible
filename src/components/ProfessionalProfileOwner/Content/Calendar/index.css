@@ -51,109 +51,7 @@ th {
     float: right;
     width: 38px;
 }
-.about{
-    @media screen and (min-width: 768px) {
-    
-    float: left;
-    width: 70%;
-    margin: auto;
-    height: 134px;
-    }
-    @media screen and (min-width: 1440px) {
-    width: 50%;
-    height: 140px;
-    }
-}   
-.about_content{
-    font-size: 11px;
-    font-family: Effra;
-    padding:15px;
 
-}
-
-.meeting{
-    padding-bottom: 15px;
-    height: 139px;
-    @media screen and (min-width: 768px) {
-     width: 25%;   
-     float: right;
-     padding-bottom: 10px;
-     height: 134px;
-    }
-    @media screen and (min-width: 1440px) {
-    width: 16%;
-    left: -28%;
-    height: 140px;
-    left: -32%;
-    order: 2;
-    }
-
-}
-.meeting_buttons{
-    @media screen and (min-width: 768px) {
-    height: 90px;
-    }
-}
-.meeting_clock {
-    padding-top: 13px;
-    width: 68px;
-    height: 48px;
-    display: block;
-    margin: auto;
-    
-}
-.meeting_clock p {
-    font-size: 11px;
-    color: #383838;
-}
-.meeting_clock img {
-    margin: auto;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.meeting_button_inperson{
-    float: left;
-    margin-left: 7%;
-    margin-bottom: auto;
-    font-size: 11px;
-    font-family: Effra;  
-    width: 40%; 
-    height: 22px;      
-    background-color: #BEFCAF;
-    color: white;
-    border:none;
-    border-radius: 10px;
-    @media screen and (min-width: 768px) {
-    float: none;
-    display: block;
-    width: 60%;
-    margin: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    }
-
-}
-.meeting_button_online{
-    float: right;
-    margin-right: 7%;
-    font-size: 11px;
-    font-family: Effra;  
-    width: 40%;    
-    height: 22px; 
-    background-color: #BEFCAF;  
-    color: white;
-    border:none;
-    border-radius: 10px;
-    @media screen and (min-width: 768px) {
-    float: none;
-    margin: auto; 
-    width: 60%;  
-    display: block;
-    
-    }
-
-}
 
 .half:after {
     content: '';
@@ -175,7 +73,7 @@ th {
     width: 290px;
     height: 134px;
     margin-top: 0;
-    margin-left: 20px;
+    margin-left: 39px;
     order: 2;
     }
 }

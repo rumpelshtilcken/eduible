@@ -7,17 +7,6 @@
 
 }
 
-.bottom{
-    margin: auto;
-    @media screen and (min-width: 768px) {
-    width: 710px;
-    height: 1000px;
-   
-    }
-    @media screen and (min-width: 1440px) {
-    width: 900px;
-     }
-}
 .profile_box {
     background-color: #ffff;
     border-radius: 4px;
@@ -31,21 +20,6 @@
     margin: auto;  
     box-shadow: 2px 2px 10px #ccc;
     }
-}
-.box_calendar {
-    @media screen and (min-width: 768px) {
-        width: 50%;
-        float: right;
-        margin-top: -53px;
-    }
-    @media screen and (min-width: 768px) {
-        width: 100%;
-        margin-top: 0px;
-    }
-}
-th {
-    color: #383838;
-    font-size: 9px;
 }
 .box_title {
     width: 77px;
@@ -74,26 +48,6 @@ th {
     width: 20%;
     float: right;
     width: 38px;
-}
-.about{
-    @media screen and (min-width: 768px) {
-    position: relative;
-    top: -12%;
-    float: left;
-    width: 70%;
-    margin: auto;
-    height: 134px;
-    }
-    @media screen and (min-width: 1440px) {
-    width: 50%;
-    height: 140px;
-    }
-}   
-.about_content{
-    font-size: 11px;
-    font-family: Effra;
-    padding:15px;
-
 }
 
 .meeting{
@@ -183,14 +137,7 @@ th {
     display: block;
     clear: both;
 }
-td{
-    width: 11%;
-    height: 21px;
-}
 
-tr {
-    margin-top: 7px;
-}
 #half {
     @media screen and (min-width: 768px) {
         width: 50%;

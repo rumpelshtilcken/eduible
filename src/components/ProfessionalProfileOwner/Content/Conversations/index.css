@@ -123,18 +123,20 @@ button:focus {outline:0;}
     box-shadow: 2px 10px 10px #ccc;
   border-radius: 4px;
   padding-bottom: 19px;
-      margin-bottom: 35px;
   @media screen and (min-width: 768px) {
     display: flex;
     flex-flow: row;
     width: 100%;
     margin-right: 0;
     margin-left: 0;
+    margin-bottom: 20px;
+  }
+  @media screen and (min-width: 1024px) {
+    margin-bottom: 25px;
   }
 }
 .secondConversation {
   border-radius: 4px;
-  margin-bottom: 20px;
   padding-bottom: 19px;
   box-shadow: 2px 2px 10px #ccc;
   background-color: #ffff;
@@ -151,6 +153,10 @@ button:focus {outline:0;}
     width: 100%;
     margin-right: 0;
     margin-left: 0;
+    margin-bottom: 20px;
+  }
+    @media screen and (min-width: 1024px) {
+    margin-bottom: 25px;
   }
 }
 .history {
