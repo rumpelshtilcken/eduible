@@ -1,5 +1,6 @@
 import { Component, PropTypes } from 'react';
 
+import TabBarMenu from '../TabBarMenu';
 import styles from './index.css';
 
 
@@ -8,18 +9,9 @@ class ProfessionalProfileEdit extends Component {
     defaultBackground: '/static/ProfileBackgroundImage(large).svg',
     defaultAvatar: '/static/Profile Picture.svg'
   }
-  links = [{
-    link: '/ProfessionalProfileEdit',
-    label: 'Profile Edit',
-    className: 'link current'
-  },
-  {
-    link: '/PaymentDetailsPage',
-    label: 'Pay Out',
-    className: 'link'
-  }];
 
   options = ['Per minute', 'Per day', 'Per hour'];
+
   openCalendar = (e) => {
     e.preventDefault();
     console.log('calendar');
@@ -59,15 +51,14 @@ class ProfessionalProfileEdit extends Component {
 
     return (
       <div className="component">
-        <ul className="menu">
-          {this.links.map(item =>
-            <li><a className={item.className} href={item.link}>{item.label}</a></li>)}
-        </ul>
-        <div className="title"> Profile Edit</div>
+
+        <TabBarMenu />
+        <div className="titleSmall"> Profile Edit</div>
         <form className="profile">
           <div className="photos">
             <label
               htmlFor="inputPhoto"
+              onInput={val => this.loadAvatar(val)}
               className="photo"
               style={{ backgroundImage: `url(${avatar === '' ? `'${this.state.defaultAvatar}'` : avatar})` }}
             />
