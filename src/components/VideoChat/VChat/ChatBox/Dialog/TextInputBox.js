@@ -1,3 +1,5 @@
+import PropType from 'prop-types';
+
 import stylesheet from './index.css';
 
 const imgUrl = '/static/sendButtonMobile.svg';
@@ -14,5 +16,9 @@ const TextInputBox = () =>
       {stylesheet}
     </style>
   </div>);
+
+TextInputBox.propType = {
+  imgUrl: PropType.string.isRequired
+};
 
 export default TextInputBox;

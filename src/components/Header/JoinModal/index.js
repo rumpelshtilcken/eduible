@@ -1,24 +1,17 @@
 import PropTypes from 'prop-types';
 
-import Form1 from './Form1';
+import JoinFirst from './JoinFirst';
 
-
-const JoinModal = data => (
-  <Form1
-    isOpen={data.isOpen}
-    onRequestClose={data.onRequestClose}
-    className={data.className}
-    overlayClassName={data.overlayClassName}
+const JoinModal = ({ isOpen, onRequestClose }) => (
+  <JoinFirst
+    isOpen={isOpen}
+    onRequestClose={onRequestClose}
   />
 );
 
 JoinModal.propTypes = {
-  data: PropTypes.shape({
-    isOpen: PropTypes.bool.isRequired,
-    className: PropTypes.string.isRequired,
-    onRequestClose: PropTypes.func.isRequired,
-    overlayClassName: PropTypes.string.isRequired
-  })
+  isOpen: PropTypes.bool.isRequired,
+  onRequestClose: PropTypes.func.isRequired
 };
 
 export default JoinModal;

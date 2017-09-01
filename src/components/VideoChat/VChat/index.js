@@ -1,6 +1,6 @@
 import ChatBox from './ChatBox';
-import VideoBox from './VideoBox';
 import ProfileBox from './ProfileBox';
+import VideoBox from './VideoBox';
 
 export {
   ChatBox,
