@@ -5,7 +5,7 @@ import next from 'next';
 import passport from 'passport';
 
 import config from 'config';
-import { localAuth, facebookAuth } from 'routes/auth';
+import { localAuth, facebookAuth, googleAuth } from 'routes/auth';
 import comingsoon from 'routes/comingsoon';
 import graphqlRouter from 'routes/graphql';
 
@@ -29,6 +29,7 @@ const runServer = async () => {
   server.use('/api/v1', comingsoon);
   server.use('/api/v1/auth/local', localAuth);
   server.use('/api/v1/auth/facebook', facebookAuth);
+  server.use('/api/v1/auth/google', googleAuth);
   server.use('/graphql', graphqlRouter);
   server.get('*', (req, res) => handler(req, res));
 

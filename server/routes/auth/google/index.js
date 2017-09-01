@@ -4,26 +4,26 @@ import passport from 'passport';
 
 /* eslint-disable import/no-duplicates */
 import config from 'config';
-import { facebookConfig } from 'config';
+import { googleConfig } from 'config';
 /* eslint-enable import/no-duplicates */
 
-import facebookStrategy from './strategy';
+import googleStrategy from './strategy';
 
-const facebookRoutes = express.Router();
+const googleRoutes = express.Router();
 
-passport.use('facebook', facebookStrategy);
+passport.use('google', googleStrategy);
 
-facebookRoutes.get(
+googleRoutes.get(
   '',
-  passport.authenticate('facebook', {
-    scope: facebookConfig.scope
+  passport.authenticate('google', {
+    scope: googleConfig.scope
   })
 );
 
-// facebook callback
-facebookRoutes.get(
+// google callback
+googleRoutes.get(
   '/callback',
-  passport.authenticate('facebook', {
+  passport.authenticate('google', {
     session: false,
     failureRedirect: '/'
   }),
@@ -36,4 +36,4 @@ facebookRoutes.get(
   }
 );
 
-export default facebookRoutes;
+export default googleRoutes;

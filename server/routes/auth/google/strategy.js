@@ -1,12 +1,12 @@
-import { Strategy as FacebookStrategy } from 'passport-facebook';
+import { OAuth2Strategy as GoogleStrategy } from 'passport-google-oauth';
 
-import { facebookConfig } from 'config';
+import { googleConfig } from 'config';
 import models from 'models';
 
-const facebookStrategy = new FacebookStrategy(
-  facebookConfig.options,
+const googleStrategy = new GoogleStrategy(
+  googleConfig.options,
   async (accessToken, refreshToken, profile, done) => {
-    // Verify main facebook params
+    // Verify main google params
     if (!accessToken || !profile) {
       return done(null, false, { message: 'Not auth' });
     }
@@ -19,9 +19,9 @@ const facebookStrategy = new FacebookStrategy(
     const user = await models.User.findOne({
       where: {
         $or: [
-          { facebookId: { $eq: id } },
+          { googleId: { $eq: id } },
           { email: { $eq: emails[0].value } },
-          { googleEmail: { $eq: emails[0].value } }
+          { facebookEmail: { $eq: emails[0].value } }
         ]
       }
     });
@@ -30,15 +30,15 @@ const facebookStrategy = new FacebookStrategy(
       // Create new user
       try {
         const newUser = await models.User.create({
-          facebookId: id,
-          facebookToken: accessToken,
-          facebookName: `${name.familyName} ${name.givenName}`,
+          googleId: id,
+          googleToken: accessToken,
+          googleName: `${name.familyName} ${name.givenName}`,
           verified: true
         });
 
         // verify email
         if (emails[0].value) {
-          newUser.facebookEmail = emails[0].value;
+          newUser.googleEmail = emails[0].value;
         }
 
         await newUser.save();
@@ -48,11 +48,11 @@ const facebookStrategy = new FacebookStrategy(
       }
     }
 
-    if (!user.facebookId && (user.email || user.googleEmail)) {
+    if (!user.googleId && (user.email || user.facebookEmail)) {
       // User previously authenticated via email
-      user.facebookId = id;
-      user.facebookToken = accessToken;
-      user.facebookEmail = emails[0].value;
+      user.googleId = id;
+      user.googleToken = accessToken;
+      user.googleEmail = emails[0].value;
 
       try {
         await user.save();
@@ -61,9 +61,9 @@ const facebookStrategy = new FacebookStrategy(
       }
     }
 
-    // sign via facebook only
+    // sign via google only
     return done(null, user);
   }
 );
 
-export default facebookStrategy;
+export default googleStrategy;

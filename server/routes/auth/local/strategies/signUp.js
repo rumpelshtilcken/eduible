@@ -28,9 +28,32 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
   }
 
   // verify db users
-  const existingUser = await models.User.findOne({ where: { email } });
-  if (existingUser !== null) {
+  const existingUser = await models.User.findOne({
+    where: {
+      $or: [
+        { googleEmail: { $eq: email } },
+        { email: { $eq: email } },
+        { facebookEmail: { $eq: email } }
+      ]
+    }
+  });
+
+  if (existingUser && existingUser.email !== null) {
     return done(null, false, { message: 'email already exists' });
+  }
+
+  // When user previously logged in with facebook or google account
+  if (existingUser.facebookEmail || existingUser.googleEmail) {
+    try {
+      existingUser.email = email;
+      existingUser.password = await bcrypt.hash(password, 10);
+      existingUser.verified = true;
+
+      existingUser.save();
+      return done(null, existingUser);
+    } catch (e) {
+      return done(null, false, { message: 'Server error' });
+    }
   }
 
   // generate code for email verification
