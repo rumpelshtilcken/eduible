@@ -1,4 +1,41 @@
-h1, p {
+.JoinModal {
+  height: 601px;
+  width: 255px;
+  border-radius: 20px;
+  padding: 0;
+  background: rgb(255, 255, 255);
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  overflow: auto;
+  outline: none;
+  margin:auto;
+
+  @media(min-width: 768px) {
+    width: 477px;
+    height: 399px;
+    margin: auto;
+  }
+  @media(min-width: 1440px) {
+    width: 477px;
+    height: 423px;
+    margin: auto;
+  }
+}
+
+.OverlayModal {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}h1, p {
   font-family: var(--font);
   color: #626262;
 }
@@ -60,7 +97,6 @@ h1, p {
   }
 }
 .inputBox {
-  display: block;
   margin: auto;
   width: 190px;
   @media screen and (min-width: 768px) {
@@ -69,7 +105,6 @@ h1, p {
   }
 }
 .inputBox1 {
-  display: block;
   margin: auto;
   width: 190px;
   @media screen and (min-width: 768px) {

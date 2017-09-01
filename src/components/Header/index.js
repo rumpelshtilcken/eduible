@@ -1,8 +1,8 @@
 import { Component } from 'react';
-
-import JoinModal from './JoinModal';
+import PropTypes from 'prop-types';
 
 import HeaderModal from './HeaderModal';
+import JoinModal from './JoinModal';
 import stylesSheet from './index.css';
 
 require('isomorphic-fetch');
@@ -10,17 +10,17 @@ require('isomorphic-fetch');
 class Header extends Component {
   state = {
     isModalOpen: false,
-    isOpen: false
+    isJoinModalOpen: false
   };
 
-  handleRequestClose = () => {
-    this.setState({ isOpen: false });
-    this.setState({ isModalOpen: false });
-  }
+  handleRequestClose = () =>
+    this.setState({
+      isModalOpen: false,
+      isJoinModalOpen: false });
 
   handleSignUpButtonClik = () => this.setState({ isModalOpen: true });
 
-  handleJoinButtonClik = () => this.setState({ isOpen: true });
+  handleJoinButtonClik = () => this.setState({ isJoinModalOpen: true });
 
   render() {
     return (
@@ -31,27 +31,39 @@ class Header extends Component {
           </div>
           <HeaderModal
             isModalOpen={this.state.isModalOpen}
-            className="HeaderModal"
-            overlayClassName="OverlayModal"
             onRequestClose={this.handleRequestClose}
           />
           <JoinModal
-            isOpen={this.state.isOpen}
-            className="JoinModal"
-            overlayClassName="OverlayModal"
+            isOpen={this.state.isJoinModalOpen}
             onRequestClose={this.handleRequestClose}
           />
-          <button className="buttonJoin" onClick={this.handleJoinButtonClik}>
+          <div className="navbar">
+            <div>
+              <button className="button" onClick={this.handleJoinButtonClik}>
             JOIN AS PROFESSIONAL
-          </button>
-          <button className="button" onClick={this.handleSignUpButtonClik}>
+              </button>
+            </div>
+            <div>
+              <button className="button" onClick={this.handleSignUpButtonClik}>
             SIGN UP
-          </button>
+              </button>
+            </div>
+            <div>
+              <button className="button" >
+            LOGIN
+              </button>
+            </div>
+          </div>
         </div>
         <style jsx>{stylesSheet}</style>
       </header>
     );
   }
 }
+
+Header.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onRequestClose: PropTypes.func.isRequired
+};
 
 export default Header;

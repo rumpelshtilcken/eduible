@@ -10,11 +10,7 @@ const users = [
 ];
 
 const renderContent = users.map(x => (
-  <UserBox
-    key={x.username}
-    username={x.username}
-    usertext={x.usertext}
-  />)
+  <UserBox user={x} />)
 );
 
 const DialogBox = () => (
@@ -28,7 +24,7 @@ const DialogBox = () => (
 );
 
 DialogBox.propTypes = {
-  users: PropTypes.objectOf(PropTypes.string)
+  users: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default DialogBox;

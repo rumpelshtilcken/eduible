@@ -1,5 +1,6 @@
-import stylesheet from './Dialog/index.css';
 import { DialogBox, TextInputBox } from './Dialog';
+
+import stylesheet from './Dialog/index.css';
 
 const ChatBox = () => (
   <div className="section3" >

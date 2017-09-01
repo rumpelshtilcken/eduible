@@ -2,22 +2,11 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import styles from './index.css';
 
-const config = [
-  {
-    title: 'BROWSE...',
-    input: {
-      type: 'file',
-      className: 'inputfile',
-      id: 'photo'
-    }
-
-  }];
-
-
 class ModalDefault extends Component {
   renderInput = item => (
     <div>
       <input
+        ref={ref => this.fileRef = ref}
         type={item.input.type}
         className={item.input.className}
         id={item.input.id}
@@ -36,7 +25,7 @@ class ModalDefault extends Component {
           <div className="browseAndEdit">
             <label htmlFor="photo" className="label">Browse...</label>
             {config.map(this.renderInput)}
-      
+
             <img className="edit" src="/static/edit.svg" alt="edit" />
           </div>
           <div className="skip">skip this step</div>
@@ -44,12 +33,23 @@ class ModalDefault extends Component {
             ADD
           </button>
         </div>
-      
+
         <style jsx>{styles}</style>
       </div>
     );
   }
 }
+
+const config = [
+  {
+    title: 'BROWSE...',
+    input: {
+      type: 'file',
+      className: 'inputfile',
+      id: 'photo'
+    }
+
+  }];
 
 ModalDefault.propTypes = {
   onOpenModal: PropTypes.func.isRequired
