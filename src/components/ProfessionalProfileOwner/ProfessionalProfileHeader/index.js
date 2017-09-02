@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
 
-import ProfileImg from './ProfileImg';
-import ProfileBox from './ProfileBox';
+import ProfessionalProfileImg from './ProfessionalProfileImg';
+import ProfessionalProfileBox from './ProfessionalProfileBox';
 import stylesheet from './index.css';
 
 const ProfessionalProfileHeader = ({ user }) => (
   <div className="profileHeader">
-    <div><ProfileImg /></div>
+    <div><ProfessionalProfileImg /></div>
     <div className="lists">{user.data.map(x =>
-      (<ProfileBox
+      (<ProfessionalProfileBox
         text={x.text}
         location={x.location}
       />
       ))}
-      <div><button className="request">Edit Profile</button></div></div>
+    <div><button className="request">Edit Profile</button></div></div>
     <div className="circles">
       <div className="firstCircle">
         <div className="circle"><p>$7</p></div>

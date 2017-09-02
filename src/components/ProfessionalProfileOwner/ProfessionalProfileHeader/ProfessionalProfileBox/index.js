@@ -1,6 +1,6 @@
 import stylesheet from './index.css';
 
-const ProfileBox = ({ text, location }) => (
+const ProfessionalProfileBox = ({ text, location }) => (
   <div className="list">
     <div className="profileItem">
       <p className="profileTitle">{text}</p>
@@ -13,5 +13,5 @@ const ProfileBox = ({ text, location }) => (
   </div>
 );
 
-export default ProfileBox;
+export default ProfessionalProfileBox;
 

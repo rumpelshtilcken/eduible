@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import stylesheet from './index.css';
 
-const ProfileImg = ({ imgUrl }) => (
+const ProfessionalProfileImg = ({ imgUrl }) => (
   <div className="headerImage">
     <div className="profileImg">
       <img src={imgUrl} alt="profile" />
@@ -11,11 +11,11 @@ const ProfileImg = ({ imgUrl }) => (
   </div>
 );
 
-ProfileImg.defaultProps = {
+ProfessionalProfileImg.defaultProps = {
   imgUrl: '/static/profile.png'
 };
 
-ProfileImg.propTypes = {
+ProfessionalProfileImg.propTypes = {
   imgUrl: PropTypes.string
 };
-export default ProfileImg;
+export default ProfessionalProfileImg;
