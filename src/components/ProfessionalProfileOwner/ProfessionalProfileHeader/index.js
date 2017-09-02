@@ -4,7 +4,7 @@ import ProfileImg from './ProfileImg';
 import ProfileBox from './ProfileBox';
 import stylesheet from './index.css';
 
-const ProfileHeader = ({ user }) => (
+const ProfessionalProfileHeader = ({ user }) => (
   <div className="profileHeader">
     <div><ProfileImg /></div>
     <div className="lists">{user.data.map(x =>
@@ -26,9 +26,9 @@ const ProfileHeader = ({ user }) => (
   </div>
 );
 
-ProfileHeader.propTypes = {
+ProfessionalProfileHeader.propTypes = {
   user: PropTypes.shape({
     imgUrl: PropTypes.string,
     data: PropTypes.arrayOf(PropTypes.string).isRequired })
 };
-export default ProfileHeader;
+export default ProfessionalProfileHeader;
