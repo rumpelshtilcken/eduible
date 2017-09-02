@@ -1,87 +1,69 @@
-import React, { Component } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 
-import JoinSecond from '../JoinSecond';
 import style from './index.css';
 
-class JoinFirst extends Component {
-  state = {
-    isModalSecondLive: false
-  }
+const renderInput = x => (
+  <div>
+    <p>{x.title}</p>
+    <input
+      type={x.input.type}
+      name={x.input.name}
+      className={x.input.className}
+      placeholder={x.input.placeholder}
+    />
+  </div>
+);
 
-  handleJoinNextModal = () => {
-    this.setState({ isModalSecondLive: true });
-    this.props.onRequestClose();
-  }
-
-  onCloseNextModal = () => (
-    this.setState({ isModalSecondLive: false })
-  );
-  renderInput = x => (
+const JoinFirst = ({ isOpen, onRequestClose, openJoinSecondModal }) => (
+  <Modal
+    isOpen={isOpen}
+    onRequestClose={onRequestClose}
+    className="JoinFirstModal"
+    overlayClassName="OverlayModal"
+  >
     <div>
-      <p>{x.title}</p>
-      <input
-        type={x.input.type}
-        name={x.input.name}
-        className={x.input.className}
-        placeholder={x.input.placeholder}
-      />
-    </div>
-  );
+      <p className="sign">JOIN AS PROFESSIONAL</p>
+      <p className="share">Share your knowledge and experience. Start now - it’s free</p>
 
-  render() {
-    return (
-      <div>
-        <Modal
-          isOpen={this.props.isOpen}
-          onRequestClose={this.props.onRequestClose}
-          className="JoinModal"
-          overlayClassName="OverlayModal"
-        >
-          <div>
-            <p className="sign">JOIN AS PROFESSIONAL</p>
-            <p className="share">Share your knowledge and experience. Start now - it’s free</p>
-
-            <div className="signUp">
-              <div>
-                <div className="inputBox">
-                  {config.map(this.renderInput)}
-                </div>
-              </div>
-              <div>
-                <div className="inputBox1">
-                  {config2.map(this.renderInput)}
-                  <button className="continueButton" onClick={this.handleJoinNextModal}>
-                   CONTINUE
-                  </button>
-                </div>
-                <div className="together">
-                  <div className="inputBox2">
-                    <p>OR JOIN WITH</p>
-                    <button className="facebookButton">LINKEDIN</button>
-                  </div>
-                  <div className="inputBox3">
-                    <img alt="" id="line" src="static/Line123.jpg" />
-                    <p>ALREADY A MEMBER?</p>
-                    <button className="loginButton">Log in here</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <style global>{style}</style>
+      <div className="signUp">
+        <div>
+          <div className="inputBox">
+            {inpt.map(renderInput)}
           </div>
-        </Modal>
-        <JoinSecond
-          isOpen={this.state.isModalSecondLive}
-          onRequestClose={this.onCloseNextModal}
-        />
+        </div>
+        <div>
+          <div className="inputBox1">
+            {inpt2.map(renderInput)}
+            <button className="continueButton" onClick={openJoinSecondModal}>
+           CONTINUE
+            </button>
+          </div>
+          <div className="together">
+            <div className="inputBox2">
+              <p>OR JOIN WITH</p>
+              <button className="facebookButton">LINKEDIN</button>
+            </div>
+            <div className="inputBox3">
+              <img alt="" id="line" src="/static/Line.jpg" />
+              <p>ALREADY A MEMBER?</p>
+              <a href="#" className="loginButton">Log in here</a>
+            </div>
+          </div>
+        </div>
       </div>
-    );
-  }
-}
+      <style global>{style}</style>
+    </div>
+  </Modal>
+);
 
-const config = [
+JoinFirst.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onRequestClose: PropTypes.func.isRequired,
+  openJoinSecondModal: PropTypes.func.isRequired
+};
+
+const inpt = [
   {
     title: 'FIRST AND LAST NAME',
     input: {
@@ -120,7 +102,7 @@ const config = [
   }
 ];
 
-const config2 = [
+const inpt2 = [
   {
     title: 'COUNTRY',
     input: {
@@ -140,10 +122,5 @@ const config2 = [
     }
   }
 ];
-
-JoinFirst.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onRequestClose: PropTypes.func.isRequired
-};
 
 export default JoinFirst;

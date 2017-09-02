@@ -33,6 +33,7 @@
 .container {
   width: 100%;
   margin: auto;
+  display: block;
 }
 .head-text {
   margin: auto;
@@ -41,8 +42,7 @@
 
 .sign {
   font-family: "Effra";
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 17px;
   color: #4E4E4E;
   margin: 23px auto 5px auto;
 }
@@ -97,11 +97,12 @@
   width: 186px;
   border: 1px solid #D9D9D9;
   border-radius: 5px;
+  padding-left: 8px;
+  color: #626262;
   outline: none;
 }
 
 input::placeholder {
-  padding-left: 8px;
   font-size: 11px;
   color: #AFAFAF;
 }
