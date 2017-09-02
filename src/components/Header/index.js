@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import HeaderModal from './HeaderModal';
 import JoinModal from './JoinModal';
@@ -21,7 +20,6 @@ class Header extends Component {
   handleSignUpButtonClik = () => this.setState({ isModalOpen: true });
 
   handleJoinButtonClik = () => this.setState({ isJoinModalOpen: true });
-
   render() {
     return (
       <header>
@@ -60,10 +58,5 @@ class Header extends Component {
     );
   }
 }
-
-Header.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onRequestClose: PropTypes.func.isRequired
-};
 
 export default Header;

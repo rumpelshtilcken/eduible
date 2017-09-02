@@ -1,4 +1,4 @@
-.JoinModal {
+.JoinFirstModal {
   height: 601px;
   width: 255px;
   border-radius: 20px;
@@ -35,7 +35,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}h1, p {
+}
+a {
+  text-decoration: none;
+}
+h1, p {
   font-family: var(--font);
   color: #626262;
 }
@@ -61,7 +65,7 @@
 
 .sign {
   font-family: var(--font);
-  color: #626262;
+  color: #4E4E4E;
   width: 100%;
   text-align: center;
   font-size: 17px;
@@ -131,10 +135,9 @@
   }
 }
 .inputBox3 {
-  display: block;
   margin: auto;
+  margin-bottom: 17px;
   width: 190px;
-  margin-top: 19px;
   @media screen and (min-width: 768px) {
     height: 33px;
     width: 139px;
@@ -149,18 +152,26 @@
   display: block;
   width: 181px;
   margin: auto;
+  margin-bottom: 11px;
   @media screen and (min-width: 768px) {
     width: 133px;
-    margin-bottom: 11px;
   }
 }
-input::placeholder {
+.input {
+  border: 1px solid #D9D9D9;
+  border-radius: 5px;
+  height: 24px;
+  width: 100%;
   padding-left: 5px;
+  margin-bottom: 18.79px;
+  
+}
+input::placeholder {
   font-size: 9px;
   color: #777777;
 }
 
-.continueButton, .facebookButton, .googleButton {
+.continueButton, .facebookButton {
   height: 31.21px;
   width: 190px;
   color: white;
@@ -168,14 +179,6 @@ input::placeholder {
   font-family: var(--font);
   border: 0;
   border-radius: 5px;
-
-  @media screen and (min-width: 375px) {
-   
-  }
-
-  @media screen and (min-width: 414px) {
-   
-  }
 }
 
 .continueButton {
@@ -183,7 +186,7 @@ input::placeholder {
   background-color: #7262bf;
   margin-bottom: 33px;
   @media screen and (min-width: 768px) {
-    width: 344px;
+    width: 352px;
     margin-top: 133px;
     margin-left: -209px;
   }
@@ -194,7 +197,7 @@ input::placeholder {
   margin-top: 11px;
   margin-bottom: 19px;
   @media screen and (min-width: 768px) {
-    width: 136px;
+    width: 140px;
     height: 27px;
     margin-top: 0px;
   margin-bottom: 0px;
@@ -206,58 +209,23 @@ input::placeholder {
 }
 
 .loginButton {
+  margin: 5px auto 15px auto;
   color: #00ff1e;
   font-size: 12px;
   font-weight: lighter;
-  width: 81.59px;
-  height: 15px;
-  padding: 0;
-  border: 0;
-  margin: 0;
-  background-color: white;
-  text-align: left;
-
-  @media screen and (min-width: 768px) {
-   margin-top: -22px;
-  }
-
-  @media screen and (min-width: 414px) {
-
-  }
 }
 
 .image {
   width: 209px;
   margin-bottom: 21.66px;
 }
-
-
 p {
   font-size: 11px;
   margin: 0;
   padding-bottom: 4px;
-
-  @media screen and (min-width: 375px) {
- 
-  }
-
-  @media screen and (min-width: 414px) {
-    
-  }
+  padding-left: 2px;
 }
-
-input {
-  margin-bottom: 18.79px;
-  border-color: #d9d9d9;
-  border-radius: 5px;
-  border-style: double;
-  height: 21px;
-  width: 100%;
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 414px) {
-    
-  }
+a {
+  text-decoration: none;
+  padding-left: 2px;
 }
