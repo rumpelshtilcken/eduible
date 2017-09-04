@@ -1,6 +1,4 @@
-import {
-  Strategy as LocalStrategy
-} from 'passport-local';
+import { Strategy as LocalStrategy } from 'passport-local';
 
 import bcrypt from 'bcrypt';
 import uuidv1 from 'uuid/v1';
@@ -11,16 +9,14 @@ import {
   isNotValidPassword
 } from 'utils/VerificationUtils';
 import models from 'models';
-import {
-  sendEmailConfirmation
-} from 'mailer';
+import { sendEmailConfirmation } from 'mailer';
 
 const localOptions = {
   usernameField: 'email',
   passReqToCallback: true
 };
 
-const signUp = new LocalStrategy(localOptions, async(req, email, password, done) => {
+const signUp = new LocalStrategy(localOptions, async (req, email, password, done) => {
   // verify request inputs inputs
   const errorMessage =
     isNotValidEmail(email) ||
@@ -36,7 +32,8 @@ const signUp = new LocalStrategy(localOptions, async(req, email, password, done)
   // verify db users
   const existingUser = await models.User.findOne({
     where: {
-      $or: [{
+      $or: [
+        {
           googleEmail: {
             $eq: email
           }
@@ -76,22 +73,6 @@ const signUp = new LocalStrategy(localOptions, async(req, email, password, done)
           message: 'Server error'
         });
       }
-    }
-  }
-
-  // When user previously logged in with facebook or google account
-  if (existingUser.facebookEmail || existingUser.googleEmail) {
-    try {
-      existingUser.email = email;
-      existingUser.password = await bcrypt.hash(password, 10);
-      existingUser.verified = true;
-
-      existingUser.save();
-      return done(null, existingUser);
-    } catch (e) {
-      return done(null, false, {
-        message: 'Server error'
-      });
     }
   }
 

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import styles from './index.css';
+import ModalSecond from '../ModalSecond';
 
 const config2 = [
   {
@@ -75,14 +76,16 @@ class ModalFirst extends Component {
     </div>
   );
 
-  render() {
-    const { onOpenJoinModal } = this.props;
+  handleOpenModalSecond = () => {
 
+  }
+
+  render() {
     return (
       <div>
         <p className="sign">JOIN AS PROFESSIONAL</p>
         <p className="share">Share your knowledge and experience. Start now - it’s free</p>
-        
+
         <div className="signUp">
           <div className="firstColumn">
             <div className="inputBox">
@@ -96,7 +99,7 @@ class ModalFirst extends Component {
               <div className="in2">
                 {config2.map(this.renderInput)}
               </div>
-              <button className="continueButton" onClick={onOpenJoinModal}>
+              <button className="continueButton" onClick={this.handleOpenModalSecond}>
                 CONTINUE
               </button>
             </div>

@@ -27,7 +27,7 @@ class HeaderModal extends Component {
 
   handleClick = () => {
     this.setState({
-      showSuccess: false,
+      showSuccess: true,
       email_input: '',
       password_input: '',
       confirmPassword_input: ''
@@ -58,6 +58,8 @@ class HeaderModal extends Component {
 
 HeaderModal.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
+  className: PropTypes.string.isRequired,
+  overlayClassName: PropTypes.string.isRequired,
   onRequestClose: PropTypes.func.isRequired
 };
 

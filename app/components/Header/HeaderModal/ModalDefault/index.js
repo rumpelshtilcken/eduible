@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
-
 import styles from './index.css';
 
 const config = [
@@ -10,95 +8,49 @@ const config = [
     input: {
       type: 'string',
       name: 'fullname',
+      className: 'input',
       placeholder: 'John Smith'
     }
   },
   {
     title: 'DATE OF BIRTH',
     input: {
-      type: 'date',
+      type: 'string',
       name: 'date',
+      className: 'input',
       placeholder: '13/11/1992'
     }
   },
   {
     title: 'EMAIL',
     input: {
-      type: 'email',
+      type: 'string',
       name: 'email',
+      className: 'input',
       placeholder: 'example@email.com'
     }
   },
   {
     title: 'PASSWORD',
     input: {
-      type: 'password',
-      name: 'password',
+      type: 'string',
+      name: 'email',
+      className: 'input',
       placeholder: 'at least six characters'
     }
   }
 ];
 
 class ModalDefault extends Component {
-  state = {
-    fullname: '',
-    date: '',
-    email: '',
-    password: ''
-  };
-
-  handleContinueClick = (event) => {
-    event.preventDefault();
-    fetch('/api/v1/auth/local/signup', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        fullname: this.state.fullname,
-        date: this.state.date,
-        email: this.state.email,
-        password: this.state.password,
-        confirmPassword: this.state.password
-      })
-    })
-      .then((res) => {
-        console.log('Response: ', res);
-        this.props.onOpenModal(this.state.email);
-      })
-      .catch(err => console.log(('Error': err)));
-  };
-
-  handleFacebookButtonClick = () => {
-    fetch('/api/v1/auth/facebook/', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((res) => {
-        console.log('Response: ', res);
-        this.props.onOpenModal(this.state.email);
-      })
-      .catch(err => console.log(('Error': err)));
-  };
-
-  handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
   renderInput = item =>
-    (<div key={item.input.name}>
+    (<div>
       <p>
         {item.title}
       </p>
       <input
-        onChange={this.handleChange}
         type={item.input.type}
         name={item.input.name}
-        className="input"
+        className={item.input.className}
         placeholder={item.input.placeholder}
       />
       <style jsx>
@@ -107,17 +59,19 @@ class ModalDefault extends Component {
     </div>);
 
   render() {
+    const { onOpenModal } = this.props;
+
     return (
       <div>
         <h1 className="sign">SIGN UP</h1>
         <div className="signUp">
-          <form className="inputBox" onSubmit={this.handleContinueClick}>
+          <div className="inputBox">
             {config.map(this.renderInput)}
 
-            <button className="continueButton" type="submit">
+            <button className="continueButton" onClick={onOpenModal}>
               CONTINUE
             </button>
-          </form>
+          </div>
           <div className="together">
             <div className="inputBox2">
               <p>OR SIGN UP USING</p>
