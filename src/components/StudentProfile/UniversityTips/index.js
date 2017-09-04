@@ -11,7 +11,7 @@ const UniversityTips = ({ tips }) => (
         tips.map((tip, index) => (
           <li
             key={tip}
-            className={cx({ hidden: index > 3 })}
+            className={cx({ hidden: index >= tipsLimit })}
           >
             {tip}
           </li>

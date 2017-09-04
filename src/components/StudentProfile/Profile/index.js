@@ -4,7 +4,7 @@ import { StudentProfileCard as Card } from 'components';
 
 import stylesheet from './index.css';
 
-const Profile = ({ user, onClick }) => (
+const Profile = ({ user, onEditButtonClick }) => (
   <div className="wrapper">
     <Card isHalfRound>
       <div className="content">
@@ -15,12 +15,12 @@ const Profile = ({ user, onClick }) => (
         </div>
         <div
           className="edit editIcon"
-          onClick={onClick}
+          onClick={onEditButtonClick}
           role="button"
           tabIndex="0"
         />
         <div className="edit editButton">
-          <button onClick={onClick}>Edit profile</button>
+          <button onClick={onEditButtonClick}>Edit profile</button>
         </div>
       </div>
     </Card>
@@ -30,7 +30,7 @@ const Profile = ({ user, onClick }) => (
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired
+  onEditButtonClick: PropTypes.func.isRequired
 };
 
 export default Profile;

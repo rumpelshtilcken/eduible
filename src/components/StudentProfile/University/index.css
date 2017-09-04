@@ -1,13 +1,7 @@
-.wrapper {
-	@media screen and (min-width: 1024px) {
-		width: 730px;
-	}
-}
-
 .content {
 	position: relative;
 	display: flex;
-	margin: 16px 20px 14px 16px;
+	margin: 18px 20px;
 }
 
 .universityLogo {

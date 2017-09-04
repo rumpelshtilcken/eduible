@@ -47,15 +47,17 @@ class StudentProfileContainer extends Component {
     location: 'Miami, FL'
   }
 
-  handleRequestCallClick = () => {
-    // TODO: take params and send to server
-  };
+
+  handleRemoveFromListClick() {
+    // TODO: remove university from list
+  }
 
   render() {
     return (
       <StudentProfile
         user={this.user}
         universities={this.universities}
+        onRemoveFromListClick={this.handleRemoveFromListClick}
       />);
   }
 }

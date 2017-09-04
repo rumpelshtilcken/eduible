@@ -16,6 +16,7 @@ import PaymentDetails from './PaymentDetails';
 import ProfessionalProfileEdit from './ProfessionalProfileEdit';
 import ProfessionalRating from '../components/ProfessionalSearch/ProfessionalRating';
 import ProfessionalSearch from './ProfessionalSearch';
+import ProgressBar from './ProgressBar';
 import RoundedButton from './RoundedButton';
 import SearchTextInput from './SearchTextInput';
 import SearchUniversity from './SearchUniversity';
@@ -24,6 +25,7 @@ import Session from './Session';
 import SideMoreLayout from './SideMoreLayout';
 import StudentProfile from './StudentProfile';
 import StudentProfileCard from './StudentProfileCard';
+import TabMenu from './TabMenu';
 import Textarea from './Textarea';
 import TextInput from './TextInput';
 import VideoChat from './VideoChat';
@@ -47,15 +49,17 @@ export {
   ProfessionalProfileEdit,
   ProfessionalRating,
   ProfessionalSearch,
+  ProgressBar,
   RoundedButton,
   SearchTextInput,
   SearchUniversity,
   SelectDropdown,
   Session,
   SideMoreLayout,
+  StudentProfile,
+  StudentProfileCard,
+  TabMenu,
   Textarea,
   TextInput,
-  VideoChat,
-  StudentProfile,
-  StudentProfileCard
+  VideoChat
 };
