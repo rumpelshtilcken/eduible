@@ -22,7 +22,6 @@ class ProfessionalProfileEditContainer extends Component {
 
  handleSaveButtonPress = (userData) => {
    this.setState({ user: userData });
-   console.log(this.state.user);
  };
 
  render() {
