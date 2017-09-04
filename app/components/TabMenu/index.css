@@ -30,6 +30,7 @@
 	box-sizing: border-box;
 	font-size: 11px;
 	color: #383838;
+	cursor: pointer;
 
 	&:last-of-type { border-bottom: none }
 

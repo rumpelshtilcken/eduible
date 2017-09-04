@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
 import { StudentProfileCard as Card } from 'components';
 
 import stylesheet from './index.css';
