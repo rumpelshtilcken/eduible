@@ -73,6 +73,8 @@ isOpen ={
 
 HeaderModal.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
+  className: PropTypes.string.isRequired,
+  overlayClassName: PropTypes.string.isRequired,
   onRequestClose: PropTypes.func.isRequired
 };
 
