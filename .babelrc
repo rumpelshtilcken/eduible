@@ -1,16 +1,3 @@
 {
-  "plugins": [
-    [
-      "wrap-in-js",
-      {
-        "extensions": ["css$"]
-      }
-    ],
-    ["module-resolver", {
-      "root": ["./src"]
-    }]
-  ],
-  "presets": [
-    "next/babel"
-  ]
+  "presets": ["es2015", "stage-2"]
 }

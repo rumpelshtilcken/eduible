@@ -1,17 +1,18 @@
-const authRoutes = require('./routes/local-auth');
-const bodyParser = require('body-parser');
-const comingsoon = require('./routes/comingsoon');
-const config = require('./config');
-const cors = require('cors');
-const express = require('express');
-const facebookRoutes = require('./routes/facebook-auth');
-const next = require('next');
-const passport = require('passport');
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import express from 'express';
+import next from 'next';
+import passport from 'passport';
+
+import config from 'config';
+import { localAuth, facebookAuth, googleAuth } from 'routes/auth';
+import comingsoon from 'routes/comingsoon';
+import graphqlRouter from 'routes/graphql';
 
 const { NODE_ENV, PORT } = config;
-const DEV = NODE_ENV !== 'production';
+const dev = NODE_ENV !== 'production';
 
-const app = next({ dir: 'src', dev: DEV });
+const app = next({ dir: 'app', dev });
 const handler = app.getRequestHandler();
 
 const runServer = async () => {
@@ -26,13 +27,16 @@ const runServer = async () => {
   server.use(cors());
 
   server.use('/api/v1', comingsoon);
-  server.use('/api/v1/auth/local', authRoutes);
-  server.use('/api/v1/auth/facebook', facebookRoutes);
+  server.use('/api/v1/auth/local', localAuth);
+  server.use('/api/v1/auth/facebook', facebookAuth);
+  server.use('/api/v1/auth/google', googleAuth);
+  server.use('/graphql', graphqlRouter);
   server.get('*', (req, res) => handler(req, res));
 
   // production error handler
   // no stacktraces leaked to user
-  server.use((err, req, res, next) => { // eslint-disable-line
+  server.use((err, req, res, next) => {
+    // eslint-disable-line
     res.status(err.status || 500);
     if (err.status < 500) {
       // log.warn('%s %d %s', req.method, res.statusCode, err.message);

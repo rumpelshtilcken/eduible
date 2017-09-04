@@ -1,0 +1,19 @@
+{
+  "extends": "../.babelrc",
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "wrap-in-js",
+      {
+        "extensions": ["css$"]
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./app"],
+        "extensions": [".js", ".json"]
+      }
+    ]
+  ]
+}
