@@ -38,21 +38,23 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
     }
   });
 
-  if (existingUser && existingUser.email !== null) {
-    return done(null, false, { message: 'email already exists' });
-  }
+  if (existingUser) {
+    if (existingUser.email !== null) {
+      return done(null, false, { message: 'email already exists' });
+    }
 
-  // When user previously logged in with facebook or google account
-  if (existingUser.facebookEmail || existingUser.googleEmail) {
-    try {
-      existingUser.email = email;
-      existingUser.password = await bcrypt.hash(password, 10);
-      existingUser.verified = true;
+    // When user previously logged in with facebook or google account
+    if (existingUser.facebookEmail || existingUser.googleEmail) {
+      try {
+        existingUser.email = email;
+        existingUser.password = await bcrypt.hash(password, 10);
+        existingUser.verified = true;
 
-      existingUser.save();
-      return done(null, existingUser);
-    } catch (e) {
-      return done(null, false, { message: 'Server error' });
+        existingUser.save();
+        return done(null, existingUser);
+      } catch (e) {
+        return done(null, false, { message: 'Server error' });
+      }
     }
   }
 
