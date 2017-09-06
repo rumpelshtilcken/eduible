@@ -1,0 +1,22 @@
+{
+  "extends": "../.babelrc",
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./server"],
+        "alias": {
+          "passport": "passport"
+        }
+      }
+    ],
+    ["inline-json-import", {}],
+    [
+      "transform-runtime",
+      {
+        "polyfill": false,
+        "regenerator": true
+      }
+    ]
+  ]
+}
