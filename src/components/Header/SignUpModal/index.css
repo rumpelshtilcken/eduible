@@ -1,10 +1,10 @@
 .SignUpModal {
   height: 555px;
-  width: 255px;
   background-color: white;
   border-radius: 20px;
   padding: 0;
   background: rgb(255, 255, 255);
+  padding: 0px;
   position: absolute;
   top: 40px;
   left: 40px;
@@ -14,6 +14,7 @@
   overflow: auto;
   outline: none;
   margin:auto;
+  width: 255px;
 
   @media screen and (min-width: 768px) {
     width: 477px;
@@ -26,6 +27,7 @@
     margin: auto;
   }
 }
+
 .OverlayModal {
   position: fixed;
   top: 0px;

@@ -1,19 +1,19 @@
+import React, { Component } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 
+import JoinSecond from '../JoinSecond';
 import style from './index.css';
 
-const renderInput = x => (
-  <div>
-    <p>{x.title}</p>
-    <input
-      type={x.input.type}
-      name={x.input.name}
-      className={x.input.className}
-      placeholder={x.input.placeholder}
-    />
-  </div>
-);
+class JoinFirst extends Component {
+  state = {
+    isModalSecondLive: false
+  }
+
+  handleJoinNextModal = () => {
+    this.setState({ isModalSecondLive: true });
+    this.props.onRequestClose();
+  }
 
 const SignUpAsProfessional = ({ isOpen, onRequestClose, openJobTitleModal }) => (
   <Modal
@@ -23,8 +23,15 @@ const SignUpAsProfessional = ({ isOpen, onRequestClose, openJobTitleModal }) => 
     overlayClassName="OverlayModal"
   >
     <div>
-      <p className="sign">JOIN AS PROFESSIONAL</p>
-      <p className="share">Share your knowledge and experience. Start now - it’s free</p>
+      <p>{x.title}</p>
+      <input
+        type={x.input.type}
+        name={x.input.name}
+        className={x.input.className}
+        placeholder={x.input.placeholder}
+      />
+    </div>
+  );
 
       <div className="signUp">
         <div>
@@ -49,8 +56,13 @@ const SignUpAsProfessional = ({ isOpen, onRequestClose, openJobTitleModal }) => 
               <p>ALREADY A MEMBER?</p>
               <a href="#" className="loginButton">Log in here</a>
             </div>
+            <style global>{style}</style>
           </div>
-        </div>
+        </Modal>
+        <JoinSecond
+          isOpen={this.state.isModalSecondLive}
+          onRequestClose={this.onCloseNextModal}
+        />
       </div>
       <style global>{style}</style>
     </div>
@@ -63,7 +75,7 @@ SignUpAsProfessional.propTypes = {
   openJobTitleModal: PropTypes.func.isRequired
 };
 
-const inpt = [
+const config = [
   {
     title: 'FIRST AND LAST NAME',
     input: {
@@ -102,7 +114,7 @@ const inpt = [
   }
 ];
 
-const inpt2 = [
+const config2 = [
   {
     title: 'COUNTRY',
     input: {

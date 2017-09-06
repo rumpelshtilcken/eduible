@@ -58,6 +58,8 @@ class SignUpModal extends Component {
 
 SignUpModal.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
+  className: PropTypes.string.isRequired,
+  overlayClassName: PropTypes.string.isRequired,
   onRequestClose: PropTypes.func.isRequired
 };
 
