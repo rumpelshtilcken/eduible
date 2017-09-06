@@ -1,3 +1,9 @@
+const {
+  graphqlExpress,
+  graphiqlExpress
+} = require('graphql-server-express');
+const schema = require('./schema');
+
 const authRoutes = require('./routes/local-auth');
 const bodyParser = require('body-parser');
 const comingsoon = require('./routes/comingsoon');
@@ -23,11 +29,18 @@ const runServer = async () => {
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(passport.initialize());
 
-  server.use(cors());
+  server.use('*', cors({ origin: 'http://localhost:3000' }));
 
   server.use('/api/v1', comingsoon);
   server.use('/api/v1/auth/local', authRoutes);
   server.use('/api/v1/auth/facebook', facebookRoutes);
+  console.log(schema);
+  server.use('/graphql', graphqlExpress({
+    schema
+  }));
+  server.use('/graphiql', graphiqlExpress({
+    endpointURL: '/graphql'
+  }));
   server.get('*', (req, res) => handler(req, res));
 
   // production error handler
