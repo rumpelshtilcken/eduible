@@ -15,11 +15,11 @@ const renderInput = x => (
   </div>
 );
 
-const JoinSecond = ({ isOpen, onRequestClose, openJoinThirdModal }) => (
+const JobTitleMoModal = ({ isOpen, onRequestClose, openCodeVerificationModal }) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={onRequestClose}
-    className="JoinSecondModal"
+    className="JobTitleModal"
     overlayClassName="OverlayModal"
   >
     <div className="container">
@@ -38,7 +38,7 @@ const JoinSecond = ({ isOpen, onRequestClose, openJoinThirdModal }) => (
         </div>
         <div className="box2">
           <div>
-            <button className="btn" onClick={openJoinThirdModal}>CONTINUE</button>
+            <button className="btn" onClick={openCodeVerificationModal}>CONTINUE</button>
           </div>
           <div className="share-div">
             <a href="#" className="share">skip this step</a>
@@ -50,10 +50,10 @@ const JoinSecond = ({ isOpen, onRequestClose, openJoinThirdModal }) => (
   </Modal>
 );
 
-JoinSecond.propTypes = {
+JobTitleMoModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
-  openJoinThirdModal: PropTypes.func.isRequired
+  openCodeVerificationModal: PropTypes.func.isRequired
 };
 
 const inpt = [
@@ -77,4 +77,4 @@ const inpt = [
   }
 ];
 
-export default JoinSecond;
+export default JobTitleMoModal;

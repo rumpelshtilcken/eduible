@@ -27,7 +27,7 @@
   width: 320px;
 }
 
-.button {
+.btn {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -40,5 +40,5 @@
   background-color: Transparent;
   background-repeat:no-repeat;
   cursor:pointer;
-  overflow: hidden;
+  outline: none;
 }

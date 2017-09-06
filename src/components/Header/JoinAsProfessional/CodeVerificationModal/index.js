@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import style from './index.css';
 
-const JoinThird = ({ isOpen, onRequestClose }) => (
+const CodeVerificationModal = ({ isOpen, onRequestClose }) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={onRequestClose}
-    className="JoinThirdModal"
+    className="CodeVerificationModal"
     overlayClassName="OverlayModal"
   >
     <div className="container">
@@ -29,9 +29,9 @@ const JoinThird = ({ isOpen, onRequestClose }) => (
   </Modal>
 );
 
-JoinThird.propTypes = {
+CodeVerificationModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired
 };
 
-export default JoinThird;
+export default CodeVerificationModal;

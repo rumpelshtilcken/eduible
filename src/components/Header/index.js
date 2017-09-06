@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
-import HeaderModal from './HeaderModal';
-import JoinModal from './JoinModal';
+import SignUpModal from './SignUpModal';
+import JoinAsProfessional from './JoinAsProfessional';
 import stylesSheet from './index.css';
 
 require('isomorphic-fetch');
@@ -9,17 +9,17 @@ require('isomorphic-fetch');
 class Header extends Component {
   state = {
     isModalOpen: false,
-    isJoinModalOpen: false
+    isJoinAsProfessionalOpen: false
   };
 
   handleRequestClose = () =>
     this.setState({
       isModalOpen: false,
-      isJoinModalOpen: false });
+      isJoinAsProfessionalOpen: false });
 
   handleSignUpButtonClik = () => this.setState({ isModalOpen: true });
 
-  handleJoinButtonClik = () => this.setState({ isJoinModalOpen: true });
+  handleJoinButtonClik = () => this.setState({ isJoinAsProfessionalOpen: true });
   render() {
     return (
       <header>
@@ -27,27 +27,27 @@ class Header extends Component {
           <div className="logo">
             <img src={'/static/eduible.svg'} alt={'logo'} />
           </div>
-          <HeaderModal
+          <SignUpModal
             isModalOpen={this.state.isModalOpen}
             onRequestClose={this.handleRequestClose}
           />
-          <JoinModal
-            isOpen={this.state.isJoinModalOpen}
+          <JoinAsProfessional
+            isOpen={this.state.isJoinAsProfessionalOpen}
             onRequestClose={this.handleRequestClose}
           />
           <div className="navbar">
             <div>
-              <button className="button" onClick={this.handleJoinButtonClik}>
+              <button className="btn" onClick={this.handleJoinButtonClik}>
             JOIN AS PROFESSIONAL
               </button>
             </div>
             <div>
-              <button className="button" onClick={this.handleSignUpButtonClik}>
+              <button className="btn" onClick={this.handleSignUpButtonClik}>
             SIGN UP
               </button>
             </div>
             <div>
-              <button className="button" >
+              <button className="btn" >
             LOGIN
               </button>
             </div>

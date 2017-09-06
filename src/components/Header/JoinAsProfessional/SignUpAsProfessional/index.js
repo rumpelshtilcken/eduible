@@ -15,11 +15,11 @@ const renderInput = x => (
   </div>
 );
 
-const JoinFirst = ({ isOpen, onRequestClose, openJoinSecondModal }) => (
+const SignUpAsProfessional = ({ isOpen, onRequestClose, openJobTitleModal }) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={onRequestClose}
-    className="JoinFirstModal"
+    className="SignUpAsProfessional"
     overlayClassName="OverlayModal"
   >
     <div>
@@ -35,7 +35,7 @@ const JoinFirst = ({ isOpen, onRequestClose, openJoinSecondModal }) => (
         <div>
           <div className="inputBox1">
             {inpt2.map(renderInput)}
-            <button className="continueButton" onClick={openJoinSecondModal}>
+            <button className="continueButton" onClick={openJobTitleModal}>
            CONTINUE
             </button>
           </div>
@@ -57,10 +57,10 @@ const JoinFirst = ({ isOpen, onRequestClose, openJoinSecondModal }) => (
   </Modal>
 );
 
-JoinFirst.propTypes = {
+SignUpAsProfessional.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
-  openJoinSecondModal: PropTypes.func.isRequired
+  openJobTitleModal: PropTypes.func.isRequired
 };
 
 const inpt = [
@@ -123,4 +123,4 @@ const inpt2 = [
   }
 ];
 
-export default JoinFirst;
+export default SignUpAsProfessional;
