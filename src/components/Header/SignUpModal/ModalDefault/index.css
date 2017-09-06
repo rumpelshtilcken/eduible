@@ -76,7 +76,6 @@ h1, p {
   margin: auto;
 }
 input::placeholder {
-  padding-left: 5px;
   font-size: 9px;
   color: #777777;
 }
@@ -163,19 +162,12 @@ p {
   }
 }
 
-input {
+.input {
   margin-bottom: 18.79px;
-  border-color: #d9d9d9;
   border-radius: 5px;
-  border-style: double;
-  height: 100%;
-  width: 100%;
-
-  @media screen and (min-width: 375px) {
-   
-  }
-
-  @media screen and (min-width: 414px) {
-    
-  }
+  border: 1px solid #d9d9d9;
+  outline: none;
+  height: 29px;
+  width: 184px;
+  padding-left: 9px;
 }

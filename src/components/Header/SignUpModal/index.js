@@ -10,7 +10,7 @@ import stylessheet from './index.css';
 
 require('isomorphic-fetch');
 
-class HeaderModal extends Component {
+class SignUpModal extends Component {
     state = {
       showSuccess: false,
       emailInput: '',
@@ -45,7 +45,7 @@ class HeaderModal extends Component {
         isOpen={this.props.isModalOpen}
         contentLabel="onRequestClose Example"
         onRequestClose={this.handleRequestClose}
-        className="HeaderModal"
+        className="SignUpModal"
         overlayClassName="OverlayModal"
       >
         {this.renderModalContent()}
@@ -56,9 +56,9 @@ class HeaderModal extends Component {
   }
 }
 
-HeaderModal.propTypes = {
+SignUpModal.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired
 };
 
-export default HeaderModal;
+export default SignUpModal;

@@ -1,13 +1,9 @@
-.JoinThirdModal {
+.CodeVerificationModal {
   width: 255px;
   height: 304px;
   border-radius: 20px;
   padding: 0;
   background: rgb(255, 255, 255);
-  top: 40px;
-  left: 40px;
-  right: 40px;
-  bottom: 40px;
   border: 1px solid rgb(204, 204, 204);
   overflow: auto;
   outline: none;
