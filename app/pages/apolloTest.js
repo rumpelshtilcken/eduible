@@ -4,7 +4,8 @@ import withData from '../lib/withData';
 
 const EmailList = (props) => console.log(props) || ( // eslint-disable-line
   <div>
-    {props.someData && props.someData.hello}
+    {props.counter}
+    <button onClick={props.increment}>+</button>
     {props.data.emails && props.data.emails.map(email => <div>{email.id} {email.email}</div>)}
   </div>
 );
@@ -20,8 +21,16 @@ query emails {
 
 const EmailListContainer = graphql(emails)(EmailList);
 
-const mapStateToProps = state => console.log(state) || ({ someData: state.example });
+const mapStateToProps = state => ({ counter: state.counter });
+const mapDispatchToProps = dispatch => ({
+  increment: () => dispatch({ type: 'INCREMENT' })
+});
 
 export default withData(
-  connect(mapStateToProps)(props => <EmailListContainer someData={props.someData} />)
+  connect(mapStateToProps, mapDispatchToProps)(props =>
+    (<EmailListContainer
+      counter={props.counter}
+      increment={props.increment}
+    />)
+  )
 );
