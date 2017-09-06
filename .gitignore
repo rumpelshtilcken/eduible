@@ -10,6 +10,7 @@ node_modules
 
 # Generated files
 .next
+dist
 
 # Project spicific files
 .env
