@@ -1,18 +1,13 @@
-import { Provider } from 'react-redux';
-
 import { Page, Layout } from 'components';
-import getReduxStore from 'data/getReduxStore';
 
 import VideoChatPage from './VideoChatPage';
 
 class Homepage extends Page {
   render() {
     return (
-      <Provider store={getReduxStore({})}>
-        <Layout title="Eduible" session={this.props.session}>
-          <VideoChatPage />
-        </Layout>
-      </Provider>
+      <Layout title="Eduible" session={this.props.session}>
+        <VideoChatPage />
+      </Layout>
     );
   }
 }
