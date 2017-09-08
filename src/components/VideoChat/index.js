@@ -2,20 +2,14 @@ import { VideoBox, ProfileBox, ChatBox } from './VChat';
 import PropTypes from 'prop-types';
 import stylesheet from './index.css';
 
-const VideoChat = data =>
-  (
-    <div className="container">
-      <VideoBox />
-      <ProfileBox
-        name={data.name}
-        city={data.city}
-        icon={data.icon}
-        imgUrl={data.imgUrl}
-        timer={data.timer}
-      />
-      <ChatBox />
-      <style jsx>{stylesheet}</style>
-    </div>);
+const VideoChat = ({ user, setVideoViewId, devices, selectedDevices, sendMessageTest }) => (
+  <div className="container">
+    <VideoBox setVideoViewId={setVideoViewId} devices={devices} selectedDevices={selectedDevices} />
+    <ProfileBox user={user} />
+    <ChatBox sendMessageTest={sendMessageTest} />
+    <style jsx>{stylesheet}</style>
+  </div>
+);
 
 VideoChat.propTypes = {
   data: PropTypes.shape({
