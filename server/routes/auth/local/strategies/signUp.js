@@ -31,11 +31,6 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
   }
 
   // verify db users
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feat: introduce googleAuth
   const existingUser = await models.User.findOne({
     where: {
       $or: [
@@ -54,54 +49,10 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
             $eq: email
           }
         }
-<<<<<<< HEAD
-=======
-      },
-      {
-        email: {
-          $eq: email
-        }
-      },
-      {
-        facebookEmail: {
-          $eq: email
-        }
-      }
-=======
-  const existingUser = await models.User.findOne({
-    where: {
-      $or: [
-<<<<<<< HEAD
-        { googleEmail: { $eq: email } },
-        { email: { $eq: email } },
-        { facebookEmail: { $eq: email } }
->>>>>>> feat: introduce googleAuth
-<<<<<<< HEAD
->>>>>>> feat: introduce googleAuth
-=======
-=======
-        {
-          googleEmail: {
-            $eq: email
-          }
-        },
-        {
-          email: {
-            $eq: email
-          }
-        },
-        {
-          facebookEmail: {
-            $eq: email
-          }
-        }
->>>>>>> style: change import code style
->>>>>>> style: change import code style
       ]
     }
   });
 
-<<<<<<< HEAD
   if (existingUser) {
     if (existingUser.email !== null) {
       return done(null, false, {
@@ -124,17 +75,7 @@ const signUp = new LocalStrategy(localOptions, async (req, email, password, done
         });
       }
     }
-<<<<<<< HEAD
-=======
-=======
-  const existingUser = await models.User.findOne({ where: { email } });
-  if (existingUser !== null) {
-=======
-  if (existingUser && existingUser.email !== null) {
->>>>>>> feat: introduce googleAuth
     return done(null, false, { message: 'email already exists' });
->>>>>>> feat(auth): move auth folder from profile to routes
->>>>>>> feat: introduce googleAuth
   }
 
   // When user previously logged in with facebook or google account

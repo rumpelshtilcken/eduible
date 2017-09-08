@@ -35,6 +35,7 @@ import StudentProfileEdit from './StudentProfileEdit';
 import Textarea from './Textarea';
 import TextInput from './TextInput';
 import VideoChat from './VideoChat';
+import Vidyo from './Vidyo';
 
 export {
   BookingHeader,

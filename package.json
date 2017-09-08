@@ -2,10 +2,13 @@
   "name": "eduible",
   "version": "0.0.0",
   "scripts": {
-    "dev": "sequelize db:migrate && nodemon server/index.js --config .nodemonrc",
-    "build": "npm run clean && next build app && babel server -d dist && cp server/config/config.json dist/config/config.json",
+    "dev":
+      "sequelize db:migrate && nodemon server/index.js --config .nodemonrc",
+    "build":
+      "npm run clean && next build app && babel server -d dist && cp server/config/config.json dist/config/config.json",
     "clean": "rimraf dist && mkdir dist",
-    "start": "NODE_ENV=production npm run build && sequelize db:migrate && node dist",
+    "start":
+      "NODE_ENV=production npm run build && sequelize db:migrate && node dist",
     "heroku-postbuild": "npm run build",
     "test": "NODE_ENV=test mocha --opts .mocharc"
   },
@@ -25,6 +28,8 @@
     "babel-runtime": "^6.26.0",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
+    "bowser": "^1.7.3",
+    "btoa": "^1.1.2",
     "classnames": "^2.2.5",
     "cors": "^2.8.4",
     "email-validator": "^1.1.1",
@@ -38,6 +43,7 @@
     "isomorphic-unfetch": "^2.0.0",
     "jsonwebtoken": "^7.4.3",
     "material-ui": "^0.19.1",
+    "jssha": "^2.3.1",
     "next": "^3.0.6",
     "nodemailer": "^4.0.1",
     "normalize-css": "^2.3.1",
@@ -56,9 +62,9 @@
     "react": "^15.6.1",
     "react-apollo": "^1.4.15",
     "react-circular-progressbar": "^0.1.5",
-    "react-apollo": "^1.4.15",
     "react-dom": "^15.6.1",
     "react-modal": "^2.2.4",
+    "react-no-ssr": "^1.1.0",
     "react-redux": "^5.0.6",
     "recompact": "^3.0.5",
     "react-tabs": "^1.1.0",
