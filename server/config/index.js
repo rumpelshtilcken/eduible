@@ -29,4 +29,19 @@ const googleConfig = {
   scope: ['https://www.googleapis.com/auth/plus.login', 'email']
 };
 
-export { facebookConfig, googleConfig };
+const linkedinConfig = {
+  options: {
+    clientID: '81qg0hqn13hbzf',
+    clientSecret: 'EAuurylRwZ91XN1z',
+    callbackURL: 'http://localhost:3000/api/v1/auth/linkedin/callback',
+    scope: ['r_emailaddress', 'r_basicprofile'],
+    state: true
+  }
+};
+
+const vidyoConfig = {
+  appID: '496d0f.vidyo.io',
+  devKey: '7f0785e435ba4f1c82c49c6682c44081'
+};
+
+export { facebookConfig, googleConfig, linkedinConfig, vidyoConfig };
