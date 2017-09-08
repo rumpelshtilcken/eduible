@@ -1,43 +1,59 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { VideoChat } from 'components';
+import fetch from 'isomorphic-fetch';
+import React, { Component } from 'react';
+import withVideoChat from 'hoc/withVideoChat';
 
+// TODO: fetch via graphql
 class VideoChatContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {
-        name: 'Miguel Carrera',
-        imgUrl: '/static/miguel.jpg',
-        icon: '/static/placeholderIcon.svg',
-        city: 'Miami, Fl',
-        timer: {
-          hour: 0,
-          minutes: 59
-        }
-      }
-    };
+  componentDidMount() {
+    this.generateToken();
   }
+
+  user = {
+    name: 'Miguel Carrera',
+    imgUrl: '/static/miguel.jpg',
+    icon: '/static/placeholderIcon.svg',
+    city: 'Miami, Fl',
+    timer: {
+      hour: 0,
+      minutes: 59
+    }
+  };
+
+  generateToken = async () => {
+    try {
+      const res = await fetch('/api/v1/videochat', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userName: 'John',
+          expiresInSeconds: 5000
+        })
+      });
+
+      const json = await res.json();
+      this.props.onVideoChatParamsLoad({ vidyoToken: 'json.vidyoToken', resourceId: 'Test' });
+    } catch (error) {
+      console.log('Fetch error: ', error);
+    }
+  };
 
   render() {
     return (
       <VideoChat
-        name={this.state.user.name}
-        city={this.state.user.city}
-        icon={this.state.user.icon}
-        imgUrl={this.state.user.imgUrl}
-        timer={this.state.user.timer}
+        user={this.user}
+        setVideoViewId={this.props.onVideoViewIdLoad}
+        devices={this.props.devices}
+        selectedDevices={this.props.selectedDevices}
+        sendMessageTest={this.props.sendMessageTest}
       />
     );
   }
 }
 
-VideoChatContainer.propTypes = {
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    imgUrl: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired,
-    city: PropTypes.string.isRequired,
-    timer: PropTypes.objectOf(PropTypes.number) }) };
-
-export default VideoChatContainer;
+export default withVideoChat(VideoChatContainer);
