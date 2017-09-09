@@ -1,12 +1,12 @@
 import { Page, Layout } from 'components';
 
-import VideoChatPage from './VideoChatPage';
+import ComingSoonPage from './ComingSoonPage';
 
 class Homepage extends Page {
   render() {
     return (
       <Layout title="Eduible" session={this.props.session}>
-        <VideoChatPage />
+        <ComingSoonPage />
       </Layout>
     );
   }

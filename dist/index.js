@@ -32,13 +32,17 @@ var _config = require('./config');
 
 var _config2 = _interopRequireDefault(_config);
 
-var _profile = require('./routes/profile');
-
-var _profile2 = _interopRequireDefault(_profile);
+var _auth = require('./routes/auth');
 
 var _comingsoon = require('./routes/comingsoon');
 
 var _comingsoon2 = _interopRequireDefault(_comingsoon);
+
+var _graphqlServerExpress = require('graphql-server-express');
+
+var _schema = require('./schema');
+
+var _schema2 = _interopRequireDefault(_schema);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47,7 +51,10 @@ var NODE_ENV = _config2.default.NODE_ENV,
 
 var dev = NODE_ENV !== 'production';
 
-var app = (0, _next2.default)({ dir: 'app', dev: dev });
+var app = (0, _next2.default)({
+  dir: 'app',
+  dev: dev
+});
 var handler = app.getRequestHandler();
 
 var runServer = function () {
@@ -66,14 +73,23 @@ var runServer = function () {
             // Load body parser to handle POST requests
 
             server.use(_bodyParser2.default.json());
-            server.use(_bodyParser2.default.urlencoded({ extended: true }));
+            server.use(_bodyParser2.default.urlencoded({
+              extended: true
+            }));
             server.use(_passport2.default.initialize());
 
-            server.use((0, _cors2.default)());
+            server.use('*', (0, _cors2.default)({ origin: 'http://localhost:3000' }));
 
             server.use('/api/v1', _comingsoon2.default);
-            server.use('/api/v1/auth/local', _profile2.default.local);
-            server.use('/api/v1/auth/facebook', _profile2.default.facebook);
+            server.use('/api/v1/auth/local', _auth.localAuth);
+            server.use('/api/v1/auth/facebook', _auth.facebookAuth);
+            server.use('/api/v1/auth/google', _auth.googleAuth);
+            server.use('/graphql', (0, _graphqlServerExpress.graphqlExpress)({
+              schema: _schema2.default
+            }));
+            server.use('/graphiql', (0, _graphqlServerExpress.graphiqlExpress)({
+              endpointURL: '/graphql'
+            }));
             server.get('*', function (req, res) {
               return handler(req, res);
             });
@@ -98,7 +114,7 @@ var runServer = function () {
               console.log('> Ready on http://localhost:' + PORT);
             });
 
-          case 13:
+          case 16:
           case 'end':
             return _context.stop();
         }

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
@@ -27,22 +26,6 @@ const app = next({
   dir: 'app',
   dev
 });
-=======
-const authRoutes = require('./routes/local-auth');
-const bodyParser = require('body-parser');
-const comingsoon = require('./routes/comingsoon');
-const config = require('./config');
-const cors = require('cors');
-const express = require('express');
-const facebookRoutes = require('./routes/facebook-auth');
-const next = require('next');
-const passport = require('passport');
-
-const { NODE_ENV, PORT } = config;
-const DEV = NODE_ENV !== 'production';
-
-const app = next({ dir: 'src', dev: DEV });
->>>>>>> feat: move front-end code to src directory
 const handler = app.getRequestHandler();
 
 const runServer = async () => {

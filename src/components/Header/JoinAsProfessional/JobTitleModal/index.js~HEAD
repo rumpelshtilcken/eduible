@@ -1,6 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 
 import style from './index.css';
 
@@ -16,7 +15,7 @@ const renderInput = x => (
   </div>
 );
 
-const JobTitleModal = ({ isOpen, onRequestClose, openCodeVerificationModal }) => (
+const JobTitleMoModal = ({ isOpen, onRequestClose, openCodeVerificationModal }) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={onRequestClose}
@@ -51,7 +50,7 @@ const JobTitleModal = ({ isOpen, onRequestClose, openCodeVerificationModal }) =>
   </Modal>
 );
 
-JobTitleModal.propTypes = {
+JobTitleMoModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
   openCodeVerificationModal: PropTypes.func.isRequired
@@ -78,4 +77,4 @@ const inpt = [
   }
 ];
 
-export default JobTitleModal;
+export default JobTitleMoModal;
