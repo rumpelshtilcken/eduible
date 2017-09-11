@@ -60,7 +60,7 @@ class PaymentDetailsForm extends Component {
 
         <p className="formElementTitle"> Credit Card</p>
         <SideMoreLayout
-          leftChildren={<TextInput type="text" maxLength="19" placeholder="1234 5678 9123 4567" validation={ValidationUtils.isValidEmail} />}
+          leftChildren={<TextInput type="text" maxLength="19" placeholder="1234 5678 9123 4567" validation={ValidationUtils.isValidCardNumber} />}
           rightChildren={<TextInput type="text" maxLength="3" placeholder="CVV" validation={ValidationUtils.isValidCVV} />}
         />
 
