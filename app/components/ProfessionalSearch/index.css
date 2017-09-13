@@ -1,0 +1,116 @@
+.con{
+  margin-top: 40px;
+  background: #f9f9f9; 
+  margin-bottom: 20px;
+}
+.title{
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.searchBar{
+  width: 92%;
+  margin: auto;
+}
+.searchIcon{
+  position: relative;
+  right: -94%;
+  top: -25px;;
+  width: 12px;
+}
+.profs{
+  width: 92%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.selects{
+  width: 84%;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+.professions, .universities{
+  width: 44%;
+  background-color: white; 
+  color: #5E4AB1;
+  height: 34px;
+  padding: 10px;
+  border: none;
+  border-radius: 9px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .22);
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  padding: 0; 
+}
+.pricesFilter{
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  font-size: 12px;
+  font-family: Effra;
+  width: 40%;  
+  background-color: #f9f9f9;
+  height: 34px;
+  padding: 10px;
+  border: none;
+}
+.infoHeader {
+  display: flex;
+  padding-top: 10px;
+}
+
+.picture{
+  border-radius: 100%;
+  padding: 0px 15px;
+  width: 22%;
+}
+.block{
+  width: 78%;
+}
+.name{
+  padding-top: 6px;
+  font-weight: bold;
+  
+}
+.city{
+  padding-top: 6px;
+  color: #9F9F9F;
+  font-weight: bold;
+}
+.major{
+ padding-top: 6px;
+ color: #9F9F9F;
+}
+.about{
+  width: 90%;
+  margin: auto;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.cost{
+  width: 50%; 
+  margin-top: 6px;
+  color: #5E4AB1;
+  font-weight: bold;
+}
+.call{
+  width: 50%;
+  margin-top: 10px;
+  color: white;
+  border-radius: 100px;
+  height: 30px;
+  background-color:  #7262BF;
+}
+.infoFooter{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  padding-bottom: 10px;
+}
