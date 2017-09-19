@@ -1,4 +1,8 @@
 .rc-slider {
+  display: none;
+  @media screen and (min-width: 768px) {
+  display: block  ;
+  box-sizing: border-box;
   position: relative;
   margin: auto;
   height: 14px;
@@ -9,10 +13,14 @@
       touch-action: none;
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
 }
 .inputs{
+   display: none;
+  @media screen and (min-width: 768px) {
   margin-top: 15px;
   display: flex;
+  }
 }
 .lower:after{
   position: absolute;
@@ -44,7 +52,7 @@
   left: 0;
   height: 4px;
   border-radius: 6px;
-  background-color: #abe2fb;
+  background-color: #7262BF;
 }
 .rc-slider-handle {
   position: absolute;
@@ -56,7 +64,8 @@
   cursor: -webkit-grab;
   cursor: grab;
   border-radius: 50%;
-  border: solid 2px #96dbfa;
+  border: solid 2px white;
+  box-shadow: 1px 3px 3px 0 rgba(0, 0, 0, .22);
   background-color: #fff;
   -ms-touch-action: pan-x;
       touch-action: pan-x;

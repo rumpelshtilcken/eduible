@@ -4,24 +4,49 @@ import PropTypes from 'prop-types';
 import { SearchUniversity } from 'components';
 
 class SearchUniversityContainer extends Component {
-  FoundedUniver = [
+  foundUniversities = [
     {
       logoUrl: '/static/',
-      title: 'Univer Title',
+      title: '1',
+      city: 'Miami, FL',
       description:
         'long description long description long description long description long description long description long description long description long description long description long description long description long description long description',
-      rank: 'RANKING',
-      facts: ['FACT 1', 'FACT 2', 'FACT 3', 'FACT 4']
+      priceYear: '19',
+      received: '7'
     },
-
     {
       logoUrl: '/static/',
-      title: 'Univer Title 2',
+      title: '2',
+      city: 'Miami, FL',
       description:
         'long description long description long description long description long description long description long description long description long description long description long description long description long description long description',
-      rank: 'RANKING',
-      facts: ['FACT 1', 'FACT 2', 'FACT 3', 'FACT 4']
+      priceYear: '15',
+      received: '7'
+    },
+    {
+      logoUrl: '/static/',
+      title: '3',
+      city: 'Miami, FL',
+      description:
+        'long description long description long description long description long description long description long description long description long description long description long description long description long description long description',
+      priceYear: '11',
+      received: '7'
+    },
+    {
+      logoUrl: '/static/',
+      title: '4',
+      city: 'Miami, FL',
+      description:
+        'long description long description long description long description long description long description long description long description long description long description long description long description long description long description',
+      priceYear: '18',
+      received: '7'
     }
+  ];
+
+  universities = [
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' }
   ];
 
   handleSubmitButtonClick = () => {};
@@ -31,7 +56,8 @@ class SearchUniversityContainer extends Component {
       <SearchUniversity
         onUniversityChoose={this.props.onUniversityChoose}
         onSubmitButtonClick={this.handleSubmitButtonClick}
-        universities={this.FoundedUniver}
+        foundUniversities={this.foundUniversities}
+        universities={this.universities}
       />
     );
   }

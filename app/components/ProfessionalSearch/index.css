@@ -1,6 +1,5 @@
 .con{
   margin: auto;
-  
   font-size: 13px;
   font-family: Effra;
   padding-top: 30px;
@@ -25,26 +24,6 @@
   }
 
   
-}
-.searchBar{
-  width: 92%;
-  margin: auto;
-  outline: none;
-  @media screen and (min-width: 768px){
-    width: 700px;
-  }
-  @media screen and (min-width: 1024px){
-    width: 900px;
-  }
-}
-.searchIcon{
-  position: relative;
-  right: -94%;
-  top: -25px;;
-  width: 12px;
-  @media screen and (min-width: 768px){
-   right: -97%;
-  }
 }
 hr {
   display: block;
@@ -85,7 +64,7 @@ hr {
 .profs{
     margin: auto;
     margin-top: 0px;
-    width: 92%;
+    width: 96%;
   @media screen and (min-width: 768px){
     width: 550px;
     margin-right:0px;
@@ -114,7 +93,7 @@ hr {
    width: 126px;
    display: initial;
    margin: 0; 
-   margin-top: 13px; 
+   margin-top: 38px; 
    }
    
 }
@@ -141,7 +120,7 @@ hr {
   margin: auto;
   margin-top: 10px;
   outline: none;
-  width: 40%;  
+  width: 50%;  
   background-color: #f9f9f9;
   height: 34px;
   padding: 10px;

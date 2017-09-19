@@ -58,8 +58,16 @@ class ProfessionalSearchContainer extends Component {
       reviews: '100'
     }
   ];
-  professions = ['IT Developer', 'Java Programmer', 'PHP Programmer'];
-  universities = ['UHD', 'PHD', 'MIT'];
+  professions = [
+    { value: 'IT Developer', label: 'IT Developer' },
+    { value: 'Java Programmer', label: 'Java Programmer' },
+    { value: 'PHP Programmer', label: 'PHP Programmer' }
+  ];
+  universities = [
+    { value: 'UHD', label: 'UHD' },
+    { value: 'PHD', label: 'PHD' },
+    { value: 'MIT', label: 'MIT' }
+  ];
   render() {
     return (
       <ProfessionalSearch
