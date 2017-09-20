@@ -1,4 +1,4 @@
-searchBlockimport { Card } from 'components';
+import { Card } from 'components';
 import { UniversityType } from 'types/common';
 
 import stylesheet from './index.css';
