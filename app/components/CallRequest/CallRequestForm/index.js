@@ -31,17 +31,13 @@ class CallRequestForm extends Component {
     { value: '7.30', label: '7:30 PM' }
   ];
 
-  handleMessageTextChange = event =>
-    this.setState({ message: event.target.value });
+  handleMessageTextChange = event => this.setState({ message: event.target.value });
 
-  handleEstimateLengthChange = event =>
-    this.setState({ estimatedLength: event.target.value });
+  handleEstimateLengthChange = event => this.setState({ estimatedLength: event.target.value });
 
-  handleDateChange = event =>
-    this.setState({ date: event.target.value });
+  handleDateChange = event => this.setState({ date: event.target.value });
 
-  handleTimeChange = event =>
-    this.setState({ time: event.target.value });
+  handleTimeChange = event => this.setState({ time: event.target.value });
 
   handleRequestCallClick = (event) => {
     event.preventDefault();
@@ -63,13 +59,9 @@ class CallRequestForm extends Component {
         <SideMoreLayout
           leftChildren={
             <div className="formTextareaContainer">
-              <Textarea
-                value={this.state.message}
-                onChange={this.handleMessageTextChange}
-              />
+              <Textarea value={this.state.message} onChange={this.handleMessageTextChange} />
             </div>
           }
-
           rightChildren={
             <p className={'messageTitle'}>Tell Miguel what you want to talk with him about.</p>
           }
@@ -82,21 +74,24 @@ class CallRequestForm extends Component {
               onChange={this.handleEstimateLengthChange}
               value={this.state.estimatedLength}
               options={this.estimatedLengthOptions}
-            />}
-
+            />
+          }
           rightChildren={
-            <p className={cx('messageTitle', {
-              dynamicText: true
-            })}
+            <p
+              className={cx('messageTitle', {
+                dynamicText: true
+              })}
             >
-            How long do you want to talk with Miguel?
+              How long do you want to talk with Miguel?
             </p>
           }
         />
 
         <div className="formElementTitle">
           <p>Suggest Times When You are Free to Talk</p>
-          <p className="messageTitle">Please note that the times you choose will be 10 hours earlier for Miguel</p>
+          <p className="messageTitle">
+            Please note that the times you choose will be 10 hours earlier for Miguel
+          </p>
         </div>
 
         <SideMoreLayout
@@ -105,8 +100,8 @@ class CallRequestForm extends Component {
               onChange={this.handleDateChange}
               value={this.state.date}
               options={this.suggestedDayOptions}
-            />}
-
+            />
+          }
           rightChildren={
             <SelectDropdown
               onChange={this.handleTimeChange}
@@ -117,9 +112,15 @@ class CallRequestForm extends Component {
         />
 
         <div className="bottomContainer">
-          <p>By scheduling a call you agree with our <u>Terms of Service.</u></p>
+          <p>
+            By scheduling a call you agree with our <u>Terms of Service.</u>
+          </p>
           <div className="buttonContainer">
-            <RoundedButton onClick={this.handleRequestCallClick} title="Request a Call" type="submit" />
+            <RoundedButton
+              onClick={this.handleRequestCallClick}
+              title="Request a Call"
+              type="submit"
+            />
           </div>
         </div>
         <style jsx>{stylessheet}</style>
