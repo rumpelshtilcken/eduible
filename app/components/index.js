@@ -12,6 +12,7 @@ import Menu from './Menu';
 import Page from './Page';
 import PaymentDetails from './PaymentDetails';
 import ProfessionalProfileEdit from './ProfessionalProfileEdit';
+import ProfessionalSearch from './ProfessionalSearch';
 import RoundedButton from './RoundedButton';
 import SearchTextInput from './SearchTextInput';
 import SearchUniversity from './SearchUniversity';
@@ -37,13 +38,14 @@ export {
   Page,
   PaymentDetails,
   ProfessionalProfileEdit,
+  ProfessionalSearch,
   RoundedButton,
   SearchTextInput,
   SearchUniversity,
   SelectDropdown,
   Session,
   SideMoreLayout,
-  VideoChat,
   Textarea,
-  TextInput
+  TextInput,
+  VideoChat
 };
