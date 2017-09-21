@@ -1,6 +1,7 @@
-import { Component } from 'react';
+import { Component, PropTypes } from 'react';
 
 import { RoundedButton, SideMoreLayout, SelectDropdown, TextInput } from 'components';
+import ValidationUtils from 'utils/ValidationUtils';
 
 import stylessheet from './index.css';
 
@@ -29,12 +30,12 @@ class PaymentDetailsForm extends Component {
   ];
 
   generateYear = () => {
-    const MAX_EXPIRATION_YEAR = 2020;
-    const MIN_EXPIRATION_YEAR = 2010;
+    const MAX_EXPIRATION_YEAR = 2025;
+    const MIN_EXPIRATION_YEAR = 2017;
     const year = [];
     let i = 0;
 
-    for (i = MIN_EXPIRATION_YEAR; i < MAX_EXPIRATION_YEAR; i++) {
+    for (i = MIN_EXPIRATION_YEAR; i <= MAX_EXPIRATION_YEAR; i++) {
       year.push({ value: i, label: i });
     }
 
@@ -50,7 +51,7 @@ class PaymentDetailsForm extends Component {
   handleCreditCardholderNameType = event =>
     this.setState({ creditCardholderName: event.target.value });
 
-  handleRequestCallClick = () => {};
+  handleRequestCallClick = () => { };
 
   render() {
     return (
@@ -59,8 +60,8 @@ class PaymentDetailsForm extends Component {
 
         <p className="formElementTitle"> Credit Card</p>
         <SideMoreLayout
-          leftChildren={<TextInput type="text" placeholder="1234 5678 9123 4567" />}
-          rightChildren={<TextInput type="text" placeholder="CVV" />}
+          leftChildren={<TextInput type="text" maxLength="19" placeholder="1234 5678 9123 4567" validation={ValidationUtils.isValidCardNumber} />}
+          rightChildren={<TextInput type="text" maxLength="3" placeholder="CVV" validation={ValidationUtils.isValidCVV} />}
         />
 
         <p className="formElementTitle"> Expiration</p>
@@ -82,7 +83,7 @@ class PaymentDetailsForm extends Component {
         />
 
         <p className="formElementTitle"> Cardholder Name</p>
-        <TextInput type="text" placeholder="John Doe" />
+        <TextInput type="text" placeholder="John Doe" validation={ValidationUtils.isValidName} />
 
         <div className="checkboxContainer">
           <input className="checkbox" type="checkbox" />
@@ -105,5 +106,11 @@ class PaymentDetailsForm extends Component {
     );
   }
 }
+
+PaymentDetailsForm.propTypes = {
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  getValue: PropTypes.func
+};
 
 export default PaymentDetailsForm;

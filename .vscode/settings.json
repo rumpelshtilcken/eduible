@@ -1,14 +1,12 @@
 {
   "editor.renderWhitespace": "boundary",
-  "editor.rulers": [80],
+  "editor.rulers": [
+    80
+  ],
   "editor.tabSize": 2,
-
   "eslint.autoFixOnSave": true,
-
   "files.autoSave": "onFocusChange",
-
   "javascript.validate.enable": false,
-
   "vsicons.presets.angular": false,
   "prettier.eslintIntegration": true
 }
