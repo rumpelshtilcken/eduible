@@ -2,15 +2,14 @@ import PropTypes from 'prop-types';
 
 import stylessheet from './index.css';
 
-const RoundedButton = ({ onClick, type, title }) =>
-  (<div className="roundedButtonContainer">
+const RoundedButton = ({ onClick, type, title }) => (
+  <div className="roundedButtonContainer">
     <button className="roundedButton" type={type} onClick={onClick}>
       {title}
     </button>
-    <style jsx>
-      {stylessheet}
-    </style>
-  </div>);
+    <style jsx>{stylessheet}</style>
+  </div>
+);
 
 RoundedButton.propTypes = {
   type: PropTypes.string,
