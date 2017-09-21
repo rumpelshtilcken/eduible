@@ -11,9 +11,10 @@
 
 .textarea {
   height: 80%;
-  width: 80%;
+  width: 90%;
   resize: none;
   border: 0;
   overflow: hidden;
-  color: #AFAFAF;
+  outline: none;
+  color: #afafaf;
 }
