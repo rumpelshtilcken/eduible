@@ -8,8 +8,13 @@ module.exports = function (sequelize, DataTypes) {
     facebookId: DataTypes.STRING,
     facebookToken: DataTypes.STRING,
     facebookName: DataTypes.STRING,
+    googleEmail: DataTypes.STRING,
+    googleId: DataTypes.STRING,
+    googleToken: DataTypes.STRING,
+    googleName: DataTypes.STRING,
     verificationCode: DataTypes.STRING,
-    verified: { type: DataTypes.BOOLEAN, defaultValue: false }
+    verified: { type: DataTypes.BOOLEAN, defaultValue: false },
+    tempPassword: DataTypes.STRING
   });
   return User;
 };

@@ -1,8 +1,8 @@
 import { Component } from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import JoinModal from './JoinModal';
-
-import HeaderModal from './HeaderModal';
+import SignUpModal from './SignUpModal';
+import ProfessionalModal from './ProfessionalModal';
 import stylesSheet from './index.css';
 
 require('isomorphic-fetch');
@@ -10,46 +10,54 @@ require('isomorphic-fetch');
 class Header extends Component {
   state = {
     isModalOpen: false,
-    isModalJoinOpen: false
+    isProfessionalOpen: false
   };
 
-  handleRequestClose = () => {
-    this.setState({ isModalJoinOpen: false });
-    this.setState({ isModalOpen: false });
-  }
+  handleRequestClose = () =>
+    this.setState({
+      isModalOpen: false,
+      isProfessionalOpen: false });
 
   handleSignUpButtonClik = () => this.setState({ isModalOpen: true });
 
-  handleJoinButtonClik = () => this.setState({ isModalJoinOpen: true });
-
+  handleJoinButtonClik = () => this.setState({ isProfessionalOpen: true });
   render() {
     return (
-      <header>
-        <div className="box">
-          <div className="logo">
-            <img src={'/static/eduible.svg'} alt={'logo'} />
-          </div>
-          <HeaderModal
-            isModalOpen={this.state.isModalOpen}
-            className="HeaderModal"
-            overlayClassName="OverlayModal"
-            onRequestClose={this.handleRequestClose}
-          />
-          <JoinModal
-            isModalJoinOpen={this.state.isModalJoinOpen}
-            className="JoinModal"
-            overlayClassName="OverlayModal"
-            onRequestClose={this.handleRequestClose}
-          />
-          <button className="buttonJoin" onClick={this.handleJoinButtonClik}>
+      <MuiThemeProvider>
+        <header>
+          <div className="box">
+            <div className="logo">
+              <img src={'/static/eduible.svg'} alt={'logo'} />
+            </div>
+            <SignUpModal
+              isModalOpen={this.state.isModalOpen}
+              onRequestClose={this.handleRequestClose}
+            />
+            <ProfessionalModal
+              isOpen={this.state.isProfessionalOpen}
+              onRequestClose={this.handleRequestClose}
+            />
+            <div className="navbar">
+              <div>
+                <button className="btn" onClick={this.handleJoinButtonClik}>
             JOIN AS PROFESSIONAL
-          </button>
-          <button className="button" onClick={this.handleSignUpButtonClik}>
+                </button>
+              </div>
+              <div>
+                <button className="btn" onClick={this.handleSignUpButtonClik}>
             SIGN UP
-          </button>
-        </div>
-        <style jsx>{stylesSheet}</style>
-      </header>
+                </button>
+              </div>
+              <div>
+                <button className="btn" >
+            LOGIN
+                </button>
+              </div>
+            </div>
+          </div>
+          <style jsx>{stylesSheet}</style>
+        </header>
+      </MuiThemeProvider>
     );
   }
 }

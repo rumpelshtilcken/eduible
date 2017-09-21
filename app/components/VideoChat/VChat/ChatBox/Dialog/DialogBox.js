@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import UserBox from './UserBox';
 import stylesheet from './index.css';
@@ -26,9 +25,5 @@ const DialogBox = () => (
     <style jsx>{stylesheet}</style>
   </div>
 );
-
-DialogBox.propTypes = {
-  users: PropTypes.objectOf(PropTypes.string)
-};
 
 export default DialogBox;
