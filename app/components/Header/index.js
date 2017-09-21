@@ -61,5 +61,13 @@ class Header extends Component {
     );
   }
 }
+Header.propTypes = {
+  headerLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      link: PropTypes.string
+    })
+  )
 
+};
 export default Header;

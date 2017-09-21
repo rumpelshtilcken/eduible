@@ -7,7 +7,6 @@ import FoundUniversities from './SearchUniversity/FoundUniversities';
 import Header from './Header';
 import InputRange from '../components/InputRange';
 import Layout from './Layout';
-import LayoutComing from './LayoutComing';
 import Link from './Link';
 import Main from './Main';
 import Menu from './Menu';
@@ -36,7 +35,6 @@ export {
   Header,
   InputRange,
   Layout,
-  LayoutComing,
   Link,
   Main,
   Menu,
