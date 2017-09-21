@@ -5,6 +5,31 @@ import Header from '../Header';
 import Footer from '../Footer';
 import stylesheet from './index.css';
 
+const headerLinkss = [
+  { label: 'menu1', link: '#' },
+  { label: 'menu2', link: '#' },
+  { label: 'menu3', link: '#' },
+  { label: 'menu4', link: '#' }
+];
+const footerLinkss = [
+  { title: 'ABOUT', label1: 'How It Works', link1: '#', label2: 'Succsess Stories', link2: '#' },
+  {
+    title: 'PROFESSIONALS',
+    label1: 'Join As Professional',
+    link1: '#',
+    label2: 'Search For Professional',
+    link2: '#'
+  },
+  {
+    title: 'UNIVERSITIES',
+    label1: 'Create Account',
+    link1: '#',
+    label2: 'Search University',
+    link2: '#'
+  },
+  { title: 'ANSWERS', label1: "FAQ's", link1: '#', label2: 'Privacy Policy', link2: '#' }
+];
+
 const Layout = (
   { children, title = 'Eduible', session = false, headerLinks, footerLinks } = {}
 ) => (
@@ -15,10 +40,10 @@ const Layout = (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link href="https://fonts.googleapis.com/css?family=Effra" rel="stylesheet" />
     </Head>
-    <Header headerLinks={headerLinks} />
+    <Header headerLinks={headerLinks || headerLinkss} />
 
     {children}
-    <Footer footerLinks={footerLinks} copyright={'COPYRIGHT (C) 2017'} />
+    <Footer footerLinks={footerLinks || footerLinkss} copyright={'COPYRIGHT (C) 2017'} />
 
     <style jsx global>
       {stylesheet}

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { VideoChat } from 'components';
 import fetch from 'isomorphic-fetch';
-import React, { Component } from 'react';
 import withVideoChat from 'hoc/withVideoChat';
 
 // TODO: fetch via graphql

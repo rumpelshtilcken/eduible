@@ -2,10 +2,13 @@
   "editor.insertSpaces": true,
   "editor.rulers": [80],
   "editor.tabSize": 2,
-  "eslint.enable": true,
   "editor.formatOnSave": true,
+
+  "eslint.enable": true,
   "eslint.autoFixOnSave": true,
+
   "files.autoSave": "onFocusChange",
+
   "javascript.validate.enable": false,
   "vsicons.presets.angular": false,
   "prettier.eslintIntegration": true

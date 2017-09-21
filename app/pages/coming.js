@@ -1,14 +1,8 @@
-import Page from '../components/Page';
-import Layout from '../components/LayoutComing';
-import ComingSoon from '../components/ComingSoon';
+import { Page, Layout, ComingSoon } from 'components';
 
 class ComingSoonPage extends Page {
   render() {
-    return (
-      <Layout title="Eduible" session={this.props.session}>
-        <ComingSoon />
-      </Layout>
-    );
+    return <ComingSoon />;
   }
 }
 

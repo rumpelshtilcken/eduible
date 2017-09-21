@@ -3,11 +3,7 @@ import { Provider } from 'react-redux';
 import { Page, Layout } from 'components';
 import getReduxStore from 'data/getReduxStore';
 
-import VideoChatPage from './VideoChatPage';
-
 import ProfessionalProfileOwner from './ProfessionalProfileOwnerPage';
-
-import ComingSoonPage from './ComingSoonPage';
 
 class Homepage extends Page {
   render() {

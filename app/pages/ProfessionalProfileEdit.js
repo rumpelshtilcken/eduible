@@ -4,13 +4,8 @@ import { Layout } from 'components';
 
 class ProfessionalProfileEditPage extends Component {
   render() {
-    return (
-      <Layout>
-        <ProfessionalProfileEditContainer />
-      </Layout>
-    );
+    return <ProfessionalProfileEditContainer />;
   }
 }
 
 export default ProfessionalProfileEditPage;
-

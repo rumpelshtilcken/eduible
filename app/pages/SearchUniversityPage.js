@@ -30,11 +30,7 @@ class SearchUniversityPage extends Component {
     { title: 'ANSWERS', label1: "FAQ's", link1: '#', label2: 'Privacy Policy', link2: '#' }
   ];
   render() {
-    return (
-      <Layout>
-        <SearchUniversityContainer onUniversityChoose={this.handleUniversityChoose} />
-      </Layout>
-    );
+    return <SearchUniversityContainer onUniversityChoose={this.handleUniversityChoose} />;
   }
 }
 

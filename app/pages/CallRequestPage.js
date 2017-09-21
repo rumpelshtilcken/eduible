@@ -8,10 +8,7 @@ class CallRequestPage extends Component {
   };
 
   render() {
-    return (
-      <CallRequestContainer
-        onBackButtonClick={this.handleBackButtonClick}
-      />);
+    return <CallRequestContainer onBackButtonClick={this.handleBackButtonClick} />;
   }
 }
 
