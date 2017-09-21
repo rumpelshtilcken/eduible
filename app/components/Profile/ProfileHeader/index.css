@@ -1,0 +1,46 @@
+.profile_header {
+    width: 100%;
+    margin-bottom: 10px;
+    padding-bottom: 23px;
+    @media screen and (min-width: 768px) {
+       
+    }
+}
+.lists {
+    margin: auto;
+    margin-top: 55px;
+      @media screen and (min-width: 768px) {
+        display: flex;
+        flex-flow: row;
+        width: 633px;
+        margin-top: -77px;
+        padding-left: 121px;
+    }
+    @media screen and (min-width: 1024px) {
+        display: flex;
+        flex-flow: row;
+        width: 777px;
+        margin-top: -77px;
+        padding-left: 177px;
+    }
+
+}
+.request {
+    width: 127px;
+    height: 29px;
+    background-color: #7262bf;
+    border-radius: 100px;
+    text-align: center;
+    color: white;
+    margin: auto;
+    display: block;
+    margin-top: 20px;
+    border-width: 0px;
+
+    @media screen and (min-width: 768px) {
+        margin-left: 33px;
+    }
+      @media screen and (min-width: 1024px) {
+        margin-left: 99px;
+    }
+}

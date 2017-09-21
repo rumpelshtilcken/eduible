@@ -1,14 +1,14 @@
-import { Page, Layout } from 'components';
 
+import { Component } from 'react';
 import StudentProfileContainer from 'containers/StudentProfileContainer';
 
-class StudentProfilePage extends Page {
+class StudentProfilePage extends Component {
+  handleNotifyMeButtonClick = () => {
+    // TODO: navigate back
+  };
+
   render() {
-    return (
-      <Layout title="Eduible" session={this.props.session}>
-        <StudentProfileContainer />
-      </Layout>
-    );
+    return <StudentProfileContainer onNotifyMeButtonClick={this.handleNotifyMeButtonClick} />;
   }
 }
 
