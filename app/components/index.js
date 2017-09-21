@@ -3,7 +3,9 @@ import CallRequest from './CallRequest';
 import Card from './Card';
 import CommingSoon from './ComingSoon';
 import Footer from './Footer';
+import FoundUniversities from './SearchUniversity/FoundUniversities';
 import Header from './Header';
+import InputRange from '../components/InputRange';
 import Layout from './Layout';
 import LayoutComing from './LayoutComing';
 import Link from './Link';
@@ -12,6 +14,7 @@ import Menu from './Menu';
 import Page from './Page';
 import PaymentDetails from './PaymentDetails';
 import ProfessionalProfileEdit from './ProfessionalProfileEdit';
+import ProfessionalRating from '../components/ProfessionalSearch/ProfessionalRating';
 import ProfessionalSearch from './ProfessionalSearch';
 import RoundedButton from './RoundedButton';
 import SearchTextInput from './SearchTextInput';
@@ -29,7 +32,9 @@ export {
   Card,
   CommingSoon,
   Footer,
+  FoundUniversities,
   Header,
+  InputRange,
   Layout,
   LayoutComing,
   Link,
@@ -38,6 +43,7 @@ export {
   Page,
   PaymentDetails,
   ProfessionalProfileEdit,
+  ProfessionalRating,
   ProfessionalSearch,
   RoundedButton,
   SearchTextInput,

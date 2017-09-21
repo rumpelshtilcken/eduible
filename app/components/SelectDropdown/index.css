@@ -1,4 +1,4 @@
-select {
+.select {
   appearance: none;
   background: #ffffff url('/static/Icons/select-arrow.svg') no-repeat 90% 50%;
   padding: 5px 35px 5px 5px;
@@ -9,4 +9,22 @@ select {
   color: #000000;
   font-family: 'Effra';
   font-size: 11px;
+}
+.professions, .universities{
+  display: block;
+  margin: auto;
+  width: 44%;
+  background-color: white; 
+  color: #5E4AB1;
+  margin-bottom: 15px;
+  height: 34px;
+  padding: 10px;
+  outline: none;
+  border: none;
+  border-radius: 9px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .22);
+   @media screen and (min-width: 768px){
+   width: 100%;
+   margin-bottom: 10px;;
+   }
 }

@@ -1,59 +1,73 @@
 import { UniversityType } from 'types/common';
+import { Component, PropTypes } from 'react';
 
-import FoundedUniversity from './FoundedUniversity';
-import Search from './Search';
+import { FoundUniversities, SearchTextInput, InputRange, SelectDropdown } from 'components';
+
 import stylesheet from './index.css';
 
-const SearchUniversity = ({ universities }) =>
-  (<div className="container">
-    <div className="sortButtonsWrap">
-      <div className="sortButtons">
-        <button className="sortButton">SORT BY</button>
-        <hr className="hr" />
-        <button className="filterButton">FILTER</button>
-      </div>
-      <Search />
-    </div>
-    <div className="universitiesWrap">
-      <div className="leftSide">
-        <p className="filterOption">FILTERS</p>
-        <div className="dropdownButtons">
-          <button className="dropdownButton">FILTER DROPDOWN</button>
-          <button className="dropdownButton">FILTER DROPDOWN</button>
-          <button className="dropdownButton">FILTER DROPDOWN</button>
-        </div>
-        <div className="filterCheckboxes">
-          <div className="filterCheckboxWrap">
-            <input className="filterCheckbox" type="checkbox" />
-            <span className="checkboxLabel">CHECKBOX FILTER</span>
-          </div>
-          <div className="filterCheckboxWrap">
-            <input className="filterCheckbox" type="checkbox" />
-            <span className="checkboxLabel">CHECKBOX FILTER</span>
-          </div>
-          <div className="filterCheckboxWrap">
-            <input className="filterCheckbox" type="checkbox" />
-            <span className="checkboxLabel">CHECKBOX FILTER</span>
+class SearchUniversity extends Component {
+  state = {
+    foundUniversities: this.props.foundUniversities
+  };
+  handleRangeChange = () => {};
+  handleSort = () => {};
+  render() {
+    return (
+      <div className="container">
+        <div className="searchWrap">
+          <div className="searchBlock">
+            <p className="searchTitle">Browse through more than 5000+ universities in the US</p>
+            <SearchTextInput placeholder="search by university, major,college…" />
           </div>
         </div>
-      </div>
-      <div className="rightSide">
-        <div className="filterLabels">
-          <p className="filterOption">VIEW OPTION</p>
-          <p className="filterOption">SORT OPTION</p>
-          <p className="filterOption">OTHER OPTION</p>
-        </div>
+        <div className="universitiesWrap">
+          <div className="leftSide">
+            <p className="filterOption">FILTERS</p>
+            <SelectDropdown
+              className="universities"
+              onChange={this.handleFilter}
+              options={this.props.universities}
+            />
+            <SelectDropdown
+              className="universities"
+              onChange={this.handleFilter}
+              options={this.props.universities}
+            />
+            <SelectDropdown
+              className="universities"
+              onChange={this.handleFilter}
+              options={this.props.universities}
+            />
+            <select className="pricesFilter" defaultValue="LOWEST PRICE" onChange={this.handleSort}>
+              <option key="HIGHEST PRICE">HIGHEST PRICE</option>
+              <option key="LOWEST PRICE">LOWEST PRICE</option>
+            </select>
+            <br />
+            <InputRange onChange={this.handleRangeChange} />
+          </div>
+          <div className="rightSide">
+            <select
+              className="hidden pricesFilter"
+              defaultValue="LOWEST PRICE"
+              onChange={this.handleSort}
+            >
+              <option key="HIGHEST PRICE">HIGHEST PRICE</option>
+              <option key="LOWEST PRICE">LOWEST PRICE</option>
+            </select>
 
-        {universities.map(univer => <FoundedUniversity key={univer.title} univer={univer} />)}
+            {this.state.foundUniversities.map(univer => (
+              <FoundUniversities key={univer.title} univer={univer} />
+            ))}
+          </div>
+        </div>
+        <style jsx>{stylesheet}</style>
       </div>
-    </div>
-    <style jsx>
-      {stylesheet}
-    </style>
-  </div>);
-
+    );
+  }
+}
 SearchUniversity.propTypes = {
-  universities: UniversityType
+  foundUniversities: UniversityType,
+  universities: PropTypes.object
 };
 
 export default SearchUniversity;
