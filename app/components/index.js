@@ -17,8 +17,6 @@ import ProfessionalRating from '../components/ProfessionalSearch/ProfessionalRat
 import ProfessionalSearch from './ProfessionalSearch';
 import ProgressBar from './ProgressBar';
 import ProfileEdit from './ProfileEdit';
-import Profile from './Profile';
-import ProfileOwner from './ProfileOwner';
 import ProfessionalProfile from './ProfessionalProfile';
 import ProfessionalProfileOwner from './ProfessionalProfileOwner';
 import RoundedButton from './RoundedButton';
@@ -55,8 +53,6 @@ export {
   ProfessionalSearch,
   ProgressBar,
   ProfileEdit,
-  Profile,
-  ProfileOwner,
   ProfessionalProfile,
   ProfessionalProfileOwner,
   RoundedButton,

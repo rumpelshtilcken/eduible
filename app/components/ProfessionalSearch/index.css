@@ -1,273 +1,299 @@
-.con{
+.con {
   margin: auto;
   font-size: 13px;
   font-family: Effra;
   padding-top: 30px;
-  background: #f9f9f9; 
+  background: #f9f9f9;
   padding-bottom: 20px;
-  @media screen and (min-width: 768px){
-    display: block  ;
+
+  @media screen and (min-width: 768px) {
+    display: block;
     height: 768px;
   }
-   @media screen and (min-width: 1024px){
+
+  @media screen and (min-width: 1024px) {
     height: 900px;
   }
 }
-.title{
+
+.title {
   text-align: center;
   width: 80%;
   margin: auto;
   margin-bottom: 20px;
   font-size: 14px;
-  @media screen and (min-width: 768px){
+
+  @media screen and (min-width: 768px) {
     width: 100%;
   }
-
-  
 }
+
 hr {
   display: block;
   height: 1px;
   border: 0;
   margin-top: -5px;
   border-top: 1px solid #ccc;
-  padding: 0; 
+  padding: 0;
 }
 
-.hidden{
- display: none;
-  @media screen and (min-width: 768px){
-     display: block;
+.hidden {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
   }
 }
-.unhidden{
-   display: block;
-    @media screen and (min-width: 768px){
+
+.unhidden {
+  display: block;
+
+  @media screen and (min-width: 768px) {
     display: none;
   }
 }
 
-.labels{
-    color: #9F9F9F; 
+.labels {
+  color: #9f9f9f;
 }
-.step{
-  @media screen and (min-width: 768px){
+
+.step {
+  @media screen and (min-width: 768px) {
     width: 700px;
     margin: auto;
     display: flex;
   }
-  @media screen and (min-width: 1024px){
+
+  @media screen and (min-width: 1024px) {
     width: 900px;
   }
 }
 
-.profs{
-    margin: auto;
-    margin-top: 0px;
-    width: 96%;
-  @media screen and (min-width: 768px){
+.profs {
+  margin: auto;
+  margin-top: 0;
+  width: 96%;
+
+  @media screen and (min-width: 768px) {
     width: 550px;
-    margin-right:0px;
+    margin-right: 0;
     display: block;
     float: right;
-    }
-    @media screen and (min-width: 1024px){
+  }
+
+  @media screen and (min-width: 1024px) {
     width: 750px;
   }
 }
-.prof{
+
+.prof {
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-   @media screen and (min-width: 768px){  
+
+  @media screen and (min-width: 768px) {
     display: flex;
-   }
-  
+  }
 }
-.selects{
+
+.selects {
   width: 84%;
   display: flex;
   justify-content: space-between;
   margin: auto;
-   @media screen and (min-width: 768px){
-   width: 126px;
-   display: initial;
-   margin: 0; 
-   margin-top: 38px; 
-   }
-   
+
+  @media screen and (min-width: 768px) {
+    width: 126px;
+    display: initial;
+    margin: 0;
+    margin-top: 38px;
+  }
 }
 
-.professions, .universities{
+.professions,
+.universities {
   display: block;
   width: 44%;
-  background-color: white; 
-  color: #5E4AB1;
+  background-color: white;
+  color: #5e4ab1;
   height: 34px;
   padding: 10px;
   outline: none;
   border: none;
   border-radius: 9px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .22);
-   @media screen and (min-width: 768px){
-   width: 100%;
-   margin-bottom: 10px;;
-   }
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.22);
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 
-.pricesFilter{
+.pricesFilter {
   display: block;
   margin: auto;
   margin-top: 10px;
   outline: none;
-  width: 50%;  
+  width: 50%;
   background-color: #f9f9f9;
   height: 34px;
   padding: 10px;
   border: none;
 
-   @media screen and (min-width: 768px){
-   margin-left:auto; 
-   margin-right:0;
-   width: 30%; 
-
-   }
+  @media screen and (min-width: 768px) {
+    margin-left: auto;
+    margin-right: 0;
+    width: 30%;
+  }
 }
 
 .infoHeader {
   display: flex;
   padding-top: 10px;
-  
-  @media screen and (min-width: 768px){
-   width: 75%;
-   padding-bottom: 10px;
-   }
+
+  @media screen and (min-width: 768px) {
+    width: 75%;
+    padding-bottom: 10px;
+  }
 }
 
-.picture{
+.picture {
   border-radius: 100%;
   width: 60px;
   height: 60px;
   margin: auto;
-  padding: 0px 15px;
+  padding: 0 15px;
 
-  @media screen and (min-width: 768px){
-   width: 90px;
-   height: 90px;
-   }
-  
+  @media screen and (min-width: 768px) {
+    width: 90px;
+    height: 90px;
+  }
 }
-.block{
+
+.block {
   width: 78%;
-    @media screen and (min-width: 768px){
-   display: block;
-   }
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
 }
-.name{
+
+.name {
   font-size: 14px;
   padding-top: 6px;
   font-weight: bold;
-  
 }
-.placaholderIcon{
+
+.placaholderIcon {
   width: 9px;
   height: 10px;
   padding: 3px;
-  
 }
-.cityIcon{
-  margin-top: 6px;
-  color: #9F9F9F;
-  font-weight: bold;
-  @media screen and (min-width: 768px){
-   width: 60%;
-   padding-left: 10px;
-   margin-top: 2px;
-   }
-}
-.step2{
-  @media screen and (min-width: 768px){
-  display: flex;
-  width: 100%;
 
+.cityIcon {
+  margin-top: 6px;
+  color: #9f9f9f;
+  font-weight: bold;
+
+  @media screen and (min-width: 768px) {
+    width: 60%;
+    padding-left: 10px;
+    margin-top: 2px;
   }
 }
-.major{
- padding-top: 6px;
- color: #9F9F9F;
- @media screen and (min-width: 768px){
-  width: 100%;
-  display: inline-block;
- }
+
+.step2 {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    width: 100%;
+  }
 }
-.about{
+
+.major {
+  padding-top: 6px;
+  color: #9f9f9f;
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+    display: inline-block;
+  }
+}
+
+.about {
   margin: auto;
   width: 90%;
   margin-top: 12px;
   margin-bottom: 12px;
-   @media screen and (min-width: 768px){
-   width: 100%;
- }
-}
 
-.cost{
-  width: 50%; 
-  color: #5E4AB1;
-  font-weight: bold;
-  @media screen and (min-width: 768px){
-  width: 100%;
-  margin-top: 17px;
+  @media screen and (min-width: 768px) {
+    width: 100%;
   }
 }
-.call{
+
+.cost {
+  width: 50%;
+  color: #5e4ab1;
+  font-weight: bold;
+
+  @media screen and (min-width: 768px) {
+    width: 100%;
+    margin-top: 17px;
+  }
+}
+
+.call {
   width: 50%;
   color: white;
   border-radius: 100px;
   height: 30px;
   outline: none;
-  background-color:  #7262BF;
-  @media screen and (min-width: 768px){ 
-  position: absolute;
-  bottom: 12px;
-  left: 5px;
-  width: 90%;
-  }
+  background-color: #7262bf;
 
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    bottom: 12px;
+    left: 5px;
+    width: 90%;
+  }
 }
-.rating{
+
+.rating {
   width: 100%;
   display: flex;
   margin-top: 3px;
-  @media screen and (min-width: 768px){
-  justify-content: flex-end;
-  margin-top: 8%;
- }
+
+  @media screen and (min-width: 768px) {
+    justify-content: flex-end;
+    margin-top: 8%;
+  }
 }
-.purpleStar{ 
+
+.purpleStar {
   display: inline;
   margin-top: 1px;
   height: 11px;
   width: 11px;
   fill: red !important;
 }
-.reviews{
+
+.reviews {
   display: inline;
-  color: #9F9F9F;
+  color: #9f9f9f;
 }
-.infoFooter{
-  margin-top: 8px;
+
+.infoFooter {
   width: 90%;
   margin: auto;
+  margin-top: 8px;
   display: flex;
   padding-bottom: 10px;
 
-  @media screen and (min-width: 768px){
-   margin: 0px;
-   width: 25%;
-   display: block;
-   position: relative;
-   text-align: right;
-   padding-right: 10px;
- }
-
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    width: 25%;
+    display: block;
+    position: relative;
+    text-align: right;
+    padding-right: 10px;
+  }
 }

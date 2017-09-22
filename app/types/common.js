@@ -1,3 +1,4 @@
+/* eslint-disable */
 import PropTypes from 'prop-types';
 
 const UniversityType = PropTypes.shape({

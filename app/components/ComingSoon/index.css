@@ -6,19 +6,19 @@ h1 {
   width: 168px;
   height: 54px;
   padding-bottom: 5px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 
   @media screen and (min-width: 768px) {
     font-size: 36px;
     width: 100%;
- }
+  }
 }
 
 p {
-  padding-top: 0px;
-  margin-top: 0px;
+  padding-top: 0;
+  margin-top: 0;
   padding-bottom: 5px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   width: 236px;
   height: 54px;
   font-size: 18px;
@@ -29,10 +29,11 @@ p {
   @media screen and (min-width: 768px) {
     font-size: 24px;
     width: 100%;
- }
+  }
 }
 
-input, button {
+input,
+button {
   box-sizing: border-box;
   width: 70%;
   max-width: 300px;
@@ -43,12 +44,12 @@ input, button {
 }
 
 circle {
-	width: 350px;
-	height: 350px;
-	background: white;
-	-moz-border-radius: 330px;
-	-webkit-border-radius: 330px;
-	border-radius: 330px;
+  width: 350px;
+  height: 350px;
+  background: white;
+  -moz-border-radius: 330px;
+  -webkit-border-radius: 330px;
+  border-radius: 330px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,18 +59,18 @@ circle {
 
   @media screen and (min-width: 768px) {
     width: 688px;
-  	height: 688px;
-  	background: white;
-  	-moz-border-radius: 688px;
-  	-webkit-border-radius: 688px;
-  	border-radius: 688px;
- }
+    height: 688px;
+    background: white;
+    -moz-border-radius: 688px;
+    -webkit-border-radius: 688px;
+    border-radius: 688px;
+  }
 }
 
 input::placeholder {
   padding-left: 5px;
   font-size: 14px;
-  color: #777777;
+  color: #777;
 }
 
 button {
@@ -83,7 +84,7 @@ button {
 .container {
   width: calc(100vw - 30px);
   height: calc(100vh - 48px - 30px - 36px - 36px);
-  background: url('/static/Image.jpg') center center /cover no-repeat;
+  background: url("/static/Image.jpg") center center /cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,11 +93,11 @@ button {
   padding: 15px;
 
   @media screen and (min-width: 768px) {
-    background: url('/static/middleImage.jpg') center center /cover no-repeat;
+    background: url("/static/middleImage.jpg") center center /cover no-repeat;
   }
 
   @media screen and (min-width: 1000px) {
-    background: url('/static/biggerImage.jpg') center center /cover no-repeat;
+    background: url("/static/biggerImage.jpg") center center /cover no-repeat;
   }
 }
 

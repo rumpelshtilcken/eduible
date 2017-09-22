@@ -1,7 +1,4 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import styles from './index.css';
-import ModalSecond from '../ModalSecond';
 
 const config2 = [
   {
@@ -63,6 +60,8 @@ const config = [
 ];
 
 class ModalFirst extends Component {
+  handleOpenModalSecond = () => {};
+
   renderInput = item => (
     <div>
       <p> {item.title} </p>{' '}
@@ -71,53 +70,42 @@ class ModalFirst extends Component {
         name={item.input.name}
         className={item.input.className}
         placeholder={item.input.placeholder}
-      />{' '}
-      <style jsx> {styles} </style>{' '}
+      />
     </div>
   );
-
-  handleOpenModalSecond = () => {};
 
   render() {
     return (
       <div>
-        <p className="sign">JOIN AS PROFESSIONAL </p>{' '}
+        <p className="sign">JOIN AS PROFESSIONAL </p>
         <p className="share">Share your knowledge and experience.Start now - it’ s free </p>
         <div className="signUp">
           <div className="firstColumn">
             <div className="inputBox">
-              <div className="in1">{config.map(this.renderInput)} </div>{' '}
-            </div>{' '}
-          </div>{' '}
+              <div className="in1">{config.map(this.renderInput)} </div>
+            </div>
+          </div>
           <div className="secondColumn">
-            {' '}
             <div className="inputBox1">
-              <div className="in2">{config2.map(this.renderInput)} </div>{' '}
+              <div className="in2">{config2.map(this.renderInput)} </div>
               <button className="continueButton" onClick={this.handleOpenModalSecond}>
-                CONTINUE{' '}
-              </button>{' '}
-            </div>{' '}
+                CONTINUE
+              </button>
+            </div>
             <div className="together">
               <div className="inputBox2">
-                <p> OR JOIN WITH </p> <button className="facebookButton">LINKEDIN </button>{' '}
-              </div>{' '}
+                <p> OR JOIN WITH </p> <button className="facebookButton">LINKEDIN </button>
+              </div>
               <div className="inputBox3">
                 <img alt="" id="line" src="static/Line123.jpg" />
-                <p> ALREADY A MEMBER ? </p> <button className="loginButton">
-                  Log in here{' '}
-                </button>{' '}
-              </div>{' '}
-            </div>{' '}
-          </div>{' '}
-        </div>{' '}
-        <style jsx> {styles} </style>{' '}
+                <p> ALREADY A MEMBER ? </p> <button className="loginButton">Log in here</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
-
-ModalFirst.propTypes = {
-  onOpenJoinModal: PropTypes.func.isRequired
-};
 
 export default ModalFirst;

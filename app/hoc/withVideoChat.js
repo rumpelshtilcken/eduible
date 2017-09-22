@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Component } from 'react';
 import Head from 'next/head';
 import { hoistStatics } from 'recompact';
@@ -8,16 +9,16 @@ import getDisplayName from 'utils/getDisplayName';
 // status.downloadPathWebRTCExtension; - Screen share
 
 // Set component fo
-const setListenerComponent = (ListenerComponent) => {
+const setListenerComponent = ListenerComponent => {
   window.ListenerComponent = ListenerComponent;
 };
 
 // Global function for handling VidyoSDK loading
-const handleDidLoadVidyoClient = (status) => {
+const handleDidLoadVidyoClient = status => {
   window.ListenerComponent.handleDidLoadVidyoClient(status);
 };
 
-const withVideoChat = hoistStatics((WrappedComponent) => {
+const withVideoChat = hoistStatics(WrappedComponent => {
   class WithVideoChat extends Component {
     state = {
       scriptVidyoSDK: '',
@@ -76,7 +77,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
       this.setState({ scriptVidyoSDK: scriptSrc });
     };
 
-    handleDidLoadVidyoClient = (status) => {
+    handleDidLoadVidyoClient = status => {
       switch (status.state) {
         case 'READY': // The library is operating normally
           // After the VidyoClient is successfully initialized a global VC object will become available
@@ -103,7 +104,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
       }
     };
 
-    connect = async (VC) => {
+    connect = async VC => {
       try {
         // create vidyoConnector
         this.vidyoConnector = await VidyoConnector.createVidyoConnector(VC, this);
@@ -132,14 +133,14 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
 
     /** Device handlers */
     // Camera
-    handleDidCameraAdd = (localCamera) => {
+    handleDidCameraAdd = localCamera => {
       this.cameras = {
         [window.btoa(localCamera.id)]: localCamera,
         ...this.cameras
       };
     };
 
-    handleDidCameraRemove = (localCamera) => {
+    handleDidCameraRemove = localCamera => {
       delete this.cameras[window.btoa(localCamera.id)];
 
       if (this.state.selectedCamera.id === localCamera.id) {
@@ -149,7 +150,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
         });
       }
     };
-    handleDidCameraSelect = async (localCamera) => {
+    handleDidCameraSelect = async localCamera => {
       if (localCamera) {
         try {
           VidyoConnector.assignViewToLocalCamera({
@@ -171,7 +172,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
       console.log('---------Camera state updated: ', localCamera, '----', state);
 
     // Microphone
-    handleDidMicrophoneAdd = (localMicrophone) => {
+    handleDidMicrophoneAdd = localMicrophone => {
       this.microphones = {
         [window.btoa(localMicrophone.id)]: localMicrophone,
         ...this.microphones
@@ -179,7 +180,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     };
     handleDidMicrophoneRemove = localMicrophone =>
       delete this.microphones[window.btoa(localMicrophone.id)];
-    handleDidMicrophoneSelect = (localMicrophone) => {
+    handleDidMicrophoneSelect = localMicrophone => {
       if (localMicrophone) {
         this.setState({
           selectedMicrophone: this.microphones[window.btoa(localMicrophone.id)]
@@ -190,14 +191,14 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
       console.log('-----------Microphone state update: ', localMicrophone, '----', state);
 
     // Speaker
-    handleDidSpeakerAdd = (localSpeaker) => {
+    handleDidSpeakerAdd = localSpeaker => {
       this.speakers = {
         [window.btoa(localSpeaker.id)]: localSpeaker,
         ...this.speakers
       };
     };
     handleDidSpeakerRemove = localSpeaker => delete this.speakers[window.btoa(localSpeaker.id)];
-    handleDidSpeakerSelect = (localSpeaker) => {
+    handleDidSpeakerSelect = localSpeaker => {
       if (localSpeaker) {
         this.setState({
           selectedSpeaker: this.speakers[window.btoa(localSpeaker.id)]
@@ -232,7 +233,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
         console.log('Remote camera assign error: ', error);
       }
     };
-    handleDidRemoteCameraRemove = (remoteCamera) => {
+    handleDidRemoteCameraRemove = remoteCamera => {
       delete this.remoteCameras[window.btoa(remoteCamera.id)];
       VidyoConnector.hideViewToRemoteCamera('renderer1');
     };
@@ -254,7 +255,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     // Handle camera select from UI
     handleCameraSelect = localCameraId => this.changeSelectedCamera(localCameraId);
 
-    changeSelectedCamera = async (localCameraId) => {
+    changeSelectedCamera = async localCameraId => {
       const camera = this.cameras[localCameraId];
 
       if (camera) {
@@ -278,7 +279,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
 
     handleMicrophoneSelect = localMicrophoneId => this.changeSelectedMicrophone(localMicrophoneId);
 
-    changeSelectedMicrophone = async (localMicrophoneId) => {
+    changeSelectedMicrophone = async localMicrophoneId => {
       const microphone = this.microphones[localMicrophoneId];
 
       if (microphone) {
@@ -290,7 +291,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
 
     handleSpeakerSelect = localSpeakerId => this.changeSelectedSpeaker(localSpeakerId);
 
-    changeSelectedSpeaker = async (localSpeakerId) => {
+    changeSelectedSpeaker = async localSpeakerId => {
       const speaker = this.speakers[localSpeakerId];
 
       if (speaker) {
@@ -300,9 +301,10 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
       }
     };
 
-    sendMessageTest = () => console.log('Message sent') || this.vidyoConnector.SendChatMessage('Hello');
+    sendMessageTest = () =>
+      console.log('Message sent') || this.vidyoConnector.SendChatMessage('Hello');
 
-    renderVideoOnViewId = (viewId) => {
+    renderVideoOnViewId = viewId => {
       this.vidyoConnector.ShowViewAt(viewId, 0, 0, 0, 0);
     };
 

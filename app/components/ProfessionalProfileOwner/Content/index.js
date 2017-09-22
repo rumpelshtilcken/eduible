@@ -1,5 +1,3 @@
-import { Component } from 'react';
-
 import About from './About';
 import stylesheet from './index.css';
 import Calendar from './Calendar';

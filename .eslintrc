@@ -20,9 +20,6 @@
     "no-param-reassign": "off",
     "global-require": "off",
     "no-use-before-define": "off",
-    "comma-dangle": [
-      "error",
-      "never"
-    ]
+    "comma-dangle": ["error", "never"]
   }
 }

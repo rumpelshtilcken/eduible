@@ -1,52 +1,52 @@
-
-
-
-.titleSmall{
+.titleSmall {
   text-align: center;
   font-weight: bold;
   font-size: 18px;
   font-family: Effra;
   padding: 20px;
 }
-.title{ 
+
+.title {
   text-align: center;
   font-weight: bold;
   font-size: 18px;
   font-family: Effra;
   padding: 20px;
-
 }
 
-.profile{
+.profile {
   display: block;
   margin: auto;
   width: 90%;
-   @media screen and (min-width: 768px) {
+
+  @media screen and (min-width: 768px) {
     float: right;
     width: 70%;
-   }
+  }
 }
 
-.inputH{
- visibility:hidden;
+.inputH {
+  visibility: hidden;
   position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-
+  left: 0;
+  top: 0;
+  z-index: -1;
 }
-.photos{  
+
+.photos {
   display: flex;
   margin: auto;
   height: 60px;
   justify-content: space-between;
+
   @media screen and (min-width: 768px) {
-    width: 100%; 
-   }
+    width: 100%;
+  }
 }
-.photo{
+
+.photo {
   width: 20%;
-  margin-right: 4%; 
+  margin-right: 4%;
   max-width: 60px;
   min-width: 60px;
   justify-content: center;
@@ -54,143 +54,163 @@
   background-repeat: no-repeat;
   position: left;
   cursor: pointer;
-  
-  
 }
-.uploadButton{
+
+.uploadButton {
   position: right;
   cursor: pointer;
   width: 100%;
   background-size: cover;
   border-radius: 7px;
-   
-
-
-  
-}
-.step{
-  @media screen and (min-width: 768px) {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;}
-}
-.step_child{
-  @media screen and (min-width: 768px) {
-  width: 46%;}
-}
-.step2{
-  @media screen and (min-width: 768px) {
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-  height: 50px;
-}
-}
-.comment{
-  @media screen and (min-width: 768px) {
-  margin: 10px;
-  margin-right: 0px;}
 }
 
-.label{
+.step {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.step_child {
+  @media screen and (min-width: 768px) {
+    width: 46%;
+  }
+}
+
+.step2 {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    height: 50px;
+  }
+}
+
+.comment {
+  @media screen and (min-width: 768px) {
+    margin: 10px;
+    margin-right: 0;
+  }
+}
+
+.label {
   font-size: 11px;
   font-family: Effra;
-  padding: 15px 0px 0px;
+  padding: 15px 0 0;
   color: #626262;
-
   font-weight: bold;
   padding-bottom: 3px;
 }
-.input{
+
+.input {
   box-sizing: border-box;
   width: 100%;
   border-radius: 4px;
   height: 28px;
-  border: 1px solid #D9D9D9;
-  background: #F9F9F9;
-  padding: 0px 5px;
-  color: #6A6A6A;
+  border: 1px solid #d9d9d9;
+  background: #f9f9f9;
+  padding: 0 5px;
+  color: #6a6a6a;
   font-family: Effra;
 }
-.input.about{
+
+.input.about {
   height: 130px;
   resize: none;
   padding: 4px;
 }
-.small{
+
+.small {
   width: 15%;
   text-align: center;
   padding-left: 3%;
   height: 28px;
 }
-.date{
+
+.date {
   cursor: text;
 }
-.dollarSign{
-  position:relative;
-  padding-left: 0px;
-  font-family: Effra; 
-  color: #6A6A6A;
+
+.dollarSign {
+  position: relative;
+  padding-left: 0;
+  font-family: Effra;
+  color: #6a6a6a;
   width: 100%;
 }
-.dollarSign:after{
+
+.dollarSign::after {
   position: absolute;
   left: 5px;
   top: 7px;
   font-size: 13px;
-  content: '$';
+  content: "$";
 }
-.select{
+
+.select {
   margin-left: 2%;
-  height: 30px; 
+  height: 30px;
   width: 83%;
 }
-.button{
-  border-radius: 100px; 
+
+.button {
+  border-radius: 100px;
   width: 120px;
   height: 30px;
-  background-color: #7262BF;
+  background-color: #7262bf;
   color: white;
   border: none;
-  margin: 10px 0px 10px;
+  margin: 10px 0;
   font-size: 11px;
   cursor: pointer;
 }
-.calendar{
+
+.calendar {
   position: relative;
   top: -20px;
   left: +95%;
 }
-.passwords{
-  margin-bottom: 10px;  
-    @media screen and (min-width: 768px) {
+
+.passwords {
+  margin-bottom: 10px;
+
+  @media screen and (min-width: 768px) {
     display: flex;
-    justify-content: space-between;}
+    justify-content: space-between;
+  }
 }
-.pass{
-  margin-bottom: 10px;  
-    @media screen and (min-width: 768px) {
-    margin-right: 10px; 
+
+.pass {
+  margin-bottom: 10px;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 10px;
+  }
 }
-}
-.buttons{
+
+.buttons {
   display: flex;
   width: 100%;
   margin: auto;
   height: 40px;
   justify-content: space-between;
   padding-bottom: 20px;
-    @media screen and (min-width: 768px) {
+
+  @media screen and (min-width: 768px) {
     margin-top: 20px;
-}}
-.cancel{
+  }
+}
+
+.cancel {
   display: inline;
   float: left;
   width: 140px;
   color: black;
-  background-color: #E8E8E8;
+  background-color: #e8e8e8;
 }
-.save{
+
+.save {
   display: inline;
   width: 140px;
   float: right;

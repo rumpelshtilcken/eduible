@@ -58,8 +58,8 @@ const runServer = async () => {
 
   // production error handler
   // no stacktraces leaked to user
+  /* eslint-disable */
   server.use((err, req, res, next) => {
-    // eslint-disable-line
     res.status(err.status || 500);
     if (err.status < 500) {
       // log.warn('%s %d %s', req.method, res.statusCode, err.message);
@@ -71,7 +71,7 @@ const runServer = async () => {
     });
   });
 
-  server.listen(PORT, (err) => {
+  server.listen(PORT, err => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${PORT}`);
   });

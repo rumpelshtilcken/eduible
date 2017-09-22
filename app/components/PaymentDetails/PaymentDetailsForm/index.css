@@ -1,7 +1,7 @@
 .container {
   width: 275px;
   height: 310px;
-  margin: 16px auto 171px auto;
+  margin: 16px auto 171px;
 }
 
 p {
@@ -20,14 +20,14 @@ p {
 }
 
 .formElementTitle {
-  margin: 20px 0 5px 0;
+  margin: 20px 0 5px;
 }
 
 .priceTotalContainer {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  margin: 20px 0 70px 0;
+  margin: 20px 0 70px;
 }
 
 .priceTotal {

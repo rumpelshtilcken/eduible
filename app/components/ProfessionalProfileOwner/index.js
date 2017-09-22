@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import ProfessionalProfileHeader from './ProfessionalProfileHeader';
@@ -13,11 +12,11 @@ const ProfessionalProfileOwner = ({ user }) => (
   </div>
 );
 
-ProfessionalProfileHeader.propTypes = {
+ProfessionalProfileOwner.propTypes = {
   user: PropTypes.shape({
     imgUrl: PropTypes.string,
-    data: PropTypes.arrayOf(PropTypes.string).isRequired })
+    data: PropTypes.arrayOf(PropTypes.string).isRequired
+  })
 };
-
 
 export default ProfessionalProfileOwner;

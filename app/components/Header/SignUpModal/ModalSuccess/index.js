@@ -11,7 +11,7 @@ class CodeVerificationModal extends React.Component {
     type: 'string',
     name: 'code',
     hintText: 'A365GBK23'
-  }
+  };
 
   render() {
     return (
@@ -23,9 +23,13 @@ class CodeVerificationModal extends React.Component {
       >
         <div className="container">
           <div className="head-text">
-            <div className="sign"><p>SIGN UP</p></div>
+            <div className="sign">
+              <p>SIGN UP</p>
+            </div>
             <p className="share">A verification code has been send to your email address.</p>
-            <p className="share">Please enter the code below to verify your email and finish the registration process</p>
+            <p className="share">
+              Please enter the code below to verify your email and finish the registration process
+            </p>
           </div>
           <div className="box">
             <TextField
@@ -36,14 +40,21 @@ class CodeVerificationModal extends React.Component {
               hintStyle={hintStyle}
               inputStyle={inputStyle}
             />
-            <div><p className="pcode">Didn't receive the code? send again</p></div>
+            <div>
+              <p className="pcode">Did not receive the code? send again</p>
+            </div>
           </div>
           <RaisedButton
             label="Continue"
             buttonStyle={{ backgroundColor: '#7262BF', fullWidth: true }}
             labelStyle={{ color: 'white', fontSize: '11px' }}
           />
-          <p className="term">By creating an account, you agree to <a href="#" className="edterms">Eduible's Terms and Conditions and Privacy Policy</a></p>
+          <p className="term">
+            By creating an account, you agree to{' '}
+            <a href="#" className="edterms">
+              Eduibles Terms and Conditions and Privacy Policy
+            </a>
+          </p>
           <style global>{style}</style>
         </div>
       </Modal>

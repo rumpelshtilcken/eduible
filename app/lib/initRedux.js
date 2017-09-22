@@ -1,5 +1,7 @@
+/* eslint-disable */
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import reducers from '../reducers';
+
+import reducers from 'data/reducers';
 
 let reduxStore = null;
 
@@ -11,7 +13,8 @@ if (process.browser && window.__REDUX_DEVTOOLS_EXTENSION__) {
 
 function create(apollo, initialState = {}) {
   return createStore(
-    combineReducers({ // Setup reducers
+    combineReducers({
+      // Setup reducers
       ...reducers,
       apollo: apollo.reducer()
     }),

@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 import { PaymentDetails } from 'components';
 
 class PaymentDetailsContainer extends Component {
-  handleSubmitButtonClick = () => {};
+  handleRequestCallClick = () => {};
 
   render() {
     return (
       <PaymentDetails
         onBackButtonClick={this.props.onBackButtonClick}
-        onSubmitButtonClick={this.handleSubmitButtonClick}
-      />);
+        onRequestCallClick={this.handleRequestCallClick}
+      />
+    );
   }
 }
 

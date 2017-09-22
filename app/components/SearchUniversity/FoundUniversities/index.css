@@ -17,16 +17,18 @@
     padding-right: 27px;
   }
 }
-.headerInfo{
-  display: flex;
 
+.headerInfo {
+  display: flex;
 }
-.headerRight{
+
+.headerRight {
   width: 80%;
   padding-left: 15px;
 }
+
 .universityLogo {
-  background: url('/static/uni-logo-placeholder.jpg') center center no-repeat;
+  background: url("/static/uni-logo-placeholder.jpg") center center no-repeat;
   background-size: cover;
   width: 70px;
   height: 70px;
@@ -37,10 +39,10 @@
     height: 101px;
   }
 }
-.mainInfo{
+
+.mainInfo {
   display: flex;
 }
-
 
 .title {
   color: #383838;
@@ -49,13 +51,14 @@
   margin-left: 0;
   margin-right: 0;
 }
-.placaholderIcon{
-   width: 9px;
+
+.placaholderIcon {
+  width: 9px;
   height: 10px;
   padding: 3px;
-  
 }
-.city{
+
+.city {
   color: #9f9f9f;
   font-size: 12px;
   margin: 0;
@@ -68,30 +71,31 @@
   box-sizing: border-box;
 }
 
-.footerInfo{
+.footerInfo {
   margin-top: 10px;
   display: flex;
   width: 100%;
-  margin-top: 10px;
 }
-.group{
+
+.group {
   width: 50%;
 }
-.circle{
+
+.circle {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 12px;
-  color: #7262BF;
+  color: #7262bf;
   font-weight: bold;
   max-width: 50px;
   height: 50px;
   border-radius: 100%;
   margin: auto;
   background-color: #f3f3f3;
-  
 }
-.text{
+
+.text {
   margin: auto;
   margin-bottom: 10px;
   font-size: 12px;

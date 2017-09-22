@@ -5,7 +5,7 @@ import { BookingHeader } from 'components';
 import PaymentDetailsHeader from './PaymentDetailsHeader';
 import PaymnetDetailsForm from './PaymentDetailsForm';
 
-const PaymentDetails = ({ onBackButtonClick }) => (
+const PaymentDetails = ({ onBackButtonClick, onRequestCallClick }) => (
   <div>
     <BookingHeader
       onBackButtonClick={onBackButtonClick}
@@ -26,12 +26,13 @@ const PaymentDetails = ({ onBackButtonClick }) => (
         }
       ]}
     />
-    <PaymnetDetailsForm />
+    <PaymnetDetailsForm onRequestCallClick={onRequestCallClick} />
   </div>
 );
 
 PaymentDetails.propTypes = {
-  onBackButtonClick: PropTypes.func.isRequired
+  onBackButtonClick: PropTypes.func.isRequired,
+  onRequestCallClick: PropTypes.func.isRequired
 };
 
 export default PaymentDetails;

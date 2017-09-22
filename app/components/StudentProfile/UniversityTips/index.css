@@ -1,33 +1,36 @@
 .universityTips ul {
-	padding: 0;
-	margin: 0;
-	list-style-type: none;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
 
 .universityTips li {
-	position: relative;
-	padding-left: 13px;
-	margin-bottom: 5px;
-	font-size: 9px;
-	color: #383838;
-	line-height: 14px;
+  position: relative;
+  padding-left: 13px;
+  margin-bottom: 5px;
+  font-size: 9px;
+  color: #383838;
+  line-height: 14px;
 
-	&.hidden { display: none }
-	&:before {
-		content: '';
-		position: absolute;
-		top: 4px;
-		left: 0;
-		width: 10px;
-		height: 6px;
-		background: url('/static/ic_check.svg') center center no-repeat;
-	}
+  &.hidden {
+    display: none;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 10px;
+    height: 6px;
+    background: url("/static/ic_check.svg") center center no-repeat;
+  }
 }
 
 .moreTips {
-	margin-left: 13px;
-	font-size: 9px;
-	font-weight: 700;
+  margin-left: 13px;
+  font-size: 9px;
+  font-weight: 700;
   color: #383838;
-	text-decoration: none;
+  text-decoration: none;
 }

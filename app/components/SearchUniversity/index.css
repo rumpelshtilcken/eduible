@@ -5,12 +5,14 @@
 .searchBlock {
   margin: auto;
   width: 100%;
-  padding: 23px 0px;
+  padding: 23px 0;
   text-align: center;
 }
-.searchWrap{
- border-bottom: 1px solid #979797;
-  margin-bottom: 10px;}
+
+.searchWrap {
+  border-bottom: 1px solid #979797;
+  margin-bottom: 10px;
+}
 
 .searchTitle {
   font-size: 11px;
@@ -24,7 +26,7 @@
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
 }
 
 .searchBar::-webkit-input-placeholder {
@@ -32,18 +34,21 @@
   color: #afafaf;
   font-size: 11px;
 }
+
 .searchBar:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #afafaf;
   font-size: 11px;
   opacity: 1;
 }
+
 .searchBar::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #afafaf;
   font-size: 11px;
   opacity: 1;
 }
+
 .searchBar:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #afafaf;
@@ -58,77 +63,84 @@
 }
 
 .universitiesWrap {
- display: block;
+  display: block;
+
   @media screen and (min-width: 768px) {
-  display: flex;
-  width: 700px;
-  margin: auto; 
-  padding-bottom: 20px;
+    display: flex;
+    width: 700px;
+    margin: auto;
+    padding-bottom: 20px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 900px;
+  }
 }
-@media screen and (min-width: 1024px) {
- width: 900px;
-}
-}
+
 .leftSide {
   width: 96%;
   margin: auto;
   display: flex;
-  flex-flow:row wrap;
+  flex-flow: row wrap;
 
   @media screen and (min-width: 768px) {
     width: 140px;
     display: block;
-    margin-top: 0px;
-    margin-left: 0px;
+    margin-top: 0;
+    margin-left: 0;
   }
 }
-.pricesFilter{
+
+.pricesFilter {
   display: block;
   margin: auto;
-  margin-top: 0px;
+  margin-top: 0;
   outline: none;
-  width: 44%;  
+  width: 44%;
   background-color: #f9f9f9;
   height: 34px;
   padding: 10px;
   border: none;
 
-   @media screen and (min-width: 768px){
-   margin-left:auto; 
-   width:26%;
-   margin-right:0;
-   display: none;
+  @media screen and (min-width: 768px) {
+    margin-left: auto;
+    width: 26%;
+    margin-right: 0;
+    display: none;
+  }
+}
 
-   }
-}
-.hidden{
+.hidden {
   display: none;
-   @media screen and (min-width: 768px){
-     display: block;
-   }
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
 }
+
 .rightSide {
   width: 96%;
   display: block;
   margin: auto;
 
   @media screen and (min-width: 768px) {
-  width: 540px;
-  margin-right:0px;
-  margin-left: auto;
+    width: 540px;
+    margin-right: 0;
+    margin-left: auto;
   }
 
   @media screen and (min-width: 1024px) {
-  width: 730px;
+    width: 730px;
+  }
 }
-}
-.filterOption {
-   display: none;
-  @media screen and (min-width: 768px) {
-  color: #afafaf;
-  font-size: 13px;
-  display: inline-block;
-  margin: 10px; 
 
+.filterOption {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    color: #afafaf;
+    font-size: 13px;
+    display: inline-block;
+    margin: 10px;
   }
 }

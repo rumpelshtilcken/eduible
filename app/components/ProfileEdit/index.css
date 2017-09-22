@@ -1,19 +1,21 @@
 .container {
   padding-left: 10px;
   padding-right: 10px;
+
   @media screen and (min-width: 768px) {
     padding-left: 118px;
-  padding-right: 118px;
-  display: flex;
-  flex-flow: row;
+    padding-right: 118px;
+    display: flex;
+    flex-flow: row;
   }
 }
+
 .navigation {
   margin-top: 10px;
-  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.15);
-  margin-top: 11px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0 0.15);
   margin-bottom: 20px;
   border-radius: 4px;
+
   @media screen and (min-width: 768px) {
     width: 150px;
     height: 85px;
@@ -21,56 +23,59 @@
     margin-right: 30px;
   }
 }
+
 .profile {
   @media screen and (min-width: 768px) {
     width: 353px;
     margin-top: 39px;
   }
 }
+
 .navigation p {
   font-size: 11px;
   margin: 0 auto;
 }
+
 .navigation img {
   width: 100%;
   margin: 0 auto;
 }
+
 .violet {
   color: #8045dd;
   padding-top: 14px;
   padding-left: 23px;
   padding-bottom: 7px;
 }
+
 .payOut {
   padding-top: 7px;
   padding-left: 23px;
   padding-bottom: 14px;
 }
+
 .profile h3 {
   width: 86px;
   margin: auto;
   text-align: center;
   font-size: 18px;
 }
-.pic{
+
+.pic {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.7);
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.6), 
-      rgba(0, 0, 0, 0.6)
-    ),
-    url("/static/imgProf.jpg")
+  background: linear-gradient(rgba(0, 0, 0, 0 0.6), rgba(0, 0, 0, 0 0.6)), url("/static/imgProf.jpg");
 }
+
 .change {
   color: white;
   margin: 0 auto;
   padding-top: 19px;
   font-size: 10px;
   text-align: center;
-  
 }
+
 .image {
   display: flex;
   flex-flow: row;
@@ -79,19 +84,16 @@
   margin-top: 9px;
   margin-bottom: 25px;
 }
+
 .background {
   width: 200px;
   height: 60px;
   margin-left: 20px;
-  background-color: black;
-  opacity: 0.7;
+  opacity: 0 0.7;
   border-radius: 5px;
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.6), 
-      rgba(0, 0, 0, 0.6)
-    ),
-    url("/static/back.jpg")
+  background: linear-gradient(rgba(0, 0, 0, 0 0.6), rgba(0, 0, 0, 0 0.6)), url("/static/back.jpg");
 }
+
 .background p {
   color: white;
   width: 63px;
@@ -100,15 +102,18 @@
   margin: auto;
   margin-top: 19px;
 }
+
 .form {
   margin: auto;
 }
+
 form p {
   font-size: 11px;
   color: #626262;
   margin-bottom: 5px;
   margin-top: 15px;
 }
+
 input {
   width: 280px;
   height: 30px;
@@ -117,6 +122,7 @@ input {
   border-color: #d9d9d9;
   border-radius: 4px;
 }
+
 textarea {
   width: 280px;
   height: auto;
@@ -127,20 +133,23 @@ textarea {
   border-radius: 4px;
   padding-top: 10px;
 }
+
 .dollarInput {
   width: 28px;
   height: 30px;
   padding-left: 17px;
-    font-size: 15px;
+  font-size: 15px;
 }
+
 .dollarInput::placeholder {
   font-size: 15px;
   color: black;
   margin: 0 auto;
 }
+
 .dollar {
   margin-left: -43px;
   color: #d9d9d9;
- margin-top: 19px;
+  margin-top: 19px;
   height: 5px;
 }

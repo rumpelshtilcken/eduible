@@ -1,4 +1,5 @@
-import { Component, PropTypes } from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { RoundedButton, SideMoreLayout, SelectDropdown, TextInput } from 'components';
 import ValidationUtils from 'utils/ValidationUtils';
@@ -35,6 +36,7 @@ class PaymentDetailsForm extends Component {
     const year = [];
     let i = 0;
 
+    /* eslint-disable */
     for (i = MIN_EXPIRATION_YEAR; i <= MAX_EXPIRATION_YEAR; i++) {
       year.push({ value: i, label: i });
     }
@@ -51,7 +53,22 @@ class PaymentDetailsForm extends Component {
   handleCreditCardholderNameType = event =>
     this.setState({ creditCardholderName: event.target.value });
 
-  handleRequestCallClick = () => { };
+  handleRequestCallClick = () => {
+    const {
+      creditCardholderName,
+      creditCardNumber,
+      creditCardCVV,
+      expirationMonth,
+      expirationYear
+    } = this.state;
+    this.props.onRequestCallClick({
+      creditCardholderName,
+      creditCardNumber,
+      creditCardCVV,
+      expirationMonth,
+      expirationYear
+    });
+  };
 
   render() {
     return (
@@ -60,8 +77,22 @@ class PaymentDetailsForm extends Component {
 
         <p className="formElementTitle"> Credit Card</p>
         <SideMoreLayout
-          leftChildren={<TextInput type="text" maxLength="19" placeholder="1234 5678 9123 4567" validation={ValidationUtils.isValidCardNumber} />}
-          rightChildren={<TextInput type="text" maxLength="3" placeholder="CVV" validation={ValidationUtils.isValidCVV} />}
+          leftChildren={
+            <TextInput
+              type="text"
+              maxLength="19"
+              placeholder="1234 5678 9123 4567"
+              validation={ValidationUtils.isValidCardNumber}
+            />
+          }
+          rightChildren={
+            <TextInput
+              type="text"
+              maxLength="3"
+              placeholder="CVV"
+              validation={ValidationUtils.isValidCVV}
+            />
+          }
         />
 
         <p className="formElementTitle"> Expiration</p>
@@ -91,26 +122,20 @@ class PaymentDetailsForm extends Component {
         </div>
 
         <div className="priceTotalContainer">
-          <p className="priceTotal">
-            Total: {'$75.00'}
-          </p>
+          <p className="priceTotal">Total: {'$75.00'}</p>
           <div className="buttonContainer">
             <RoundedButton onClick={this.handleRequestCallClick} title="Submit" type="submit" />
           </div>
         </div>
 
-        <style jsx>
-          {stylessheet}
-        </style>
+        <style jsx>{stylessheet}</style>
       </div>
     );
   }
 }
 
 PaymentDetailsForm.propTypes = {
-  placeholder: PropTypes.string,
-  type: PropTypes.string,
-  getValue: PropTypes.func
+  onRequestCallClick: PropTypes.func.isRequired
 };
 
 export default PaymentDetailsForm;

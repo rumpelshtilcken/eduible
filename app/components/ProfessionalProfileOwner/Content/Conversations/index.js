@@ -1,11 +1,13 @@
-import { Component } from 'react';
 import stylesheet from './index.css';
 
 const Conversations = () => (
   <div className="confer">
-    <p id="zagolovok" className="zagolovok"> New Conversations </p>
+    <p id="zagolovok" className="zagolovok">
+      {' '}
+      New Conversations{' '}
+    </p>
     <div className="firstConversation">
-      <div className="first" >
+      <div className="first">
         <img src="/static/profile.jpg" alt="" />
         <div className="fullName">
           <p>MIGUEL CARRERA</p>
@@ -25,12 +27,13 @@ const Conversations = () => (
         </div>
         <div className="accept">
           <button className="declineBtn">Decline</button>
-          <button className="acceptBtn">Accept</button></div>
+          <button className="acceptBtn">Accept</button>
+        </div>
       </div>
     </div>
     <p className="zagolovok">Forthcoming Conferences</p>
     <div className="secondConversation">
-      <div className="first" >
+      <div className="first">
         <img src="/static/profile.jpg" alt="" />
         <div className="fullName">
           <p>MIGUEL CARRERA</p>
@@ -53,7 +56,7 @@ const Conversations = () => (
     </div>
     <p className="zagolovok">History</p>
     <div className="history">
-      <div className="first" >
+      <div className="first">
         <img src="/static/profile.jpg" alt="" />
         <div className="fullName">
           <p>MIGUEL CARRERA</p>
@@ -78,4 +81,3 @@ const Conversations = () => (
   </div>
 );
 export default Conversations;
-

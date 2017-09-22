@@ -2,11 +2,10 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import stylessheet from './index.css';
 
-
 class TextInput extends Component {
   handleUnfocus = () => {
     if (this.props.validation) {
-      console.log(this.props.validation(this.inputRef.value));
+      this.props.validation(this.inputRef.value);
     }
   };
 
@@ -15,10 +14,16 @@ class TextInput extends Component {
 
     return (
       <div className="container">
-        <input className="textInput" type={type} maxLength={maxLength} placeholder={placeholder} ref={ref => this.inputRef = ref} onBlur={this.handleUnfocus} />
-        <style jsx>
-          {stylessheet}
-        </style>
+        <input
+          className="textInput"
+          type={type}
+          maxLength={maxLength}
+          placeholder={placeholder}
+          /* eslint-disable */
+          ref={ref => (this.inputRef = ref)}
+          onBlur={this.handleUnfocus}
+        />
+        <style jsx>{stylessheet}</style>
       </div>
     );
   }

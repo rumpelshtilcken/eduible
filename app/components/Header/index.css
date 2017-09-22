@@ -7,12 +7,10 @@
 .box {
   height: 48px;
   width: 100%;
-  background-color: #f9f9f9;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   background: linear-gradient(to right, #8d55e6, #ae8ee0);
-  flex-wrap: wrap;
   flex-direction: row;
 }
 
@@ -20,23 +18,26 @@
   margin: auto;
   margin-left: 16px;
 }
+
 .menu {
   margin: auto;
   max-width: 18px;
   max-height: 18px;
-  box-sizing: border-box;
   margin-right: 16px;
-  margin-left: 0px;
+  margin-left: 0;
   box-sizing: border-box;
+
   @media screen and (min-width: 768px) {
     display: none;
   }
 }
+
 .closeIcon {
   content: url("../../static/Icons/close.svg");
   max-width: 18px;
   max-height: 18px;
 }
+
 .menuIcon {
   content: url("../../static/Icons/menu.svg");
   max-width: 18px;
@@ -47,11 +48,11 @@
   position: absolute;
   top: +43px;
   display: block;
-  box-shadow: 0px 1px 6px 0px #888888;
+  box-shadow: 0 1px 6px 0 #888;
   background-color: #f9f9f9;
   margin: auto;
   margin-bottom: 3px;
-  padding: 0px;
+  padding: 0;
   width: 100%;
   transform-origin: 50% 0%;
   transform: perspective(800px) rotateX(-90deg);
@@ -61,7 +62,7 @@
     position: relative;
     display: flex;
     justify-content: flex-end;
-    top: 0px;
+    top: 0;
     margin: auto;
     width: 80%;
     box-shadow: none;
@@ -76,14 +77,14 @@
   background: none;
   max-width: 18px;
   max-height: 18px;
-  padding: 0px;
+  padding: 0;
   outline: 0;
 }
 
 .linkContainer {
   width: 100%;
   height: 40px;
-  border-bottom: 1px solid #888888;
+  border-bottom: 1px solid #888;
   position: relative;
   display: flex;
   justify-content: center;
@@ -103,8 +104,10 @@
   font-weight: bold;
   font-size: 11px;
 }
+
 .nickname {
   display: none;
+
   @media screen and (min-width: 768px) {
     display: flex;
     font-size: 11px;
@@ -118,10 +121,11 @@
   }
 }
 
-A {
+a {
   text-decoration: none;
   color: #7262bf;
 }
-A:hover {
+
+a:hover {
   text-decoration: underline;
 }

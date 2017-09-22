@@ -12,7 +12,7 @@
 
 .backButtonTitle {
   color: var(--white);
-  font-family: 'Effra';
+  font-family: "Effra";
   text-align: center;
   font-weight: 500;
   margin-left: 10px;
@@ -21,6 +21,7 @@
 .dynamicText {
   font-size: 0;
   position: absolute;
+
   @media (min-width: 768px) {
     font-size: 11px;
     position: relative;

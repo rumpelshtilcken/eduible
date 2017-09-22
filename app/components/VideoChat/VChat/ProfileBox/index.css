@@ -3,44 +3,53 @@
   width: 243px;
   height: 40px;
   margin: 30px auto;
-  @media(min-width: 768px){
-    margin: 56px auto 20px auto;
+
+  @media (min-width: 768px) {
+    margin: 56px auto 20px;
     width: 610px;
     order: -1;
   }
-  @media(min-width: 1024px){
+
+  @media (min-width: 1024px) {
     float: right;
     width: 243px;
     margin-top: -548px;
     margin-right: 20px;
   }
 }
-.section2 p{
+
+.section2 p {
   margin: 0;
   font-size: 11px;
   font-weight: bold;
   font-family: "Effra";
   color: #383838;
 }
+
 .profile-img img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
+
 .profile-info {
   margin: auto;
   margin-left: 15px;
 }
+
 .profile-city {
-  display:flex;
+  display: flex;
 }
+
 .profile-timer {
   margin-top: 5px;
 }
+
 #city {
-  color: #AFAFAF;
+  color: #afafaf;
   padding-left: 4px;
 }
+
 #timer {
   font-size: 24px;
 }

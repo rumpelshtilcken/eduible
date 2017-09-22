@@ -1,5 +1,3 @@
-import styles from './index.css';
-
 const ModalSuccess = () => (
   <div className="secondSign">
     <h1 className="signUpText">SIGN UP</h1>
@@ -16,7 +14,6 @@ const ModalSuccess = () => (
       By creating an account, you agree to &nbsp;
       <a href="">Eduible’s Terms and Conditions and Privacy Policy.</a>
     </p>
-    <style jsx>{styles}</style>
   </div>
 );
 

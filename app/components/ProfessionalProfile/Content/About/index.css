@@ -1,77 +1,84 @@
 .profileBox {
-    background-color: #ffff;
-    border-radius: 4px;
-    border-size: 10px;
-    width: 90%;
-    min-height: 80px;
-    margin: 5% auto;
-    box-shadow: 2px 10px 10px #ccc;
-    @media screen and (min-width: 768px) {
-    width: 730px;  
-    margin: auto;  
+  background-color: #ffff;
+  border-radius: 4px;
+  border-width: 10px;
+  width: 90%;
+  min-height: 80px;
+  margin: 5% auto;
+  box-shadow: 2px 10px 10px #ccc;
+
+  @media screen and (min-width: 768px) {
+    width: 730px;
+    margin: auto;
     box-shadow: 2px 2px 10px #ccc;
-    }
+  }
 }
-.half:after {
-    content: '';
-    display: block;
-    clear: both;
+
+.half::after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 .boxTitle {
-    width: 77%;
-    float: left;
-    font-size: 11px;
-    text-align: left;
-    font-family: Effra;    
-    padding: 16px;
+  width: 77%;
+  float: left;
+  font-size: 11px;
+  text-align: left;
+  font-family: Effra;
+  padding: 16px;
+  padding-bottom: 0;
+  padding-right: 0;
+
+  @media screen and (min-width: 768px) {
     padding-bottom: 0;
-    padding-right: 0px;
-    @media screen  and (min-width: 768px) {
-        padding-bottom: 0;
-    }
-    @media screen  and (min-width: 1440px) {
-        padding-bottom: 0;
-        width: 70%;
-    }
+  }
 
+  @media screen and (min-width: 1440px) {
+    padding-bottom: 0;
+    width: 70%;
+  }
 }
+
 .boxTitle p {
-    width: 103px;
-    margin-right: 0;
+  width: 103px;
+  margin-right: 0;
 }
 
-.boxEdit{
-    display: none;
-    width: 20%;
-    float: right;
-    width: 38px;
+.boxEdit {
+  display: none;
+  width: 20%;
+  float: right;
 }
-.about{
-    @media screen and (min-width: 768px) {
+
+.about {
+  @media screen and (min-width: 768px) {
     float: left;
     width: 340px;
     margin: auto;
     height: auto;
-    }
-    @media screen and (min-width: 1024px) {
-         float: left;
-    width: 440px;
-     margin-top: 0;
-      margin-left: 0;
-    }
-}   
-.aboutContent{
-    font-size: 11px;
-    font-family: Effra;
-    padding:15px;
+  }
 
+  @media screen and (min-width: 1024px) {
+    float: left;
+    width: 440px;
+    margin-top: 0;
+    margin-left: 0;
+  }
 }
+
+.aboutContent {
+  font-size: 11px;
+  font-family: Effra;
+  padding: 15px;
+}
+
 #half {
-    @media screen and (min-width: 768px) {
-        width: 50%;
-    }
-     @media screen and (min-width: 1440px) {
-        width: 100%;
-    }
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 100%;
+  }
 }

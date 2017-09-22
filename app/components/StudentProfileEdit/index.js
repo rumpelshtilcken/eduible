@@ -6,8 +6,8 @@ import stylesheet from './index.css';
 import StudentProfile from './StudentProfile';
 import StudentProfileDetails from './StudentProfileDetails';
 
-const StudentProfileEdit = () =>
-  (<div className="container">
+const StudentProfileEdit = () => (
+  <div className="container">
     <StudentProfile
       profileName={'ANNA STARK'}
       profileImageUrl={'/static/anna.jpg'}
@@ -16,7 +16,8 @@ const StudentProfileEdit = () =>
     />
     <StudentProfileDetails />
     <style jsx>{stylesheet}</style>
-  </div>);
+  </div>
+);
 
 export default StudentProfileEdit;
 
@@ -41,7 +42,8 @@ export default StudentProfileEdit;
 //     <img className="line" src="/static/Liine.jpg" alt="" />
 //     <p>Grades</p>
 //     <img className="line" src="/static/Liine.jpg" alt="" />
-//    <div className="conv"><p className="conv">Conversations</p><img src="/static/circlee.jpg" alt="" />
+//    <div className="conv">
+//        <p className="conv">Conversations</p><img src="/static/circlee.jpg" alt="" />
 // </div>;
 //   </div>
 //   <div className="conversations">
@@ -117,7 +119,7 @@ export default StudentProfileEdit;
 //     </div>
 //   </div>
 // </div>
-// <style jsx>{stylesheet}</style> 
+// <style jsx>{stylesheet}</style>
 //       </div>
 //     );
 //   }

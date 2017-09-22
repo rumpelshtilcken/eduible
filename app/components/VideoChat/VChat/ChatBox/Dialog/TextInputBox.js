@@ -2,6 +2,7 @@ import stylesheet from './index.css';
 
 const imgUrl = '/static/sendButtonMobile.svg';
 
+/* eslint-disable */
 const TextInputBox = ({ sendMessageTest }) => (
   <div className="dialogbox-send">
     <div>

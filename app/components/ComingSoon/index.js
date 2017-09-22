@@ -61,7 +61,7 @@ class ComingSoon extends Component {
       }
     });
   };
-  // eslint-disable-no-return-assign
+  /* eslint-disable */
   render() {
     return (
       <div>

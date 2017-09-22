@@ -12,10 +12,11 @@ const ProfessionalProfile = ({ user }) => (
   </div>
 );
 
-ProfessionalProfileHeader.propTypes = {
+ProfessionalProfile.propTypes = {
   user: PropTypes.shape({
     imgUrl: PropTypes.string,
-    data: PropTypes.arrayOf(PropTypes.string).isRequired })
+    data: PropTypes.arrayOf(PropTypes.string).isRequired
+  })
 };
 
 export default ProfessionalProfile;

@@ -1,5 +1,6 @@
 import stylesheet from './index.css';
 
+/* eslint-disable */
 const ProfessionalProfileBox = ({ text, location }) => (
   <div className="list">
     <div className="profileItem">
@@ -14,4 +15,3 @@ const ProfessionalProfileBox = ({ text, location }) => (
 );
 
 export default ProfessionalProfileBox;
-

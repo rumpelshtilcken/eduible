@@ -1,4 +1,3 @@
-
 import { Component } from 'react';
 import StudentProfileContainer from 'containers/StudentProfileContainer';
 

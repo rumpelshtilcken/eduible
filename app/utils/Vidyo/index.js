@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Component } from 'react';
 import fetch from 'isomorphic-fetch';
 import Head from 'next/head';
@@ -7,11 +8,11 @@ import { VideoBox } from 'components/VideoChat/VChat';
 import VidyoConnector from './VidyoConnector';
 import VidyoListeners from './VidyoListeners';
 
-const setVideoChatComponent = (Component) => {
+const setVideoChatComponent = Component => {
   window.VideoChatComponent = Component;
 };
 
-const handleDidLoadVidyoClient = (status) => {
+const handleDidLoadVidyoClient = status => {
   window.VideoChatComponent.handleDidLoadVidyoClient(status);
 };
 
@@ -80,7 +81,7 @@ class Vidyo extends Component {
   };
 
   // should live in hoc
-  connect = async (VC) => {
+  connect = async VC => {
     try {
       // create vidyoConnector
       this.vidyoConnector = await VidyoConnector.createVidyoConnector(VC, this);
@@ -102,7 +103,7 @@ class Vidyo extends Component {
   };
 
   // should live in hoc
-  handleDidLoadVidyoClient = (status) => {
+  handleDidLoadVidyoClient = status => {
     switch (status.state) {
       case 'READY': // The library is operating normally
         // After the VidyoClient is successfully initialized a global VC object will become available
@@ -141,12 +142,12 @@ class Vidyo extends Component {
     /* Connected */
     console.log('-----------------------Success');
   };
-  handleConnectionFailure = (reason) => {
+  handleConnectionFailure = reason => {
     /* Failed */
     console.log('-----------------------Failure: ', reason);
   };
 
-  handleConnectionDisconnect = (reason) => {
+  handleConnectionDisconnect = reason => {
     /* Disconnected */
     console.log('-----------------------Disconnect: ', reason);
   };
@@ -165,7 +166,7 @@ class Vidyo extends Component {
 
   // should live in hoc or more appropriate,maybe, in lib
   // device add handler
-  handleDidDeviceAdd = (device) => {
+  handleDidDeviceAdd = device => {
     switch (device.objType) {
       case 'VidyoLocalCamera':
         this.updateDeviceList('cameras', device);
@@ -218,29 +219,29 @@ class Vidyo extends Component {
   };
 
   // device remove handlers
-  handleDidCameraRemove = (localCamera) => {
+  handleDidCameraRemove = localCamera => {
     const cameras = this.state.cameras.slice();
     cameras.splice(window.btoa(localCamera.id));
     this.setState({ cameras });
   };
-  handleDidMicrophoneRemove = (localMicrophone) => {
+  handleDidMicrophoneRemove = localMicrophone => {
     const microphones = this.state.microphones.slice();
     microphones.splice(window.btoa(localMicrophone.id));
     this.setState({ microphones });
   };
-  handleDidSpeakerRemove = (localSpeaker) => {
+  handleDidSpeakerRemove = localSpeaker => {
     const speakers = this.state.speakers.slice();
     speakers.splice(window.btoa(localSpeaker.id));
     this.setState({ speakers });
   };
-  handleDidRemoteCameraRemove = (localRemoteCamera) => {
+  handleDidRemoteCameraRemove = localRemoteCamera => {
     const remoteCameras = this.state.remoteCameras.slice();
     remoteCameras.splice(window.btoa(localRemoteCamera.id));
     this.setState({ remoteCameras });
   };
 
   // device select handlers
-  handleDidCameraSelect = async (localCamera) => {
+  handleDidCameraSelect = async localCamera => {
     if (localCamera) {
       try {
         await this.vidyoConnector.AssignViewToLocalCamera({
@@ -262,7 +263,7 @@ class Vidyo extends Component {
     }
   };
 
-  handleDidMicrophoneSelect = async (localMicrophone) => {
+  handleDidMicrophoneSelect = async localMicrophone => {
     if (localMicrophone) {
       this.setState({
         selectedMicrophone: this.state.microphones[window.btoa(localMicrophone.id)]
@@ -270,7 +271,7 @@ class Vidyo extends Component {
     }
   };
 
-  handleDidSpeakerSelect = async (localSpeaker) => {
+  handleDidSpeakerSelect = async localSpeaker => {
     if (localSpeaker) {
       this.setState({
         selectedMicrophone: this.state.microphones[window.btoa(localSpeaker.id)]

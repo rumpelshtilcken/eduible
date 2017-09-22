@@ -5,31 +5,36 @@ import ProfileEditTab from './ProfileEditTab';
 import styles from './index.css';
 import PayOut from './PayOutTab';
 
-
 class ProfessionalProfileEdit extends Component {
-  state ={
+  state = {
     currentTab: 'ProfileEditTab'
-  }
+  };
 
-  links =
-  [{ label: 'Profile Edit', value: 'ProfileEditTab', className: 'link current' },
-    { label: 'Pay Out', value: 'PayOut', className: 'link' }];
+  links = [
+    { label: 'Profile Edit', value: 'ProfileEditTab', className: 'link current' },
+    { label: 'Pay Out', value: 'PayOut', className: 'link' }
+  ];
 
   changeTab = currentTab => this.setState({ currentTab });
 
   render() {
     return (
       <div className="component">
-
-        <TabBarMenu currentTab={this.state.currentTab} changeTab={this.changeTab} links={this.links} />
-        { this.state.currentTab === this.links[0].value ?
-          <ProfileEditTab user={this.props.user} handleSaveButtonPress={this.props.handleSaveButtonPress} images={this.props.images} />
-          :
+        <TabBarMenu
+          currentTab={this.state.currentTab}
+          changeTab={this.changeTab}
+          links={this.links}
+        />
+        {this.state.currentTab === this.links[0].value ? (
+          <ProfileEditTab
+            user={this.props.user}
+            handleSaveButtonPress={this.props.handleSaveButtonPress}
+            images={this.props.images}
+          />
+        ) : (
           <PayOut />
-        }
-        <style jsx>
-          {styles}
-        </style>
+        )}
+        <style jsx>{styles}</style>
       </div>
     );
   }

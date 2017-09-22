@@ -1,20 +1,16 @@
 import stylesheet from './index.css';
-
-const VideoBox = ({ setVideoViewId, devices, selectedDevices }) => {
+/* eslint-disable */
+const VideoBox = ({ setVideoViewId }) => {
   setVideoViewId({
     localCameraViewId: 'renderer0',
     remoteCameraViewId: 'renderer1'
   });
-  console.log(devices);
-  console.log(selectedDevices);
 
   return (
     <div>
       <div id="renderer0" className="cameraOutput" />
       <div id="renderer1" className="cameraOutput" />
-      <style jsx>
-        {stylesheet}
-      </style>
+      <style jsx>{stylesheet}</style>
     </div>
   );
 };

@@ -1,15 +1,16 @@
 {
+  "css.validate": false,
+  "editor.formatOnSave": false,
   "editor.insertSpaces": true,
   "editor.rulers": [80],
   "editor.tabSize": 2,
-  "editor.formatOnSave": true,
-
-  "eslint.enable": true,
   "eslint.autoFixOnSave": true,
-
+  "eslint.enable": true,
+  "extensions.autoUpdate": true,
   "files.autoSave": "onFocusChange",
-
   "javascript.validate.enable": false,
-  "vsicons.presets.angular": false,
-  "prettier.eslintIntegration": true
+  "prettier.eslintIntegration": true,
+  "scss.validate": false,
+  "stylelint.enable": true,
+  "vsicons.presets.angular": false
 }

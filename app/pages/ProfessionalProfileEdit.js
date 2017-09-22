@@ -1,11 +1,10 @@
-import { Component } from 'react';
-import ProfessionalProfileEditContainer from 'containers/ProfessionalProfileEditContainer';
 import { Layout } from 'components';
+import ProfessionalProfileEditContainer from 'containers/ProfessionalProfileEditContainer';
 
-class ProfessionalProfileEditPage extends Component {
-  render() {
-    return <ProfessionalProfileEditContainer />;
-  }
-}
+const ProfessionalProfileEditPage = () => (
+  <Layout>
+    <ProfessionalProfileEditContainer />
+  </Layout>
+);
 
 export default ProfessionalProfileEditPage;

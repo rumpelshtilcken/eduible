@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* 
   Register all listeners
 
@@ -6,7 +7,7 @@
     2. ListenerComponent - should contain appropriate handler
 */
 const VidyoListeners = {
-  registerWindowResizeListener: (onWindowResize) => {
+  registerWindowResizeListener: onWindowResize => {
     // Handle window resize
     window.onresize = () => {
       onWindowResize();

@@ -1,9 +1,9 @@
-import { Component } from 'react';
 import stylesheet from './index.css';
 
 const Price = () => (
   <div className="profileBox meeting">
-    <div className="half"><div className="boxTitle">Price</div>
+    <div className="half">
+      <div className="boxTitle">Price</div>
       <button className="boxEdit">
         <img className="boxEdit" src="/static/prof/edit.svg" alt="edit" />
       </button>
@@ -18,4 +18,3 @@ const Price = () => (
 );
 
 export default Price;
-

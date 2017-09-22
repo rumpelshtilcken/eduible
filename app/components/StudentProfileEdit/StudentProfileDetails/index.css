@@ -1,14 +1,16 @@
 .navigation {
   border-radius: 4px;
-  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15);
   padding-top: 1px;
   margin-bottom: 37px;
   display: block;
+
   @media screen and (min-width: 768px) {
     display: flex;
     flex-flow: row;
     margin-bottom: 25px;
   }
+
   @media screen and (min-width: 1440px) {
     display: block;
     width: 150px;
@@ -16,11 +18,13 @@
     margin-right: 20px;
   }
 }
+
 a {
   text-decoration: none;
   color: black;
   margin-right: 5px;
 }
+
 .univer {
   color: black;
   font-size: 11px;
@@ -29,21 +33,25 @@ a {
   margin-top: 13px;
   margin-bottom: 14px;
   text-decoration: none;
+
   @media screen and (min-width: 768px) {
     margin: auto;
     margin-top: 13px;
     margin-bottom: 13px;
   }
+
   @media screen and (min-width: 1440px) {
     margin: auto;
-  margin-left: 23px;
+    margin-left: 23px;
     margin-top: 13px;
     margin-bottom: 14px;
   }
 }
+
 .univer img {
   display: none;
 }
+
 .grades {
   color: black;
   font-size: 11px;
@@ -52,21 +60,25 @@ a {
   margin-top: 13px;
   margin-bottom: 14px;
   text-decoration: none;
+
   @media screen and (min-width: 768px) {
     margin: auto;
     margin-top: 13px;
     margin-bottom: 13px;
   }
+
   @media screen and (min-width: 1440px) {
     margin: auto;
-  margin-left: 23px;
+    margin-left: 23px;
     margin-top: 13px;
     margin-bottom: 14px;
   }
 }
+
 .grades img {
   display: none;
 }
+
 .conv {
   color: black;
   font-size: 11px;
@@ -75,105 +87,123 @@ a {
   margin-top: 13px;
   margin-bottom: 14px;
   text-decoration: none;
+
   @media screen and (min-width: 768px) {
     margin: auto;
     margin-top: 13px;
     margin-bottom: 13px;
   }
+
   @media screen and (min-width: 1440px) {
     margin: auto;
-  margin-left: 23px;
+    margin-left: 23px;
     margin-top: 13px;
     margin-bottom: 14px;
   }
 }
+
 .conv img {
   display: block;
 }
+
 .line {
   margin: 0 auto;
   margin-left: 5px;
   display: block;
   width: 99%;
+
   @media screen and (min-width: 768px) {
     display: none;
   }
+
   @media screen and (min-width: 1440px) {
     display: block;
   }
 }
+
 .conv {
   display: flex;
   flex-flow: row;
   color: #8045dd;
   margin: auto;
 }
+
 .conv a {
   margin-left: 0;
-   margin-top: 13px;
+  margin-top: 13px;
   margin-bottom: 14px;
 }
-.conv{
+
+.conv {
   margin-left: 23px;
   margin-right: 5px;
   color: #8045dd;
+
   @media screen and (min-width: 768px) {
     margin: auto;
-    margin-right:5px;
+    margin-right: 5px;
   }
+
   @media screen and (min-width: 1440px) {
-    margin-right:5px;
-    margin-left: 23px;
-    margin-bottom: 14px;
-    margin-top: 13px;
+    margin: 13px 5px 14px 23px;
   }
 }
+
 .conv img {
   margin-top: 17px;
   width: 5px;
   height: 5px;
+
   @media screen and (min-width: 768px) {
     margin-top: 4px;
   }
 }
+
 .firstConversation {
-  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0 0.15);
   border-radius: 4px;
   padding-bottom: 19px;
   margin-bottom: 10px;
   display: block;
+
   @media screen and (min-width: 768px) {
     display: flex;
     flex-flow: row;
   }
 }
+
 .secondConversation {
-  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   margin-bottom: 20px;
   padding-bottom: 19px;
   display: block;
+
   @media screen and (min-width: 768px) {
     display: flex;
     flex-flow: row;
   }
 }
+
 .history {
-  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   margin-bottom: 60px;
   padding-bottom: 19px;
   display: block;
+
   @media screen and (min-width: 768px) {
     display: flex;
     flex-flow: row;
     margin-bottom: 109px;
   }
 }
+
 .first {
   display: flex;
   flex-flow: row;
 }
+
 .first img {
   margin-left: 20px;
   margin-top: 25px;
@@ -181,6 +211,7 @@ a {
   height: 50px;
   margin-bottom: 20px;
 }
+
 .fullName {
   display: block;
   margin: auto;
@@ -189,36 +220,43 @@ a {
   margin-bottom: 28px;
   height: 35px;
 }
-.fullName p{
+
+.fullName p {
   font-size: 11px;
   margin: 0 auto;
   margin-bottom: 9px;
 }
+
 .second {
   display: flex;
   flex-flow: row;
-  @media screen and (min-width: 768px){
-  display: flex;
-  flex-flow: row;
-  width: 81%;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-flow: row;
+    width: 81%;
+  }
 }
-}
+
 .calendar {
   margin: auto;
   width: 67px;
   margin-left: 20px;
 }
+
 .calendar img {
   margin: auto;
   display: block;
   margin-bottom: 7px;
 }
-.calendar p{
+
+.calendar p {
   font-size: 11px;
   text-align: center;
   margin-bottom: 0;
   color: #383838;
 }
+
 .duration {
   margin: auto;
   width: 39px;
@@ -226,12 +264,14 @@ a {
   height: 50px;
   margin-right: 29px;
 }
+
 .duration img {
   margin: auto;
   display: block;
   margin-bottom: 7px;
 }
-.duration p{
+
+.duration p {
   color: #383838;
   font-size: 11px;
   text-align: center;
@@ -248,30 +288,36 @@ a {
   margin: auto;
   margin-right: 20px;
   margin-top: 5px;
+
   @media screen and (min-width: 768px) {
     margin-top: 37px;
   }
 }
+
 .confer p {
   font-size: 11px;
   color: #626262;
   margin-top: 0;
   margin-bottom: 10px;
 }
+
 .together {
   display: flex;
   flex-flow: row;
   width: 199px;
+
   @media screen and (min-width: 768px) {
     margin-top: 25px;
   }
 }
+
 .secondPart {
   @media screen and (min-width: 1440px) {
     display: flex;
     flex-flow: row;
   }
 }
+
 .confer {
   @media screen and (min-width: 1440px) {
     width: 1200px;

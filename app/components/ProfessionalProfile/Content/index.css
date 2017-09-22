@@ -1,17 +1,18 @@
-.bottom{
-    margin: auto;
-    margin-top: 240px;
-    @media screen and (min-width: 768px) {
+.bottom {
+  margin: auto;
+  margin-top: 240px;
+
+  @media screen and (min-width: 768px) {
     width: 730px;
     height: 255px;
     margin-top: 20px;
-   
-    }
-    @media screen and (min-width: 1024px) {
+  }
+
+  @media screen and (min-width: 1024px) {
     width: 955px;
     display: flex;
-     height: 169px;
-     margin-top: 23px;
-     margin-top: 20px;
-     }
+    height: 169px;
+    margin-top: 23px;
+    margin-top: 20px;
+  }
 }

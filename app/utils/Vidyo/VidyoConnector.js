@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
   VidyoConnector functions should call only on client side.
 
@@ -62,7 +63,7 @@ const VidyoConnector = {
 
   // VC - global Vidyo object, which generate
   // VidyoConnection establishing helper
-  createVidyoConnector: async (VC) => {
+  createVidyoConnector: async VC => {
     try {
       const vidyoConnector = await VC.CreateVidyoConnector({
         viewId: null,

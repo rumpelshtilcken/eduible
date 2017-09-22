@@ -1,12 +1,14 @@
-.search{
-  display:flex;
+.search {
+  display: flex;
   width: 96%;
-   margin:auto;
- @media screen and (min-width: 768px){
-   width: 710px;
+  margin: auto;
+
+  @media screen and (min-width: 768px) {
+    width: 710px;
   }
-    @media screen and (min-width: 1024px){
-   width: 920px;
+
+  @media screen and (min-width: 1024px) {
+    width: 920px;
   }
 }
 
@@ -17,38 +19,39 @@
   border: none;
   border-radius: 4px;
   box-sizing: border-box;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0 0.12);
   margin-bottom: 20px;
- 
 }
-.searchIcon{
+
+.searchIcon {
   z-index: 0;
   position: relative;
   top: +14px;
   right: +20px;
   width: 12px;
-  height: 12px; 
- @media screen and (min-width: 768px){
-   
-  }
+  height: 12px;
 }
+
 .searchBar::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: #afafaf;
   font-size: 11px;
 }
+
 .searchBar:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #afafaf;
   font-size: 11px;
   opacity: 1;
 }
+
 .searchBar::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #afafaf;
   font-size: 11px;
   opacity: 1;
 }
+
 .searchBar:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #afafaf;

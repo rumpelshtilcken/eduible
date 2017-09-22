@@ -10,7 +10,9 @@ const generateToken = ({ userName, expiresInSeconds }) => {
   const EPOCH_SECONDS = 62167219200;
   const expires = Math.floor(Date.now() / 1000) + expiresInSeconds + EPOCH_SECONDS;
 
+  /* eslint-disable new-cap */
   const shaObj = new jsSHA('SHA-384', 'TEXT');
+  /* eslint-enable new-cap */
 
   shaObj.setHMACKey(vidyoConfig.devKey, 'TEXT');
 
@@ -23,8 +25,8 @@ const generateToken = ({ userName, expiresInSeconds }) => {
   const token = btoa(serialized);
   return token;
 };
-// cHJvdmlzaW9uAGRlbW91c2VyX2UwZWE5N0A0OTZkMGYudmlkeW8uaW8ANjM2NzIwMTE1MjMAADJjMDQ4MTMyYTU3Yjc3OWE3YTgyMzk2MmZmNDZiNTg5OTYwY2U0YzUyNDY4NDY5MjVjODUyZGU2YWNhM2YzY2RlNzFkY2U0MmQ4NGMxYzU4ZjMwYjlhN2VjMWYwYzVkNw%3D%3D
 
+/* eslint-disable no-unused-vars */
 videochatRoute.post('/', (req, res, next) => {
   if (!req.body.userName || !req.body.expiresInSeconds) {
     return res.status(401).json({ message: 'You should pass username and expiresInSeconds' });
@@ -34,5 +36,6 @@ videochatRoute.post('/', (req, res, next) => {
   const token = generateToken({ userName, expiresInSeconds });
   return res.status(200).json({ vidyoToken: token });
 });
+/* eslint-enable no-unused-vars */
 
 export default videochatRoute;

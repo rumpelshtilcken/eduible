@@ -2,6 +2,13 @@
   "name": "eduible",
   "version": "0.0.0",
   "scripts": {
+    "lint:js": "eslint --fix .",
+    "lint:css": "stylelint \"./app/{pages,components}/**/*.css\"",
+    "lint": "npm-run-all --parallel lint:*",
+    "pretest": "npm run lint",
+    "commitmsg": "validate-commit-msg",
+    "precommit": "lint-staged",
+    "prepush": "npm test",
     "dev":
       "sequelize db:migrate && nodemon server/index.js --config .nodemonrc",
     "build":
@@ -15,6 +22,15 @@
   "engines": {
     "node": "8.2.1",
     "yarn": "0.27.5"
+  },
+  "config": {
+    "validate-commit-msg": {
+      "maxSubjectLength": 72,
+      "types": "conventional-commit-types"
+    }
+  },
+  "lint-staged": {
+    "{pages,components}/**/*.js": ["eslint --fix", "git add"]
   },
   "dependencies": {
     "babel-cli": "^6.26.0",

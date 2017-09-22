@@ -1,5 +1,4 @@
 import About from './About';
-import Price from './Price';
 import Calendar from './Calendar';
 import stylesheet from './index.css';
 

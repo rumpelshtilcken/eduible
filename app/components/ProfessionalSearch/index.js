@@ -36,7 +36,6 @@ class ProfessionalSearch extends Component {
 
   handleSort = (e) => {
     const value = e.target.value;
-    console.log(value);
     if (value === 'LOWEST PRICE') {
       this.setState({
         profs: this.state.profs.sort((a, b) => parseFloat(a.cost) - parseFloat(b.cost))
@@ -106,11 +105,9 @@ class ProfessionalSearch extends Component {
                       </div>
                       <div className="major">{item.major}</div>
                       <div className="about hidden">
-                        {item.about.length > 100 ? (
-                          `${item.about.substring(0, 100)}...`
-                        ) : (
-                          item.about
-                        )}
+                        {item.about.length > 100
+                          ? `${item.about.substring(0, 100)}...`
+                          : item.about}
                       </div>
                     </div>
                   </div>

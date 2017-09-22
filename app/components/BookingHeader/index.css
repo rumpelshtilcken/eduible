@@ -8,7 +8,7 @@
 
 .container p {
   color: var(--white);
-  font-family: 'Effra';
+  font-family: "Effra";
   text-align: center;
 }
 
@@ -28,6 +28,7 @@
 .hideElement {
   visibility: hidden;
   position: absolute;
+
   @media (min-width: 768px) {
     visibility: visible;
     position: relative;

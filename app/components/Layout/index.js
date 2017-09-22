@@ -7,28 +7,28 @@ import stylesheet from './index.css';
 
 class Layout extends Component {
   headerLinks = [
-    { label: 'menu1', link: '#' },
-    { label: 'menu2', link: '#' },
-    { label: 'menu3', link: '#' },
-    { label: 'menu4', link: '#' }
+    { label: 'menu1', link: '/' },
+    { label: 'menu2', link: '/' },
+    { label: 'menu3', link: '/' },
+    { label: 'menu4', link: '/' }
   ];
   footerLinks = [
-    { title: 'ABOUT', label1: 'How It Works', link1: '#', label2: 'Succsess Stories', link2: '#' },
+    { title: 'ABOUT', label1: 'How It Works', url: '#', label2: 'Succsess Stories', link2: '#' },
     {
       title: 'PROFESSIONALS',
       label1: 'Join As Professional',
-      link1: '#',
+      url: '/',
       label2: 'Search For Professional',
-      link2: '#'
+      link2: '/'
     },
     {
       title: 'UNIVERSITIES',
       label1: 'Create Account',
-      link1: '#',
+      url: '/',
       label2: 'Search University',
-      link2: '#'
+      link2: '/'
     },
-    { title: 'ANSWERS', label1: "FAQ's", link1: '#', label2: 'Privacy Policy', link2: '#' }
+    { title: 'ANSWERS', label1: "FAQ's", url: '/', label2: 'Privacy Policy', link2: '/' }
   ];
 
   render() {
@@ -43,9 +43,9 @@ class Layout extends Component {
           <link href="static/Fonts/Effra" rel="stylesheet" />
         </Head>
 
-        <Header headerLinks={this.headerLinks} />
+        <Header links={this.headerLinks} />
         {children}
-        <Footer footerLinks={this.footerLinks} copyright={'COPYRIGHT (C) 2017'} />
+        <Footer urlsMenu={this.footerLinks} copyright={'COPYRIGHT (C) 2017'} />
 
         <style jsx global>
           {stylesheet}

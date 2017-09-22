@@ -1,7 +1,7 @@
 import { VideoBox, ProfileBox, ChatBox } from './VChat';
-import PropTypes from 'prop-types';
 
-const VideoChat = ({ user, setVideoViewId, devices, selectedDevices, sendMessageTest }) => (
+/* eslint-disable */
+const VideoChat = ({ user, setVideoViewId, sendMessageTest }) => (
   <div>
     <VideoBox setVideoViewId={setVideoViewId} devices={devices} selectedDevices={selectedDevices} />
     <ProfileBox user={user} />
