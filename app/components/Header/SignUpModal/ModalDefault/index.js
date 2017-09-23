@@ -1,14 +1,105 @@
-import React from 'react';
+import { Component } from 'react';
+import { WebAuth } from 'auth0-js';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+
+import { domain, clientId } from 'config';
+
 import style from './index.css';
 
-class ModalDefault extends React.Component {
+class ModalDefault extends Component {
+  state = {
+    fullname: '',
+    date: '',
+    email: '',
+    password: ''
+  };
+
+  componentDidMount() {
+    // TODO: add meaningfull redirect
+    this.auth = new WebAuth({
+      domain,
+      clientID: clientId,
+      redirectUri: 'localhost:3000/studentProfile',
+      responseType: 'token'
+    });
+  }
+
+  inpt = [
+    {
+      title: 'FIRST AND LAST NAME',
+      input: {
+        type: 'string',
+        name: 'fullname',
+        className: 'input',
+        hintText: this.state.fullname
+      }
+    },
+    {
+      title: 'DATE OF BIRTH',
+      input: {
+        type: 'date',
+        name: 'date',
+        className: 'input',
+        hintText: this.state.date
+      }
+    },
+    {
+      title: 'EMAIL',
+      input: {
+        type: 'string',
+        name: 'email',
+        className: 'input',
+        hintText: this.state.email
+      }
+    },
+    {
+      title: 'PASSWORD',
+      input: {
+        type: 'string',
+        name: 'password',
+        className: 'input',
+        hintText: this.state.password
+      }
+    }
+  ];
+
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
+  handleSignUpClick = () => {
+    this.signUpUser();
+  };
+
+  /* Sign up */
+  signUpUser = async () => {
+    try {
+      const result = await this.auth.signup({
+        connection: 'Username-Password-Authentication',
+        email: this.state.email,
+        password: this.state.password
+      }, (err) => {
+        if (err) return console.log('Error:|| ', err);
+
+        return console.log('success signup without login!');
+      });
+
+      console.log('Result: ', result);
+    } catch (error) {
+      console.log('Error catch: ', error);
+    }
+  }
+
   renderInput = x => (
     <div className={x.input.name}>
       <TextField
+        key={x.input.name}
+        onChange={this.handleChange}
+        value={x.input.value}
         type={x.input.type}
         name={x.input.name}
         floatingLabelText={x.title}
@@ -33,14 +124,14 @@ class ModalDefault extends React.Component {
         <div className="container">
           <p className="sign">JOIN AS PROFESSIONAL</p>
           <div className="container-div">
-            {inpt.map(this.renderInput)}
+            {this.inpt.map(this.renderInput)}
 
             <RaisedButton
               label="Continue"
               className="continuebtn-div"
               buttonStyle={{ backgroundColor: '#7262BF', fullWidth: true }}
               labelStyle={{ color: 'white', fontSize: '11px' }}
-              onClick={this.props.onOpenModal}
+              onClick={this.handleSignUpClick}
             />
             <div className="linkedinbtn-div" >
               <p>OR SIGN UP USING</p>
@@ -89,45 +180,6 @@ const floatingLabelStyle = {
   fontSize: '12px',
   color: '#626262'
 };
-
-const inpt = [
-  {
-    title: 'FIRST AND LAST NAME',
-    input: {
-      type: 'string',
-      name: 'fullname',
-      className: 'input',
-      hintText: 'John Smith'
-    }
-  },
-  {
-    title: 'DATE OF BIRTH',
-    input: {
-      type: 'string',
-      name: 'date',
-      className: 'input',
-      hintText: '13/11/1992'
-    }
-  },
-  {
-    title: 'EMAIL',
-    input: {
-      type: 'string',
-      name: 'email',
-      className: 'input',
-      hintText: 'example@email.com'
-    }
-  },
-  {
-    title: 'PASSWORD',
-    input: {
-      type: 'string',
-      name: 'email',
-      className: 'input',
-      hintText: 'at least six characters'
-    }
-  }
-];
 
 ModalDefault.propTypes = {
   isOpen: PropTypes.bool.isRequired,
