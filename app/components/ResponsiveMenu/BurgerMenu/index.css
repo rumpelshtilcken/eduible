@@ -1,0 +1,35 @@
+.burgerMenuContainer {
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  width: 20px;
+  height: 3.91px;
+  border-radius: 5px;
+  background-color: var(--white);
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+/* Rotate first bar */
+.bar1CloseState {
+  -webkit-transform: rotate(-45deg) translate(-6px, 5px);
+  transform: rotate(-45deg) translate(-6px, 5px);
+}
+
+/* Fade out the second bar */
+.bar2CloseState {
+  opacity: 0;
+}
+
+/* Rotate last bar */
+.bar3CloseState {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
