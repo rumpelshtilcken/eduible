@@ -1,6 +1,8 @@
 import { ApolloClient, createNetworkInterface } from 'react-apollo';
 import fetch from 'isomorphic-fetch';
 
+import { apiUrl } from 'config';
+
 let apolloClient = null;
 
 // Polyfill fetch() on the server (used by apollo-client)
@@ -12,7 +14,7 @@ function create() {
   return new ApolloClient({
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     networkInterface: createNetworkInterface({
-      uri: 'http://localhost:3000/graphql', // Server URL (must be absolute)
+      uri: apiUrl, // Server URL (must be absolute)
       opts: { // Additional fetch() options like `credentials` or `headers`
         credentials: 'same-origin'
       }
