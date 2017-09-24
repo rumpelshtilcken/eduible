@@ -1,7 +1,8 @@
 /* eslint-disable */
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import reduxThunk from 'redux-thunk';
 
-import reducers from 'data/reducers';
+import reducers from 'reducers';
 
 let reduxStore = null;
 
@@ -20,7 +21,7 @@ function create(apollo, initialState = {}) {
     }),
     initialState, // Hydrate the store with server-side data
     compose(
-      applyMiddleware(apollo.middleware()), // Add additional middleware here
+      applyMiddleware(apollo.middleware(), reduxThunk), // Add additional middleware here
       devtools
     )
   );
