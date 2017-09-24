@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import stylesheet from './index.css';
 
-const BurgerMenu = ({ onClick, isCloseState }) => (
+const MobileBurgerMenu = ({ onClick, isCloseState }) => (
   <button
     onClick={onClick}
     className={'burgerMenuContainer'}
@@ -24,9 +24,9 @@ const BurgerMenu = ({ onClick, isCloseState }) => (
   </button>
 );
 
-BurgerMenu.propTypes = {
+MobileBurgerMenu.propTypes = {
   onClick: PropTypes.func.isRequired,
   isCloseState: PropTypes.bool.isRequired
 };
 
-export default BurgerMenu;
+export default MobileBurgerMenu;
