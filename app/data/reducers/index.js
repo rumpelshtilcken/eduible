@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import modalReducer from './modalReducer';
 
 const EMAIL_CHANGED = 'EMAIL_CHANGED';
 
@@ -15,4 +15,4 @@ const example = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default combineReducers({ auth: example });
+export default { auth: example, modal: modalReducer };
