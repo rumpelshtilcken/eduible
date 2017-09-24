@@ -1,0 +1,33 @@
+.mobileMenuContainer {
+  margin-right: 18px;
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: column-reverse;
+  position: absolute;
+  top: +43px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    position: relative;
+    top: 0;
+  }
+}
+
+.hideLinks {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.linkContainer {
+  margin-right: 18px;
+}
+
+.button {
+  color: var(--white);
+  outline: none;
+}
