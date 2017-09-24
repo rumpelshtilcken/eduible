@@ -7,14 +7,12 @@ import { ResponsiveMenu } from 'components';
 import stylesSheet from './index.css';
 
 class PageHeader extends Component {
-  state = {
-    isModalOpen: false,
-    isProfessionalOpen: false
-  };
+  handleLoginButtonClick = () =>
+    this.props.onOpenModal({ modalType: 'SIGN_IN' });;
 
-  handleLoginButtonClick = () => {};
   handleSignUpProfessionalClick = () =>
     this.props.onOpenModal({ modalType: 'SIGN_UP_PROFESSIONALS' });
+
   handleSignUpButtonClik = () =>
     this.props.onOpenModal({ modalType: 'SIGN_UP_STUDENTS' });
 
@@ -24,14 +22,7 @@ class PageHeader extends Component {
     { title: 'Login', onClick: this.handleLoginButtonClick }
   ];
 
-  handleRequestClose = () =>
-    this.setState({
-      isModalOpen: false,
-      isProfessionalOpen: false
-    });
-
   render() {
-    /* eslint-disable */
     return (
       <MuiThemeProvider>
         <div>
@@ -39,10 +30,10 @@ class PageHeader extends Component {
             <div className="logo">
               <img src={'static/Icons/logoColored.svg'} alt={'logo'} />
             </div>
-            <ResponsiveMenu buttons={this.headerButtons}/>
+            <ResponsiveMenu buttons={this.headerButtons} />
           </div>
 
-        <style jsx>{stylesSheet}</style>
+          <style jsx>{stylesSheet}</style>
         </div>
       </MuiThemeProvider>
     );
@@ -50,7 +41,6 @@ class PageHeader extends Component {
 }
 
 PageHeader.propTypes = {
-  links: PropTypes.arrayOf(PropTypes.string).isRequired,
   onOpenModal: PropTypes.func
 };
 
