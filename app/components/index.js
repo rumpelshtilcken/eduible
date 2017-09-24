@@ -24,7 +24,6 @@ import RoundedButton from './RoundedButton';
 import SearchTextInput from './SearchTextInput';
 import SearchUniversity from './SearchUniversity';
 import SelectDropdown from './SelectDropdown';
-import Session from './Session';
 import SideMoreLayout from './SideMoreLayout';
 import SignIn from './SignIn';
 import SignUpProfessional from './SignUpProfessional';
@@ -63,7 +62,6 @@ export {
   SearchTextInput,
   SearchUniversity,
   SelectDropdown,
-  Session,
   SideMoreLayout,
   SignIn,
   SignUpProfessional,
