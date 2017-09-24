@@ -1,4 +1,4 @@
-import { SHOW_MODAL, HIDE_MODAL } from '../types';
+import { SHOW_MODAL, HIDE_MODAL } from 'types/types';
 
 const initialState = {
   modalType: '',
