@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 
 import { ResponsiveMenu } from 'components';
 
-import SignUpModal from './SignUpModal';
-import ProfessionalModal from './ProfessionalModal';
 import stylesSheet from './index.css';
 
 class PageHeader extends Component {
@@ -15,8 +13,10 @@ class PageHeader extends Component {
   };
 
   handleLoginButtonClick = () => {};
-  handleSignUpProfessionalClick = () => this.setState({ isProfessionalOpen: true });
-  handleSignUpButtonClik = () => this.setState({ isModalOpen: true });
+  handleSignUpProfessionalClick = () =>
+    this.props.onOpenModal({ modalType: 'SIGN_UP_PROFESSIONALS' });
+  handleSignUpButtonClik = () =>
+    this.props.onOpenModal({ modalType: 'SIGN_UP_STUDENTS' });
 
   headerButtons = [
     { title: 'Join as professional', onClick: this.handleSignUpProfessionalClick },
@@ -42,14 +42,6 @@ class PageHeader extends Component {
             <ResponsiveMenu buttons={this.headerButtons}/>
           </div>
 
-          <SignUpModal
-            isModalOpen={this.state.isModalOpen}
-            onRequestClose={this.handleRequestClose}
-          />
-          <ProfessionalModal
-            isOpen={this.state.isProfessionalOpen}
-            onRequestClose={this.handleRequestClose}
-          />
         <style jsx>{stylesSheet}</style>
         </div>
       </MuiThemeProvider>
@@ -58,7 +50,8 @@ class PageHeader extends Component {
 }
 
 PageHeader.propTypes = {
-  links: PropTypes.arrayOf(PropTypes.string).isRequired
+  links: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onOpenModal: PropTypes.func
 };
 
 export default PageHeader;
