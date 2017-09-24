@@ -5,21 +5,28 @@ import { SignIn } from 'components';
 import getWebAuth from 'lib/getWebAuth';
 
 class SignInContainer extends Component {
+  componentWillMount() {
+    this.initAuth();
+  }
+
+  initAuth = async () => {
+    this.webAuth = await getWebAuth();
+  };
+
   handleContinueButtonClick = async ({ email, password }) => {
     try {
-      const webAuth = await getWebAuth();
-      console.log(email, password);
-      webAuth.client.login({
-
+      this.webAuth.client.login({
+        realm: 'Username-Password-Authentication',
         username: email,
         password,
         scope: 'openid profile',
         audience: 'urn:test'
       }, (err, authResult) => {
-        // Auth tokens in the result or an error
         if (err) return console.log('Error: ', err);
         // TODO: save to graphcool
+        // authResult.accessToken;
         console.log('AuthResult: ', authResult);
+        console.log('AuthResult: ', authResult.accessToken);
       });
     } catch (err) {
       console.log('Catch handler: ', err);
@@ -28,10 +35,12 @@ class SignInContainer extends Component {
 
   handleFacebookButtonClick = () => {
     // TODO: facebook login
+    this.webAuth.authorize({ connection: 'facebook' });
   };
 
   handleGoogleButtonClick = () => {
     // TODO: google login
+    this.webAuth.authorize({ connection: 'google' });
   };
 
   render() {
