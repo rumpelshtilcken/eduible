@@ -2,16 +2,11 @@ import { Component } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 
-import { Header, Footer } from 'components';
+import { Footer } from 'components';
+import PageHeaderContainer from 'containers/PageHeaderContainer';
 import stylesheet from './index.css';
 
 class Layout extends Component {
-  headerLinks = [
-    { label: 'menu1', link: '/' },
-    { label: 'menu2', link: '/' },
-    { label: 'menu3', link: '/' },
-    { label: 'menu4', link: '/' }
-  ];
   footerLinks = [
     { title: 'ABOUT', label1: 'How It Works', url: '#', label2: 'Succsess Stories', link2: '#' },
     {
@@ -43,7 +38,7 @@ class Layout extends Component {
           <link href="static/Fonts/Effra" rel="stylesheet" />
         </Head>
 
-        <Header links={this.headerLinks} />
+        <PageHeaderContainer links={this.headerLinks} />
         {children}
         <Footer urlsMenu={this.footerLinks} copyright={'COPYRIGHT (C) 2017'} />
 

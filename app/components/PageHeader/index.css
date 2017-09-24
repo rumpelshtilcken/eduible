@@ -1,0 +1,20 @@
+:root {
+  --font: Effra;
+  --boxHeight: 28.21px;
+  --boxWidth: 184px;
+}
+
+.headerContainer {
+  height: 48px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #8d55e6, #ae8ee0);
+  flex-direction: row;
+}
+
+.logo {
+  margin: auto;
+  margin-left: 16px;
+}
