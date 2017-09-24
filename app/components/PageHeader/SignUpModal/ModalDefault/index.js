@@ -78,19 +78,18 @@ class ModalDefault extends Component {
   /* Sign up */
   signUpUser = async () => {
     try {
+      // TODO: add meaningfull flow
       const result = await this.auth.signup({
         connection: 'Username-Password-Authentication',
         email: this.state.email,
         password: this.state.password
       }, (err) => {
-        if (err) return console.log('Error:|| ', err);
+        if (err) return err;
 
-        return console.log('success signup without login!');
+        return result;
       });
-
-      console.log('Result: ', result);
     } catch (error) {
-      console.log('Error catch: ', error);
+      return error;
     }
   }
 
@@ -183,8 +182,7 @@ const floatingLabelStyle = {
 
 ModalDefault.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  onRequestClose: PropTypes.func.isRequired,
-  onOpenModal: PropTypes.func.isRequired
+  onRequestClose: PropTypes.func.isRequired
 };
 
 export default ModalDefault;

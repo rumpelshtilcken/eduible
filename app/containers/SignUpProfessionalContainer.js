@@ -4,6 +4,7 @@ import { SignUpProfessional } from 'components';
 import getWebAuth from 'lib/getWebAuth';
 
 class SignUpProfessionalContainer extends Component {
+  /* eslint-disable no-unused-vars */
   handleContinueButtonClick = async ({
     fullname,
     date,
@@ -12,6 +13,7 @@ class SignUpProfessionalContainer extends Component {
     country,
     zipCode
   }) => {
+    /* eslint-enable no-unused-vars */
     try {
       const webAuth = await getWebAuth();
       const result = await webAuth.signup({

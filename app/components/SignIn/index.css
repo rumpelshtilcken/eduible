@@ -39,8 +39,7 @@
 
 .formContainer {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   height: 485px;
   width: 255px;
 
