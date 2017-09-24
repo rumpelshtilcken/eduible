@@ -26,6 +26,8 @@ import SearchUniversity from './SearchUniversity';
 import SelectDropdown from './SelectDropdown';
 import Session from './Session';
 import SideMoreLayout from './SideMoreLayout';
+import SignIn from './SignIn';
+import SignUpProfessional from './SignUpProfessional';
 import StudentProfile from './StudentProfile';
 import StudentProfileCard from './StudentProfileCard';
 import StudentProfileEdit from './StudentProfileEdit';
@@ -63,6 +65,8 @@ export {
   SelectDropdown,
   Session,
   SideMoreLayout,
+  SignIn,
+  SignUpProfessional,
   StudentProfile,
   StudentProfileCard,
   StudentProfileEdit,
