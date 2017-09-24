@@ -1,10 +1,15 @@
-import Layout from '../components/Layout';
+import Head from 'next/head';
+
+import withPage from 'hoc/withPage';
 import ProfessionalSearchContainer from '../containers/ProfessionalSearchContainer';
 
 const ProfessionalSearchPage = () => (
-  <Layout>
+  <div>
+    <Head>
+      <title>{'Professional search'}</title>
+    </Head>
     <ProfessionalSearchContainer />
-  </Layout>
+  </div>
 );
 
-export default ProfessionalSearchPage;
+export default withPage(ProfessionalSearchPage);

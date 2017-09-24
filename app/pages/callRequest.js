@@ -1,6 +1,7 @@
 import { Component } from 'react';
+import Head from 'next/head';
 
-import { Layout } from 'components';
+import withPage from 'hoc/withPage';
 import CallRequestContainer from 'containers/CallRequestContainer';
 
 class callRequest extends Component {
@@ -10,11 +11,15 @@ class callRequest extends Component {
 
   render() {
     return (
-      <Layout>
+      <div>
+        <Head>
+          <title>{'Call request'}</title>
+        </Head>
         <CallRequestContainer onBackButtonClick={this.handleBackButtonClick} />
-      </Layout>
+      </div>
     );
   }
 }
 
-export default callRequest;
+export default withPage(callRequest);
+

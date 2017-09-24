@@ -1,6 +1,7 @@
 import { Component } from 'react';
+import Head from 'next/head';
 
-import { Layout } from 'components';
+import withPage from 'hoc/withPage';
 import PaymentDetailsContainer from 'containers/PaymentDetailsContainer';
 
 class paymentDetails extends Component {
@@ -8,11 +9,14 @@ class paymentDetails extends Component {
 
   render() {
     return (
-      <Layout>
+      <div>
+        <Head>
+          <title>{'Payment details'}</title>
+        </Head>
         <PaymentDetailsContainer onBackButtonClick={this.handleBackButtonClick} />
-      </Layout>
+      </div>
     );
   }
 }
 
-export default paymentDetails;
+export default withPage(paymentDetails);

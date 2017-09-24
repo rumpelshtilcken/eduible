@@ -1,10 +1,15 @@
-import { Layout } from 'components';
+import Head from 'next/head';
+
+import withPage from 'hoc/withPage';
 import ProfessionalProfileEditContainer from 'containers/ProfessionalProfileEditContainer';
 
 const ProfessionalProfileEditPage = () => (
-  <Layout>
+  <div>
+    <Head>
+      <title>{'Profile edit'}</title>
+    </Head>
     <ProfessionalProfileEditContainer />
-  </Layout>
+  </div>
 );
 
-export default ProfessionalProfileEditPage;
+export default withPage(ProfessionalProfileEditPage);
