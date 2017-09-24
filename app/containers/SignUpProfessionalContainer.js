@@ -4,6 +4,14 @@ import { SignUpProfessional } from 'components';
 import getWebAuth from 'lib/getWebAuth';
 
 class SignUpProfessionalContainer extends Component {
+  componentWillMount() {
+    this.initWebAuth();
+  }
+
+  initWebAuth = async () => {
+    this.webAuth = await getWebAuth();
+  };
+
   /* eslint-disable no-unused-vars */
   handleContinueButtonClick = async ({
     fullname,
@@ -15,24 +23,32 @@ class SignUpProfessionalContainer extends Component {
   }) => {
     /* eslint-enable no-unused-vars */
     try {
-      const webAuth = await getWebAuth();
-      const result = await webAuth.signup({
+      await this.webAuth.signup({
         connection: 'Username-Password-Authentication',
         email,
         password
       }, (err) => {
         if (err) return console.log('Error:|| ', err);
-
-        // TODO: save data to graphcool
-        return console.log('success signup without login!');
+        this.signIn({ email, password });
       });
-
-      console.log('Result: ', result);
-      console.log('Result: ', result.response);
-      console.log('Result: ', result.json());
     } catch (error) {
       console.log('Error catch: ', error);
     }
+  };
+
+  signIn = ({ email, password }) => {
+    this.webAuth.client.login({
+      realm: 'Username-Password-Authentication',
+      username: email,
+      password,
+      scope: 'openid profile' },
+    (err, authResult) => {
+      if (err) return console.log('Error: ', err);
+      // authResult.accessToken;
+      // TODO: save data to graphcool
+      console.log('AuthResult: ', authResult);
+      console.log('AuthResult: ', authResult.accessToken);
+    });
   };
 
   handleLinkedinButtonClick = () => {
