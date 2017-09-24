@@ -1,36 +1,13 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { SignIn } from 'components';
-
-import getWebAuth from 'lib/getWebAuth';
+import * as actions from 'actions/auth';
+import { connect } from 'react-redux';
 
 class SignInContainer extends Component {
-  componentWillMount() {
-    this.initAuth();
-  }
-
-  initAuth = async () => {
-    this.webAuth = await getWebAuth();
-  };
-
   handleContinueButtonClick = async ({ email, password }) => {
-    try {
-      this.webAuth.client.login({
-        realm: 'Username-Password-Authentication',
-        username: email,
-        password,
-        scope: 'openid profile',
-        audience: 'urn:test'
-      }, (err, authResult) => {
-        if (err) return console.log('Error: ', err);
-        // TODO: save to graphcool
-        // authResult.accessToken;
-        console.log('AuthResult: ', authResult);
-        console.log('AuthResult: ', authResult.accessToken);
-      });
-    } catch (err) {
-      console.log('Catch handler: ', err);
-    }
+    this.props.signinUser({ email, password }, () => console.log('Success'));
   };
 
   handleFacebookButtonClick = () => {
@@ -55,4 +32,18 @@ class SignInContainer extends Component {
   }
 }
 
-export default SignInContainer;
+SignInContainer.propTypes = {
+  signinUser: PropTypes.func
+};
+
+const mapStateToProps = (state) => {
+  const { error, timestamp, forgotMsg, loading } = state.auth;
+  return {
+    error,
+    timestamp,
+    forgotMsg,
+    loading
+  };
+};
+
+export default connect(mapStateToProps, actions)(SignInContainer);
