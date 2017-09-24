@@ -1,0 +1,75 @@
+.SignInModal {
+  background: rgb(255, 255, 255);
+  border-radius: 20px;
+  border: 1px solid rgb(204, 204, 204);
+  margin: auto;
+  max-height: 500px;
+  max-width: 410px;
+  min-height: 310px;
+  min-width: 255px;
+  outline: none;
+  overflow: auto;
+  padding: 0;
+}
+
+.OverlayModal {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.signInContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 20px 30px;
+}
+
+.titleContainer {
+  font-size: 20px;
+  color: #4e4e4e;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 485px;
+  width: 255px;
+
+  @media screen and (min-width: 768px) {
+    height: 310px;
+    width: 400px;
+  }
+}
+
+.formInputsContainer {
+  order: 1;
+  min-width: 184px;
+  max-width: 192px;
+}
+
+.socialButtonsTitle {
+  color: #626262;
+  font-weight: 600;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.continueButtonContainer {
+  order: 2;
+  width: 100%;
+}
+
+.additionalButtonsContainer {
+  order: 3;
+  display: flex;
+  flex-direction: column;
+}
