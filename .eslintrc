@@ -6,6 +6,9 @@
       "babel-module": {}
     }
   },
+  "env": {
+    "browser": true
+  },
   "rules": {
     "react/jsx-filename-extension": "off",
     "react/react-in-jsx-scope": "off",
