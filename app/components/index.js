@@ -9,7 +9,6 @@ import Layout from './Layout';
 import Link from './Link';
 import Main from './Main';
 import Menu from './Menu';
-import Page from './Page';
 import PageHeader from './PageHeader';
 import PaymentDetails from './PaymentDetails';
 import ProfessionalProfile from './ProfessionalProfile';
@@ -47,7 +46,6 @@ export {
   Link,
   Main,
   Menu,
-  Page,
   PageHeader,
   PaymentDetails,
   ProfessionalProfile,
