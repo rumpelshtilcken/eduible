@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { hoistStatics } from 'recompact';
 
 import { Footer, Layout } from 'components';
+import ModalRootContainer from 'containers/ModalRootContainer';
 import PageHeaderContainer from 'containers/PageHeaderContainer';
 import getDisplayName from 'utils/getDisplayName';
 
@@ -36,6 +37,7 @@ const withLayout = hoistStatics((CompositeComponent) => {
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             <link href="static/Fonts/Effra" rel="stylesheet" />
           </Head>
+          <ModalRootContainer />
           <PageHeaderContainer />
           <CompositeComponent {...this.props} />
           <Footer urlsMenu={this.footerLinks} copyright={'COPYRIGHT (C) 2017'} />
