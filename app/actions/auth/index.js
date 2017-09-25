@@ -1,8 +1,3 @@
-import fetch from 'isomorphic-unfetch';
-
-import { auth0Config } from 'config';
-import { getAccessToken } from 'utils/auth';
-
 import {
   AUTH_USER,
   AUTH_IN_PROGRESS,
