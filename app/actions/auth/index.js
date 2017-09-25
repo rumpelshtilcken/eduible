@@ -19,29 +19,7 @@ export const signinUser = ({ email, password }, callback) => (dispatch) => {
   dispatch({ type: AUTH_IN_PROGRESS });
 
   auth.signin(email, password, callback)
-    .then(() => {
-      const auth0AccessToken = getAccessToken();
-
-      fetch(`${auth0Config.apiUrl}/getOriginAccessToken`, {
-        headers: {
-          Authorization: `Bearer ${auth0AccessToken}`
-        }
-      })
-        .then((res) => {
-          const { success, originAccessToken } = res.data;
-
-          if (success === 'true') {
-            localStorage.setItem('origin_access_token', originAccessToken);
-            dispatch({ type: AUTH_USER });
-            return callback();
-          }
-          return dispatch(authError('Error fetching Origin Access Token'));
-        })
-        .catch((error) => {
-          const errorMsg = error.description || error.message || 'Unspecified error';
-          return dispatch(authError(errorMsg));
-        });
-    })
+    .then(() => dispatch({ type: AUTH_USER }))
     .catch((error) => {
       const errorMsg = error.description || error.message || 'Unspecified error';
       return dispatch(authError(errorMsg));
