@@ -1,17 +1,11 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { SignUpProfessional } from 'components';
-import getWebAuth from 'lib/getWebAuth';
+import * as actions from 'actions/auth';
+import { connect } from 'react-redux';
 
 class SignUpProfessionalContainer extends Component {
-  componentWillMount() {
-    this.initWebAuth();
-  }
-
-  initWebAuth = async () => {
-    this.webAuth = await getWebAuth();
-  };
-
   /* eslint-disable no-unused-vars */
   handleContinueButtonClick = async ({
     fullname,
@@ -22,40 +16,15 @@ class SignUpProfessionalContainer extends Component {
     zipCode
   }) => {
     /* eslint-enable no-unused-vars */
-    try {
-      await this.webAuth.signup({
-        connection: 'Username-Password-Authentication',
-        email,
-        password
-      }, (err) => {
-        if (err) return console.log('Error:|| ', err);
-        this.signIn({ email, password });
-      });
-    } catch (error) {
-      console.log('Error catch: ', error);
-    }
+    this.props.signupUser({
+      email,
+      password
+    }, () =>
+      this.props.signinUser({ email, password })
+    );
   };
 
-  signIn = ({ email, password }) => {
-    this.webAuth.client.login({
-      realm: 'Username-Password-Authentication',
-      username: email,
-      password,
-      scope: 'openid profile' },
-    (err, authResult) => {
-      if (err) return console.log('Error: ', err);
-      // authResult.accessToken;
-      // TODO: save data to graphcool
-      console.log('AuthResult: ', authResult);
-      console.log('AuthResult: ', authResult.accessToken);
-    });
-  };
-
-  handleLinkedinButtonClick = () => {
-    getWebAuth().authorize({
-      connection: 'linkedin'
-    });
-  };
+  handleLinkedinButtonClick = () => {};
 
   handleLoginButtonClick = () => {
     // TODO: open Login modal
@@ -73,4 +42,20 @@ class SignUpProfessionalContainer extends Component {
   }
 }
 
-export default SignUpProfessionalContainer;
+SignUpProfessionalContainer.propTypes = {
+  signinUser: PropTypes.func,
+  signupUser: PropTypes.func
+};
+
+const mapStateToProps = (state) => {
+  const { error, timestamp, forgotMsg, loading } = state.auth;
+  return {
+    error,
+    timestamp,
+    forgotMsg,
+    loading
+  };
+};
+
+export default connect(mapStateToProps, actions)(SignUpProfessionalContainer);
+
