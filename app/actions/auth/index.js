@@ -26,6 +26,16 @@ export const signinUser = ({ email, password }, callback) => (dispatch) => {
     });
 };
 
+export const signupUser = ({ email, password }, callback) => (dispatch) => {
+  dispatch({ type: AUTH_IN_PROGRESS });
+
+  auth.signup(email, password, callback)
+    .catch((error) => {
+      const errorMsg = error.description || error.message || 'Unspecified error';
+      return dispatch(authError(errorMsg));
+    });
+};
+
 export const authError = (error) => {
   const timestamp = Date.now();
   return {

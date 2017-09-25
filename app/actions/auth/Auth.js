@@ -18,24 +18,33 @@ export default class Auth {
     this.isAuthenticated = this.isAuthenticated.bind(this);
   }
 
-  signin(username, password) {
-    return new Promise((resolve, reject) => {
-      this.auth0.client.login(
-        { realm: auth0Config.realm, username, password },
-        (err, authResult) => {
-          if (err) {
-            console.log(err);
-            return reject(err);
-          }
-          console.log(authResult);
-          this.setSession(authResult);
-          return resolve();
-        }
-      );
+  signup = (username, password) => new Promise((resolve, reject) => {
+    this.auth0.signup({
+      connection: 'Username-Password-Authentication',
+      email: username,
+      password
+    }, (err) => {
+      if (err) return reject(err);
+      return resolve();
     });
-  }
+  });
 
-  signout() {
+  signin = (username, password) => new Promise((resolve, reject) => {
+    this.auth0.client.login(
+      { realm: auth0Config.realm, username, password },
+      (err, authResult) => {
+        if (err) {
+          console.log(err);
+          return reject(err);
+        }
+        console.log(authResult);
+        this.setSession(authResult);
+        return resolve();
+      }
+    );
+  })
+
+  signout = () => {
     // Clear access token and ID token from local storage
     localStorage.removeItem('origin_access_token');
     localStorage.removeItem('access_token');
@@ -43,21 +52,19 @@ export default class Auth {
     localStorage.removeItem('expires_at');
   }
 
-  handleAuthentication() {
-    return new Promise((resolve, reject) => {
-      this.auth0.parseHash((err, authResult) => {
-        if (authResult && authResult.accessToken && authResult.idToken) {
-          this.setSession(authResult);
-          return resolve();
-        } else if (err) {
-          console.log(err);
-          return reject(err);
-        }
-      });
+  handleAuthentication = () => new Promise((resolve, reject) => {
+    this.auth0.parseHash((err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult);
+        return resolve();
+      } else if (err) {
+        console.log(err);
+        return reject(err);
+      }
     });
-  }
+  })
 
-  setSession(authResult) {
+  setSession = (authResult) => {
     // Set the time that the access token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
@@ -65,7 +72,7 @@ export default class Auth {
     localStorage.setItem('expires_at', expiresAt);
   }
 
-  isAuthenticated() {
+  isAuthenticated = () => {
     // Check whether the current time is past the
     // access token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
