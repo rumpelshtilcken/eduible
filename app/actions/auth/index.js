@@ -66,8 +66,8 @@ export const cleardown = () => ({
   type: CLEARDOWN
 });
 
-export const handleAuthentication = callback => (dispatch) => {
+export const handleAuthentication = () => (dispatch) => {
   auth.handleAuthentication()
     .then(() => dispatch({ type: AUTH_USER }))
-    .catch(err => dispatch({ type: UNAUTH_USER }));
+    .catch(() => dispatch({ type: UNAUTH_USER }));
 };
