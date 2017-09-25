@@ -23,47 +23,9 @@
 }
 
 .chatbox {
-  width: 100%;
+  width: 90%;
   margin: auto;
-  margin-top: 10px;
   height: 277px;
-
-  @media (min-width: 768px) {
-    margin-top: 20px;
-  }
-}
-
-.dialog {
-  width: 203px;
-  height: 24px;
-  display: flex;
-  margin: 10px auto;
-
-  @media (min-width: 768px) {
-    width: 90%;
-    margin: 10px auto;
-  }
-}
-
-.dialog p {
-  margin: 0;
-  font-size: 11px;
-  font-family: "Effra";
-  color: #000;
-}
-
-.dialog-username {
-  width: 35px;
-}
-
-.dialog-username h5 {
-  margin: 0;
-  font-family: "Effra";
-  font-size: 12px;
-}
-
-.dialog-text {
-  margin-left: 15px;
 }
 
 .dialogbox-send {
@@ -83,28 +45,16 @@
     order: 1;
   }
 }
-
-.input-elem {
-  width: 183px;
-  height: 35px;
-  border: 1px solid #d9d9d9;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  background-color: #f4f4f4;
-  outline: none;
-  box-sizing: border-box;
-  padding: 8px 30px 8px 10px;
-
-  @media (min-width: 768px) {
-    width: 513px;
-  }
-
-  @media (min-width: 1024px) {
-    width: 183px;
-  }
-}
-
 .send-button {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+.input-elem {
+  height: 32px;
+  outline: none;
+  padding-left: 8px;
+  border: 1px solid #fafafa;
+  background-color: #F7F0F0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
