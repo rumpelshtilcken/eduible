@@ -6,7 +6,6 @@
   background: rgb(255, 255, 255);
   border: 1px solid rgb(204, 204, 204);
   outline: none;
-  overflow: auto;
   margin: auto;
 
   @media (min-width: 768px) {
@@ -27,8 +26,15 @@
   align-items: center;
   justify-content: center;
 }
-
-button {
+.scroll {
+  width: 255px;
+  height: 690px;
+  @media(min-width: 768px) {
+    width: 426px;
+    height: 453px;
+  }
+}
+a {
   text-decoration: none;
   font-size: 12px;
   color: #00ff1f;

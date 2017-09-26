@@ -1,21 +1,22 @@
 import React from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
+import ValidationUtils from '/utils/ValidationUtils';
+import { Scrollbars } from 'react-custom-scrollbars';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import style from './index.css';
 
 class SignUpAsProfessional extends React.Component {
-  state ={
-    inpt: [
+    inpt = [
       {
         title: 'FIRST AND LAST NAME',
         input: {
           type: 'string',
           name: 'fullname',
           hintText: 'John Doe',
-          errorText: ''
+          errorText: []
         }
       },
       {
@@ -24,7 +25,7 @@ class SignUpAsProfessional extends React.Component {
           type: 'string',
           name: 'date',
           hintText: '13/11/1992',
-          errorText: ''
+          errorText: []
         }
       },
       {
@@ -33,7 +34,7 @@ class SignUpAsProfessional extends React.Component {
           type: 'string',
           name: 'email',
           hintText: 'example@email.com',
-          errorText: ''
+          errorText: []
         }
       },
       {
@@ -41,7 +42,8 @@ class SignUpAsProfessional extends React.Component {
         input: {
           type: 'string',
           name: 'pwd',
-          hintText: 'at least six characters'
+          hintText: 'at least six characters',
+          errorText: []
         }
       },
       {
@@ -50,7 +52,7 @@ class SignUpAsProfessional extends React.Component {
           type: 'string',
           name: 'country',
           hintText: 'choose from the list',
-          errorText: ''
+          errorText: []
         }
       },
       {
@@ -59,21 +61,46 @@ class SignUpAsProfessional extends React.Component {
           type: 'string',
           name: 'zip',
           hintText: '16044728',
-          errorText: ''
+          errorText: []
         }
       }
     ]
-  }
 
-  handleChange = (e, errTxt) => {
+  handleChange = (e, i) => {
     const em = e.target.value;
-    console.log(errTxt);
-    if (em.length < 4) {
-      this.setState({ errTxt: 'your name is too short bitch' });
+    const field = this.inpt[i].input;
+    const err = { errorText: '' };
+
+    switch (field.name) {
+      case 'fullname':
+        break;
+      case 'email':
+        if (!ValidationUtils.isValidEmail(em)) {
+          err.errorText = 'invalid email';
+          field.errorText.push([err.errorText]);
+          this.setState({ [this.inpt[i].input.errorText]: field.errorText });
+        }
+        this.setState({});
+        break;
+      case 'date':
+        this.setState({});
+        break;
+      case 'pwd':
+        this.setState({});
+        break;
+      case 'country':
+        this.setState({});
+        break;
+      case 'zip':
+        this.setState({});
+        break;
+      default:
+        this.setState({ [inpt.errorText]: '' });
+        break;
     }
   }
 
-  renderInput = x =>
+  renderInput = (x, i) =>
     (<div className={x.input.name}>
       <TextField
         type={x.input.type}
@@ -82,11 +109,11 @@ class SignUpAsProfessional extends React.Component {
         floatingLabelFixed
         fullWidth
         hintText={x.input.hintText}
-        errorText={x.input.errorText}
+        errorText={x.input.errorText[0]}
         hintStyle={hintStyle}
         inputStyle={inputStyle}
         floatingLabelStyle={floatingLabelStyle}
-        onBlur={e => this.handleChange(e, x.input.errorText)}
+        onBlur={e => this.handleChange(e, i)}
       />
     </div>);
 
@@ -98,42 +125,44 @@ class SignUpAsProfessional extends React.Component {
         className="SignUpAsProfessional"
         overlayClassName="OverlayModal"
       >
-        <div className="container">
-          <div>
-            <p className="sign">JOIN AS PROFESSIONAL</p>
-            <p className="share">Share your knowledge and experience. Start now - it’s free</p>
-          </div>
-          <div className="container-div">
-            {this.state.inpt.map(this.renderInput)}
+        <Scrollbars style={style.scroll} autohide>
+          <div className="container">
+            <div>
+              <p className="sign">JOIN AS PROFESSIONAL</p>
+              <p className="share">Share your knowledge and experience. Start now - it’s free</p>
+            </div>
+            <div className="container-div">
+              {this.inpt.map(this.renderInput)}
 
-            <RaisedButton
-              label="Continue"
-              className="continuebtn-div"
-              buttonStyle={{ backgroundColor: '#7262BF', fullWidth: true }}
-              labelStyle={{ color: 'white', fontSize: '11px' }}
-              onClick={this.props.openJobTitleModal}
-            />
-            <div className="linkedinbtn-div" >
-              <p>OR JOIN WITH</p>
               <RaisedButton
-                label="LINKEDIN"
-                fullWidth
-                buttonStyle={{ backgroundColor: '#2679B2' }}
-                labelStyle={{
-                  color: 'white',
-                  fontSize: '11px',
-                  fontFamily: 'Effra'
-                }}
+                label="Continue"
+                className="continuebtn-div"
+                buttonStyle={{ backgroundColor: '#7262BF', fullWidth: true }}
+                labelStyle={{ color: 'white', fontSize: '11px' }}
+                onClick={this.props.openJobTitleModal}
               />
+              <div className="linkedinbtn-div" >
+                <p>OR JOIN WITH</p>
+                <RaisedButton
+                  label="LINKEDIN"
+                  fullWidth
+                  buttonStyle={{ backgroundColor: '#2679B2' }}
+                  labelStyle={{
+                    color: 'white',
+                    fontSize: '11px',
+                    fontFamily: 'Effra'
+                  }}
+                />
+              </div>
+              <div className="loginhere-div">
+                <img src="/static/Line.jpg" alt="hrline" />
+                <p>ALREADY A MEMBER?</p>
+                <a href="#">Login here</a>
+              </div>
             </div>
-            <div className="loginhere-div">
-              <img src="/static/Line.jpg" alt="hrline" />
-              <p>ALREADY A MEMBER?</p>
-              <a href="#">Login here</a>
-            </div>
+            <style global>{style}</style>
           </div>
-          <style global>{style}</style>
-        </div>
+        </Scrollbars>
       </Modal>
     );
   }
