@@ -25,3 +25,15 @@ export const getClaimFromToken = (token, claim) => {
   const obj = JSON.parse(bin);
   return obj[claim];
 };
+
+export const getUserMetadata = (idToken, claim) => {
+  const base64Url = idToken.split('.')[1];
+  const base64 = base64Url.replace('-', '+').replace('_', '/');
+  const result = JSON.parse(window.atob(base64));
+  return result[claim];
+};
+
+export const convertDateToISO = (date) => {
+  const d = new Date(date);
+  return d.toISOString();
+};

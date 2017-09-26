@@ -10,6 +10,19 @@ import Auth from './Auth';
 
 const auth = new Auth();
 
+export const signupStudent = ({ email, password, name, birthdate }) => async (dispatch) => {
+  dispatch({ type: AUTH_IN_PROGRESS });
+
+  try {
+    await auth.signupStudent({ email, password, name, birthdate });
+    dispatch({ type: AUTH_USER });
+  } catch (error) {
+    const errorMsg = error.description || error.message || 'Unspecified error';
+    console.log(error);
+    dispatch(authError(errorMsg));
+  }
+};
+
 export const signinUser = ({ email, password }, callback) => (dispatch) => {
   dispatch({ type: AUTH_IN_PROGRESS });
 
