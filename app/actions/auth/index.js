@@ -18,26 +18,28 @@ export const signupStudent = ({ email, password, name, birthdate }) => async (di
     dispatch({ type: AUTH_USER });
   } catch (error) {
     const errorMsg = error.description || error.message || 'Unspecified error';
-    console.log(error);
     dispatch(authError(errorMsg));
   }
 };
+
+export const signupProfessional =
+    ({ email, password, name, birthdate, country, zipCode }) => async (dispatch) => {
+      dispatch({ type: AUTH_IN_PROGRESS });
+
+      try {
+        await auth.signupProfessional({ email, password, name, birthdate, country, zipCode });
+        dispatch({ type: AUTH_USER });
+      } catch (error) {
+        const errorMsg = error.description || error.message || 'Unspecified error';
+        dispatch(authError(errorMsg));
+      }
+    };
 
 export const signinUser = ({ email, password }, callback) => (dispatch) => {
   dispatch({ type: AUTH_IN_PROGRESS });
 
   auth.signin(email, password, callback)
     .then(() => dispatch({ type: AUTH_USER }))
-    .catch((error) => {
-      const errorMsg = error.description || error.message || 'Unspecified error';
-      return dispatch(authError(errorMsg));
-    });
-};
-
-export const signupUser = ({ email, password }, callback) => (dispatch) => {
-  dispatch({ type: AUTH_IN_PROGRESS });
-
-  auth.signup(email, password, callback)
     .catch((error) => {
       const errorMsg = error.description || error.message || 'Unspecified error';
       return dispatch(authError(errorMsg));

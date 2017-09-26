@@ -73,6 +73,66 @@ export default class Auth {
     }
   };
 
+  signupProfessional = ({ email, password, name, birthdate, country, zipCode }) => {
+    try {
+      this.auth0.signupAndAuthorize({
+        connection: 'Username-Password-Authentication',
+        email,
+        password
+      }, (err, authResult) => {
+        if (err) throw new Error(err);
+
+        const createUser = gql`
+          mutation (
+            $auth0UserId: String! 
+            $email: String! 
+            $name: String! 
+            $birthdate: DateTime!
+            $userType: UserType!
+            $professional: UserprofessionalProfessional
+          ){
+            createUser(
+              auth0UserId: $auth0UserId
+              birthdate: $birthdate,
+              name: $name
+              email: $email
+              userType: $userType
+              professional: $professional
+            ) {
+              id
+              professional {
+                id
+              }
+            }
+          }
+        `;
+
+        const auth0UserId = getUserMetadata(authResult.idToken, 'sub');
+        const birthdateISO = convertDateToISO(birthdate);
+
+        const variables = {
+          auth0UserId,
+          email,
+          name,
+          birthdate: birthdateISO,
+          userType: 'Professional',
+          professional: {
+            location: {
+              country,
+              zipcode: zipCode
+            }
+          }
+        };
+
+        this.apolloClient.mutate({ mutation: createUser, variables })
+          .then(res => console.log('Apollo succes: ', res))
+          .catch(err => console.log('Apollo error: ', err));
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
   signup = (username, password) => new Promise((resolve, reject) => {
     this.auth0.signup({
       connection: 'Username-Password-Authentication',

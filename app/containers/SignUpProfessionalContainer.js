@@ -6,7 +6,6 @@ import * as actions from 'actions/auth';
 import { connect } from 'react-redux';
 
 class SignUpProfessionalContainer extends Component {
-  /* eslint-disable no-unused-vars */
   handleContinueButtonClick = async ({
     fullname,
     date,
@@ -15,13 +14,14 @@ class SignUpProfessionalContainer extends Component {
     country,
     zipCode
   }) => {
-    /* eslint-enable no-unused-vars */
-    this.props.signupUser({
+    this.props.signupProfessional({
+      name: fullname,
+      birthdate: date,
       email,
-      password
-    }, () =>
-      this.props.signinUser({ email, password })
-    );
+      password,
+      country,
+      zipCode
+    });
   };
 
   handleLinkedinButtonClick = () => {};
@@ -43,8 +43,7 @@ class SignUpProfessionalContainer extends Component {
 }
 
 SignUpProfessionalContainer.propTypes = {
-  signinUser: PropTypes.func,
-  signupUser: PropTypes.func
+  signupProfessional: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
