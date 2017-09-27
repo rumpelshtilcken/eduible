@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import MuiTextField from './MuiTextField';
+import MuiTextField from '../../Material-ui/MuiTextField';
 import stylesheet from './index.css';
 
 class SignInFormInputs extends Component {
@@ -18,6 +18,7 @@ class SignInFormInputs extends Component {
         <div className="emailContainer">
           <MuiTextField
             key={'Email'}
+            font
             name={'email'}
             onChange={this.handleChange}
             title={'Email'}
@@ -36,7 +37,7 @@ class SignInFormInputs extends Component {
           />
         </div>
         <div className="forgotPassword">
-          {'Forgot your password?'}
+          Forgot your password?
         </div>
         <style jsx>{stylesheet}</style>
       </div>

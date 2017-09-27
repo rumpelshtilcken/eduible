@@ -11,7 +11,7 @@ const MuiTextField = ({ onChange, type, name, title, value }) => (
     hintText={value}
     hintStyle={{ fontSize: '11px' }}
     inputStyle={{ fontSize: '11px' }}
-    floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
+    floatingLabelStyle={{ fontSize: '13px', color: '#626262', fontWeight: 'bold' }}
     onChange={onChange}
   />
 );

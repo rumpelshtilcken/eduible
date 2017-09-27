@@ -3,13 +3,20 @@
   border-radius: 20px;
   border: 1px solid rgb(204, 204, 204);
   margin: auto;
-  max-height: 500px;
-  max-width: 410px;
-  min-height: 310px;
-  min-width: 255px;
+  width: 320px;
+  height: 600px;
   outline: none;
   overflow: auto;
   padding: 0;
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    height: 310px;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .OverlayModal {
@@ -26,49 +33,93 @@
 
 .signInContainer {
   display: flex;
-  flex-direction: column;
+  flex-flow: wrap;
   justify-content: center;
   align-items: center;
   margin: 25px 20px 30px;
 }
 
 .titleContainer {
-  font-size: 20px;
+  font-size: 15px;
+  font-weight: bold;
   color: #4e4e4e;
+  width: 100%;
+  text-align: center;
 }
 
 .formContainer {
   display: flex;
-  flex-flow: column wrap;
-  height: 485px;
-  width: 255px;
-
-  @media screen and (min-width: 768px) {
-    height: 310px;
-    width: 400px;
-  }
+  flex-flow: wrap;
+  width: 100%;
 }
 
 .formInputsContainer {
   order: 1;
-  min-width: 184px;
-  max-width: 192px;
+  width: 100%;
+  margin: auto;
+
+  @media screen and (min-width: 768px) {
+    width: 50%;
+    margin-left: 0;
+    margin-right: 10px;
+  }
 }
 
 .socialButtonsTitle {
   color: #626262;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 11px;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
 }
 
 .continueButtonContainer {
+  display: grid;
   order: 2;
   width: 100%;
+  margin-top: 20px;
+
+  @media screen and (min-width: 768px) {
+    order: 3;
+  }
 }
 
 .additionalButtonsContainer {
   order: 3;
-  display: flex;
-  flex-direction: column;
+  margin-top: 20px;
+  width: 100%;
+  display: grid;
+
+  @media screen and (min-width: 768px) {
+    width: 45%;
+    order: 2;
+    display: block;
+    box-sizing: border-box;
+  }
+}
+
+button {
+  text-decoration: none;
+  border: none;
+  outline: 0;
+  background: none;
+  font-size: 12px;
+  color: #00ff1f;
+}
+
+.loginhere-div {
+  display: grid;
+  text-align: center;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+p {
+  font-size: 11px;
+  font-family: var(--font);
+  color: #626262;
+  margin: 0;
+  font-weight: bold;
+  margin-bottom: 10px;
 }

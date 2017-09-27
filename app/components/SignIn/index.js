@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 
 import SignInFormInputs from './SignInForm';
-import MuiButton from './MuiButton';
+import MuiButton from '../Material-ui/MuiButton';
 import stylesheet from './index.css';
 
 class SignIn extends Component {
@@ -31,7 +31,7 @@ class SignIn extends Component {
             overlayClassName="OverlayModal"
           >
             <div className="signInContainer">
-              <p className="titleContainer">{'Sign in'.toUpperCase()}</p>
+              <p className="titleContainer">SIGN IN</p>
               <div className="formContainer">
                 <div className="formInputsContainer">
                   <SignInFormInputs params={this.state} onChange={this.handleChange} />

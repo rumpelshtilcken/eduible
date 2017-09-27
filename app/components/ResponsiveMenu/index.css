@@ -25,9 +25,14 @@
 
 .linkContainer {
   margin-right: 18px;
+  color: var(--white);
+  outline: none;
 }
 
 .button {
-  color: var(--white);
+  background: none;
+  border: none;
+  font-size: 11px;
+  color: #fff;
   outline: none;
 }
