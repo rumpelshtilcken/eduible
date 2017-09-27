@@ -21,7 +21,7 @@ class TextInputBox extends React.Component {
   render() {
     return (
       <div className="dialogbox-send">
-        <div>
+        <div className="input-div">
           <input
             className="input-elem"
             type="text"

@@ -3,7 +3,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { ChatFeed, Message } from 'react-chat-ui';
 
 import TextInputBox from './Dialog';
-import stylesheet from './Dialog/index.css';
+import style from './Dialog/index.css';
 
 class ChatBox extends React.Component {
   state = {
@@ -32,7 +32,7 @@ class ChatBox extends React.Component {
     return (
       <div className="section3" >
         <TextInputBox onSubmitButtonClick={this.handleSubmitButtonClick} />
-        <Scrollbars style={{ width: 240, height: 289 }} autohide>
+        <Scrollbars universal autohide>
           <div className="chatbox">
             <ChatFeed
               messages={this.state.messages} // Boolean: list of message objects
@@ -54,7 +54,7 @@ class ChatBox extends React.Component {
             />
           </div>
         </Scrollbars>
-        <style jsx>{stylesheet}</style>
+        <style jsx>{style}</style>
       </div>
     );
   }
