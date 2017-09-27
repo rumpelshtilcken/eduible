@@ -14,6 +14,18 @@ export const getAccessToken = () => {
   return accessToken;
 };
 
+const snakeToCamel = s => s.replace(/(\_\w)/g, m => m[1].toUpperCase());
+
+export const parseHash = (hash) => {
+  const data = hash.replace('#', '').split('&').reduce((acc, keyValue) => {
+    const [key, value] = keyValue.split('=');
+    acc[snakeToCamel(key)] = value;
+    return acc;
+  }, {});
+
+  return data;
+};
+
 export const getOriginAccessToken = () => {
   const originAccessToken = localStorage.getItem('origin_access_token');
   return originAccessToken;
@@ -26,11 +38,11 @@ export const getClaimFromToken = (token, claim) => {
   return obj[claim];
 };
 
-export const getUserMetadata = (idToken, claim) => {
+export const decodeJwtToken = (idToken, claim) => {
   const base64Url = idToken.split('.')[1];
   const base64 = base64Url.replace('-', '+').replace('_', '/');
   const result = JSON.parse(window.atob(base64));
-  return result[claim];
+  return claim ? result[claim] : result;
 };
 
 export const convertDateToISO = (date) => {
