@@ -7,20 +7,23 @@ import { connect } from 'react-redux';
 
 class SignInContainer extends Component {
   handleContinueButtonClick = async ({ email, password }) => {
-    this.props.signinUser({ email, password }, () => console.log('Success'));
+    this.props.signinUser({ email, password });
   };
 
-  handleFacebookButtonClick = () => {
-    // TODO: facebook login
-    this.webAuth.authorize({ connection: 'facebook' });
-  };
+  handleFacebookButtonClick = () => this.props.signinFacebook();
 
-  handleGoogleButtonClick = () => {
-    // TODO: google login
-    this.webAuth.authorize({ connection: 'google' });
-  };
+  handleGoogleButtonClick = () => this.props.signinGoogle();
 
   render() {
+    console.log(this.props);
+    if (this.props.loading) {
+      console.log('Loading state');
+    }
+
+    if (this.props.error) {
+      console.log('Error state');
+    }
+
     return (
       <SignIn
         onContinueButtonClick={this.handleContinueButtonClick}
@@ -33,7 +36,9 @@ class SignInContainer extends Component {
 }
 
 SignInContainer.propTypes = {
-  signinUser: PropTypes.func
+  signinUser: PropTypes.func.isRequired,
+  signinFacebook: PropTypes.func.isRequired,
+  signinGoogle: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
