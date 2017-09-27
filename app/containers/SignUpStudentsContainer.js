@@ -1,43 +1,29 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { SignUpStudent } from 'components';
-import getWebAuth from 'lib/getWebAuth';
+import * as actions from 'actions/auth';
+
 
 class SignUpStudentContainer extends Component {
-  /* eslint-disable no-unused-vars */
   handleContinueButtonClick = async ({
     fullname,
     date,
     email,
     password
   }) => {
-    /* eslint-enable no-unused-vars */
-    try {
-      const webAuth = await getWebAuth();
-      const result = await webAuth.signup({
-        connection: 'Username-Password-Authentication',
-        email,
-        password
-      }, (err) => {
-        if (err) return console.log('Error:|| ', err);
-        // TODO: login user
-        // TODO: save data to graphcool
-        return console.log('success signup without login!');
-      });
-
-      console.log('Result: ', result);
-      console.log('Result: ', result.response);
-      console.log('Result: ', result.json());
-    } catch (error) {
-      console.log('Error catch: ', error);
-    }
-  };
-
-  handleLinkedinButtonClick = () => {
-    getWebAuth().authorize({
-      connection: 'linkedin'
+    this.props.signupStudent({
+      name: fullname,
+      birthday: date,
+      email,
+      password
     });
   };
+
+  handleFacebookButtonClick = () => {};
+
+  handleGoogleButtonClick = () => {};
 
   handleLoginButtonClick = () => {
     // TODO: open Login modal
@@ -47,7 +33,8 @@ class SignUpStudentContainer extends Component {
     return (
       <SignUpStudent
         onContinueButtonClick={this.handleContinueButtonClick}
-        onLinkedinButtonClick={this.handleLinkedinButtonClick}
+        onGoogleButtonClick={this.handleGoogleButtonClick}
+        onFacebookButtonClick={this.handleFacebookButtonClick}
         onLoginButtonClick={this.handleLoginButtonClick}
         {...this.props}
       />
@@ -55,4 +42,18 @@ class SignUpStudentContainer extends Component {
   }
 }
 
-export default SignUpStudentContainer;
+SignUpStudentContainer.propTypes = {
+  signupStudent: PropTypes.func.isRequired
+};
+
+const mapStateToProps = (state) => {
+  const { error, timestamp, forgotMsg, loading } = state.auth;
+  return {
+    error,
+    timestamp,
+    forgotMsg,
+    loading
+  };
+};
+
+export default connect(mapStateToProps, actions)(SignUpStudentContainer);
