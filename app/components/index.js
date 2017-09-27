@@ -26,6 +26,7 @@ import SelectDropdown from './SelectDropdown';
 import SideMoreLayout from './SideMoreLayout';
 import SignIn from './SignIn';
 import SignUpProfessional from './SignUpProfessional';
+import SignUpStudent from './SignUpStudent';
 import StudentProfile from './StudentProfile';
 import StudentProfileCard from './StudentProfileCard';
 import StudentProfileEdit from './StudentProfileEdit';
@@ -63,6 +64,7 @@ export {
   SideMoreLayout,
   SignIn,
   SignUpProfessional,
+  SignUpStudent,
   StudentProfile,
   StudentProfileCard,
   StudentProfileEdit,
