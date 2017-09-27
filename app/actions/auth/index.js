@@ -10,12 +10,12 @@ import Auth from './Auth';
 
 const auth = new Auth();
 
-export const signupStudent = ({ email, password, name, birthdate }) => async (dispatch) => {
+/*         Local auth        */
+export const signupStudent = attr => async (dispatch) => {
   dispatch({ type: AUTH_IN_PROGRESS });
 
   try {
-    await auth.signupStudent({ email, password, name, birthdate });
-    dispatch({ type: AUTH_USER });
+    await auth.signup('Student', attr, err => console.log('SSS: ', err) || (err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER })));
   } catch (error) {
     const errorMsg = error.description || error.message || 'Unspecified error';
     dispatch(authError(errorMsg));
@@ -23,11 +23,11 @@ export const signupStudent = ({ email, password, name, birthdate }) => async (di
 };
 
 export const signupProfessional =
-    ({ email, password, name, birthdate, country, zipCode }) => async (dispatch) => {
+    attr => async (dispatch) => {
       dispatch({ type: AUTH_IN_PROGRESS });
 
       try {
-        await auth.signupProfessional({ email, password, name, birthdate, country, zipCode });
+        await auth.signup('Professional', attr, err => console.log('SSS: ', err) || (err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER })));
         dispatch({ type: AUTH_USER });
       } catch (error) {
         const errorMsg = error.description || error.message || 'Unspecified error';
@@ -35,17 +35,63 @@ export const signupProfessional =
       }
     };
 
-export const signinUser = ({ email, password }, callback) => (dispatch) => {
+export const signinUser = ({ email, password }) => async (dispatch) => {
   dispatch({ type: AUTH_IN_PROGRESS });
 
-  auth.signin(email, password, callback)
-    .then(() => dispatch({ type: AUTH_USER }))
-    .catch((error) => {
-      const errorMsg = error.description || error.message || 'Unspecified error';
-      return dispatch(authError(errorMsg));
-    });
+  try {
+    await auth.signin(email, password, err => console.log('SSS: ', err) || (err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER })));
+  } catch (error) {
+    const errorMsg = error.description || error.message || 'Unspecified error';
+    return dispatch(authError(errorMsg));
+  }
 };
 
+/*         Social auth        */
+export const signinFacebook = () => async (dispatch) => {
+  dispatch({ type: AUTH_IN_PROGRESS });
+
+  try {
+    await auth.signinSocial('facebook');
+  } catch (error) {
+    console.log(error);
+    const errorMsg = error.description || error.message || 'Unspecified error';
+    return dispatch(authError(errorMsg));
+  }
+};
+
+export const signinGoogle = () => async (dispatch) => {
+  dispatch({ type: AUTH_IN_PROGRESS });
+  try {
+    await auth.signinSocial('google');
+  } catch (error) {
+    const errorMsg = error.description || error.message || 'Unspecified error';
+    return dispatch(authError(errorMsg));
+  }
+};
+
+export const signinLinkedin = () => async (dispatch) => {
+  dispatch({ type: AUTH_IN_PROGRESS });
+  try {
+    await auth.signinSocial('linkedin');
+  } catch (error) {
+    const errorMsg = error.description || error.message || 'Unspecified error';
+    return dispatch(authError(errorMsg));
+  }
+};
+
+export const socialSignInCallback = hash => async (dispatch) => {
+  try {
+    await auth.signinSocialCallback(hash);
+    console.log('Succes social signin');
+    dispatch({ type: AUTH_USER });
+  } catch (error) {
+    console.log(error);
+    const errorMsg = error.description || error.message || 'Unspecified error';
+    return dispatch(authError(errorMsg));
+  }
+};
+
+/*      Additional functions       */
 export const authError = (error) => {
   const timestamp = Date.now();
   return {

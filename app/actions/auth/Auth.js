@@ -1,164 +1,95 @@
 import auth0 from 'auth0-js';
-import { gql } from 'react-apollo';
+import _ from 'lodash';
 
 import { auth0Config } from 'config';
-import initApollo from 'lib/initApollo';
-import { getUserMetadata, convertDateToISO } from 'utils/auth';
+import { decodeJwtToken, parseHash } from 'utils/auth';
+import GraphCool from './GraphCool';
 
 export default class Auth {
-  auth0 = new auth0.WebAuth({
-    domain: auth0Config.domain,
-    clientID: auth0Config.clientId,
-    // audience: `https://${auth0Config.domain}/userinfo`,
-    redirectUri: auth0Config.callbackUrl,
-    scope: auth0Config.scope,
-    responseType: 'token id_token'
-  });
+  auth0 = new auth0.WebAuth(auth0Config);
+  graphCool = new GraphCool()
 
-  apolloClient = initApollo();
-
-  signupStudent = async ({ email, password, name, birthdate }) => {
-    try {
-      this.auth0.signupAndAuthorize({
-        connection: 'Username-Password-Authentication',
-        email,
-        password
-      }, (err, authResult) => {
-        if (err) throw new Error(err);
-
-        const createUser = gql`
-          mutation (
-            $auth0UserId: String! 
-            $email: String! 
-            $name: String! 
-            $birthdate: DateTime!
-            $userType: UserType!
-            $student: UserstudentStudent
-          ){
-            createUser(
-              auth0UserId: $auth0UserId
-              birthdate: $birthdate,
-              name: $name
-              email: $email
-              userType: $userType
-              student: $student
-            ) {
-              id
-              student {
-                id
-              }
-            }
-          }
-        `;
-
-        const auth0UserId = getUserMetadata(authResult.idToken, 'sub');
-
-        const birthdateISO = convertDateToISO(birthdate);
-
-        const variables = {
-          auth0UserId,
-          email,
-          name,
-          birthdate: birthdateISO,
-          userType: 'Student',
-          student: {}
-        };
-
-        this.apolloClient.mutate({ mutation: createUser, variables })
-          .then(res => console.log('Apollo succes: ', res))
-          .catch(err => console.log('Apollo error: ', err));
-      });
-    } catch (error) {
-      throw new Error(error);
+  prepareAttributes = (attrs) => {
+    const { country, zipcode } = attrs;
+    const prepareAttrs = _.omit(attrs, ['password', 'country', 'zipcode']);
+    if (attrs.country && attrs.zipcode) {
+      prepareAttrs.location = {
+        country,
+        zipcode
+      };
     }
-  };
+    return prepareAttrs;
+  }
 
-  signupProfessional = ({ email, password, name, birthdate, country, zipCode }) => {
+  signup = async (userType, attrs, callback) => {
     try {
-      this.auth0.signupAndAuthorize({
+      await this.auth0.signupAndAuthorize({
         connection: 'Username-Password-Authentication',
-        email,
-        password
-      }, (err, authResult) => {
-        if (err) throw new Error(err);
-
-        const createUser = gql`
-          mutation (
-            $auth0UserId: String! 
-            $email: String! 
-            $name: String! 
-            $birthdate: DateTime!
-            $userType: UserType!
-            $professional: UserprofessionalProfessional
-          ){
-            createUser(
-              auth0UserId: $auth0UserId
-              birthdate: $birthdate,
-              name: $name
-              email: $email
-              userType: $userType
-              professional: $professional
-            ) {
-              id
-              professional {
-                id
-              }
-            }
-          }
-        `;
-
-        const auth0UserId = getUserMetadata(authResult.idToken, 'sub');
-        const birthdateISO = convertDateToISO(birthdate);
-
-        const variables = {
-          auth0UserId,
-          email,
-          name,
-          birthdate: birthdateISO,
-          userType: 'Professional',
-          professional: {
-            location: {
-              country,
-              zipcode: zipCode
-            }
-          }
-        };
-
-        this.apolloClient.mutate({ mutation: createUser, variables })
-          .then(res => console.log('Apollo succes: ', res))
-          .catch(err => console.log('Apollo error: ', err));
-      });
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
-
-  signup = (username, password) => new Promise((resolve, reject) => {
-    this.auth0.signup({
-      connection: 'Username-Password-Authentication',
-      email: username,
-      password
-    }, (err) => {
-      if (err) return reject(err);
-      return resolve();
-    });
-  });
-
-  signin = (username, password, callback) => new Promise((resolve, reject) => {
-    this.auth0.client.login(
-      { realm: auth0Config.realm, username, password },
-      async (err, authResult) => {
+        email: attrs.email,
+        password: attrs.password
+      }, async (err, authResult) => {
         if (err) {
-          console.log(err);
-          return reject(err);
+          callback(err);
+          throw err;
         }
-        console.log(authResult);
-        await callback(authResult);
-        this.setSession(authResult);
-        return resolve();
-      }
-    );
-  })
+        try {
+          const auth0UserId = decodeJwtToken(authResult.idToken, 'sub');
+          await this.graphCool.createUser({
+            userType,
+            auth0UserId,
+            ...this.prepareAttributes(attrs)
+          });
+          this.setSession(authResult);
+          callback();
+        } catch (error) {
+          throw error;
+        }
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  signin = async (username, password, callback) => {
+    try {
+      await this.auth0.client.login(
+        { realm: auth0Config.realm, username, password },
+        (err, authResult) => {
+          if (err) {
+            callback(err);
+            throw err;
+          }
+          this.setSession(authResult);
+        });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  signinSocial = (connectionType, callback) => {
+    try {
+      this.auth0.authorize({
+        connection: connectionType,
+        responseType: 'id_token'
+      }, (err) => {
+        if (err) {
+          callback(err);
+          throw err;
+        }
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  signinSocialCallback = async (hash) => {
+    try {
+      await this.graphCool.upsertUser(hash);
+      await this.setSession(hash);
+    } catch (err) {
+      throw err;
+    }
+  };
 
   signout = () => {
     // Clear access token and ID token from local storage
@@ -180,7 +111,11 @@ export default class Auth {
     });
   })
 
-  setSession = (authResult) => {
+  setSession = (authResultOrHash) => {
+    let authResult = authResultOrHash;
+    if (typeof authResultOrHash === 'string') {
+      authResult = parseHash(authResultOrHash);
+    }
     // Set the time that the access token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
