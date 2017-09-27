@@ -58,11 +58,8 @@
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-unfetch": "^2.0.0",
     "jsonwebtoken": "^7.4.3",
-<<<<<<< HEAD
     "jssha": "^2.3.1",
     "lodash": "^4.17.4",
-=======
->>>>>>> feat: videochat chatview-ui
     "material-ui": "^0.19.1",
     "moment": "^2.18.1",
     "next": "^3.0.6",

@@ -1,12 +1,8 @@
 .section3 {
   width: 243px;
   height: 370px;
-<<<<<<< HEAD
-  margin: 0 auto 50px;
-=======
   padding-top: 10px;
-  margin: 0 auto 50px auto;
->>>>>>> feat: datapicker and validation improved
+  margin: 0 auto 50px;
   display: flex;
   flex-flow: column;
   border: 0.1px solid #d9d9d9;
