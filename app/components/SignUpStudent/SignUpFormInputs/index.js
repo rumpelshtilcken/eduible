@@ -34,7 +34,7 @@ class SignUpFormInputs extends Component {
       input: {
         type: 'string',
         name: 'password',
-        hintText: this.props.params.password
+        hintText: this.props.params.password || 'at least 6 characters'
       }
     }
   ];
@@ -45,25 +45,23 @@ class SignUpFormInputs extends Component {
   };
 
   renderInput = ({ title, input }) => (
-    <div key={input.name} className={input.name}>
-      <TextField
-        type={input.type}
-        name={input.name}
-        floatingLabelText={title}
-        floatingLabelFixed
-        fullWidth
-        hintText={input.hintText}
-        hintStyle={{ fontSize: '11px' }}
-        inputStyle={{ fontSize: '11px' }}
-        floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
-        onChange={this.handleChange}
-      />
-    </div>
+    <TextField
+      type={input.type}
+      name={input.name}
+      floatingLabelText={title}
+      floatingLabelFixed
+      fullWidth
+      hintText={input.hintText}
+      hintStyle={{ fontSize: '11px' }}
+      inputStyle={{ fontSize: '11px', color: '#AFAFAF' }}
+      floatingLabelStyle={{ fontSize: '12px', color: '#626262', fontWeight: 'bold' }}
+      onChange={this.handleChange}
+    />
   );
 
   render() {
     return (
-      <div>
+      <div className="inputs">
         {this.inputs.map(this.renderInput)}
       </div>
     );

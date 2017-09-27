@@ -26,16 +26,16 @@ class SignUpStudent extends Component {
           <Modal
             isOpen
             onRequestClose={this.props.onRequestClose}
-            className="SignUpAsProfessional"
+            className="SignUpAsStudent"
             overlayClassName="OverlayModal"
           >
 
             <div className="container">
               <div>
-                <p className="sign">{'Sign up'.toUpperCase()}</p>
-                <p className="share">Share your knowledge and experience. Start now - it’s free</p>
+                <p className="sign">SIGN UP</p>
               </div>
               <div className="container-div">
+
                 <SignUpFormInputs params={this.state} onChange={this.handleChange} />
 
                 <RaisedButton
@@ -45,35 +45,39 @@ class SignUpStudent extends Component {
                   labelStyle={{ color: 'white', fontSize: '11px' }}
                   onClick={this.handleContinueButtonClick}
                 />
-                <div className="linkedinbtn-div" >
-                  <p>OR JOIN WITH</p>
-                  <RaisedButton
-                    label="FACEBOOK"
-                    fullWidth
-                    buttonStyle={{ backgroundColor: '#6981CA' }}
-                    labelStyle={{
-                      color: 'white',
-                      fontSize: '11px',
-                      fontFamily: 'Effra'
-                    }}
-                    onClick={this.props.onFacebookButtonClick}
-                  />
-                  <RaisedButton
-                    label="GOOGLE"
-                    fullWidth
-                    buttonStyle={{ backgroundColor: '#CB5541' }}
-                    labelStyle={{
-                      color: 'white',
-                      fontSize: '11px',
-                      fontFamily: 'Effra'
-                    }}
-                    onClick={this.props.onGoogleButtonClick}
-                  />
-                </div>
-                <div className="loginhere-div">
-                  <img src="/static/Line.jpg" alt="hrline" />
-                  <p>ALREADY A MEMBER?</p>
-                  <button onClick={this.props.onLoginButtonClick}>Login here</button>
+                <div className="signIns">
+                  <div className="linkedinbtn-div" >
+                    <p>OR SIGN UP USING</p>
+                    <RaisedButton
+                      label="FACEBOOK"
+                      fullWidth
+                      buttonStyle={{ backgroundColor: '#6981CA' }}
+                      labelStyle={{
+                        color: 'white',
+                        fontSize: '11px',
+                        fontFamily: 'Effra'
+                      }}
+                      onClick={this.props.onFacebookButtonClick}
+                    />
+                    <br />
+                    <RaisedButton
+                      label="GOOGLE"
+                      fullWidth
+                      buttonStyle={{ backgroundColor: '#CB5541' }}
+                      labelStyle={{
+                        color: 'white',
+                        fontSize: '11px',
+                        fontFamily: 'Effra'
+                      }}
+                      onClick={this.props.onGoogleButtonClick}
+                    />
+                  </div>
+
+                  <div className="loginhere-div">
+                    <img src="/static/Line.jpg" alt="hrline" />
+                    <p>ALREADY A MEMBER?</p>
+                    <button onClick={this.props.onLoginButtonClick}>Login here</button>
+                  </div>
                 </div>
               </div>
               <style global jsx>{style}</style>
