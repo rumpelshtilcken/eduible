@@ -15,7 +15,7 @@ const INIT = {
   authenticated: false
 };
 
-export default function (state = {}, action) {
+export default (state = INIT, action) => {
   switch (action.type) {
     case CLEARDOWN:
       return { ...state, ...INIT };
@@ -32,4 +32,4 @@ export default function (state = {}, action) {
     default:
       return state;
   }
-}
+};
