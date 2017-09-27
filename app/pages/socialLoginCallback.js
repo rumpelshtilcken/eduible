@@ -21,14 +21,14 @@ class SocialLoginCallback extends Component {
           {'Loading'}
         </div>);
     }
-
+    /* eslint-disable */
     if (this.props.error) {
       return (
         <div>
           {'Error'}
         </div>);
     }
-
+    /* eslint-enable */
     return (
       <div>
         {'Thank you for sign up, please close the window'}

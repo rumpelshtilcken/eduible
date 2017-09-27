@@ -13,9 +13,9 @@ export const getAccessToken = () => {
   }
   return accessToken;
 };
-
+/* eslint-disable */
 const snakeToCamel = s => s.replace(/(\_\w)/g, m => m[1].toUpperCase());
-
+/* eslint-enable */
 export const parseHash = (hash) => {
   const data = hash.replace('#', '').split('&').reduce((acc, keyValue) => {
     const [key, value] = keyValue.split('=');

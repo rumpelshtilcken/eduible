@@ -16,6 +16,7 @@ class SignInContainer extends Component {
 
   render() {
     console.log(this.props);
+    /* eslint-disable */
     if (this.props.loading) {
       console.log('Loading state');
     }
@@ -23,6 +24,7 @@ class SignInContainer extends Component {
     if (this.props.error) {
       console.log('Error state');
     }
+    /* eslint-enable */
 
     return (
       <SignIn

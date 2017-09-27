@@ -6,6 +6,7 @@ import getDisplayName from 'utils/getDisplayName';
 
 const withCurrentUser = hoistStatics((CompositeComponent) => {
   class WithCurrentUser extends Component {
+    /* eslint-disable */
     componentWillMount() {
       if (!this.props.authenticated) {
         // not authenticated
@@ -17,7 +18,7 @@ const withCurrentUser = hoistStatics((CompositeComponent) => {
         // not authenticated
       }
     }
-
+    /* eslint-enable */
     render() {
       if (this.props.authenticated) {
         // not authenticated
