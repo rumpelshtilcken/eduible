@@ -49,8 +49,8 @@ class SignUpFormInputs extends Component {
       title: 'ZIP CODE',
       input: {
         type: 'string',
-        name: 'zipCode',
-        hintText: this.props.params.zipCode
+        name: 'zipcode',
+        hintText: this.props.params.zipcode
       }
     }
   ];
@@ -94,7 +94,7 @@ SignUpFormInputs.propTypes = {
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     country: PropTypes.string.isRequired,
-    zipCode: PropTypes.string.isRequired
+    zipcode: PropTypes.string.isRequired
   }).isRequired
 };
 

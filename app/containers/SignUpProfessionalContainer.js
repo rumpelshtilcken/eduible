@@ -1,9 +1,10 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { SignUpProfessional } from 'components';
 import * as actions from 'actions/auth';
-import { connect } from 'react-redux';
+
 
 class SignUpProfessionalContainer extends Component {
   handleContinueButtonClick = async ({
@@ -12,19 +13,19 @@ class SignUpProfessionalContainer extends Component {
     email,
     password,
     country,
-    zipCode
+    zipcode
   }) => {
     this.props.signupProfessional({
       name: fullname,
-      birthdate: date,
+      birthday: date,
       email,
       password,
       country,
-      zipCode
+      zipcode
     });
   };
 
-  handleLinkedinButtonClick = () => {};
+  handleLinkedinButtonClick = () => this.props.signinLinkedin();
 
   handleLoginButtonClick = () => {
     // TODO: open Login modal
@@ -43,7 +44,8 @@ class SignUpProfessionalContainer extends Component {
 }
 
 SignUpProfessionalContainer.propTypes = {
-  signupProfessional: PropTypes.func
+  signupProfessional: PropTypes.func,
+  signinLinkedin: PropTypes.func
 };
 
 const mapStateToProps = (state) => {

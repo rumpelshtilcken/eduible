@@ -14,7 +14,7 @@ class SignUpProfessional extends Component {
     email: '',
     password: '',
     country: '',
-    zipCode: ''
+    zipcode: ''
   };
 
   handleChange = ({ name, value }) => this.setState({ [name]: value });
