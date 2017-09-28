@@ -2,7 +2,7 @@ import auth0 from 'auth0-js';
 import _ from 'lodash';
 
 import { auth0Config } from 'config';
-import { decodeJwtToken, parseHash } from 'utils/auth';
+import { decodeJwtToken } from 'utils/auth';
 import GraphCool from './GraphCool';
 
 export default class Auth {
@@ -23,23 +23,28 @@ export default class Auth {
 
   signup = async (userType, attrs, callback) => {
     try {
+      console.log(attrs);
       await this.auth0.signupAndAuthorize({
         connection: 'Username-Password-Authentication',
         email: attrs.email,
         password: attrs.password
       }, async (err, authResult) => {
+        console.log('Sign up called |||', err);
         if (err) {
           callback(err);
           throw err;
         }
         try {
+          console.log('Sign up');
           const auth0UserId = decodeJwtToken(authResult.idToken, 'sub');
           await this.graphCool.createUser({
             userType,
             auth0UserId,
             ...this.prepareAttributes(attrs)
           });
+          console.log('Sign up');
           this.setSession(authResult);
+          console.log('Sign up');
           callback();
         } catch (error) {
           throw error;
@@ -85,7 +90,7 @@ export default class Auth {
   signinSocialCallback = async (hash) => {
     try {
       await this.graphCool.upsertUser(hash);
-      await this.setSession(hash);
+      await this.setSessionHash(hash);
     } catch (err) {
       throw err;
     }
@@ -111,22 +116,39 @@ export default class Auth {
     });
   })
 
-  setSession = (authResultOrHash) => {
-    let authResult = authResultOrHash;
-    if (typeof authResultOrHash === 'string') {
-      authResult = parseHash(authResultOrHash);
-    }
+  setSession = (authResult) => {
     // Set the time that the access token will expire at
-    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+    // figrue out meaing of this  + new Date().getTime())
+    const expiresAt = JSON.stringify((authResult.expiresIn * 1000));
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    console.log('Session setted and app should redirect');
   }
+
+  setSessionHash = (hash) => {
+    this.auth0.parseHash(hash, (err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        return this.setSession(authResult);
+      }
+      console.log(authResult.idTokenPayload.exp);
+      if (authResult.idTokenPayload) {
+        return this.setSession({
+          idToken: authResult.idToken,
+          expiresIn: authResult.idTokenPayload.exp
+        });
+      }
+
+      if (err) {
+        return err;
+      }
+    });
+  };
 
   isAuthenticated = () => {
     // Check whether the current time is past the
     // access token's expiry time
-    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    const expiresAt = JSON.parse(window.localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }
 }
