@@ -1,11 +1,15 @@
 import Head from 'next/head';
 
 import withPage from 'hoc/withPage';
+import { Main } from 'components';
 
 const Homepage = () => (
-  <Head>
-    <title>{'Eduible'}</title>
-  </Head>
+  <div>
+    <Head>
+      <title>{'Eduible'}</title>
+    </Head>
+    <Main />
+  </div>
 );
 
 export default withPage(Homepage);

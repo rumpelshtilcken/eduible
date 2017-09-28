@@ -1248,27 +1248,10 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> feat: add react-style-proptype
-=======
->>>>>>> feat(SignUpProfessionalContainer): merge
 base62@0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/base62/-/base62-0.1.1.tgz#7b4174c2f94449753b11c2651c083da841a7b084"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feat: new merged branch
-=======
-=======
->>>>>>> feat: add react-style-proptype
->>>>>>> feat: add react-style-proptype
-=======
->>>>>>> feat(SignUpProfessionalContainer): merge
 base64-js@^1.0.2, base64-js@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.2.1.tgz#a91947da1f4a516ea38e5b4ec0ec3773675e0886"
@@ -2126,22 +2109,7 @@ debug@2.6.8:
   dependencies:
     ms "2.0.0"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-debug@^2.6.0:
-=======
 debug@2.6.9, debug@^2.1.1, debug@^2.2.0, debug@^2.6.0, debug@^2.6.8:
->>>>>>> feat: new merged branch
-=======
-debug@2.6.9, debug@^2.1.1, debug@^2.2.0, debug@^2.6.0, debug@^2.6.8:
-=======
-debug@^2.6.0:
->>>>>>> feat: add react-style-proptype
->>>>>>> feat: add react-style-proptype
-=======
-debug@2.6.9, debug@^2.1.1, debug@^2.2.0, debug@^2.6.0, debug@^2.6.8:
->>>>>>> feat(SignUpProfessionalContainer): merge
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   dependencies:
@@ -3113,14 +3081,6 @@ form-data@^2.1.1, form-data@~2.3.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> feat: add react-style-proptype
-=======
->>>>>>> feat(SignUpProfessionalContainer): merge
 form-data@~2.1.1:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.1.4.tgz#33c183acf193276ecaa98143a69e94bfee1750d1"
@@ -3129,15 +3089,6 @@ form-data@~2.1.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> feat: new merged branch
-=======
-=======
->>>>>>> feat: add react-style-proptype
->>>>>>> feat: add react-style-proptype
-=======
->>>>>>> feat(SignUpProfessionalContainer): merge
 formidable@^1.0.17, formidable@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.1.1.tgz#96b8886f7c3c3508b932d6bd70c4d3a88f35f1a9"
@@ -6397,22 +6348,7 @@ querystring@0.2.0, querystring@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-raf@^3.3.0:
-=======
 raf@^3.1.0, raf@^3.3.0:
->>>>>>> feat: new merged branch
-=======
-raf@^3.1.0, raf@^3.3.0:
-=======
-raf@^3.3.0:
->>>>>>> feat: add react-style-proptype
->>>>>>> feat: add react-style-proptype
-=======
-raf@^3.1.0, raf@^3.3.0:
->>>>>>> feat(SignUpProfessionalContainer): merge
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/raf/-/raf-3.3.2.tgz#0c13be0b5b49b46f76d6669248d527cf2b02fe27"
   dependencies:
@@ -6652,29 +6588,12 @@ react-sticky@^5.0.2:
   dependencies:
     prop-types "^15.5.8"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> feat: add react-style-proptype
-=======
->>>>>>> feat(SignUpProfessionalContainer): merge
 react-style-proptype@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-style-proptype/-/react-style-proptype-3.0.0.tgz#89e0b646f266c656abb0f0dd8202dbd5036c31e6"
   dependencies:
     prop-types "^15.5.4"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feat: new merged branch
-=======
->>>>>>> feat: add react-style-proptype
->>>>>>> feat: add react-style-proptype
-=======
->>>>>>> feat(SignUpProfessionalContainer): merge
 react-tabs@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-tabs/-/react-tabs-1.1.0.tgz#f1e3d6136e1d89f70f5ef8835468a2f03a54777a"

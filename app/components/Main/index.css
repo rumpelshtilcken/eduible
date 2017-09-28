@@ -1,111 +1,137 @@
 .container {
-  width: calc(100vw);
-  height: calc(100vh - 48px - 36px);
+  width: 100%;
   background: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+
+  @media screen and (min-width: 578px) {
+    height: calc(100vh - 48px - 36px - 25px);
+  }
 }
 
 .start {
-  padding: 26px 64px 12px;
+  width: 100%;
+  padding: 26px 0 12px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: Effra;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 15px;
 
-  @media screen and (min-width: 500px) {
-    font-size: 20px;
-  }
-
-  @media screen and (min-width: 600px) {
-    font-size: 30px;
-  }
-
-  @media screen and (min-width: 700px) {
-    font-size: 40px;
+  @media screen and (min-width: 768px) {
+    font-size: 25px;
   }
 }
 
-.ProfessionalsBox {
+.chooseBoxes {
   width: 100%;
-  height: 191px;
-  background: url("/static/ProfessionalsImage.jpg") center center /contain no-repeat;
-  margin-bottom: 17px;
   display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 25px;
   align-items: center;
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    width: 50%;
-    height: 700px;
-    background: url("/static/BiggerProfessional.jpg") center center /contain no-repeat;
+    width: 723px;
+    margin-bottom: 0;
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 925px;
   }
 }
 
 .box {
-  display: block;
-  flex-wrap: nowrap;
-
-  @media screen and (min-width: 768px) {
-    display: flex;
-    flex-wrap: wrap;
-  }
-}
-
-.UniversityBox {
-  width: 100%;
-  height: 191px;
-  background: url("/static/UniversityImage.jpg") center center /contain no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 17px;
+
+  @media screen and (min-width: 538px) {
+    padding: 0 10px;
+  }
 
   @media screen and (min-width: 768px) {
-    width: 50%;
-    height: 700px;
-    background: url("/static/BiggerUniversity.jpg") center center /contain no-repeat;
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+
+.professionalsBox {
+  width: 269px;
+  height: 191px;
+  background: url("/static/ProfessionalsImage.jpg") center center /cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    width: 351px;
+    height: 249px;
+    background: url("/static/BiggerProfessional.jpg") center center /cover no-repeat;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 448px;
+    height: 319px;
+    background: url("/static/BiggerProfessional.jpg") center center /cover no-repeat;
+  }
+}
+
+.universityBox {
+  width: 269px;
+  height: 191px;
+  background: url("/static/UniversityImage.jpg") center center /cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    width: 351px;
+    height: 249px;
+    background: url("/static/BiggerUniversity.jpg") center center /cover no-repeat;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 448px;
+    height: 319px;
+    background: url("/static/BiggerUniversity.jpg") center center /cover no-repeat;
   }
 }
 
 .text {
-  width: 164.82px;
-  height: 50px;
+  width: 60%;
   text-align: center;
 
-  @media screen and (min-width: 500px) {
-    width: 500px;
-    height: 50px;
-  }
-}
-
-h1 {
-  font-family: Effra;
-  font-size: 20px;
-  margin: 0;
-  padding: 0;
-  color: #383838;
-
-  @media screen and (min-width: 700px) {
-    font-size: 30px;
-  }
-
-  @media screen and (min-width: 700px) {
-    font-size: 40px;
-  }
-}
-
-p {
-  font-family: Effra;
-  font-size: 9px;
-  margin: 0;
-  padding: 0;
-  color: #383838;
-
-  @media screen and (min-width: 700px) {
+  & h1 {
+    font-family: Effra;
     font-size: 20px;
+    margin: 0;
+    padding: 0;
+    color: #383838;
+    font-weight: normal;
+  
+    @media screen and (min-width: 768px) {
+      font-size: 25px;
+    }
   }
 
-  @media screen and (min-width: 1000px) {
-    font-size: 30px;
+  & p {
+    font-family: Effra;
+    font-size: 9px;
+    margin: 0;
+    padding: 0;
+    color: #383838;
+  
+    @media screen and (min-width: 700px) {
+      font-size: 11px;
+    }
   }
 }
