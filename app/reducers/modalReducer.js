@@ -1,19 +1,17 @@
-import { SHOW_MODAL, HIDE_MODAL } from 'types/types';
+import { HIDE_MODAL, SHOW_MODAL } from 'actions/modal/types';
 
-const initialState = {
-  modalType: '',
-  modalProps: null
+const INIT = {
+  type: null
 };
 
-const modalReducer = (state = initialState, action) => {
+const modalReducer = (state = INIT, action) => {
   switch (action.type) {
     case SHOW_MODAL:
       return {
-        modalType: action.modalType,
-        modalProps: action.modalProps
+        type: action.modalType
       };
     case HIDE_MODAL:
-      return initialState;
+      return INIT;
     default:
       return state;
   }
