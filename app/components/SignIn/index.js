@@ -45,7 +45,7 @@ class SignIn extends Component {
                 </div>
                 <div className="additionalButtonsContainer">
                   <div className="socialButtonsTitle">{'Or sign in using'.toUpperCase()}</div>
-                  <SignInSocialContainer renderButtons={['Facebook', 'Google']} />
+                  <SignInSocialContainer renderButtons={['Facebook', 'Google', 'Linkedin']} />
                 </div>
               </div>
             </div>

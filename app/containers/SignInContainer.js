@@ -1,13 +1,15 @@
+import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { SignIn } from 'components';
-import * as actions from 'actions/auth';
+import * as authActions from 'actions/auth';
+import * as modalActions from 'actions/modal';
 
 class SignInContainer extends Component {
   handleContinueButtonClick = async ({ email, password }) => {
-    this.props.signinUser({ email, password });
+    this.props.signinUser({ email, password }, this.props.hideModal);
   };
 
   render() {
@@ -46,4 +48,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, actions)(SignInContainer);
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(authActions, dispatch),
+  ...bindActionCreators(modalActions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInContainer);

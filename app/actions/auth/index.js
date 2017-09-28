@@ -47,11 +47,15 @@ export const signupProfessional =
       }
     };
 
-export const signinUser = ({ email, password }) => async (dispatch) => {
+export const signinUser = ({ email, password }, callback) => async (dispatch) => {
   dispatch({ type: AUTH_IN_PROGRESS });
 
   try {
-    await auth.signin(email, password, err => (err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER })));
+    await auth.signin(email, password, (err) => {
+      console.log('callback');
+      callback();
+      return err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER });
+    });
   } catch (error) {
     const errorMsg = error.description || error.message || 'Unspecified error';
     return dispatch(authError(errorMsg));

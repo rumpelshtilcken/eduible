@@ -7,7 +7,6 @@ import { SignUpProfessional } from 'components';
 import * as authActions from 'actions/auth';
 import * as modalActions from 'actions/modal';
 
-
 class SignUpProfessionalContainer extends Component {
   handleContinueButtonClick = ({
     fullname,
