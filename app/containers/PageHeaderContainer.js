@@ -1,47 +1,49 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 import { PageHeader } from 'components';
+import * as actions from 'actions/modal';
 
 class PageHeaderContainer extends Component {
-  headerLinks = [
-    { title: 'menu1', url: '/' },
-    { title: 'menu2', url: '/' },
-    { title: 'menu3', url: '/' },
-    { title: 'menu4', url: '/' }
+  links = [
+    { url: '/searchUniversity', title: 'Search university', prefetch: true },
+    { url: '/searchProfessional', title: 'Search professional', prefetch: true }
   ];
 
-  handleModalOpen = ({ modalType }) => {
-    this.props.showModal({
-      modalType,
-      modalProps: {
-        onRequestClose: this.handleModalClose
-      }
-    });
-  };
-
-  handleModalClose = () => {
-    this.props.hideModal();
-  };
-
   render() {
+    const buttons = [
+      { title: 'Join as professional', onClick: this.props.showSignUpProfessionalModal },
+      { title: 'Sign up', onClick: this.props.showSignUpStudentModal },
+      { title: 'Login', onClick: this.props.showSignInModal }
+    ];
+
     return (
       <div>
-        <PageHeader onOpenModal={this.handleModalOpen} />
+        <PageHeader
+          authenticated={this.props.authenticated}
+          links={this.links}
+          buttons={buttons}
+        />
       </div>
     );
   }
 }
 
 PageHeaderContainer.propTypes = {
-  showModal: PropTypes.func,
-  hideModal: PropTypes.func
+  authenticated: PropTypes.bool,
+  showSignInModal: PropTypes.func.isRequired,
+  showSignUpProfessionalModal: PropTypes.func.isRequired,
+  showSignUpStudentModal: PropTypes.func.isRequired
 };
 
-const mapDispatchToProps = dispatch => ({
-  showModal: ({ modalType, modalProps }) => dispatch({ type: 'SHOW_MODAL', modalType, modalProps }),
-  hideModal: () => dispatch({ type: 'HIDE_MODAL' })
-});
+PageHeaderContainer.defaultProps = {
+  authenticated: false
+};
 
-export default connect(null, mapDispatchToProps)(PageHeaderContainer);
+const mapStateToProps = state => ({ authenticated: state.auth.authenticated });
+
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageHeaderContainer);
