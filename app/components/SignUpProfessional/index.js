@@ -4,6 +4,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import SignInSocialContainer from 'containers/SignInSocialContainer';
+
 import SignUpFormInputs from './SignUpFormInputs';
 import style from './index.css';
 
@@ -31,7 +33,6 @@ class SignUpProfessional extends Component {
             className="SignUpAsProfessional"
             overlayClassName="OverlayModal"
           >
-
             <div className="container">
               <div>
                 <p className="sign">JOIN AS PROFESSIONAL</p>
@@ -49,17 +50,7 @@ class SignUpProfessional extends Component {
                 />
                 <div className="linkedinbtn-div" >
                   <p>OR JOIN WITH</p>
-                  <RaisedButton
-                    label="LINKEDIN"
-                    fullWidth
-                    buttonStyle={{ backgroundColor: '#2679B2' }}
-                    labelStyle={{
-                      color: 'white',
-                      fontSize: '11px',
-                      fontFamily: 'Effra'
-                    }}
-                    onClick={this.props.onLinkedinButtonClick}
-                  />
+                  <SignInSocialContainer renderButtons={['Linkedin']} />
                 </div>
                 <div className="loginhere-div">
                   <img src="/static/Line.jpg" alt="hrline" />
@@ -67,7 +58,7 @@ class SignUpProfessional extends Component {
                   <button onClick={this.props.onLoginButtonClick}>Login here</button>
                 </div>
               </div>
-              <style global>{style}</style>
+              <style global jsx>{style}</style>
             </div>
           </Modal>
         </div>
@@ -79,8 +70,7 @@ class SignUpProfessional extends Component {
 SignUpProfessional.propTypes = {
   onRequestClose: PropTypes.func.isRequired,
   onContinueButtonClick: PropTypes.func.isRequired,
-  onLoginButtonClick: PropTypes.func.isRequired,
-  onLinkedinButtonClick: PropTypes.func.isRequired
+  onLoginButtonClick: PropTypes.func.isRequired
 };
 
 export default SignUpProfessional;

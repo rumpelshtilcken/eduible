@@ -3,6 +3,8 @@ import Modal from 'react-modal';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 
+import SignInSocialContainer from 'containers/SignInSocialContainer';
+
 import SignInFormInputs from './SignInForm';
 import MuiButton from './MuiButton';
 import stylesheet from './index.css';
@@ -43,21 +45,12 @@ class SignIn extends Component {
                 </div>
                 <div className="additionalButtonsContainer">
                   <div className="socialButtonsTitle">{'Or sign in using'.toUpperCase()}</div>
-                  <MuiButton
-                    backgroundColor={'#6981CA'}
-                    onClick={this.props.onFacebookButtonClick}
-                    title={'Facebook'}
-                  />
-                  <MuiButton
-                    backgroundColor={'#CB5541'}
-                    onClick={this.props.onGoogleButtonClick}
-                    title={'Google'}
-                  />
+                  <SignInSocialContainer renderButtons={['Facebook', 'Google']} />
                 </div>
               </div>
             </div>
           </Modal>
-          <style global>{stylesheet}</style>
+          <style global jsx>{stylesheet}</style>
         </div>
       </MuiThemeProvider>
     );
@@ -66,9 +59,7 @@ class SignIn extends Component {
 
 SignIn.propTypes = {
   onRequestClose: PropTypes.func.isRequired,
-  onContinueButtonClick: PropTypes.func.isRequired,
-  onFacebookButtonClick: PropTypes.func.isRequired,
-  onGoogleButtonClick: PropTypes.func.isRequired
+  onContinueButtonClick: PropTypes.func.isRequired
 };
 
 export default SignIn;

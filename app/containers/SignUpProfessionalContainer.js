@@ -1,13 +1,15 @@
+import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { SignUpProfessional } from 'components';
-import * as actions from 'actions/auth';
+import * as authActions from 'actions/auth';
+import * as modalActions from 'actions/modal';
 
 
 class SignUpProfessionalContainer extends Component {
-  handleContinueButtonClick = async ({
+  handleContinueButtonClick = ({
     fullname,
     date,
     email,
@@ -15,17 +17,26 @@ class SignUpProfessionalContainer extends Component {
     country,
     zipcode
   }) => {
-    this.props.signupProfessional({
+    const params = {
       name: fullname,
-      birthday: date,
       email,
-      password,
-      country,
-      zipcode
-    });
-  };
+      password
+    };
 
-  handleLinkedinButtonClick = () => this.props.signinLinkedin();
+    if (date) {
+      params.birthday = date;
+    }
+
+    if (country) {
+      params.country = country;
+    }
+
+    if (zipcode) {
+      params.zipcode = zipcode;
+    }
+    console.log(this.props);
+    this.props.signupProfessional(params, this.props.showSignUpProfessionalStep2Modal);
+  };
 
   handleLoginButtonClick = () => {
     // TODO: open Login modal
@@ -45,7 +56,8 @@ class SignUpProfessionalContainer extends Component {
 
 SignUpProfessionalContainer.propTypes = {
   signupProfessional: PropTypes.func,
-  signinLinkedin: PropTypes.func
+  signinLinkedin: PropTypes.func,
+  showSignUpProfessionalStep2Modal: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -58,5 +70,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, actions)(SignUpProfessionalContainer);
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(authActions, dispatch),
+  ...bindActionCreators(modalActions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpProfessionalContainer);
 

@@ -1,21 +1,16 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { SignIn } from 'components';
 import * as actions from 'actions/auth';
-import { connect } from 'react-redux';
 
 class SignInContainer extends Component {
   handleContinueButtonClick = async ({ email, password }) => {
     this.props.signinUser({ email, password });
   };
 
-  handleFacebookButtonClick = () => this.props.signinFacebook();
-
-  handleGoogleButtonClick = () => this.props.signinGoogle();
-
   render() {
-    console.log(this.props);
     /* eslint-disable */
     if (this.props.loading) {
       console.log('Loading state');
@@ -29,8 +24,6 @@ class SignInContainer extends Component {
     return (
       <SignIn
         onContinueButtonClick={this.handleContinueButtonClick}
-        onFacebookButtonClick={this.handleFacebookButtonClick}
-        onGoogleButtonClick={this.handleGoogleButtonClick}
         {...this.props}
       />
     );

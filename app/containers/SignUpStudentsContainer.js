@@ -1,10 +1,10 @@
+import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { SignUpStudent } from 'components';
 import * as actions from 'actions/auth';
-
 
 class SignUpStudentContainer extends Component {
   handleContinueButtonClick = async ({
@@ -13,17 +13,21 @@ class SignUpStudentContainer extends Component {
     email,
     password
   }) => {
-    this.props.signupStudent({
+    const params = {
       name: fullname,
-      birthday: date,
       email,
       password
-    });
+    };
+
+    if (date) {
+      params.birthday = date;
+    }
+
+    this.props.signupStudent(
+      params,
+      () => this.props.hideModal()
+    );
   };
-
-  handleFacebookButtonClick = () => {};
-
-  handleGoogleButtonClick = () => {};
 
   handleLoginButtonClick = () => {
     // TODO: open Login modal
@@ -43,7 +47,8 @@ class SignUpStudentContainer extends Component {
 }
 
 SignUpStudentContainer.propTypes = {
-  signupStudent: PropTypes.func.isRequired
+  signupStudent: PropTypes.func.isRequired,
+  hideModal: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -56,4 +61,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, actions)(SignUpStudentContainer);
+const mapDispatchToProps = dispatch => ({
+  hideModal: () => dispatch({ type: 'HIDE_MODAL' }),
+  ...bindActionCreators(actions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpStudentContainer);
