@@ -20,17 +20,10 @@
 }
 
 .menuLinks {
-  display: none;
   margin-left: 21px;
 
   @media screen and (min-width: 768px) {
     display: flex;
     z-index: 0;
   }
-}
-
-.menu {
-  margin-right: 69px;
-  border: 0;
-  background-color: transparent;
 }

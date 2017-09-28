@@ -9,8 +9,16 @@ const Footer = ({ urlsMenu, copyright }) => (
     <div className="menuLinks">
       {urlsMenu &&
         urlsMenu.map(urlMenu => (
-          <Link key={urlMenu.url} href={urlMenu.url}>
-            <a className="menu">{urlMenu.title}</a>
+          <Link
+            key={urlMenu.url}
+            href={urlMenu.url}
+            style={{
+              marginRight: '69px',
+              border: 0,
+              backgroundColor: 'transparent'
+            }}
+          >
+            {urlMenu.title}
           </Link>
         ))}
     </div>
