@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import MuiSnackbar from 'components/Material-ui/MuiSnackbar';
+import SignInSocialContainer from 'containers/SignInSocialContainer';
+
 import SignUpFormInputs from './SignUpFormInputs';
-import SignInSocialContainer from '../SignInSocial';
 import style from './index.css';
 
 class SignUpStudent extends Component {
@@ -55,32 +56,10 @@ class SignUpStudent extends Component {
                   onClick={this.handleContinueButtonClick}
                 />
                 <div className="signIns">
-                  <SignInSocialContainer renderButtons={['Facebook', 'Google', 'Linkedin']} />
                   <div className="linkedinbtn-div" >
                     <p>OR SIGN UP USING</p>
-                    <RaisedButton
-                      label="FACEBOOK"
-                      fullWidth
-                      buttonStyle={{ backgroundColor: '#6981CA' }}
-                      labelStyle={{
-                        color: 'white',
-                        fontSize: '11px',
-                        fontFamily: 'Effra'
-                      }}
-                      onClick={this.props.onFacebookButtonClick}
-                    />
-                    <br />
-                    <RaisedButton
-                      label="GOOGLE"
-                      fullWidth
-                      buttonStyle={{ backgroundColor: '#CB5541' }}
-                      labelStyle={{
-                        color: 'white',
-                        fontSize: '11px',
-                        fontFamily: 'Effra'
-                      }}
-                      onClick={this.props.onGoogleButtonClick}
-                    />
+                    <SignInSocialContainer renderButtons={['Facebook', 'Google', 'Linkedin']} />
+
                     <MuiSnackbar
                       isOpen={this.state.isSnackOpen}
                       action="UNDO"
