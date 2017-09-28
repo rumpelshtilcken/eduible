@@ -1,0 +1,60 @@
+.SignUpProfessionalUniversity {
+  width: 255px;
+  border-radius: 20px;
+  padding: 0;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(204, 204, 204);
+  overflow: auto;
+  outline: none;
+  margin: auto;
+
+  @media (min-width: 768px) {
+    width: 407px;
+    height: 345px;
+    margin: auto;
+  }
+}
+
+.OverlayModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+  display: block;
+}
+
+.share-div {
+  text-align: center;
+  margin: 5px auto 17px;
+}
+
+.share-div a {
+  text-decoration: none;
+}
+
+.headerTitle {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: bold;
+  color: #4e4e4e;
+  margin: 23px auto 5px;
+}
+
+.p-box {
+  margin: 15px auto;
+
+  @media (min-width: 768px) {
+    padding: 16px 0 0 26px;
+    width: 140px;
+  }
+} 

@@ -9,6 +9,7 @@ import SignInContainer from './SignInContainer';
 import SignUpStudentsContainer from './SignUpStudentsContainer';
 import SignUpProfessionalContainer from './SignUpProfessionalContainer';
 import SignUpProfessionalStep2Container from './SignUpProfessionalStep2Container';
+import SignUpProfessionalUniversityContainer from './SignUpProfessionalUniversityContainer';
 
 class ModalRootContainer extends Component {
   MODAL_COMPONENTS = {
@@ -16,6 +17,7 @@ class ModalRootContainer extends Component {
     SIGN_IN: SignInContainer,
     SIGN_UP_STUDENT: SignUpStudentsContainer,
     SIGN_UP_PROFESSIONAL_STEP_2: SignUpProfessionalStep2Container,
+    SIGN_UP_PROFESSIONAL_UNIVERSITY: SignUpProfessionalUniversityContainer,
     LOADING: <div>Loading...</div>
   };
 
