@@ -41,7 +41,7 @@ export const decodeJwtToken = (idToken, claim) => {
 
 export const getCurrentUserData = (claim) => {
   const token = localStorage.getItem('id_token');
-  return decodeJwtToken(token, claim);
+  return token && decodeJwtToken(token, claim);
 };
 
 export const convertDateToISO = (date) => {
