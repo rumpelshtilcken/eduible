@@ -76,7 +76,7 @@ class SignUpStudent extends Component {
                   <button onClick={this.props.onLoginButtonClick}>Login here</button>
                 </div>
               </div>
-              <style global>{style}</style>
+              <style global jsx>{style}</style>
             </div>
           </Modal>
         </div>
