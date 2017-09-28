@@ -1,47 +1,44 @@
-import { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 
 import { ResponsiveMenu } from 'components';
 
-import stylesSheet from './index.css';
+import stylesheet from './index.css';
 
-class PageHeader extends Component {
-  handleLoginButtonClick = () =>
-    this.props.onOpenModal({ modalType: 'SIGN_IN' });;
-
-  handleSignUpProfessionalClick = () =>
-    this.props.onOpenModal({ modalType: 'SIGN_UP_PROFESSIONALS' });
-
-  handleSignUpButtonClik = () =>
-    this.props.onOpenModal({ modalType: 'SIGN_UP_STUDENTS' });
-
-  headerButtons = [
-    { title: 'Join as professional', onClick: this.handleSignUpProfessionalClick },
-    { title: 'Sign up', onClick: this.handleSignUpButtonClik },
-    { title: 'Login', onClick: this.handleLoginButtonClick }
-  ];
-
-  render() {
-    return (
-      <MuiThemeProvider>
-        <div>
-          <div className="headerContainer">
-            <div className="logo">
-              <img src={'static/Icons/logoColored.svg'} alt={'logo'} />
-            </div>
-            <ResponsiveMenu buttons={this.headerButtons} />
-          </div>
-
-          <style jsx>{stylesSheet}</style>
+const PageHeader = ({ authenticated, buttons, links }) => (
+  <MuiThemeProvider>
+    <div>
+      <div className="headerContainer">
+        <div className="logo">
+          <img src={'static/Icons/logoColored.svg'} alt={'logo'} />
         </div>
-      </MuiThemeProvider>
-    );
-  }
-}
+        {
+          authenticated
+            ? <ResponsiveMenu links={links} />
+            : <ResponsiveMenu buttons={buttons} />
+        }
+      </div>
+
+      <style jsx>{stylesheet}</style>
+    </div>
+  </MuiThemeProvider>
+);
 
 PageHeader.propTypes = {
-  onOpenModal: PropTypes.func
+  authenticated: PropTypes.bool,
+  buttons: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
+  })),
+  links: PropTypes.arrayOf(PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    prefetch: PropTypes.bool.isRequired
+  }))
+};
+
+PageHeader.defaultProps = {
+  authenticated: false
 };
 
 export default PageHeader;
