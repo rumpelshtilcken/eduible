@@ -11,11 +11,16 @@ import Auth from './Auth';
 const auth = new Auth();
 
 /*         Local auth        */
-export const signupStudent = attr => async (dispatch) => {
+export const signupStudent = (attr, callback) => async (dispatch) => {
   dispatch({ type: AUTH_IN_PROGRESS });
 
   try {
-    await auth.signup('Student', attr, err => console.log('SSS: ', err) || (err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER })));
+    console.log('sign up student');
+    await auth.signup('Student', attr, (err) => {
+      console.log('ssss', callback);
+      callback();
+      return err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER });
+    });
   } catch (error) {
     const errorMsg = error.description || error.message || 'Unspecified error';
     dispatch(authError(errorMsg));
@@ -23,13 +28,20 @@ export const signupStudent = attr => async (dispatch) => {
 };
 
 export const signupProfessional =
-    attr => async (dispatch) => {
+    (attr, callback) => async (dispatch) => {
       dispatch({ type: AUTH_IN_PROGRESS });
 
       try {
-        await auth.signup('Professional', attr, err => console.log('SSS: ', err) || (err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER })));
+        console.log('sign up dsds', attr);
+        const result = await auth.signup('Professional', attr, (err) => {
+          console.log('callback');
+          callback();
+          return err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER });
+        });
+        console.log('result: ', result);
         dispatch({ type: AUTH_USER });
       } catch (error) {
+        console.log(error);
         const errorMsg = error.description || error.message || 'Unspecified error';
         dispatch(authError(errorMsg));
       }
@@ -39,7 +51,7 @@ export const signinUser = ({ email, password }) => async (dispatch) => {
   dispatch({ type: AUTH_IN_PROGRESS });
 
   try {
-    await auth.signin(email, password, err => console.log('SSS: ', err) || (err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER })));
+    await auth.signin(email, password, err => (err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER })));
   } catch (error) {
     const errorMsg = error.description || error.message || 'Unspecified error';
     return dispatch(authError(errorMsg));
@@ -48,10 +60,9 @@ export const signinUser = ({ email, password }) => async (dispatch) => {
 
 /*         Social auth        */
 export const signinFacebook = () => async (dispatch) => {
-  dispatch({ type: AUTH_IN_PROGRESS });
-
   try {
     await auth.signinSocial('facebook');
+    return dispatch({ type: AUTH_IN_PROGRESS });
   } catch (error) {
     console.log(error);
     const errorMsg = error.description || error.message || 'Unspecified error';
@@ -60,9 +71,9 @@ export const signinFacebook = () => async (dispatch) => {
 };
 
 export const signinGoogle = () => async (dispatch) => {
-  dispatch({ type: AUTH_IN_PROGRESS });
   try {
     await auth.signinSocial('google');
+    return dispatch({ type: AUTH_IN_PROGRESS });
   } catch (error) {
     const errorMsg = error.description || error.message || 'Unspecified error';
     return dispatch(authError(errorMsg));
@@ -70,9 +81,9 @@ export const signinGoogle = () => async (dispatch) => {
 };
 
 export const signinLinkedin = () => async (dispatch) => {
-  dispatch({ type: AUTH_IN_PROGRESS });
   try {
     await auth.signinSocial('linkedin');
+    return dispatch({ type: AUTH_IN_PROGRESS });
   } catch (error) {
     const errorMsg = error.description || error.message || 'Unspecified error';
     return dispatch(authError(errorMsg));
@@ -81,9 +92,9 @@ export const signinLinkedin = () => async (dispatch) => {
 
 export const socialSignInCallback = hash => async (dispatch) => {
   try {
+    dispatch({ type: AUTH_IN_PROGRESS });
     await auth.signinSocialCallback(hash);
-    console.log('Succes social signin');
-    dispatch({ type: AUTH_USER });
+    return dispatch({ type: AUTH_USER });
   } catch (error) {
     console.log(error);
     const errorMsg = error.description || error.message || 'Unspecified error';
