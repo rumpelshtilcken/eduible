@@ -31,18 +31,17 @@ export const getOriginAccessToken = () => {
   return originAccessToken;
 };
 
-export const getClaimFromToken = (token, claim) => {
-  const payload = token.split('.')[1];
-  const bin = btoa(payload);
-  const obj = JSON.parse(bin);
-  return obj[claim];
-};
-
 export const decodeJwtToken = (idToken, claim) => {
   const base64Url = idToken.split('.')[1];
   const base64 = base64Url.replace('-', '+').replace('_', '/');
   const result = JSON.parse(window.atob(base64));
+  console.log(result);
   return claim ? result[claim] : result;
+};
+
+export const getCurrentUserData = (claim) => {
+  const token = localStorage.getItem('id_token');
+  return decodeJwtToken(token, claim);
 };
 
 export const convertDateToISO = (date) => {
