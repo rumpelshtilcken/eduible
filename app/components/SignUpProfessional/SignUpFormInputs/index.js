@@ -99,7 +99,7 @@ class SignUpFormInputs extends Component {
 
   render() {
     return (
-      <div className="inputs">
+      <div className="formInputsContainer">
         {this.inputs.map(this.renderInput)}
       </div>
     );

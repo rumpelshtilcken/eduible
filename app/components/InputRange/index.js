@@ -50,7 +50,7 @@ class InputRange extends Component {
           value={this.state.value}
           onChange={this.handleSliderChange}
         />
-        <div className="inputs">
+        <div className="rangeInputContainer">
           <input
             className="lower"
             type="text"
