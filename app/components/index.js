@@ -28,6 +28,7 @@ export { default as SignIn } from './SignIn';
 export { default as SignInSocial } from './SignInSocial';
 export { default as SignUpProfessional } from './SignUpProfessional';
 export { default as SignUpProfessionalStep2 } from './SignUpProfessionalStep2';
+export { default as SignUpProfessionalUniversity } from './SignUpProfessionalUniversity';
 export { default as SignUpStudent } from './SignUpStudent';
 export { default as StudentProfile } from './StudentProfile';
 export { default as StudentProfileCard } from './StudentProfileCard';
