@@ -1,4 +1,4 @@
-import modalReducer from './modalReducer';
 import auth from './authReducer';
+import modal from './modalReducer';
 
-export default { auth, modal: modalReducer };
+export default { auth, modal };
