@@ -2,7 +2,7 @@
 
 import { compose } from 'recompact';
 
-import withData from 'lib/withData';
+import withData from 'hoc/withData';
 
 import withLayout from './withLayout';
 
