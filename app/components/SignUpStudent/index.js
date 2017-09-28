@@ -83,8 +83,10 @@ class SignUpStudent extends Component {
                     />
                     <MuiSnackbar
                       isOpen={this.state.isSnackOpen}
+                      action="UNDO"
                       message={this.state.snackMessage}
-                      onRequestClose={this.handleRequestSnackClose}
+                      handleActionTouchTap={this.handleRequestSnackClose}
+                      handleRequestClose={this.handleRequestSnackClose}
                     />
                   </div>
 
