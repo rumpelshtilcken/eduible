@@ -1,5 +1,5 @@
-/* eslint-disable */
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist';
 import reduxThunk from 'redux-thunk';
 
 import reducers from 'reducers';
@@ -13,7 +13,7 @@ if (process.browser && window.__REDUX_DEVTOOLS_EXTENSION__) {
 }
 
 function create(apollo, initialState = {}) {
-  return createStore(
+  const store = createStore(
     combineReducers({
       // Setup reducers
       ...reducers,
@@ -22,9 +22,13 @@ function create(apollo, initialState = {}) {
     initialState, // Hydrate the store with server-side data
     compose(
       applyMiddleware(apollo.middleware(), reduxThunk), // Add additional middleware here
+      autoRehydrate(),
       devtools
     )
   );
+
+  persistStore(store);
+  return store;
 }
 
 export default function initRedux(apollo, initialState) {
