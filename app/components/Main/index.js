@@ -1,7 +1,7 @@
 import stylesheet from './index.css';
 import Link from 'next/link';
 
-const ComingSoon = () => (
+const Main = () => (
   <div>
     <div className="container">
       <div className="start"><div>LETS START LOOKING FOR</div></div>
@@ -32,4 +32,4 @@ const ComingSoon = () => (
   </div>
 );
 
-export default ComingSoon;
+export default Main;
