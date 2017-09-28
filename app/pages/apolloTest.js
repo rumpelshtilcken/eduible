@@ -1,6 +1,6 @@
 import { gql, graphql } from 'react-apollo';
 import { connect } from 'react-redux';
-import withData from '../lib/withData';
+import withData from '../hoc/withData';
 
 const EmailList = (props) => console.log(props) || ( // eslint-disable-line
   <div>
