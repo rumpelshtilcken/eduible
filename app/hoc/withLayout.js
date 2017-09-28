@@ -10,22 +10,22 @@ import getDisplayName from 'utils/getDisplayName';
 const withLayout = hoistStatics((CompositeComponent) => {
   class WithLayout extends Component {
     footerLinks = [
-      { title: 'ABOUT', label1: 'How It Works', url: '#', label2: 'Succsess Stories', link2: '#' },
+      {
+        title: 'ABOUT',
+        url: '/about'
+      },
       {
         title: 'PROFESSIONALS',
-        label1: 'Join As Professional',
-        url: '/',
-        label2: 'Search For Professional',
-        link2: '/'
+        url: '/professionals'
       },
       {
         title: 'UNIVERSITIES',
-        label1: 'Create Account',
-        url: '/',
-        label2: 'Search University',
-        link2: '/'
+        url: '/universities'
       },
-      { title: 'ANSWERS', label1: "FAQ's", url: '/', label2: 'Privacy Policy', link2: '/' }
+      {
+        title: 'ANSWERS',
+        url: '/answers'
+      }
     ];
 
     handleOpenModal = () => {};
