@@ -1,75 +1,38 @@
-import BookingHeader from './BookingHeader';
-import CallRequest from './CallRequest';
-import Card from './Card';
-import CommingSoon from './ComingSoon';
-import Footer from './Footer';
-import FoundUniversities from './SearchUniversity/FoundUniversities';
-import InputRange from '../components/InputRange';
-import Layout from './Layout';
-import Link from './Link';
-import Main from './Main';
-import Menu from './Menu';
-import PageHeader from './PageHeader';
-import PaymentDetails from './PaymentDetails';
-import ProfessionalProfile from './ProfessionalProfile';
-import ProfessionalProfileEdit from './ProfessionalProfileEdit';
-import ProfessionalProfileOwner from './ProfessionalProfileOwner';
-import ProfessionalRating from '../components/ProfessionalSearch/ProfessionalRating';
-import ProfessionalSearch from './ProfessionalSearch';
-import ProfileEdit from './ProfileEdit';
-import ProgressBar from './ProgressBar';
-import ResponsiveMenu from './ResponsiveMenu';
-import RoundedButton from './RoundedButton';
-import SearchTextInput from './SearchTextInput';
-import SearchUniversity from './SearchUniversity';
-import SelectDropdown from './SelectDropdown';
-import SideMoreLayout from './SideMoreLayout';
-import SignIn from './SignIn';
-import SignUpProfessional from './SignUpProfessional';
-import SignUpStudent from './SignUpStudent';
-import StudentProfile from './StudentProfile';
-import StudentProfileCard from './StudentProfileCard';
-import StudentProfileEdit from './StudentProfileEdit';
-import TabMenu from './TabMenu';
-import Textarea from './Textarea';
-import TextInput from './TextInput';
-import VideoChat from './VideoChat';
-
-export {
-  BookingHeader,
-  CallRequest,
-  Card,
-  CommingSoon,
-  Footer,
-  FoundUniversities,
-  InputRange,
-  Layout,
-  Link,
-  Main,
-  Menu,
-  PageHeader,
-  PaymentDetails,
-  ProfessionalProfile,
-  ProfessionalProfileEdit,
-  ProfessionalProfileOwner,
-  ProfessionalRating,
-  ProfessionalSearch,
-  ProfileEdit,
-  ProgressBar,
-  ResponsiveMenu,
-  RoundedButton,
-  SearchTextInput,
-  SearchUniversity,
-  SelectDropdown,
-  SideMoreLayout,
-  SignIn,
-  SignUpProfessional,
-  SignUpStudent,
-  StudentProfile,
-  StudentProfileCard,
-  StudentProfileEdit,
-  TabMenu,
-  Textarea,
-  TextInput,
-  VideoChat
-};
+export { default as BookingHeader } from './BookingHeader';
+export { default as CallRequest } from './CallRequest';
+export { default as Card } from './Card';
+export { default as CommingSoon } from './ComingSoon';
+export { default as Footer } from './Footer';
+export { default as FoundUniversities } from './SearchUniversity/FoundUniversities';
+export { default as InputRange } from '../components/InputRange';
+export { default as Layout } from './Layout';
+export { default as Link } from './Link';
+export { default as Main } from './Main';
+export { default as Menu } from './Menu';
+export { default as PageHeader } from './PageHeader';
+export { default as PaymentDetails } from './PaymentDetails';
+export { default as ProfessionalProfile } from './ProfessionalProfile';
+export { default as ProfessionalProfileEdit } from './ProfessionalProfileEdit';
+export { default as ProfessionalProfileOwner } from './ProfessionalProfileOwner';
+export { default as ProfessionalRating } from '../components/ProfessionalSearch/ProfessionalRating';
+export { default as ProfessionalSearch } from './ProfessionalSearch';
+export { default as ProfileEdit } from './ProfileEdit';
+export { default as ProgressBar } from './ProgressBar';
+export { default as ResponsiveMenu } from './ResponsiveMenu';
+export { default as RoundedButton } from './RoundedButton';
+export { default as SearchTextInput } from './SearchTextInput';
+export { default as SearchUniversity } from './SearchUniversity';
+export { default as SelectDropdown } from './SelectDropdown';
+export { default as SideMoreLayout } from './SideMoreLayout';
+export { default as SignIn } from './SignIn';
+export { default as SignInSocial } from './SignInSocial';
+export { default as SignUpProfessional } from './SignUpProfessional';
+export { default as SignUpProfessionalStep2 } from './SignUpProfessionalStep2';
+export { default as SignUpStudent } from './SignUpStudent';
+export { default as StudentProfile } from './StudentProfile';
+export { default as StudentProfileCard } from './StudentProfileCard';
+export { default as StudentProfileEdit } from './StudentProfileEdit';
+export { default as TabMenu } from './TabMenu';
+export { default as Textarea } from './Textarea';
+export { default as TextInput } from './TextInput';
+export { default as VideoChat } from './VideoChat';
