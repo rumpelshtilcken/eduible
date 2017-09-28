@@ -6,6 +6,7 @@
   background: rgb(255, 255, 255);
   border: 1px solid rgb(204, 204, 204);
   outline: none;
+  overflow: auto;
   margin: auto;
 
   @media (min-width: 768px) {
