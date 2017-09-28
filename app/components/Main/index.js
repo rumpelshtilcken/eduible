@@ -1,5 +1,6 @@
-import stylesheet from './index.css';
 import Link from 'next/link';
+
+import stylesheet from './index.css';
 
 const Main = () => (
   <div>
@@ -8,21 +9,21 @@ const Main = () => (
       <div className="chooseBoxes">
         <div className="box">
           <div className="professionalsBox">
-            <Link href="/searchProfessional">
-              <div className="text">
+            <Link href="/searchProfessional" prefetch>
+              <a className="text">
                 <h1>PROFESSIONALS</h1>
                 <p>lorem ipsum dolor sit amet vulputate consectetur adipiscing elit</p>
-              </div>
+              </a>
             </Link>
           </div>
         </div>
         <div className="box">
           <div className="universityBox">
-            <Link href="/searchUniversity">
-              <div className="text">
+            <Link href="/searchUniversity" prefetch>
+              <a className="text">
                 <h1>UNIVERSITY</h1>
                 <p>lorem ipsum dolor sit amet vulputate consectetur adipiscing elit</p>
-              </div>
+              </a>
             </Link>
           </div>
         </div>
