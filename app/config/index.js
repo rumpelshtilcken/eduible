@@ -6,6 +6,6 @@ export const auth0Config = {
   clientID: 'Z1VjYlw0k76XQY1Ni1y8Q4llfEzp0WvS',
   callbackUrl: 'http://localhost:3000/socialLoginCallback',
   realm: 'Username-Password-Authentication',
-  scope: 'openid email create:token profile app_metadata user_metadata',
+  scope: 'openid email  profile',
   redirectUri: 'http://localhost:3000/socialLoginCallback'
 };
