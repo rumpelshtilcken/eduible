@@ -116,7 +116,9 @@ const floatingLabelStyle = {
 
 SignUpProfessionalStep2Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  onRequestClose: PropTypes.func.isRequired
+  onRequestClose: PropTypes.func.isRequired,
+  onContinueButtonClick: PropTypes.func,
+  onSkip: PropTypes.func
 };
 
 export default SignUpProfessionalStep2Modal;

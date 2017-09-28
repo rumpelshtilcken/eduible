@@ -45,7 +45,10 @@ class SignUpProfessionalStep2Container extends Component {
 SignUpProfessionalStep2Container.propTypes = {
   signupProfessional: PropTypes.func,
   signinLinkedin: PropTypes.func,
-  showSignUpProfessionalStep2Modal: PropTypes.func
+  showSignUpProfessionalStep2Modal: PropTypes.func,
+  data: PropTypes.object,
+  updateJobTitle: PropTypes.func,
+  showSignUpProfessionalUniversity: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -74,7 +77,7 @@ query allUsers($auth0UserId: String!) {
 } 
 `;
 const SignUpProfessionalStep2ContainerWithQuery = graphql(getProfessionalByAuth0Id, {
-  options: props => ({
+  options: () => ({
     variables: {
       auth0UserId: getCurrentUserData('sub')
     }
@@ -89,7 +92,7 @@ const updateJobTitle = gql`
   } 
 `;
 const SignUpProfessionalStep2ContainerWithQueryAndMutaion = graphql(updateJobTitle, {
-  props: ({ ownProps, mutate }) => ({
+  props: ({ ownProps, mutate }) => console.log(ownProps) || ({
     updateJobTitle: ({ variables }) => mutate({
       variables
     })

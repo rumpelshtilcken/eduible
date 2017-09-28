@@ -20,7 +20,9 @@
 //       };
 
 //       const result = graphCool.constructMutationArguments(fields);
-//       expect(result).to.equal('mutation ($userType: UserType!, $student: UserstudentStudent, $name: String!, $birthdate: DateTime!, $email: String!)');
+//       expect(result).to.equal
+// ('mutation ($userType: UserType!, $student: UserstudentStudent, 
+// $name: String!, $birthdate: DateTime!, $email: String!)');
 //     });
 //   });
 
@@ -35,7 +37,10 @@
 
 //       const result = graphCool.constructCreateUserQuery(fields);
 //       console.log(result);
-//       expect(result).to.equal('{createUser (userType: $userType, student: $student, name: $name, birthdate: $birthdate, email: $email){id, student {id}}}');
+//       expect(result).to.equal('{
+//  createUser (
+// userType: $userType, student: $student, name: $name, 
+// birthdate: $birthdate, email: $email){id, student {id}}}');
 //     });
 //   });
 // });
