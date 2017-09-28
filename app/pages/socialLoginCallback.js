@@ -1,9 +1,10 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 
 import * as actions from 'actions/auth';
-import { connect } from 'react-redux';
-import withData from 'lib/withData';
+import withData from 'hoc/withData';
 
 class SocialLoginCallback extends Component {
   componentDidMount() {
@@ -11,10 +12,14 @@ class SocialLoginCallback extends Component {
     this.props.socialSignInCallback(hash);
   }
 
+  componentWillUpdate(nextProps) {
+    const { authenticated } = nextProps;
+    if (authenticated) {
+      Router.push({ pathname: '/' });
+    }
+  }
+
   render() {
-    console.log(
-      this.props
-    );
     if (this.props.loading) {
       return (
         <div>
@@ -28,10 +33,11 @@ class SocialLoginCallback extends Component {
           {'Error'}
         </div>);
     }
+
     /* eslint-enable */
     return (
       <div>
-        {'Thank you for sign up, please close the window'}
+        {'App will redirect'}
       </div>
     );
   }
@@ -43,8 +49,9 @@ SocialLoginCallback.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { error, timestamp, forgotMsg, loading } = state.auth;
+  const { error, timestamp, forgotMsg, loading, authenticated } = state.auth;
   return {
+    authenticated,
     error,
     timestamp,
     forgotMsg,
