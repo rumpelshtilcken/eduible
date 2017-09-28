@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import MuiSnackbar from 'components/MuiSnackbar';
+import MuiSnackbar from 'components/Material-ui/MuiSnackbar';
 import SignUpFormInputs from './SignUpFormInputs';
 import SignInSocialContainer from '../SignInSocial';
 import style from './index.css';
