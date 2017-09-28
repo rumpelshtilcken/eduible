@@ -45,12 +45,14 @@ class StudentProfile extends Component {
         <TabMenu
           tabs={this.tabs}
         >
-          <Universities
-            universities={this.props.universities}
-            onRemoveFromListClick={this.props.onRemoveFromListClick}
-            onReadMoreClick={this.handleReadMoreClick}
-            onCalculatedClick={this.handleCalculatedClick}
-          />
+          {this.props.universities && (
+            <Universities
+              universities={this.props.universities}
+              onRemoveFromListClick={this.props.onRemoveFromListClick}
+              onReadMoreClick={this.handleReadMoreClick}
+              onCalculatedClick={this.handleCalculatedClick}
+            />
+          )}
           <h1>Section 2 is coming</h1>
           <h1>Section 3 is coming</h1>
         </TabMenu>

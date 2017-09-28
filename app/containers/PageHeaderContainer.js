@@ -22,7 +22,7 @@ class PageHeaderContainer extends Component {
 
     if (this.props.authenticated) {
       const nickname = getCurrentUserData('nickname');
-      this.links.push({ url: '/', title: `Hi, ${nickname}` });
+      this.links.push({ url: '/profile', title: `Hi, ${nickname}` });
     }
 
     return (

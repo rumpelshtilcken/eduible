@@ -2,9 +2,9 @@ import { Component } from 'react';
 import Head from 'next/head';
 
 import withPage from 'hoc/withPage';
-import StudentProfileContainer from 'containers/StudentProfileContainer';
+import ProfileContainer from 'containers/ProfileContainer';
 
-class StudentProfilePage extends Component {
+class ProfilePage extends Component {
   handleNotifyMeButtonClick = () => {
     // TODO: navigate back
   };
@@ -15,10 +15,10 @@ class StudentProfilePage extends Component {
         <Head>
           <title>{'Profile'}</title>
         </Head>
-        <StudentProfileContainer onNotifyMeButtonClick={this.handleNotifyMeButtonClick} />
+        <ProfileContainer />
       </div>
     );
   }
 }
 
-export default withPage(StudentProfilePage);
+export default withPage(ProfilePage);

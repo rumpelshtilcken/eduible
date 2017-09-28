@@ -1,3 +1,4 @@
+import { graphql, gql } from 'react-apollo';
 import { Component } from 'react';
 
 import { ProfessionalProfile } from 'components';
@@ -31,8 +32,27 @@ class ProfessionalProfileContainer extends Component {
   };
 
   render() {
-    return <ProfessionalProfile user={this.user} />;
+    return <ProfessionalProfile user={this.props.user} />;
   }
 }
+const getProfessionalById = gql`
+query GetUserById($id: ID!) {
+  allUsers(filter: {id: $id}) {
+    name
+    professional {
+      id
+    }
+  }
+}
+`;
 
-export default ProfessionalProfileContainer;
+export default graphql(getProfessionalById, {
+  options: ({ id }) => console.log('here is the id passed to professionalprofile', id) || ({
+    variables: {
+      id
+    }
+  }),
+  props: ({ data: { allUsers } }) => ({
+    user: allUsers && allUsers[0]
+  })
+})(ProfessionalProfileContainer);
