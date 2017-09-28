@@ -18,7 +18,7 @@ const ComingSoon = () => (
         </div>
         <div className="box">
           <div className="universityBox">
-            <Link href="/searchUniversities">
+            <Link href="/searchUniversity">
               <div className="text">
                 <h1>UNIVERSITY</h1>
                 <p>lorem ipsum dolor sit amet vulputate consectetur adipiscing elit</p>
