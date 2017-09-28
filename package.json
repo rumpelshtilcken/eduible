@@ -80,6 +80,7 @@
     "react": "^15.6.1",
     "react-apollo": "^1.4.15",
     "react-chat-ui": "^0.1.0",
+    "react-circular-progressbar": "^0.2.1",
     "react-country-region-selector": "^1.2.1",
     "react-custom-scrollbars": "^4.1.2",
     "react-datepicker": "^0.55.0",

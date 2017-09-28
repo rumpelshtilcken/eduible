@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 
 class SignUpFormInputs extends Component {
@@ -10,15 +11,16 @@ class SignUpFormInputs extends Component {
       input: {
         type: 'string',
         name: 'fullname',
-        hintText: this.props.params.fullname || 'John'
+        hintText: this.props.params.fullname || 'John',
+        errorText: []
       }
     },
     {
-      title: 'DATE OF BIRTH',
+      title: 'BIRTH DATE',
       input: {
-        type: 'date',
         name: 'date',
-        hintText: this.props.params.date
+        hintText: this.props.params.date || '13/11/1992',
+        errorText: []
       }
     },
     {
@@ -26,15 +28,17 @@ class SignUpFormInputs extends Component {
       input: {
         type: 'string',
         name: 'email',
-        hintText: this.props.params.email || 'john@mail.com'
+        hintText: this.props.params.email || 'john@mail.com',
+        errorText: []
       }
     },
     {
       title: 'PASSWORD',
       input: {
-        type: 'string',
-        name: 'password',
-        hintText: this.props.params.password
+        type: 'password',
+        name: 'pwd',
+        hintText: this.props.params.password || 'at least six characters',
+        errorText: []
       }
     },
     {
@@ -42,18 +46,20 @@ class SignUpFormInputs extends Component {
       input: {
         type: 'string',
         name: 'country',
-        hintText: this.props.params.country
+        hintText: this.props.params.country || 'choose from the list',
+        errorText: []
       }
     },
     {
       title: 'ZIP CODE',
       input: {
         type: 'string',
-        name: 'zipcode',
-        hintText: this.props.params.zipcode
+        name: 'zip',
+        hintText: this.props.params.zipcode || '16044728',
+        errorText: []
       }
     }
-  ];
+  ]
 
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,20 +67,32 @@ class SignUpFormInputs extends Component {
   };
 
   renderInput = ({ title, input }) => (
-    <div key={input.name} className={input.name}>
-      <TextField
-        type={input.type}
-        name={input.name}
+    input.name === 'date'
+      ? <DatePicker
         floatingLabelText={title}
         floatingLabelFixed
-        fullWidth
+        floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
         hintText={input.hintText}
         hintStyle={{ fontSize: '11px' }}
         inputStyle={{ fontSize: '11px' }}
-        floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
-        onChange={this.handleChange}
+        mode="landscape"
+        fullWidth
       />
-    </div>
+      : <div key={input.name} className={input.name}>
+        <TextField
+          type={input.type}
+          name={input.name}
+          floatingLabelText={title}
+          floatingLabelFixed
+          fullWidth
+          hintText={input.hintText}
+          hintStyle={{ fontSize: '11px' }}
+          inputStyle={{ fontSize: '11px' }}
+          floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
+          onChange={this.handleChange}
+          mode="landscape"
+        />
+      </div>
   );
 
   render() {

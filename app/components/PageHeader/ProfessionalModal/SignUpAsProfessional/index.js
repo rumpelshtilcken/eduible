@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import ValidationUtils from '/utils/ValidationUtils';
+import ValidationUtils from 'utils/ValidationUtils';
 import { Scrollbars } from 'react-custom-scrollbars';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -116,8 +116,7 @@ class SignUpAsProfessional extends React.Component {
     }
   }
 
-  renderInput = (x, i) =>
-  {
+  renderInput = (x, i) => {
     if (i === 1) {
       return (<div className={x.input.name}>
         <DatePicker
