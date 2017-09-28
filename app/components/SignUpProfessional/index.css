@@ -1,5 +1,5 @@
 .SignUpAsProfessional {
-  height: 690px;
+  height: 765 px;
   width: 255px;
   border-radius: 20px;
   padding: 0;
@@ -11,7 +11,7 @@
 
   @media (min-width: 768px) {
     width: 426px;
-    height: 453px;
+    height: 460px;
     margin: auto;
   }
 }
@@ -27,14 +27,17 @@
   align-items: center;
   justify-content: center;
 }
+
 .scroll {
   width: 255px;
   height: 690px;
-  @media(min-width: 768px) {
+
+  @media (min-width: 768px) {
     width: 426px;
-    height: 453px;
+    height: 450px;
   }
 }
+
 a {
   text-decoration: none;
   font-size: 12px;
@@ -51,6 +54,7 @@ p {
 .container {
   width: 100%;
   margin: auto;
+  box-sizing: border-box;
 }
 
 .container-div {
@@ -61,7 +65,13 @@ p {
 
   @media (min-width: 768px) {
     width: 88%;
+    height: 370px;
+    margin: auto;
   }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .share {
@@ -99,8 +109,8 @@ p {
 
   @media (min-width: 768px) {
     margin-top: 30px;
-    margin-bottom: 18px;
-    order: 8;
+    margin-bottom: 10px;
+    height: 32px;
   }
 }
 
@@ -108,10 +118,10 @@ p {
   width: 100%;
 
   @media (min-width: 768px) {
-    width: 152px;
-    margin-left: 30px;
-    margin-top: 2px;
-    order: 7;
+    position: relative;
+    top: -179px;
+    left: 214px;
+    width: 40%;
   }
 }
 
@@ -120,9 +130,10 @@ p {
   margin-bottom: 16px;
 
   @media (min-width: 768px) {
-    margin: 0;
-    margin-left: 30px;
-    order: 5;
+    position: relative;
+    top: -270px;
+    left: 67px;
+    width: 40%;
   }
 }
 
@@ -139,15 +150,26 @@ p {
   font-size: 12px;
 }
 
+.inputs {
+  width: 192px;
+
+  @media (min-width: 768px) {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
 .fullname {
   width: 192px;
+  order: 1;
 }
 
 .date {
   width: 192px;
 
   @media (min-width: 768px) {
-    order: 2;
+    order: 5;
   }
 }
 
@@ -156,7 +178,7 @@ p {
 
   @media (min-width: 768px) {
     margin-top: 8px;
-    order: 4;
+    order: 5;
   }
 }
 
@@ -169,13 +191,22 @@ p {
   }
 }
 
+.date {
+  width: 192px;
+
+  @media (min-width: 768px) {
+    order: 3;
+  }
+}
+
+
 .country {
   width: 192px;
 
   @media (min-width: 768px) {
-    width: 152px;
-    margin-left: 30px;
-    order: 1;
+    margin-left: 25px;
+    width: 40%;
+    order: 2;
   }
 }
 
@@ -183,8 +214,8 @@ p {
   width: 192px;
 
   @media (min-width: 768px) {
-    width: 152px;
-    margin-left: 30px;
-    order: 3;
+    width: 40%;
+    margin-left: 25px;
+    order: 4;
   }
 }

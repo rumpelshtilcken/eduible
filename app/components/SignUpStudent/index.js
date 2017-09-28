@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import SignUpFormInputs from './SignUpFormInputs';
+import SignInSocialContainer from '../SignInSocial';
 import style from './index.css';
 
 class SignUpStudent extends Component {
@@ -46,37 +47,12 @@ class SignUpStudent extends Component {
                   onClick={this.handleContinueButtonClick}
                 />
                 <div className="signIns">
-                  <div className="linkedinbtn-div" >
-                    <p>OR SIGN UP USING</p>
-                    <RaisedButton
-                      label="FACEBOOK"
-                      fullWidth
-                      buttonStyle={{ backgroundColor: '#6981CA' }}
-                      labelStyle={{
-                        color: 'white',
-                        fontSize: '11px',
-                        fontFamily: 'Effra'
-                      }}
-                      onClick={this.props.onFacebookButtonClick}
-                    />
-                    <br />
-                    <RaisedButton
-                      label="GOOGLE"
-                      fullWidth
-                      buttonStyle={{ backgroundColor: '#CB5541' }}
-                      labelStyle={{
-                        color: 'white',
-                        fontSize: '11px',
-                        fontFamily: 'Effra'
-                      }}
-                      onClick={this.props.onGoogleButtonClick}
-                    />
-                  </div>
+                  <SignInSocialContainer renderButtons={['Facebook', 'Google', 'Linkedin']} />
 
                   <div className="loginhere-div">
-                    <img src="/static/Line.jpg" alt="hrline" />
+                    <img className="line" src="/static/Line.jpg" alt="hrline" />
                     <p>ALREADY A MEMBER?</p>
-                    <button onClick={this.props.onLoginButtonClick}>Login here</button>
+                    <a className="signUpLink" href="#" >Login here</a>
                   </div>
                 </div>
               </div>

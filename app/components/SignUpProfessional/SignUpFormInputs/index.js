@@ -68,16 +68,18 @@ class SignUpFormInputs extends Component {
 
   renderInput = ({ title, input }) => (
     input.name === 'date'
-      ? <DatePicker
-        floatingLabelText={title}
-        floatingLabelFixed
-        floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
-        hintText={input.hintText}
-        hintStyle={{ fontSize: '11px' }}
-        inputStyle={{ fontSize: '11px' }}
-        mode="landscape"
-        fullWidth
-      />
+      ? <div key={input.name} className={input.name}>
+        <DatePicker
+          floatingLabelText={title}
+          floatingLabelFixed
+          floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
+          hintText={input.hintText}
+          hintStyle={{ fontSize: '11px' }}
+          inputStyle={{ fontSize: '11px' }}
+          mode="landscape"
+          fullWidth
+        />
+      </div>
       : <div key={input.name} className={input.name}>
         <TextField
           type={input.type}
@@ -97,7 +99,7 @@ class SignUpFormInputs extends Component {
 
   render() {
     return (
-      <div>
+      <div className="inputs">
         {this.inputs.map(this.renderInput)}
       </div>
     );

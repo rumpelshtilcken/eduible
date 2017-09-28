@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import stylesheet from './index.css';
 import MuiButton from './MuiButton';
 
 class SignInSocial extends Component {
@@ -13,7 +14,7 @@ class SignInSocial extends Component {
   render() {
     const { renderButtons } = this.props;
     return (
-      <div>
+      <div className="button">
         {renderButtons.map((signInType) => {
           const { color, onClick } = this.socialButtonParams[signInType];
           return (
@@ -24,6 +25,7 @@ class SignInSocial extends Component {
             />
           );
         })}
+        <style jsx>{stylesheet}</style>
       </div>
     );
   }

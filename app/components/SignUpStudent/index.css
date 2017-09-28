@@ -1,5 +1,5 @@
 .SignUpAsStudent {
-  height: 580px;
+  height: 584px;
   width: 255px;
   border-radius: 20px;
   padding: 0;
@@ -11,7 +11,7 @@
 
   @media (min-width: 768px) {
     width: 426px;
-    height: 430px;
+    height: 435px;
     margin: auto;
   }
 }
@@ -51,6 +51,20 @@ button {
   color: #00ff1f;
 }
 
+.signUpLink {
+  box-sizing: border-box;
+  width: 100%;
+  margin: auto;
+  font-size: 11px;
+  margin-top: 2px;
+  text-decoration: none;
+  color: #00ff1f;
+}
+
+.line {
+  width: 100%;
+}
+
 h1,
 p {
   font-size: 11px;
@@ -58,7 +72,6 @@ p {
   color: #626262;
   margin: 0;
   font-weight: bold;
-  margin-bottom: 5px;
 }
 
 .container {
@@ -111,14 +124,13 @@ p {
 }
 
 .continuebtn-div {
-  width: 50%;
+  width: 100%;
   margin-top: 16px;
   margin-bottom: 24px;
 
   @media (min-width: 768px) {
     margin-top: 45px;
     margin-bottom: 22px;
-    width: 100%;
     order: 3;
   }
 }
@@ -143,16 +155,9 @@ p {
 }
 
 .loginhere-div {
-  margin-top: 8px;
+  width: 100%;
+  margin-top: 0;
   margin-bottom: 8px;
-}
-
-.loginhere-div img {
-  width: 192px;
-
-  @media (min-width: 768px) {
-    width: 152px;
-  }
 }
 
 .loginhere-div p {

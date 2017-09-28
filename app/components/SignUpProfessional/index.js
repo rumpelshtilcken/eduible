@@ -55,7 +55,7 @@ class SignUpProfessional extends Component {
                 <div className="loginhere-div">
                   <img src="/static/Line.jpg" alt="hrline" />
                   <p>ALREADY A MEMBER?</p>
-                  <button onClick={this.props.onLoginButtonClick}>Login here</button>
+                  <a className="signUpLink" href="#" >Sign Up here</a>
                 </div>
               </div>
               <style global jsx>{style}</style>
@@ -69,8 +69,7 @@ class SignUpProfessional extends Component {
 
 SignUpProfessional.propTypes = {
   onRequestClose: PropTypes.func.isRequired,
-  onContinueButtonClick: PropTypes.func.isRequired,
-  onLoginButtonClick: PropTypes.func.isRequired
+  onContinueButtonClick: PropTypes.func.isRequired
 };
 
 export default SignUpProfessional;

@@ -3,21 +3,22 @@
   border-radius: 20px;
   border: 1px solid rgb(204, 204, 204);
   margin: auto;
-  width: 320px;
-  height: 600px;
+  width: 300px;
+  height: 500px;
   outline: none;
   overflow: auto;
   padding: 0;
 
   @media screen and (min-width: 768px) {
     width: 400px;
-    height: 310px;
+    height: 340px;
   }
 }
 
 ::-webkit-scrollbar {
   display: none;
 }
+
 
 .OverlayModal {
   align-items: center;
@@ -36,7 +37,8 @@
   flex-flow: wrap;
   justify-content: center;
   align-items: center;
-  margin: 25px 20px 30px;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .titleContainer {
@@ -50,7 +52,11 @@
 .formContainer {
   display: flex;
   flex-flow: wrap;
-  width: 100%;
+  width: 80%;
+
+  @media screen and (min-width: 768px) {
+    width: 90%;
+  }
 }
 
 .formInputsContainer {
@@ -60,27 +66,60 @@
 
   @media screen and (min-width: 768px) {
     width: 50%;
+    margin-top: 0;
     margin-left: 0;
-    margin-right: 10px;
+    margin-right: 18px;
   }
 }
 
 .socialButtonsTitle {
-  color: #626262;
   font-weight: bold;
+  color: #626262;
+  display: flex;
   font-size: 11px;
   margin-bottom: 10px;
 }
 
 .continueButtonContainer {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   order: 2;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
 
   @media screen and (min-width: 768px) {
     order: 3;
+    margin-top: 30px;
   }
+}
+
+.line {
+  width: 100%;
+}
+
+.signUpLink {
+  box-sizing: border-box;
+  width: 100%;
+  margin: auto;
+  font-size: 11px;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #00ff1f;
+}
+
+.forgotPassword {
+  height: 10px;
+  margin-top: 6px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 9px;
+  text-align: center;
+  color: #626262;
+  text-decoration: none;
+}
+
+.forgotPassword:hover {
+  border-bottom: solid 1px #626262;
 }
 
 .additionalButtonsContainer {
@@ -92,6 +131,7 @@
   @media screen and (min-width: 768px) {
     width: 45%;
     order: 2;
+    margin-top: 15px;
     display: block;
     box-sizing: border-box;
   }
@@ -105,6 +145,7 @@ button {
   font-size: 12px;
   color: #00ff1f;
 }
+
 
 .loginhere-div {
   display: grid;
@@ -121,5 +162,4 @@ p {
   color: #626262;
   margin: 0;
   font-weight: bold;
-  margin-bottom: 10px;
 }

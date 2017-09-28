@@ -35,7 +35,8 @@ class SignInContainer extends Component {
 SignInContainer.propTypes = {
   signinUser: PropTypes.func.isRequired,
   signinFacebook: PropTypes.func.isRequired,
-  signinGoogle: PropTypes.func.isRequired
+  signinGoogle: PropTypes.func.isRequired,
+  hideModal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {

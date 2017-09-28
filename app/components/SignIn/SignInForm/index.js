@@ -36,9 +36,6 @@ class SignInFormInputs extends Component {
             value={password}
           />
         </div>
-        <div className="forgotPassword">
-          Forgot your password?
-        </div>
         <style jsx>{stylesheet}</style>
       </div>
     );

@@ -35,6 +35,7 @@ class SignIn extends Component {
               <div className="formContainer">
                 <div className="formInputsContainer">
                   <SignInFormInputs params={this.state} onChange={this.handleChange} />
+                  <a className="forgotPassword" href="#" >Forgot your password?</a>
                 </div>
                 <div className="continueButtonContainer">
                   <MuiButton
@@ -43,10 +44,18 @@ class SignIn extends Component {
                     title={'Continue'}
                   />
                 </div>
+
                 <div className="additionalButtonsContainer">
-                  <div className="socialButtonsTitle">{'Or sign in using'.toUpperCase()}</div>
+                  <div className="socialButtonsTitle">OR SIGN IN USING</div>
                   <SignInSocialContainer renderButtons={['Facebook', 'Google', 'Linkedin']} />
+                  <div className="signUpLink">
+                    <img className="line" src="/static/Line.jpg" alt="hrline" />
+                    <p>DON&#39;T HAVA ACCOUNT?</p>
+                    <a className="signUpLink" href="#" >Sign Up here</a>
+                  </div>
+
                 </div>
+
               </div>
             </div>
           </Modal>
