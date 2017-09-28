@@ -86,40 +86,46 @@ class ProfessionalSearch extends Component {
               <option key="HIGHEST PRICE">HIGHEST PRICE</option>
               <option key="LOWEST PRICE">LOWEST PRICE</option>
             </select>
-            {this.state.profs.map(item => (
+            {this.state.profs && this.state.profs.map(prof => console.log(prof.user.name) || (
               <Card>
                 <div className="prof">
                   <div className="infoHeader">
-                    <img src={item.picture} className="picture" alt="avatar" />
+                    <img src={'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0lIiAdHx8kKDosJCY7JysfLT0tLzU9Ojo6Iys1Oz84TTRCRUEBCgoKDQwNDgUNEy0ZFRkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIADwAPAMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAHCAAGAQQFAwL/xAA3EAABAwIEAwUFBgcAAAAAAAABAgMEBREABhIhEzFBB1FSYZEUFSKB0SMyQnGxwQhTYoKh8PH/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oADAMBAAIRAxEAPwA4YnXExCcBOuM4H9bz3U36lIpOSqKqrSo6tD8latLDK/De4ufmMVer5m7XqYC9IoUUtAXIjs8YAf2rJwBnxBgAU3t3rEeRorVIiOoBsoMFTS0+pP7YLuUM50fN0QvUp8lxA+1juCzjf5ju8xtgLEMTGcTAYxyM0yJLNGfRADhlvDhshoXXc8ykHa4FyL7bb2x18VavM1KqJlP0F5CZMZCo7XGUpKFqO6/iTuLEJFx4VDa98B55DqMAxXKJHpr9KlQAOJDkW1kHk5cbKueZ78WzFWoDpjo49TbSZqC3G1pUXChS9OpAWSSRq+K1zYW32sOfmaoxJlVTTxXqtBdOopENbSQCj7xsRrUB16bHuOA3835BoOa2lmdES1LI+GWyNLgPmfxfkcLzVIda7Mc4pSy/Z9mzjLqb6Xmz3juNiCPLDN0FFUYZcj1WQ3M0WLMxCAgupPiSNgod42NxywuXbbXE1nPMltsEN09PsouOZSSVH1JHywDC5KzNFzXQGKpFskr+F1q9y0sc0n/eRGO9hcf4f68uBmxdJWo+z1Bo2TfYOIBUD6ah6YY/AYPI4rtBckOUmCwjd1LTbkpZFgorGpQB77m//bgF1XtszVNWfYzEgtm4Aba1n5lV/wBBgrzKzVIWQKBWqYzIfSiOwuWzHSkrU2psXIuk8jY9Nr7jAWKoRkhpgU5hfEpjvHQzoKUukoUnSFEWJOo7772vjak0Kmyp6Kg9ER7ahBQmQglDlj01Ag2xWsp57NelNR002cUuJJLyoi20tn+q9028wrn0xcISnlxW1SkhDxF1JHTAfLq41Mp63F6WYsZok9AhCR+wwoVaj1SpvTswOwJQiSZC3FSC0rh3Wom2rlhvZ4irjqZmoQ408CgtKTqDmxJFuuwO2At20ZgSaS5TeGptLjmmO04jQoNjhnVp52uk8+eodxsFD7IIz0ntEo/AB+zcU4sjokJN7/p88NgMLl2K5kytlf2yTWpa2Z8izaDwVKShsb8wDuT+gwbYudMrymUvM16nFB5apKUn0JBGATzDddnzq3Ml5d4PCWx7A0lxWvdJCQNtt9wQeWFf91MeJz1H0wR+ymTLgRKy3GnSUojRTIZQXLpQsc/h5G/W4xKlMBbGhMqbbLpjx0mRL/koP3fNR/CPM/K/LGhTZMltnU9IXIWsaip0AW8gEgD/ABjxrlTkstMNsKS0X5CGlLSPiSDzIvtfClVntczicv5dEZnSuqvnhodb2EdWndST4gDt1GoH81ulSX5b635TzjzyzdTjiipSj5k4LfbTHbeqVNigFtliMVpSk81KWdRJNySbDfA491MeJz1H0wpXFxMdr3Ux4nPUfTE91MeJz1H0wpX/2Q=='} className="picture" alt="avatar" />
                     <div className="block">
                       <div className="step2">
-                        <div className="name">{item.name} </div>
+                        <div className="name">{prof.user.name} </div>
                         <div className="cityIcon">
                           <img
                             className="placaholderIcon"
                             src="../../static/placeholderIcon.svg"
                             alt=""
                           />
-                          {item.city}
+                          {prof.country && prof.country.name}
                         </div>
                       </div>
-                      <div className="major">{item.major}</div>
+                      {prof.majors && prof.majors.map(major => (
+                        <div key={major.name} className="major">{major.name}</div>
+                      ))}
                       <div className="about hidden">
-                        {item.about.length > 100
-                          ? `${item.about.substring(0, 100)}...`
-                          : item.about}
+                        {prof.about && (prof.about.length > 100
+                          ? `${prof.about.substring(0, 100)}...`
+                          : prof.about)}
                       </div>
                     </div>
                   </div>
                   <div className="about unhidden">
-                    {item.about.length > 100 ? `${item.about.substring(0, 100)}...` : item.about}
+                    {prof.about && (prof.about.length > 100 ? `${prof.about.substring(0, 100)}...` : prof.about)}
                   </div>
                   <div className="infoFooter">
                     <div className="cost">
-                      <div>{`${item.cost}$ ${item.per}`}</div>
+                      {prof.price && (<div>{`${prof.price}$ per minute`}</div>)}
                       <div className="rating">
-                        <ProfessionalRating rating={item.rating} />
-                        <div className="reviews">&nbsp;({item.reviews} reviews)</div>
+                        {prof.ratings && (
+                          <ProfessionalRating rating={prof.rating} />
+                        )}
+                        {prof.reviews && (
+                          <div className="reviews">&nbsp;({prof.reviews} reviews)</div>
+                        )}
                       </div>
                     </div>
                     <button className="call"> Request a Call</button>
@@ -139,9 +145,9 @@ class ProfessionalSearch extends Component {
 }
 
 ProfessionalSearch.propTypes = {
-  professionals: PropTypes.object.isRequired,
+  professionals: PropTypes.array.isRequired,
   universities: PropTypes.array.isRequired,
-  professions: PropTypes.arrayOf.object
+  professions: PropTypes.array
 };
 
 export default ProfessionalSearch;

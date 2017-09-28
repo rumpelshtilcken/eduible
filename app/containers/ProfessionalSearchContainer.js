@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { gql, graphql } from 'react-apollo';
+import PropTypes from 'prop-types';
 
 import { ProfessionalSearch } from 'components';
 
@@ -69,9 +71,10 @@ class ProfessionalSearchContainer extends Component {
     { value: 'MIT', label: 'MIT' }
   ];
   render() {
+    console.log(this.props);
     return (
       <ProfessionalSearch
-        professionals={this.professionals}
+        professionals={this.props.data.allProfessionals}
         professions={this.professions}
         universities={this.universities}
       />
@@ -79,4 +82,42 @@ class ProfessionalSearchContainer extends Component {
   }
 }
 
-export default ProfessionalSearchContainer;
+ProfessionalSearchContainer.propTypes = {
+  data: PropTypes.object
+};
+
+const getAllProfessionals = gql`
+  {
+    allProfessionals {
+      id
+      job {
+        jobTitle {
+          title
+        }
+        company {
+          name
+        }
+      }
+      location {
+        country
+        zipcode
+      }
+      majors {
+        name
+        school {
+          name
+          university {
+            name
+          }
+        }
+      }
+      price
+      user {
+        name
+      }
+    }
+  }
+`;
+
+
+export default graphql(getAllProfessionals)(ProfessionalSearchContainer);
