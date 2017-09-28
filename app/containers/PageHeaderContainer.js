@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
 import { PageHeader } from 'components';
+import { getCurrentUserData } from 'utils/auth';
 import * as actions from 'actions/modal';
 
 class PageHeaderContainer extends Component {
@@ -18,6 +19,11 @@ class PageHeaderContainer extends Component {
       { title: 'Sign up', onClick: this.props.showSignUpStudentModal },
       { title: 'Login', onClick: this.props.showSignInModal }
     ];
+
+    if (this.props.authenticated) {
+      const nickname = getCurrentUserData('nickname');
+      this.links.push({ url: '/', title: `Hi, ${nickname}` });
+    }
 
     return (
       <div>
