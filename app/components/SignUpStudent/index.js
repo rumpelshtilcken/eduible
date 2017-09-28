@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import MuiSnackbar from 'components/MuiSnackbar';
 import SignUpFormInputs from './SignUpFormInputs';
 import SignInSocialContainer from '../SignInSocial';
 import style from './index.css';
@@ -13,12 +14,19 @@ class SignUpStudent extends Component {
     fullname: '',
     date: '',
     email: '',
-    password: ''
+    password: '',
+    isSnackOpen: false,
+    snackMessage: 'Good Job'
   };
+
+  handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
 
   handleChange = ({ name, value }) => this.setState({ [name]: value });
 
-  handleContinueButtonClick = () => this.props.onContinueButtonClick(this.state);
+  handleContinueButtonClick = () => {
+    this.setState({ isSnackOpen: true });
+    // this.props.onContinueButtonClick(this.state);
+  }
 
   render() {
     return (
@@ -48,6 +56,37 @@ class SignUpStudent extends Component {
                 />
                 <div className="signIns">
                   <SignInSocialContainer renderButtons={['Facebook', 'Google', 'Linkedin']} />
+                  <div className="linkedinbtn-div" >
+                    <p>OR SIGN UP USING</p>
+                    <RaisedButton
+                      label="FACEBOOK"
+                      fullWidth
+                      buttonStyle={{ backgroundColor: '#6981CA' }}
+                      labelStyle={{
+                        color: 'white',
+                        fontSize: '11px',
+                        fontFamily: 'Effra'
+                      }}
+                      onClick={this.props.onFacebookButtonClick}
+                    />
+                    <br />
+                    <RaisedButton
+                      label="GOOGLE"
+                      fullWidth
+                      buttonStyle={{ backgroundColor: '#CB5541' }}
+                      labelStyle={{
+                        color: 'white',
+                        fontSize: '11px',
+                        fontFamily: 'Effra'
+                      }}
+                      onClick={this.props.onGoogleButtonClick}
+                    />
+                    <MuiSnackbar
+                      isOpen={this.state.isSnackOpen}
+                      message={this.state.snackMessage}
+                      onRequestClose={this.handleRequestSnackClose}
+                    />
+                  </div>
 
                   <div className="loginhere-div">
                     <img className="line" src="/static/Line.jpg" alt="hrline" />
