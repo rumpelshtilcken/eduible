@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 
+import MuiSnackbar from 'components/Material-ui/MuiSnackbar';
 import MuiButton from 'components/Material-ui/MuiButton';
 import SignUpFormInputs from './SignUpFormInputs';
 import style from './index.css';
@@ -16,12 +17,19 @@ class SignUpProfessional extends Component {
     email: '',
     password: '',
     country: '',
-    zipcode: ''
+    zipcode: '',
+    snackMessage: 'Good Job',
+    isSnackOpen: false
   };
+
+  handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
 
   handleChange = ({ name, value }) => this.setState({ [name]: value });
 
-  handleContinueButtonClick = () => this.props.onContinueButtonClick(this.state);
+  handleContinueButtonClick = () => {
+    this.setState({ isSnackOpen: true });
+    // this.props.onContinueButtonClick(this.state);
+  }
 
   render() {
     return (
@@ -57,6 +65,13 @@ class SignUpProfessional extends Component {
               <style global jsx>{style}</style>
             </div>
           </Modal>
+          <MuiSnackbar
+            isOpen={this.state.isSnackOpen}
+            action="UNDO"
+            message={this.state.snackMessage}
+            handleActionTouchTap={this.handleRequestSnackClose}
+            handleRequestClose={this.handleRequestSnackClose}
+          />
         </div>
       </MuiThemeProvider>
     );

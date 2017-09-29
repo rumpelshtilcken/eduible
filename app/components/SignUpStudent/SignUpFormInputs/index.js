@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 
 class SignUpFormInputs extends Component {
@@ -16,9 +17,9 @@ class SignUpFormInputs extends Component {
     {
       title: 'DATE OF BIRTH',
       input: {
-        type: 'date',
         name: 'date',
-        hintText: this.props.params.date
+        hintText: this.props.params.date || '13/11/1992',
+        errorText: []
       }
     },
     {
@@ -45,18 +46,33 @@ class SignUpFormInputs extends Component {
   };
 
   renderInput = ({ title, input }) => (
-    <TextField
-      type={input.type}
-      name={input.name}
-      floatingLabelText={title}
-      floatingLabelFixed
-      fullWidth
-      hintText={input.hintText}
-      hintStyle={{ fontSize: '11px' }}
-      inputStyle={{ fontSize: '11px', color: '#AFAFAF' }}
-      floatingLabelStyle={{ fontSize: '12px', color: '#626262', fontWeight: 'bold' }}
-      onChange={this.handleChange}
-    />
+    input.name === 'date'
+      ? <div key={input.name} className={input.name}>
+        <DatePicker
+          floatingLabelText={title}
+          floatingLabelFixed
+          floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
+          hintText={input.hintText}
+          hintStyle={{ fontSize: '11px' }}
+          inputStyle={{ fontSize: '11px' }}
+          mode="landscape"
+          fullWidth
+        />
+      </div>
+      : <div key={input.name} className={input.name}>
+        <TextField
+          type={input.type}
+          name={input.name}
+          floatingLabelText={title}
+          floatingLabelFixed
+          fullWidth
+          hintText={input.hintText}
+          hintStyle={{ fontSize: '11px' }}
+          inputStyle={{ fontSize: '11px', color: '#AFAFAF' }}
+          floatingLabelStyle={{ fontSize: '12px', color: '#626262', fontWeight: 'bold' }}
+          onChange={this.handleChange}
+        />
+      </div>
   );
 
   render() {

@@ -160,14 +160,6 @@ p {
   order: 1;
 }
 
-.date {
-  width: 192px;
-
-  @media (min-width: 768px) {
-    order: 5;
-  }
-}
-
 .email {
   width: 192px;
 

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 
+import MuiSnackbar from 'components/Material-ui/MuiSnackbar';
 import SignInFormInputs from './SignInFormInputs';
 import MuiButton from '../Material-ui/MuiButton';
 import stylesheet from './index.css';
@@ -12,13 +13,20 @@ import stylesheet from './index.css';
 class SignIn extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    snackMessage: 'Good Job',
+    isSnackOpen: false
   };
+
+  handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
 
   handleChange = ({ name, value }) =>
     this.setState({ [name]: value });
 
-  handleContinueButtonClick = () => this.props.onContinueButtonClick(this.state);
+  handleContinueButtonClick = () => {
+    this.setState({ isSnackOpen: true });
+    // this.props.onContinueButtonClick(this.state);
+  }
 
   render() {
     return (
@@ -45,10 +53,10 @@ class SignIn extends Component {
 
                 <div className="additionalButtonsContainer">
                   <div className="socialButtonsTitle">OR SIGN IN USING</div>
-                  <SignInSocialContainer renderButtons={['Facebook', 'Google', 'Linkedin']} />
+                  <SignInSocialContainer renderButtons={['Facebook', 'Google']} />
                   <div className="signUpLink">
                     <img className="line" src="/static/Line.jpg" alt="hrline" />
-                    <p>DON&#39;T HAVA ACCOUNT?</p>
+                    <p>DON&#39;T HAVE AN ACCOUNT?</p>
                     <a className="signUpLink" href="#" >Sign Up here</a>
                   </div>
 
@@ -57,6 +65,13 @@ class SignIn extends Component {
               </div>
             </div>
           </Modal>
+          <MuiSnackbar
+            isOpen={this.state.isSnackOpen}
+            action="UNDO"
+            message={this.state.snackMessage}
+            handleActionTouchTap={this.handleRequestSnackClose}
+            handleRequestClose={this.handleRequestSnackClose}
+          />
           <style global jsx>{stylesheet}</style>
         </div>
       </MuiThemeProvider>

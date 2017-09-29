@@ -2,7 +2,6 @@ import { Component } from 'react';
 import Modal from 'react-modal';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
-import RaisedButton from 'material-ui/RaisedButton';
 
 import MuiSnackbar from 'components/Material-ui/MuiSnackbar';
 import SignInSocialContainer from 'containers/SignInSocialContainer';
@@ -57,15 +56,7 @@ class SignUpStudent extends Component {
                   <div className="linkedinbtn-div" >
                     <p>OR SIGN UP USING</p>
                     <SignInSocialContainer renderButtons={['Facebook', 'Google']} />
-                    <MuiSnackbar
-                      isOpen={this.state.isSnackOpen}
-                      action="UNDO"
-                      message={this.state.snackMessage}
-                      handleActionTouchTap={this.handleRequestSnackClose}
-                      handleRequestClose={this.handleRequestSnackClose}
-                    />
                   </div>
-
                   <div className="loginhere-div">
                     <img src="/static/Line.jpg" alt="hrline" />
                     <p>ALREADY A MEMBER?</p>
@@ -76,6 +67,13 @@ class SignUpStudent extends Component {
               <style global jsx>{style}</style>
             </div>
           </Modal>
+          <MuiSnackbar
+            isOpen={this.state.isSnackOpen}
+            action="UNDO"
+            message={this.state.snackMessage}
+            handleActionTouchTap={this.handleRequestSnackClose}
+            handleRequestClose={this.handleRequestSnackClose}
+          />
         </div>
       </MuiThemeProvider>
     );
