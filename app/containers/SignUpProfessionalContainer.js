@@ -34,7 +34,8 @@ class SignUpProfessionalContainer extends Component {
       params.zipcode = zipcode;
     }
     console.log(this.props);
-    this.props.signupProfessional(params, this.props.showSignUpProfessionalStep2Modal);
+    console.log(params);
+    // this.props.signupProfessional(params, this.props.showSignUpProfessionalStep2Modal);
   };
 
   handleLoginButtonClick = () => {

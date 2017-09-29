@@ -182,7 +182,7 @@ p {
   }
 }
 
-.pwd {
+.password {
   width: 192px;
 
   @media (min-width: 768px) {
@@ -210,7 +210,7 @@ p {
   }
 }
 
-.zip {
+.zipcode {
   width: 192px;
 
   @media (min-width: 768px) {

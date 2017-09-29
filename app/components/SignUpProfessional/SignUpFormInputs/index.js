@@ -36,7 +36,7 @@ class SignUpFormInputs extends Component {
       title: 'PASSWORD',
       input: {
         type: 'password',
-        name: 'pwd',
+        name: 'password',
         hintText: this.props.params.password || 'at least six characters',
         errorText: []
       }
@@ -54,7 +54,7 @@ class SignUpFormInputs extends Component {
       title: 'ZIP CODE',
       input: {
         type: 'string',
-        name: 'zip',
+        name: 'zipcode',
         hintText: this.props.params.zipcode || '16044728',
         errorText: []
       }
