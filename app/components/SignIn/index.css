@@ -108,6 +108,9 @@
   text-decoration: none;
   color: #00ff1f;
 }
+.signUpLink p {
+  margin: 15px 0 10px;
+}
 
 .signUpLink p {
   margin: 15px 0 10px;
