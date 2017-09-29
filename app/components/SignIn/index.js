@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 
-import SignInFormInputs from './SignInForm';
+import SignInFormInputs from './SignInFormInputs';
 import MuiButton from '../Material-ui/MuiButton';
 import stylesheet from './index.css';
 
@@ -39,9 +39,7 @@ class SignIn extends Component {
                 </div>
                 <div className="continueButtonContainer">
                   <MuiButton
-                    backgroundColor={'#7262BF'}
                     onClick={this.handleContinueButtonClick}
-                    title={'Continue'}
                   />
                 </div>
 

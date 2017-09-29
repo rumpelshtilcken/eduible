@@ -28,16 +28,6 @@
   justify-content: center;
 }
 
-.scroll {
-  width: 255px;
-  height: 690px;
-
-  @media (min-width: 768px) {
-    width: 426px;
-    height: 450px;
-  }
-}
-
 a {
   text-decoration: none;
   font-size: 12px;
@@ -105,7 +95,7 @@ p {
 .continuebtn-div {
   width: 100%;
   margin-top: 16px;
-  margin-bottom: 33px;
+  margin-bottom: 15px;
 
   @media (min-width: 768px) {
     margin-top: 30px;
@@ -119,18 +109,23 @@ p {
 
   @media (min-width: 768px) {
     position: relative;
+    margin-top: 30px;
     top: -179px;
     left: 214px;
     width: 40%;
   }
 }
 
+.linkedinbtn-div p {
+  margin-bottom: 10px;
+}
 .loginhere-div {
   margin-top: 16px;
   margin-bottom: 16px;
 
   @media (min-width: 768px) {
     position: relative;
+    margin-top: 40px;
     top: -270px;
     left: 67px;
     width: 40%;

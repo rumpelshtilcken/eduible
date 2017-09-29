@@ -2,10 +2,10 @@ import { Component } from 'react';
 import Modal from 'react-modal';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
-import RaisedButton from 'material-ui/RaisedButton';
 
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 
+import MuiButton from 'components/Material-ui/MuiButton';
 import SignUpFormInputs from './SignUpFormInputs';
 import style from './index.css';
 
@@ -40,12 +40,8 @@ class SignUpProfessional extends Component {
               </div>
               <div className="container-div">
                 <SignUpFormInputs params={this.state} onChange={this.handleChange} />
-
-                <RaisedButton
-                  label="Continue"
+                <MuiButton
                   className="continuebtn-div"
-                  buttonStyle={{ backgroundColor: '#7262BF', fullWidth: true }}
-                  labelStyle={{ color: 'white', fontSize: '11px' }}
                   onClick={this.handleContinueButtonClick}
                 />
                 <div className="linkedinbtn-div" >
@@ -53,7 +49,7 @@ class SignUpProfessional extends Component {
                   <SignInSocialContainer renderButtons={['Linkedin']} />
                 </div>
                 <div className="loginhere-div">
-                  <img src="/static/Line.jpg" alt="hrline" />
+                  <img src="static/Line.jpg" alt="hrline" />
                   <p>ALREADY A MEMBER?</p>
                   <a className="signUpLink" href="#" >Sign Up here</a>
                 </div>

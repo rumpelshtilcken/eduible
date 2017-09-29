@@ -153,7 +153,9 @@ p {
     margin-top: 0;
   }
 }
-
+.linkedinbtn-div p {
+  margin-bottom: 10px;
+}
 .loginhere-div {
   width: 100%;
   margin-top: 0;
@@ -186,23 +188,5 @@ p {
 
   @media (min-width: 768px) {
     margin-top: 8px;
-  }
-}
-
-.country {
-  width: 192px;
-
-  @media (min-width: 768px) {
-    width: 152px;
-    margin-left: 30px;
-  }
-}
-
-.zip {
-  width: 192px;
-
-  @media (min-width: 768px) {
-    width: 152px;
-    margin-left: 30px;
   }
 }

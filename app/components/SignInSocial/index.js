@@ -2,7 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import stylesheet from './index.css';
-import MuiButton from './MuiButton';
+import MuiButton from 'components/Material-ui/MuiButton';
 
 class SignInSocial extends Component {
   socialButtonParams = {
