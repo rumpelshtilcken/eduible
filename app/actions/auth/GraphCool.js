@@ -6,22 +6,47 @@ import initApollo from 'lib/initApollo';
 export default class GraphCool {
   apolloClient = initApollo();
 
+  constructCreateUserQuery = (fields) => {
+    const userType = fields.userType;
+    const lowercasedUserType = userType.toLowerCase();
+    let createUserQueryString = Object.keys(fields).map((key) => {
+      switch (key) {
+        case 'birthday':
+          return 'birthday: $birthday';
+        case 'userType':
+          return `${key}: $${key}, ${lowercasedUserType}: $${lowercasedUserType}`;
+        case 'location':
+          return '';
+        case 'job':
+          return '';
+        default:
+          return `${key}: $${key}`;
+      }
+    })
+      .reduce((acc, s) => (acc === '{createUser (' ? `${acc}${s}` : `${acc}, ${s}`), '{createUser (');
+
+    createUserQueryString += `){id, ${lowercasedUserType === 'student' ? 'student' : 'professional'} {id}}}`;
+    return createUserQueryString;
+  }
+
   constructUpdateUserQuery = (fields) => {
     // extract and prepare all needed variables
     const { userType } = fields;
     const lowercasedUserType = userType.toLowerCase();
     // run throw object keys
     let updateUserQueryString = Object.keys(fields).map((key) => {
-      if (key === 'birthday' || key === 'birthdate') {
-        return 'birthday: $birthday';
+      switch (key) {
+        case 'userId':
+          return `${key}: $id`;
+        case 'userType':
+          return `${key}: $${key}, ${lowercasedUserType}: $${lowercasedUserType}`;
+        case 'location':
+          return '';
+        case 'job':
+          return '';
+        default:
+          return `${key}: $${key}`;
       }
-      if (key === 'userType') {
-        return `${key}: $${key}, ${lowercasedUserType}: $${lowercasedUserType}`;
-      }
-      if (key === 'location' || key === 'job') {
-        return '';
-      }
-      return `${key}: $${key}`;
     })
       .reduce((acc, s) => (acc === '{updateUser (' ? `${acc}${s}` : `${acc}, ${s}`), '{updateUser (');
 
@@ -31,43 +56,27 @@ export default class GraphCool {
   }
   constructMutationArguments = (fields) => {
     let mutationArgumentsString = Object.keys(fields).map((key) => {
-      if (key === 'id') {
-        return '$id: ID!';
+      let typeString;
+      switch (key) {
+        case 'userId':
+          return '$userId: ID!';
+        case 'id':
+          return '$id: ID!';
+        case 'birthday':
+          return '$birthday: DateTime!';
+        case 'userType':
+          typeString = fields[key] === 'Student' ? 'UserstudentStudent' : 'UserprofessionalProfessional';
+          return `$${key}: UserType!, $${fields[key].toLowerCase()}: ${typeString}`;
+        case 'location':
+          return '';
+        case 'job':
+          return '';
+        default:
+          return `$${key}: String!`;
       }
-      if (key === 'birthday' || key === 'birthdate') {
-        return '$birthday: DateTime!';
-      }
-      if (key === 'userType') {
-        const typeString = fields[key] === 'Student' ? 'UserstudentStudent' : 'UserprofessionalProfessional';
-        return `$${key}: UserType!, $${fields[key].toLowerCase()}: ${typeString}`;
-      }
-      if (key === 'location' || key === 'job') {
-        return '';
-      }
-      return `$${key}: String!`;
     }).reduce((acc, s) => (acc === 'mutation (' ? `${acc}${s}` : `${acc}, ${s}`), 'mutation (');
     mutationArgumentsString += ')';
     return mutationArgumentsString;
-  }
-  constructCreateUserQuery = (fields) => {
-    const userType = fields.userType;
-    const lowercasedUserType = userType.toLowerCase();
-    let createUserQueryString = Object.keys(fields).map((key) => {
-      if (key === 'birthday' || key === 'birthdate') { // check if date
-        return 'birthday: $birthday';
-      }
-      if (key === 'userType') {
-        return `${key}: $${key}, ${lowercasedUserType}: $${lowercasedUserType}`;
-      }
-      if (key === 'location' || key === 'job') {
-        return '';
-      }
-      return `${key}: $${key}`;
-    })
-      .reduce((acc, s) => (acc === '{createUser (' ? `${acc}${s}` : `${acc}, ${s}`), '{createUser (');
-
-    createUserQueryString += `){id, ${lowercasedUserType === 'student' ? 'student' : 'professional'} {id}}}`;
-    return createUserQueryString;
   }
 
   /* 
@@ -178,6 +187,7 @@ export default class GraphCool {
   };
 
   updateSocialProfessionalUser = async (userId, attrs) => {
+    console.log('Update: ', attrs);
     // extract all data from attributes
     const { name, email, birthday, location, positions } = attrs;
 
@@ -187,7 +197,12 @@ export default class GraphCool {
     // prepare attibutes for mutation variables
     // in this variables we should create all nested objects
     // Example professional: {job: {jobTitle: { title }}}
-    const mutationArguments = { id: userId, userType: 'Professional', name, professional: {} };
+    const mutationArguments = { id: userId,
+      userType: 'Professional',
+      name,
+      professional: {
+        userId
+      } };
     // add an optional data
     if (email) {
       preparedAttr.email = email;
@@ -207,7 +222,7 @@ export default class GraphCool {
       mutationArguments.professional.location = preparedAttr.location;
     }
 
-    if (positions) {
+    if (positions && positions.values) {
       positions.values.map((position) => {
         if (!position.isCurrent) {
           return position;
@@ -240,27 +255,35 @@ export default class GraphCool {
   // linkedin
   createSocialProfessionalUser = async (attrs) => {
     // extract all needed data from attributes
+    console.log('Create: ', attrs);
     const { name, email, birthday, sub, location, positions } = attrs;
 
     // prepare attribute for mutation
     const preparedAttr = { auth0UserId: sub, userType: 'Professional', name };
+
+    const mutationArguments = { userType: 'Professional', name, professional: {} };
     // add optional data
     if (email) {
       preparedAttr.email = email;
+      mutationArguments.email = email;
     }
 
     if (birthday) {
       const birthdayISO = convertDateToISO(attrs.birthday);
       preparedAttr.birthday = birthdayISO;
+      mutationArguments.birthday = birthdayISO;
     }
 
-    if (location) {
+    if (location && location.name) {
       preparedAttr.location = {
+        country: location.name
+      };
+      mutationArguments.professional.location = {
         country: location.name
       };
     }
 
-    if (positions) {
+    if (positions && positions.values) {
       // find currently worked position
       positions.values.map((position) => {
         if (!position.isCurrent) {
@@ -275,6 +298,8 @@ export default class GraphCool {
           }
         };
 
+        mutationArguments.professional.job = preparedAttr.job;
+
         return position;
       });
     }
@@ -286,11 +311,15 @@ export default class GraphCool {
     }
   };
 
-  upsertUser = async (hash) => {
+  upsertUser = async (hash, auth0) => {
     // decode hole hash getted from url
-    const authResult = parseHash(hash);
+    const authResult = (auth0 && await auth0.parseHash(hash, (err, authResult) => {
+      console.log(err, ', ', authResult);
+    })) || parseHash(hash);
+    console.log('Upsert user: ', authResult);
     // decode idToken and take all data in token
     const attrs = decodeJwtToken(authResult.idToken);
+    console.log(attrs);
     // extract from attrs auth0 userId
     const auth0UserId = attrs.sub;
     // check user type
