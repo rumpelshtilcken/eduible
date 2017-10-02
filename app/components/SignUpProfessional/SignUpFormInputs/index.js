@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import ValidationUtils from 'utils/ValidationUtils';
 import DatePicker from 'material-ui/DatePicker';
 import TextField from 'material-ui/TextField';
 
@@ -12,7 +13,7 @@ class SignUpFormInputs extends Component {
         type: 'string',
         name: 'fullname',
         hintText: this.props.params.fullname || 'John',
-        errorText: []
+        errorText: ''
       }
     },
     {
@@ -20,7 +21,6 @@ class SignUpFormInputs extends Component {
       input: {
         name: 'date',
         hintText: this.props.params.date || '13/11/1992',
-        errorText: []
       }
     },
     {
@@ -29,7 +29,7 @@ class SignUpFormInputs extends Component {
         type: 'string',
         name: 'email',
         hintText: this.props.params.email || 'john@mail.com',
-        errorText: []
+        errorText: ''
       }
     },
     {
@@ -38,7 +38,7 @@ class SignUpFormInputs extends Component {
         type: 'password',
         name: 'password',
         hintText: this.props.params.password || 'at least six characters',
-        errorText: []
+        errorText: ''
       }
     },
     {
@@ -47,7 +47,7 @@ class SignUpFormInputs extends Component {
         type: 'string',
         name: 'country',
         hintText: this.props.params.country || 'choose from the list',
-        errorText: []
+        errorText: ''
       }
     },
     {
@@ -56,17 +56,14 @@ class SignUpFormInputs extends Component {
         type: 'string',
         name: 'zipcode',
         hintText: this.props.params.zipcode || '16044728',
-        errorText: []
+        errorText: ''
       }
     }
   ]
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    return this.props.onChange && this.props.onChange({ name, value });
-  };
+  handleChange = this.inpRef =>(this.props.onChange && this.props.onChange(this.inpRef);)
 
-  renderInput = ({ title, input }) => (
+  renderInput = ({ title, input,i }) => (
     input.name === 'date'
       ? <div key={input.name} className={input.name}>
         <DatePicker
@@ -85,13 +82,14 @@ class SignUpFormInputs extends Component {
           type={input.type}
           name={input.name}
           floatingLabelText={title}
+          errorText={input.errorText[[input.errorText.length]]}
           floatingLabelFixed
           fullWidth
           hintText={input.hintText}
           hintStyle={{ fontSize: '11px' }}
           inputStyle={{ fontSize: '11px' }}
           floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
-          onChange={this.handleChange}
+          onChange={ref=>this.handleChange(this.inpRef=ref)}
           mode="landscape"
         />
       </div>

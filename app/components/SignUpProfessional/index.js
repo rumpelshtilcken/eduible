@@ -24,7 +24,7 @@ class SignUpProfessional extends Component {
 
   handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
 
-  handleChange = ({ name, value }) => this.setState({ [name]: value });
+  handleChange = x => this.setState({ [x.name]: x.value });
 
   handleContinueButtonClick = () => {
     this.setState({ isSnackOpen: true });
