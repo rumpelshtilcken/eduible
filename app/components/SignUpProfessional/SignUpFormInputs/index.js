@@ -20,7 +20,7 @@ class SignUpFormInputs extends Component {
       title: 'BIRTH DATE',
       input: {
         name: 'date',
-        hintText: this.props.params.date || '13/11/1992',
+        hintText: this.props.params.date || '13/11/1992'
       }
     },
     {
@@ -61,9 +61,8 @@ class SignUpFormInputs extends Component {
     }
   ]
 
-  handleChange = this.inpRef =>(this.props.onChange && this.props.onChange(this.inpRef);)
 
-  renderInput = ({ title, input,i }) => (
+  renderInput = ({ title, input, i }) => (
     input.name === 'date'
       ? <div key={input.name} className={input.name}>
         <DatePicker
@@ -89,7 +88,6 @@ class SignUpFormInputs extends Component {
           hintStyle={{ fontSize: '11px' }}
           inputStyle={{ fontSize: '11px' }}
           floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
-          onChange={ref=>this.handleChange(this.inpRef=ref)}
           mode="landscape"
         />
       </div>
