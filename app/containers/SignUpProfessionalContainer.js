@@ -8,7 +8,19 @@ import * as authActions from 'actions/auth';
 import * as modalActions from 'actions/modal';
 
 class SignUpProfessionalContainer extends Component {
-  handleContinueButtonClick = ({
+  static propTypes = {
+    showSignInModal: PropTypes.func.isRequired,
+    showSignUpProfessionalStep2Modal: PropTypes.func.isRequired,
+    signupProfessional: PropTypes.func.isRequired
+  };
+
+  handleContinueButtonClick = (props) => {
+    const params = this.prepareParams(props);
+
+    this.props.signupProfessional(params, this.props.showSignUpProfessionalStep2Modal);
+  };
+
+  prepareParams = ({
     fullname,
     date,
     email,
@@ -33,32 +45,20 @@ class SignUpProfessionalContainer extends Component {
     if (zipcode) {
       params.zipcode = zipcode;
     }
-    console.log(this.props);
-    console.log(params);
-    // this.props.signupProfessional(params, this.props.showSignUpProfessionalStep2Modal);
-  };
 
-  handleLoginButtonClick = () => {
-    // TODO: open Login modal
+    return params;
   };
 
   render() {
     return (
       <SignUpProfessional
         onContinueButtonClick={this.handleContinueButtonClick}
-        onLinkedinButtonClick={this.handleLinkedinButtonClick}
-        onLoginButtonClick={this.handleLoginButtonClick}
+        onLoginButtonClick={this.props.showSignInModal}
         {...this.props}
       />
     );
   }
 }
-
-SignUpProfessionalContainer.propTypes = {
-  signupProfessional: PropTypes.func,
-  signinLinkedin: PropTypes.func,
-  showSignUpProfessionalStep2Modal: PropTypes.func
-};
 
 const mapStateToProps = (state) => {
   const { error, timestamp, forgotMsg, loading } = state.auth;
