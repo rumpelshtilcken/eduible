@@ -1,5 +1,5 @@
 .SignUpAsStudent {
-  height: 612px;
+  height: 600px;
   width: 255px;
   border-radius: 20px;
   padding: 0;
@@ -192,4 +192,12 @@ p {
 
 .pwd {
   width: 192px;
+}
+
+.formInputsContainer {
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
 }

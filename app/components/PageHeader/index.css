@@ -5,13 +5,18 @@
 }
 
 .headerContainer {
-  height: 48px;
+  height: 40px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: linear-gradient(to right, #8d55e6, #ae8ee0);
   flex-direction: row;
+}
+
+.grayHeader {
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 2px 0 #dcd6d6;
 }
 
 .logo {
