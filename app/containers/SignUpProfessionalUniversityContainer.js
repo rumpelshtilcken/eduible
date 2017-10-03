@@ -87,7 +87,7 @@ const updateProfessional = gql`
   } 
 `;
 const SignUpProfessionalUniversityWithQueryAndMutaion = graphql(updateProfessional, {
-  props: ({ ownProps, mutate }) => console.log(ownProps) || ({
+  props: ({ mutate }) => ({
     updateProfessional: ({ variables }) => mutate({
       variables
     })
