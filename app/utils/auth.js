@@ -40,6 +40,7 @@ export const decodeJwtToken = (idToken, claim) => {
 };
 
 export const getCurrentUserData = (claim) => {
+  if (!localStorage) return null;
   const token = localStorage.getItem('id_token');
   return token && decodeJwtToken(token, claim);
 };
