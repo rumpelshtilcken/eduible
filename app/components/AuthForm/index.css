@@ -1,0 +1,53 @@
+.formInputsContainer {
+  width: 192px;
+
+  @media (min-width: 768px) {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.input {
+  width: 192px;
+}
+
+.fullname {
+  order: 1;
+}
+
+.email {
+  @media (min-width: 768px) {
+    margin-top: 8px;
+    order: 5;
+  }
+}
+
+.password {
+  @media (min-width: 768px) {
+    margin-top: 8px;
+    order: 6;
+  }
+}
+
+.date {
+  @media (min-width: 768px) {
+    order: 3;
+  }
+}
+
+.country {
+  @media (min-width: 768px) {
+    margin-left: 25px;
+    width: 40%;
+    order: 2;
+  }
+}
+
+.zipcode {
+  @media (min-width: 768px) {
+    width: 40%;
+    margin-left: 25px;
+    order: 4;
+  }
+}

@@ -1,3 +1,4 @@
+export { default as AuthForm } from './AuthForm';
 export { default as BookingHeader } from './BookingHeader';
 export { default as CallRequest } from './CallRequest';
 export { default as Card } from './Card';
@@ -9,6 +10,10 @@ export { default as Layout } from './Layout';
 export { default as Link } from './Link';
 export { default as Main } from './Main';
 export { default as Menu } from './Menu';
+export { default as MuiButton } from './Material-ui/Button';
+export { default as MuiDatePicker } from './Material-ui/DatePicker';
+export { default as MuiSnackbar } from './Material-ui/Snackbar';
+export { default as MuiTextField } from './Material-ui/TextField';
 export { default as PageHeader } from './PageHeader';
 export { default as PaymentDetails } from './PaymentDetails';
 export { default as ProfessionalProfile } from './ProfessionalProfile';
