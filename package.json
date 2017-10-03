@@ -6,7 +6,7 @@
     "lint:css": "stylelint \"./app/{pages,components}/**/*.css\"",
     "lint": "npm-run-all --parallel lint:*",
     "commitmsg": "validate-commit-msg",
-    "precommit": "lint-staged",
+    "precommit": "lint-staged && npm test",
     "prepush": "npm test",
     "dev": "sequelize db:migrate && nodemon server/index.js --config .nodemonrc",
     "build": "npm run clean && next build app && babel server -d dist && cp server/config/config.json dist/config/config.json",
