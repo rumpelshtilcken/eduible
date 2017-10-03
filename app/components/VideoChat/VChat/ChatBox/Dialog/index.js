@@ -1,11 +1,16 @@
-import React from 'react';
+import { Component } from 'react';
 import { Message } from 'react-chat-ui';
+import PropTypes from 'prop-types';
 
 import stylesheet from './index.css';
 
 const imgUrl = '/static/sendButtonMobile.svg';
 
-class TextInputBox extends React.Component {
+class TextInputBox extends Component {
+  static propTypes = {
+    onSubmitButtonClick: PropTypes.func.isRequired
+  };
+
   state = {
     msg: ''
   }
@@ -18,6 +23,7 @@ class TextInputBox extends React.Component {
     const newMessage = new Message({ id: 0, message: this.inputRef.value });
     this.props.onSubmitButtonClick(newMessage);
   }
+  /* eslint-disable */
   render() {
     return (
       <div className="dialogbox-send">
@@ -27,7 +33,9 @@ class TextInputBox extends React.Component {
             type="text"
             value={this.state.msg}
             onChange={this.handleChange}
+            /* eslint-disable no-return-assign */
             ref={node => this.inputRef = node}
+            /* eslint-enable no-return-assign */
             placeholder="Type message ..."
           />
         </div>
@@ -45,6 +53,7 @@ class TextInputBox extends React.Component {
       </div>
     );
   }
+  /* eslint-enable */
 }
 
 export default TextInputBox;

@@ -26,7 +26,7 @@ class SignUpStudent extends Component {
 
   handleContinueButtonClick = () => {
     this.setState({ isSnackOpen: true });
-    // this.props.onContinueButtonClick(this.state);
+    this.props.onContinueButtonClick(this.state);
   }
 
   render() {
@@ -87,10 +87,7 @@ class SignUpStudent extends Component {
 
 SignUpStudent.propTypes = {
   onRequestClose: PropTypes.func.isRequired,
-  onContinueButtonClick: PropTypes.func.isRequired,
-  onLoginButtonClick: PropTypes.func.isRequired,
-  onGoogleButtonClick: PropTypes.func.isRequired,
-  onFacebookButtonClick: PropTypes.func.isRequired
+  onContinueButtonClick: PropTypes.func.isRequired
 };
 
 export default SignUpStudent;

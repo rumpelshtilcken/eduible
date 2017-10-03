@@ -7,10 +7,6 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 
-
-import style from './index.css';
-
-
 class SignUpAsProfessional extends React.Component {
     state = {
       error: false,
@@ -158,7 +154,7 @@ class SignUpAsProfessional extends React.Component {
         className="SignUpAsProfessional"
         overlayClassName="OverlayModal"
       >
-        <Scrollbars style={style.scroll} autohide>
+        <Scrollbars autohide>
           <div className="container">
             <div>
               <p className="sign">JOIN AS PROFESSIONAL</p>
@@ -193,7 +189,6 @@ class SignUpAsProfessional extends React.Component {
                 <a href="#">Login here</a>
               </div>
             </div>
-            <style global>{style}</style>
           </div>
         </Scrollbars>
       </Modal>

@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import style from './index.css';
-
 const inpt = [
   {
     title: 'JOB TITLE',
@@ -77,7 +75,6 @@ class JobTitleMoModal extends React.Component {
               </div>
             </div>
           </div>
-          <style global>{style}</style>
         </div>
       </Modal>
     );
@@ -100,7 +97,9 @@ const floatingLabelStyle = {
 JobTitleMoModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
-  openCodeVerificationModal: PropTypes.func.isRequired
+  openCodeVerificationModal: PropTypes.func.isRequired,
+  errorText: PropTypes.string,
+  onChange: PropTypes.func
 };
 
 export default JobTitleMoModal;

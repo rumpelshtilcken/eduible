@@ -1,9 +1,13 @@
-import { graphql, gql } from 'react-apollo';
 import { Component } from 'react';
+import { graphql, gql } from 'react-apollo';
+import PropTypes from 'prop-types';
 
 import { ProfessionalProfile } from 'components';
 
 class ProfessionalProfileContainer extends Component {
+  static propTypes = {
+    user: PropTypes.object
+  };
   user = {
     imgUrl: '/static/profile.png',
     data: [

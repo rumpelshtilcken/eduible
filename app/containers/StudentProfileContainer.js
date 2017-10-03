@@ -1,9 +1,15 @@
 import { graphql, gql } from 'react-apollo';
+import PropTypes from 'prop-types';
+
 import { StudentProfile } from 'components';
 
 const StudentProfileContainer = ({ user }) => {
   console.log(user);
   return user ? <StudentProfile user={user} /> : <div>Loading...</div>;
+};
+
+StudentProfileContainer.propTypes = {
+  user: PropTypes.object
 };
 
 const getStudentById = gql`

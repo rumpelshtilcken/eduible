@@ -1,11 +1,16 @@
 import { Component } from 'react';
 import { graphql, gql } from 'react-apollo';
+import PropTypes from 'prop-types';
 
 import { ProfessionalProfileContainer } from 'containers/ProfessionalProfileContainer';
 import StudentProfileContainer from 'containers/StudentProfileContainer';
 import { getCurrentUserData } from 'utils/auth';
 
 class ProfileContainer extends Component {
+  static propTypes = {
+    user: PropTypes.object
+  }
+
   user = {
     imgUrl: '/static/profile.png',
     data: [

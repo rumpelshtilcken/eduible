@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import style from './index.css';
-
 class CodeVerificationModal extends React.Component {
   state = {
     type: 'string',
@@ -38,7 +36,7 @@ class CodeVerificationModal extends React.Component {
               fullWidth
               hintText={this.state.hintText}
               errorText={this.props.errorText}
-              onBlur= {this.props.onChange}
+              onBlur={this.props.onChange}
               hintStyle={hintStyle}
               inputStyle={inputStyle}
             />
@@ -58,7 +56,6 @@ class CodeVerificationModal extends React.Component {
               Eduibles Terms and Conditions and Privacy Policy
             </a>
           </p>
-          <style global>{style}</style>
         </div>
       </Modal>
     );
@@ -75,7 +72,9 @@ const hintStyle = {
 
 CodeVerificationModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  onRequestClose: PropTypes.func.isRequired
+  onRequestClose: PropTypes.func.isRequired,
+  errorText: PropTypes.string,
+  onChange: PropTypes.func
 };
 
 export default CodeVerificationModal;
