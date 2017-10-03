@@ -23,28 +23,23 @@ export default class Auth {
 
   signup = async (userType, attrs, callback) => {
     try {
-      console.log(attrs);
       await this.auth0.signupAndAuthorize({
         connection: 'Username-Password-Authentication',
         email: attrs.email,
         password: attrs.password
       }, async (err, authResult) => {
-        console.log('Sign up called |||', err);
         if (err) {
           callback(err);
           throw err;
         }
         try {
-          console.log('Sign up');
           const auth0UserId = decodeJwtToken(authResult.idToken, 'sub');
           await this.graphCool.createUser({
             userType,
             auth0UserId,
             ...this.prepareAttributes(attrs)
           });
-          console.log('Sign up');
           this.setSession(authResult);
-          console.log('Sign up');
           callback();
         } catch (error) {
           throw error;
@@ -90,7 +85,7 @@ export default class Auth {
 
   signinSocialCallback = async (hash) => {
     try {
-      await this.graphCool.upsertUser(hash);
+      await this.graphCool.upsertUser(hash, this.auth0);
       await this.setSessionHash(hash);
     } catch (err) {
       throw err;
@@ -111,7 +106,6 @@ export default class Auth {
         this.setSession(authResult);
         return resolve();
       } else if (err) {
-        console.log(err);
         return reject(err);
       }
     });
@@ -124,7 +118,6 @@ export default class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    console.log('Session setted and app should redirect');
   }
 
   setSessionHash = (hash) => {
@@ -132,7 +125,7 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         return this.setSession(authResult);
       }
-      console.log(authResult.idTokenPayload.exp);
+
       if (authResult.idTokenPayload) {
         return this.setSession({
           idToken: authResult.idToken,
