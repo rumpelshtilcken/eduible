@@ -4,7 +4,7 @@
   padding: 0;
   background: rgb(255, 255, 255);
   border: 1px solid rgb(204, 204, 204);
-  overflow: auto;
+  overflow: scroll;
   outline: none;
   margin: auto;
 
@@ -15,7 +15,12 @@
   }
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .OverlayModal {
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;

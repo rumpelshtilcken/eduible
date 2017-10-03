@@ -29,17 +29,12 @@ class ResponsiveMenu extends Component {
         })}
         >
           {links && links.map(({ url, title, prefetch }) => (
-            <div key={title} className={url === '/profile' ? 'linkContainer hidden' : 'linkContainer'} >
-              <Link href={url} prefetch={prefetch} purple>
-                {title}
+            <div key={title} className="linkContainer" >
+              <Link href={url} prefetch={prefetch} style={{ display: 'block', width: '100%' }} purple >
+                {url !== '/profile' ? title : 'Profile'}
               </Link>
             </div>
           ))}
-          <div key="profile" className="linkContainer profile">
-            <Link href="/profile" purple>
-              Profile
-            </Link>
-          </div>
 
           {buttons && buttons.map(({ title, onClick }) => (
             <div key={title} className="linkContainer">
