@@ -4,7 +4,7 @@ const PASSWORD_MIN_LENGTH = 6;
 
 const ValidationUtils = {
   isValidEmail: candidate =>
-    /^([A-Za-z0-9]{1,})(([.]|[-]|[_]){1}[A-Za-z0-9]+){1,}[@]{1}([A-z0-9]+)([.][A-z0-9]+)+$/.test(
+    /^([A-Za-z0-9]{1,})(([.]|[-]|[_]){1}[A-Za-z0-9-+]+){1,}[@]{1}([A-z0-9]+)([.][A-z0-9]+)+$/.test(
       candidate
     ),
   isValidPassword: candidate => candidate.length >= PASSWORD_MIN_LENGTH,
