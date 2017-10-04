@@ -9,9 +9,10 @@ const MuiDatePicker = ({ onChange, title, value }) => (
     hintText={value}
     hintStyle={{ fontSize: '11px' }}
     inputStyle={{ fontSize: '11px' }}
-    mode="landscape"
+    mode="portrait"
     fullWidth
     onChange={onChange}
+    minDate={new Date()}
   />
 );
 
