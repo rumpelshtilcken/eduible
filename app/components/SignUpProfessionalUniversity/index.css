@@ -11,7 +11,10 @@
   @media (min-width: 768px) {
     width: 407px;
     height: 345px;
-    margin: auto;
+  }
+
+  @media (min-width: 1024px) {
+    width: 500px;
   }
 }
 
@@ -33,33 +36,72 @@
 }
 
 .container {
-  width: 100%;
+  width: 80%;
   margin: auto;
   display: block;
-}
 
-.share-div {
-  text-align: center;
-  margin: 5px auto 17px;
-}
-
-.share-div a {
-  text-decoration: none;
+  @media (min-width: 768px) {
+    width: 90%;
+  }
 }
 
 .headerTitle {
   font-family: var(--font);
-  font-size: 15px;
+  font-size: 11px;
+  text-align: center;
   font-weight: bold;
   color: #4e4e4e;
-  margin: 23px auto 5px;
-}
-
-.p-box {
-  margin: 15px auto;
+  margin: 18px auto 5px;
 
   @media (min-width: 768px) {
-    padding: 16px 0 0 26px;
-    width: 140px;
+    font-size: 13.5px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 15px;
+  }
+}
+
+.description {
+  color: #afafaf;
+  text-align: center;
+  font-size: 11px;
+
+  @media (min-width: 768px) {
+    font-size: 12px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 13px;
+  }
+}
+
+.skip {
+  margin-top: 6px;
+  width: 100%;
+  text-align: center;
+  color: #afafaf;
+  background: none;
+  text-decoration: none;
+  border: none;
+}
+
+.skip:hover {
+  text-decoration: underline;
+}
+
+.button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  width: 80%;
+  margin: auto;
+
+  @media (min-width: 768px) {
+    width: 90%;
   }
 }
