@@ -6,7 +6,8 @@ import { ProfessionalProfile } from 'components';
 
 class ProfessionalProfileContainer extends Component {
   static propTypes = {
-    user: PropTypes.object
+    user: PropTypes.object,
+    onProfileEditButtonClick: PropTypes.func.isRequired
   };
   user = {
     imgUrl: '/static/profile.png',
@@ -36,7 +37,11 @@ class ProfessionalProfileContainer extends Component {
   };
 
   render() {
-    return <ProfessionalProfile user={this.props.user} />;
+    return (
+      <ProfessionalProfile
+        user={this.props.user}
+        onProfileEditButtonClick={this.props.onProfileEditButtonClick}
+      />);
   }
 }
 const getProfessionalById = gql`

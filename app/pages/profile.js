@@ -1,12 +1,19 @@
 import { Component } from 'react';
 import Head from 'next/head';
+import Router from 'next/router';
 
 import withPage from 'hoc/withPage';
 import ProfileContainer from 'containers/ProfileContainer';
 
 class ProfilePage extends Component {
-  handleNotifyMeButtonClick = () => {
-    // TODO: navigate back
+  handleProfileEditButtonClick = ({ userType, userId }) => {
+    Router.push({
+      pathname: '/profileEdit',
+      query: {
+        userType,
+        userId
+      }
+    });
   };
 
   render() {
@@ -15,7 +22,9 @@ class ProfilePage extends Component {
         <Head>
           <title>{'Profile'}</title>
         </Head>
-        <ProfileContainer />
+        <ProfileContainer
+          onProfileEditButtonClick={this.handleProfileEditButtonClick}
+        />
       </div>
     );
   }

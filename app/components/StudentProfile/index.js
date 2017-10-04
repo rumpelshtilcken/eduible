@@ -8,6 +8,15 @@ import Universities from './Universities';
 import stylesheet from './index.css';
 
 class StudentProfile extends Component {
+  static propTypes = {
+    user: PropTypes.object.isRequired,
+    universities: PropTypes.arrayOf(
+      PropTypes.object
+    ).isRequired,
+    onRemoveFromListClick: PropTypes.func.isRequired,
+    onProfileEditButtonClick: PropTypes.func.isRequired
+  };
+
   tabs = [
     {
       title: 'Universities',
@@ -23,10 +32,6 @@ class StudentProfile extends Component {
     }
   ]
 
-  handleEditButtonClick = () => {
-    // TODO: handle edit profile button click
-  }
-
   handleReadMoreClick() {
     // TODO: read more about university
   }
@@ -36,11 +41,12 @@ class StudentProfile extends Component {
   }
 
   render() {
+    console.log('SSS: ', this.props.onProfileEditButtonClick);
     return (
       <div className="container">
         <Profile
           user={this.props.user}
-          onEditButtonClick={this.handleEditButtonClick}
+          onEditButtonClick={this.props.onProfileEditButtonClick}
         />
         <TabMenu
           tabs={this.tabs}
@@ -61,13 +67,5 @@ class StudentProfile extends Component {
     );
   }
 }
-
-StudentProfile.propTypes = {
-  user: PropTypes.object.isRequired,
-  universities: PropTypes.arrayOf(
-    PropTypes.object
-  ).isRequired,
-  onRemoveFromListClick: PropTypes.func.isRequired
-};
 
 export default StudentProfile;
