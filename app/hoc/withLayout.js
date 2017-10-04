@@ -56,7 +56,7 @@ const withLayout = hoistStatics((CompositeComponent) => {
           <ModalRootContainer />
           <PageHeaderContainer />
           <CompositeComponent {...this.props} />
-          <Footer urlsMenu={this.footerLinks} copyright={'COPYRIGHT (C) 2017'} />
+          <Footer urlsMenu={this.footerLinks} />
         </Layout>
       );
     }
