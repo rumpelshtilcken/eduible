@@ -2,6 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import TextField from 'material-ui/TextField';
+import stylesheet from './index.css';
 
 class SignUpFormInputs extends Component {
   inputs = [
@@ -59,7 +60,7 @@ class SignUpFormInputs extends Component {
         hintText={input.hintText}
         hintStyle={{ fontSize: '11px' }}
         inputStyle={{ fontSize: '11px' }}
-        floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
+        floatingLabelStyle={{ fontSize: '12px', color: '#626262', fontWeight: 'bold' }}
         onChange={this.handleChange}
         mode="landscape"
       />
@@ -68,8 +69,9 @@ class SignUpFormInputs extends Component {
 
   render() {
     return (
-      <div>
+      <div className="inputs">
         {this.inputs.map(this.renderInput)}
+        <style global jsx>{stylesheet}</style>
       </div>
     );
   }

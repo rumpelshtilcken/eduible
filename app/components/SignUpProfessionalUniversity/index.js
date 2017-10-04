@@ -35,20 +35,16 @@ class SignUpProfessionalUniversity extends Component {
               <div className="description">It will increase attractiveness of your profile by users who are willing to take same academic pathway.
               </div>
               <FormInputs params={this.state} onChange={this.handleChange} />
-              <div className="buttonsContainer">
-                <div className="skipThisStep" />
-                <div className="add button" />
-              </div>
+              <button className="skip" onClick={this.props.onSkip}>{'skip this step'}</button>
             </div>
-            <RaisedButton
-              label="Add"
-              className="btn"
-              buttonStyle={{ backgroundColor: '#7262BF', fullWidth: true }}
-              labelStyle={{ color: 'white', fontSize: '11px' }}
-              onClick={this.handleAddButtonClick}
-            />
-            <div className="share-div">
-              <button className="share" onClick={this.props.onSkip}>{'skip this step'}</button>
+            <div className="button">
+              <RaisedButton
+                label="Add"
+                className="btn"
+                buttonStyle={{ backgroundColor: '#7262BF', fullWidth: true }}
+                labelStyle={{ color: 'white', fontSize: '11px', fontWeight: 'bold' }}
+                onClick={this.handleAddButtonClick}
+              />
             </div>
             <style global jsx>{stylesheet}</style>
           </Modal>
