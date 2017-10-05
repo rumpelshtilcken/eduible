@@ -41,7 +41,7 @@ Conversation.propTypes = {
       duration: PropTypes.string.isRequired,
       date: PropTypes.string.isRequired,
       time: PropTypes.string.isRequired,
-      conference: PropTypes.bool
+      conference: PropTypes.bool.isRequired
     }).isRequired
   }).isRequired
 };

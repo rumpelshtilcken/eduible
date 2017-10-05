@@ -1,6 +1,8 @@
 
 import Head from 'next/head';
-import StudentProfileEditContainer from 'containers/StudentProfileEditContainer';
+
+import withPage from 'hoc/withPage';
+import StudentProfileEditContainer from 'containers';
 
 const studentProfileEditPage = () => (
   <div>
@@ -11,4 +13,4 @@ const studentProfileEditPage = () => (
   </div>
 );
 
-export default studentProfileEditPage;
+export default withPage(studentProfileEditPage);
