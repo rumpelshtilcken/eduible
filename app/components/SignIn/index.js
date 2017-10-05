@@ -3,11 +3,10 @@ import Modal from 'react-modal';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 
+import { MuiSnackbar, MuiButton } from 'components';
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 
-import MuiSnackbar from 'components/Material-ui/MuiSnackbar';
 import SignInFormInputs from './SignInFormInputs';
-import MuiButton from '../Material-ui/MuiButton';
 import stylesheet from './index.css';
 
 class SignIn extends Component {
@@ -25,7 +24,7 @@ class SignIn extends Component {
 
   handleContinueButtonClick = () => {
     this.setState({ isSnackOpen: true });
-    // this.props.onContinueButtonClick(this.state);
+    this.props.onContinueButtonClick(this.state);
   }
 
   render() {

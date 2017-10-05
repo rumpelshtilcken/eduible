@@ -3,11 +3,10 @@ import Modal from 'react-modal';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 
-import MuiSnackbar from 'components/Material-ui/MuiSnackbar';
+import { MuiSnackbar, MuiButton } from 'components';
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 
 import SignUpFormInputs from './SignUpFormInputs';
-import MuiButton from '../Material-ui/MuiButton';
 import style from './index.css';
 
 class SignUpStudent extends Component {

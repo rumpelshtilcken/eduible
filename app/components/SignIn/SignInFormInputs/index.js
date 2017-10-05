@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import MuiTextField from '../../Material-ui/MuiTextField';
+import { MuiTextField } from 'components';
+
 import stylesheet from './index.css';
 
 class SignInFormInputs extends Component {

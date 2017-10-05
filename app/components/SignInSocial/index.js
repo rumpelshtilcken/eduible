@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { MuiButton } from 'components';
+
 import stylesheet from './index.css';
-import MuiButton from 'components/Material-ui/MuiButton';
 
 class SignInSocial extends Component {
   socialButtonParams = {
@@ -19,6 +20,7 @@ class SignInSocial extends Component {
           const { color, onClick } = this.socialButtonParams[signInType];
           return (
             <MuiButton
+              key={signInType}
               backgroundColor={color}
               onClick={onClick}
               label={signInType.toUpperCase()}
