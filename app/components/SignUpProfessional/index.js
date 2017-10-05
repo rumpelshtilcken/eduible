@@ -1,12 +1,13 @@
 import { Component } from 'react';
+import { Scrollbars } from 'react-custom-scrollbars';
 import Modal from 'react-modal';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 
+import { MuiButton, MuiSnackbar } from 'components';
 import SignInSocialContainer from 'containers/SignInSocialContainer';
+import ValidationUtils from 'utils/ValidationUtils';
 
-import MuiSnackbar from 'components/Material-ui/MuiSnackbar';
-import MuiButton from 'components/Material-ui/MuiButton';
 import SignUpFormInputs from './SignUpFormInputs';
 import style from './index.css';
 
@@ -24,42 +25,73 @@ class SignUpProfessional extends Component {
 
   handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
 
-  handleChange = x => this.setState({ [x.name]: x.value });
+  handleChange = (event, date) => (date
+    ? this.setState({ date })
+    : this.setState({ [event.target.name]: event.target.value }));
+
 
   handleContinueButtonClick = () => {
-    this.setState({ isSnackOpen: true });
+    // TODO: check is valid all inputs
     // this.props.onContinueButtonClick(this.state);
+  }
+
+  validation = {
+    fullname: fullname =>
+      !ValidationUtils.isValidName(fullname)
+    &&
+    'First name and last name must be uppercased',
+    email: email =>
+      !ValidationUtils.isValidEmail(email)
+    &&
+    'Email not valid',
+    password: password =>
+      !ValidationUtils.isValidPassword(password)
+    &&
+    'Password must be more than 6 character'
   }
 
   render() {
     return (
       <MuiThemeProvider>
-        <div>
+        <Scrollbars autohide>
           <Modal
+            contentLabel={''}
             isOpen
             onRequestClose={this.props.onRequestClose}
-            className="SignUpAsProfessional"
-            overlayClassName="OverlayModal"
+            className="signUpProfessionalModal"
+            overlayClassName="signUpProfessionalOverlayModal"
           >
-            <div className="container">
-              <div>
-                <p className="sign">JOIN AS PROFESSIONAL</p>
-                <p className="share">Share your knowledge and experience. Start now - it’s free</p>
-              </div>
-              <div className="container-div">
-                <SignUpFormInputs params={this.state} onChange={this.handleChange} />
+            <div className="signUpProfessionalContainer">
+              <p className="signUpProfessionalHeaderTitle">
+                {'Join as professional'.toUpperCase()}
+              </p>
+              <p className="signUpProfessionalHeaderDescription">
+                {'Share your knowledge and experience. Start now - it’s free'}
+              </p>
+
+              <div className="signUpProfessionalBodyContainer">
+                <SignUpFormInputs
+                  params={this.state}
+                  onChange={this.handleChange}
+                  validation={this.validation}
+                />
                 <MuiButton
-                  className="continuebtn-div"
+                  className="signUpProfessionalContinueButton"
                   onClick={this.handleContinueButtonClick}
                 />
-                <div className="linkedinbtn-div" >
-                  <p>OR JOIN WITH</p>
+                <div className="signUpProfessionalSocialContainer" >
+                  <p>{'Or join with'.toUpperCase()}</p>
                   <SignInSocialContainer renderButtons={['Linkedin']} />
                 </div>
-                <div className="loginhere-div">
-                  <img src="static/Line.jpg" alt="hrline" />
-                  <p>ALREADY A MEMBER?</p>
-                  <a className="signUpLink" href="#" >Sign Up here</a>
+                <div className="signUpProfessionalLoginContainer">
+                  <img src="static/Line.jpg" alt="dividerLine" />
+                  <p>{'Already a member?'.toUpperCase()}</p>
+                  <button
+                    className="loginButton"
+                    onClick={this.props.onLoginButtonClick}
+                  >
+                    {'Log in here'}
+                  </button>
                 </div>
               </div>
               <style global jsx>{style}</style>
@@ -72,15 +104,16 @@ class SignUpProfessional extends Component {
             handleActionTouchTap={this.handleRequestSnackClose}
             handleRequestClose={this.handleRequestSnackClose}
           />
-        </div>
+        </Scrollbars>
       </MuiThemeProvider>
     );
   }
 }
 
 SignUpProfessional.propTypes = {
-  onRequestClose: PropTypes.func.isRequired,
-  onContinueButtonClick: PropTypes.func.isRequired
+  onContinueButtonClick: PropTypes.func.isRequired,
+  onLoginButtonClick: PropTypes.func.isRequired,
+  onRequestClose: PropTypes.func.isRequired
 };
 
 export default SignUpProfessional;

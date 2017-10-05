@@ -33,11 +33,11 @@ const AuthForm = ({ inputs }) => (
               })}
             >
               <MuiTextField
-                errorText={params.errorText}
                 name={params.name}
                 onChange={params.onChange}
                 title={params.title}
                 type={params.type}
+                validation={params.validation}
                 value={params.value}
               />
             </div>
@@ -54,7 +54,7 @@ AuthForm.propTypes = {
       type: PropTypes.oneOf(['Date']),
       params: PropTypes.oneOf([
         PropTypes.shape({
-          errorText: PropTypes.string,
+          validation: PropTypes.func,
           name: PropTypes.string.isRequired,
           onChange: PropTypes.func.isRequired,
           title: PropTypes.string.isRequired,
@@ -66,8 +66,7 @@ AuthForm.propTypes = {
           title: PropTypes.string,
           value: PropTypes.string
         })
-      ]
-      )
+      ])
     })
   )
 };

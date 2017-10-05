@@ -1,112 +1,86 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ValidationUtils from 'utils/ValidationUtils';
-import DatePicker from 'material-ui/DatePicker';
-import TextField from 'material-ui/TextField';
+import { AuthForm } from 'components';
 
 class SignUpFormInputs extends Component {
   inputs = [
     {
-      title: 'FIRST AND LAST NAME',
-      input: {
-        type: 'string',
+      params: {
         name: 'fullname',
-        hintText: this.props.params.fullname || 'John',
-        errorText: ''
+        onChange: this.props.onChange,
+        title: 'FIRST AND LAST NAME',
+        type: 'string',
+        validation: this.props.validation.fullname,
+        value: this.props.params.fullname || 'John'
       }
     },
     {
-      title: 'BIRTH DATE',
-      input: {
+      type: 'Date',
+      params: {
         name: 'date',
-        hintText: this.props.params.date || '13/11/1992'
+        onChange: this.props.onChange,
+        title: 'BIRTH DATE',
+        value: this.props.params.date || '13/11/1992'
       }
     },
     {
-      title: 'EMAIL',
-      input: {
-        type: 'string',
+      params: {
+        title: 'EMAIL',
         name: 'email',
-        hintText: this.props.params.email || 'john@mail.com',
-        errorText: ''
+        onChange: this.props.onChange,
+        type: 'email',
+        validation: this.props.validation.email,
+        value: this.props.params.email || 'john@mail.com'
       }
     },
     {
-      title: 'PASSWORD',
-      input: {
-        type: 'password',
+      params: {
+        title: 'PASSWORD',
         name: 'password',
-        hintText: this.props.params.password || 'at least six characters',
-        errorText: ''
+        onChange: this.props.onChange,
+        type: 'password',
+        validation: this.props.validation.password,
+        value: this.props.params.password || 'at least six characters'
       }
     },
     {
-      title: 'COUNTRY',
-      input: {
-        type: 'string',
+      params: {
+        title: 'COUNTRY',
         name: 'country',
-        hintText: this.props.params.country || 'choose from the list',
-        errorText: ''
+        onChange: this.props.onChange,
+        type: 'string',
+        value: this.props.params.country || 'choose from the list'
       }
     },
     {
-      title: 'ZIP CODE',
-      input: {
-        type: 'string',
+      params: {
+        title: 'ZIP CODE',
         name: 'zipcode',
-        hintText: this.props.params.zipcode || '16044728',
-        errorText: ''
+        onChange: this.props.onChange,
+        type: 'string',
+        value: this.props.params.zipcode || '16044728'
       }
     }
   ]
 
-
-  renderInput = ({ title, input, i }) => (
-    input.name === 'date'
-      ? <div key={input.name} className={input.name}>
-        <DatePicker
-          floatingLabelText={title}
-          floatingLabelFixed
-          floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
-          hintText={input.hintText}
-          hintStyle={{ fontSize: '11px' }}
-          inputStyle={{ fontSize: '11px' }}
-          mode="landscape"
-          fullWidth
-        />
-      </div>
-      : <div key={input.name} className={input.name}>
-        <TextField
-          type={input.type}
-          name={input.name}
-          floatingLabelText={title}
-          errorText={input.errorText[[input.errorText.length]]}
-          floatingLabelFixed
-          fullWidth
-          hintText={input.hintText}
-          hintStyle={{ fontSize: '11px' }}
-          inputStyle={{ fontSize: '11px' }}
-          floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
-          mode="landscape"
-        />
-      </div>
-  );
-
   render() {
     return (
-      <div className="formInputsContainer">
-        {this.inputs.map(this.renderInput)}
-      </div>
+      <AuthForm inputs={this.inputs} />
     );
   }
 }
 
 SignUpFormInputs.propTypes = {
   onChange: PropTypes.func,
+  validation: PropTypes.shape({
+    fullname: PropTypes.func,
+    email: PropTypes.func,
+    password: PropTypes.func
+  }),
   params: PropTypes.shape({
     fullname: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date),
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     country: PropTypes.string.isRequired,
