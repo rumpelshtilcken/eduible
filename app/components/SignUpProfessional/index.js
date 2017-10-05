@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { MuiButton, MuiSnackbar } from 'components';
 import * as formActions from 'actions/form';
 
+import { MuiButton, MuiSnackbar } from 'components';
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 import ValidationUtils from 'utils/ValidationUtils';
 
@@ -45,6 +46,21 @@ class SignUpProfessional extends Component {
     return !isNotValid
       ? this.setState({ snackMessage: 'Invalid inputs', isSnackOpen: true })
       : this.props.onContinueButtonClick();
+  }
+
+  validation = {
+    fullname: fullname =>
+      !ValidationUtils.isValidName(fullname)
+    &&
+    'First name and last name must be uppercased',
+    email: email =>
+      !ValidationUtils.isValidEmail(email)
+    &&
+    'Email not valid',
+    password: password =>
+      !ValidationUtils.isValidPassword(password)
+    &&
+    'Password must be more than 6 character'
   }
 
   render() {
