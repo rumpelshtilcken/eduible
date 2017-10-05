@@ -1,8 +1,8 @@
 import Head from 'next/head';
 
 import Main from 'components/Main';
+// import StudentProfileContainer from 'containers/StudentProfileContainer';
 import withPage from 'hoc/withPage';
-// import { Main } from 'components';
 
 const Homepage = () => (
   <div>

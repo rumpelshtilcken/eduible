@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import University from '../University';
+import University from './University';
 
 const Universities = ({
   universities,

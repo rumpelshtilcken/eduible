@@ -3,11 +3,19 @@ import { TabMenu } from 'components';
 import PropTypes from 'prop-types';
 
 import Profile from './Profile';
-import Universities from './Universities';
+import Conversations from './TabList/Conversations';
 
 import stylesheet from './index.css';
 
 class StudentProfile extends Component {
+  static propTypes = {
+    user: PropTypes.object.isRequired,
+    universities: PropTypes.arrayOf(
+      PropTypes.object
+    ).isRequired
+    onRemoveFromListClick: PropTypes.func.isRequired
+  };
+
   tabs = [
     {
       title: 'Universities',
@@ -45,13 +53,8 @@ class StudentProfile extends Component {
         <TabMenu
           tabs={this.tabs}
         >
-          {this.props.universities && (
-            <Universities
-              universities={this.props.universities}
-              onRemoveFromListClick={this.props.onRemoveFromListClick}
-              onReadMoreClick={this.handleReadMoreClick}
-              onCalculatedClick={this.handleCalculatedClick}
-            />
+          {this.props.conversations && (
+            <Conversations/>
           )}
           <h1>Section 2 is coming</h1>
           <h1>Section 3 is coming</h1>
@@ -61,13 +64,5 @@ class StudentProfile extends Component {
     );
   }
 }
-
-StudentProfile.propTypes = {
-  user: PropTypes.object.isRequired,
-  universities: PropTypes.arrayOf(
-    PropTypes.object
-  ).isRequired,
-  onRemoveFromListClick: PropTypes.func.isRequired
-};
 
 export default StudentProfile;

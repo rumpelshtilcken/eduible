@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import { ProfessionalProfileContainer } from 'containers/ProfessionalProfileContainer';
+import ProfessionalProfileContainer from 'containers/ProfessionalProfileContainer';
 import StudentProfileContainer from 'containers/StudentProfileContainer';
 import { getCurrentUserData } from 'utils/auth';
 
@@ -43,29 +43,32 @@ class ProfileContainer extends Component {
     console.log('user is ', user);
     return (
       <div>
-        {user && user.userType === 'Student' && <StudentProfileContainer id={user.id} />}
-        {user && user.userType === 'Professional' && <ProfessionalProfileContainer id={user.id} />}
+        <StudentProfileContainer user={this.user} />
+        {/* {user && user.userType === 'Student' && <StudentProfileContainer id={user.id} />}
+        {user && user.userType === 'Professional' && <ProfessionalProfileContainer id={user.id} />} */}
       </div>
     );
   }
 }
 
-const getUserByAuth0Id = gql`
-query allUsers($auth0UserId: String!) {
-  allUsers (filter: {auth0UserId: $auth0UserId}) {
-    id
-    userType
-  }
-} 
-`;
+// const getUserByAuth0Id = gql`
+// query allUsers($auth0UserId: String!) {
+//   allUsers (filter: {auth0UserId: $auth0UserId}) {
+//     id
+//     userType
+//   }
+// } 
+// `;
 
-export default graphql(getUserByAuth0Id, {
-  options: () => ({
-    variables: {
-      auth0UserId: getCurrentUserData('sub')
-    }
-  }),
-  props: ({ data }) => console.log('DATA IS HERE', data) || ({
-    user: data && data.allUsers && data.allUsers[0]
-  })
-})(ProfileContainer);
+// export default graphql(getUserByAuth0Id, {
+//   options: () => ({
+//     variables: {
+//       auth0UserId: getCurrentUserData('sub')
+//     }
+//   }),
+//   props: ({ data }) => console.log('DATA IS HERE', data) || ({
+//     user: data && data.allUsers && data.allUsers[0]
+//   })
+// })(ProfileContainer);
+
+export default ProfileContainer;
