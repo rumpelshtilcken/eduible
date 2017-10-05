@@ -1,6 +1,8 @@
-.SignUpAsProfessional {
-  height: 765 px;
-  width: 255px;
+.signUpProfessionalModal {
+  max-height: 765px;
+  min-width: 255px;
+  max-width: 426px;
+  min-height: 460px;
   border-radius: 20px;
   padding: 0;
   background: rgb(255, 255, 255);
@@ -8,15 +10,14 @@
   outline: none;
   overflow: auto;
   margin: auto;
+  margin-top: 10px;
 
-  @media (min-width: 768px) {
-    width: 426px;
-    height: 460px;
-    margin: auto;
+  @media screen and (min-width: 768px) {
+    margin-top: auto;
   }
 }
 
-.OverlayModal {
+.signUpProfessionalOverlayModal {
   position: fixed;
   top: 0;
   left: 0;
@@ -28,26 +29,20 @@
   justify-content: center;
 }
 
-a {
-  text-decoration: none;
-  font-size: 12px;
-  color: #00ff1f;
+.signUpProfessionalContainer {
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
 }
 
-h1,
+.signUpProfessionalContainer h1,
 p {
   font-size: 11px;
   font-family: var(--font);
   color: #626262;
 }
 
-.container {
-  width: 100%;
-  margin: auto;
-  box-sizing: border-box;
-}
-
-.container-div {
+.signUpProfessionalBodyContainer {
   width: 192px;
   display: flex;
   flex-wrap: wrap;
@@ -64,7 +59,7 @@ p {
   display: none;
 }
 
-.share {
+.signUpProfessionalHeaderDescription {
   width: 159px;
   font-size: 11px;
   color: #afafaf;
@@ -76,7 +71,7 @@ p {
   }
 }
 
-.sign {
+.signUpProfessionalHeaderTitle {
   font-family: var(--font);
   color: #4e4e4e;
   width: 100%;
@@ -92,7 +87,15 @@ p {
   }
 }
 
-.continuebtn-div {
+.loginButton {
+  background: transparent;
+  border: 0;
+  text-decoration: none;
+  font-size: 12px;
+  color: #00ff1f;
+}
+
+.signUpProfessionalContinueButton {
   width: 100%;
   margin-top: 16px;
   margin-bottom: 15px;
@@ -104,7 +107,7 @@ p {
   }
 }
 
-.linkedinbtn-div {
+.signUpProfessionalSocialContainer {
   width: 100%;
 
   @media (min-width: 768px) {
@@ -116,10 +119,11 @@ p {
   }
 }
 
-.linkedinbtn-div p {
+.signUpProfessionalSocialContainer p {
   margin-bottom: 10px;
 }
-.loginhere-div {
+
+.signUpProfessionalLoginContainer {
   margin-top: 16px;
   margin-bottom: 16px;
 
@@ -132,7 +136,7 @@ p {
   }
 }
 
-.loginhere-div img {
+.signUpProfessionalLoginContainer img {
   width: 192px;
 
   @media (min-width: 768px) {
@@ -140,69 +144,7 @@ p {
   }
 }
 
-.loginhere-div p {
+.signUpProfessionalLoginContainer p {
   color: #626262;
   font-size: 12px;
-}
-
-.formInputsContainer {
-  width: 192px;
-
-  @media (min-width: 768px) {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
-}
-
-.fullname {
-  width: 192px;
-  order: 1;
-}
-
-.email {
-  width: 192px;
-
-  @media (min-width: 768px) {
-    margin-top: 8px;
-    order: 5;
-  }
-}
-
-.password {
-  width: 192px;
-
-  @media (min-width: 768px) {
-    margin-top: 8px;
-    order: 6;
-  }
-}
-
-.date {
-  width: 192px;
-
-  @media (min-width: 768px) {
-    order: 3;
-  }
-}
-
-
-.country {
-  width: 192px;
-
-  @media (min-width: 768px) {
-    margin-left: 25px;
-    width: 40%;
-    order: 2;
-  }
-}
-
-.zipcode {
-  width: 192px;
-
-  @media (min-width: 768px) {
-    width: 40%;
-    margin-left: 25px;
-    order: 4;
-  }
 }
