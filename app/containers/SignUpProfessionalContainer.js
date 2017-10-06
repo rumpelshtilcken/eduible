@@ -2,49 +2,53 @@ import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import { SignUpProfessional } from 'components';
 import * as authActions from 'actions/auth';
 import * as modalActions from 'actions/modal';
+import * as formActions from 'actions/form';
 
 class SignUpProfessionalContainer extends Component {
   static propTypes = {
     showSignInModal: PropTypes.func.isRequired,
     showSignUpProfessionalStep2Modal: PropTypes.func.isRequired,
-    signupProfessional: PropTypes.func.isRequired
+    signupProfessional: PropTypes.func.isRequired,
+    values: PropTypes.object.isRequired,
+    reset: PropTypes.func.isRequired
   };
 
-  handleContinueButtonClick = (props) => {
-    const params = this.prepareParams(props);
-
-    this.props.signupProfessional(params, this.props.showSignUpProfessionalStep2Modal);
+  handleContinueButtonClick = () => {
+    const params = this.prepareParams();
+    this.props.signupProfessional(params, this.handleDidSignUp);
   };
 
-  prepareParams = ({
-    fullname,
-    date,
-    email,
-    password,
-    country,
-    zipcode
-  }) => {
-    const params = {
-      name: fullname,
-      email,
-      password
-    };
+  handleDidSignUp = () => {
+    this.props.reset();
+    this.props.showSignUpProfessionalStep2Modal();
+  }
 
-    if (date) {
-      params.birthday = date;
-    }
+  prepareParams = () => {
+    const values = _.omit(this.props.values, ['error']);
 
-    if (country) {
-      params.country = country;
-    }
+    const params = Object.keys(values).reduce((acc, key) => {
+      let gKey;
+      const value = this.props.values[key];
+      switch (key) {
+        case 'fullname':
+          gKey = 'name';
+          break;
+        case 'date':
+          gKey = 'birthday';
+          break;
+        default:
+          gKey = key;
+      }
 
-    if (zipcode) {
-      params.zipcode = zipcode;
-    }
+      return value
+        ? { ...acc, [gKey]: value }
+        : acc;
+    }, {});
 
     return params;
   };
@@ -66,12 +70,14 @@ const mapStateToProps = (state) => {
     error,
     timestamp,
     forgotMsg,
-    loading
+    loading,
+    values: state.form
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(authActions, dispatch),
+  ...bindActionCreators(formActions, dispatch),
   ...bindActionCreators(modalActions, dispatch)
 });
 
