@@ -27,7 +27,7 @@ function create(apollo, initialState = {}) {
     )
   );
 
-  persistStore(store);
+  persistStore(store, { blacklist: ['form'] });
   return store;
 }
 
