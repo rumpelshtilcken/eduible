@@ -1,49 +1,36 @@
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import { MuiTextField, MuiDatePicker } from 'components';
+import TextFieldContainer from 'containers/TextFieldContainer';
+import DatePickerContainer from 'containers/DatePickerContainer';
 
 import stylesheet from './index.css';
 
 const AuthForm = ({ inputs }) => (
   <div className="formInputsContainer">
-    {inputs.map(({ type, params }) => {
-      switch (type) {
-        case 'Date':
-          return (
-            <div
-              key={params.name}
-              className={cx('input', {
-                [params.name]: true
-              })}
-            >
-              <MuiDatePicker
-                onChange={params.onChange}
-                title={params.title}
-                value={params.value}
-              />
-            </div>
-          );
-        default:
-          return (
-            <div
-              key={params.name}
-              className={cx('input', {
-                [params.name]: true
-              })}
-            >
-              <MuiTextField
-                name={params.name}
-                onChange={params.onChange}
-                title={params.title}
-                type={params.type}
-                validation={params.validation}
-                value={params.value}
-              />
-            </div>
-          );
-      }
-    })}
+    {inputs.map(({ type, params }) => (
+      <div
+        key={params.name}
+        className={cx('input', {
+          [params.name]: true
+        })}
+      >
+        {type === 'Date'
+          ? <DatePickerContainer
+            name={params.name}
+            title={params.title}
+            placeholder={params.placeholder}
+          />
+          : <TextFieldContainer
+            name={params.name}
+            title={params.title}
+            type={params.type}
+            validation={params.validation}
+            placeholder={params.placeholder}
+          />}
+      </div>
+    ))
+    }
     <style jsx>{stylesheet}</style>
   </div>
 );
@@ -56,15 +43,14 @@ AuthForm.propTypes = {
         PropTypes.shape({
           validation: PropTypes.func,
           name: PropTypes.string.isRequired,
-          onChange: PropTypes.func.isRequired,
           title: PropTypes.string.isRequired,
           type: PropTypes.string.isRequired,
-          value: PropTypes.string.isRequired
+          placeholder: PropTypes.string
         }),
         PropTypes.shape({
-          onChange: PropTypes.func,
+          name: PropTypes.string.isRequired,
           title: PropTypes.string,
-          value: PropTypes.string
+          placeholder: PropTypes.string
         })
       ])
     })
