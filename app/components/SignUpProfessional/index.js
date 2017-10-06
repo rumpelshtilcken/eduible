@@ -1,10 +1,14 @@
+import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Modal from 'react-modal';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 
+import { connect } from 'react-redux';
 import { MuiButton, MuiSnackbar } from 'components';
+import * as formActions from 'actions/form';
+
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 import ValidationUtils from 'utils/ValidationUtils';
 
@@ -12,42 +16,35 @@ import SignUpFormInputs from './SignUpFormInputs';
 import style from './index.css';
 
 class SignUpProfessional extends Component {
+  static propTypes = {
+    onContinueButtonClick: PropTypes.func.isRequired,
+    onLoginButtonClick: PropTypes.func.isRequired,
+    onRequestClose: PropTypes.func.isRequired,
+    values: PropTypes.object
+  };
+
   state = {
-    fullname: '',
-    date: '',
-    email: '',
-    password: '',
-    country: '',
-    zipcode: '',
     snackMessage: 'Good Job',
     isSnackOpen: false
   };
 
   handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
 
-  handleChange = (event, date) => (date
-    ? this.setState({ date })
-    : this.setState({ [event.target.name]: event.target.value }));
-
-
   handleContinueButtonClick = () => {
-    // TODO: check is valid all inputs
-    // this.props.onContinueButtonClick(this.state);
+    const { error } = this.props.values;
+
+    const isNotValid = error
+      && Object.keys(error).reduce((acc, key) => (!error[key]), false);
+
+    return isNotValid
+      ? this.setState({ snackMessage: 'Invalid inputs', isSnackOpen: true })
+      : this.props.onContinueButtonClick();
   }
 
   validation = {
-    fullname: fullname =>
-      !ValidationUtils.isValidName(fullname)
-    &&
-    'First name and last name must be uppercased',
-    email: email =>
-      !ValidationUtils.isValidEmail(email)
-    &&
-    'Email not valid',
-    password: password =>
-      !ValidationUtils.isValidPassword(password)
-    &&
-    'Password must be more than 6 character'
+    fullname: ValidationUtils.fullnameValidation,
+    email: ValidationUtils.emailValidation,
+    password: ValidationUtils.passwordValidation
   }
 
   render() {
@@ -71,8 +68,6 @@ class SignUpProfessional extends Component {
 
               <div className="signUpProfessionalBodyContainer">
                 <SignUpFormInputs
-                  params={this.state}
-                  onChange={this.handleChange}
                   validation={this.validation}
                 />
                 <MuiButton
@@ -110,10 +105,11 @@ class SignUpProfessional extends Component {
   }
 }
 
-SignUpProfessional.propTypes = {
-  onContinueButtonClick: PropTypes.func.isRequired,
-  onLoginButtonClick: PropTypes.func.isRequired,
-  onRequestClose: PropTypes.func.isRequired
-};
+const mapStateToProps = state => ({ values: state.form });
 
-export default SignUpProfessional;
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(formActions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpProfessional);
+
