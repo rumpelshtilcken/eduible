@@ -12,7 +12,6 @@ const MuiDatePicker = ({ onChange, title, value }) => (
     mode="portrait"
     fullWidth
     onChange={onChange}
-    minDate={new Date()}
   />
 );
 
