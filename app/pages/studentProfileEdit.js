@@ -1,16 +1,14 @@
 
 import Head from 'next/head';
-
-import withPage from 'hoc/withPage';
-import { StudentProfileEditContainer } from 'containers';
+import { StudentProfile } from 'components';
 
 const studentProfileEditPage = () => (
   <div>
     <Head>
       <title>{'Profile edit'}</title>
     </Head>
-    <StudentProfileEditContainer />
+    <StudentProfile />
   </div>
 );
 
-export default withPage(studentProfileEditPage);
+export default studentProfileEditPage;

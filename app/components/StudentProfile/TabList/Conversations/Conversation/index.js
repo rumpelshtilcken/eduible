@@ -1,31 +1,35 @@
 import PropTypes from 'prop-types';
 
-import RoundedButton from 'components';
+import RoundedButton from 'components/RoundedButton';
+import style from './index.css';
 
 const Conversation = ({ user }) => (
   <div className="container">
-    <div className="studentProfile">
-      <div>
+    <div className="studentProfile-div">
+      <div className="profileImg-div">
         <img src={user.imgUrl} alt="studentProfile" />
-        <div>
-          <p>{user.name}</p>
-          <p>{user.conversation.duration}</p>
-        </div>
+      </div>
+      <div className="profileText-div">
+        <p>{user.name}</p>
+        <p id="duration">{user.conversation.duration}</p>
       </div>
     </div>
-    <div className="profileTools">
-      <div>
-        <div>
-          <img src="" alt="calendarIcon" />
+    <div className="profileTools-div">
+      <div className="conversationData-div">
+        <div className="conversationDataBox1">
+          <img src="/static/Calendar.svg" alt="calendarIcon" />
           <p>{user.conversation.date}</p>
         </div>
-        <div>
-          <img src="" alt="timerIcon" />
+        <div className="conversationDataBox2">
+          <img src="/static/clock.svg" alt="timerIcon" />
           <p>{user.conversation.time}</p>
         </div>
       </div>
-      <RoundedButton title="CONNECT" type="button" />
+      <div className="btn-div">
+        <RoundedButton title="CONNECT" type="button" />
+      </div>
     </div>
+    <style jsx>{style}</style>
   </div>
 );
 
@@ -37,7 +41,7 @@ Conversation.propTypes = {
       duration: PropTypes.string.isRequired,
       date: PropTypes.string.isRequired,
       time: PropTypes.string.isRequired,
-      conference: PropTypes.bool.isRequired
+      conference: PropTypes.bool
     }).isRequired
   }).isRequired
 };
