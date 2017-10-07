@@ -9,10 +9,6 @@ import { connect } from 'react-redux';
 import { MuiButton, MuiSnackbar } from 'components';
 import * as formActions from 'actions/form';
 
-import { connect } from 'react-redux';
-import { MuiButton, MuiSnackbar } from 'components';
-import * as formActions from 'actions/form';
-
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 import ValidationUtils from 'utils/ValidationUtils';
 
