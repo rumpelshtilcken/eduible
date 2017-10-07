@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import * as actions from 'actions/modal';
 
 import SignInContainer from './SignInContainer';
-import SignUpStudentsContainer from './SignUpStudentsContainer';
+import SignUpStudentContainer from './SignUpStudentContainer';
 import SignUpProfessionalContainer from './SignUpProfessionalContainer';
 import SignUpProfessionalStep2Container from './SignUpProfessionalStep2Container';
 import SignUpProfessionalUniversityContainer from './SignUpProfessionalUniversityContainer';
@@ -15,7 +15,7 @@ class ModalRootContainer extends Component {
   MODAL_COMPONENTS = {
     SIGN_UP_PROFESSIONAL: SignUpProfessionalContainer,
     SIGN_IN: SignInContainer,
-    SIGN_UP_STUDENT: SignUpStudentsContainer,
+    SIGN_UP_STUDENT: SignUpStudentContainer,
     SIGN_UP_PROFESSIONAL_STEP_2: SignUpProfessionalStep2Container,
     SIGN_UP_PROFESSIONAL_UNIVERSITY: SignUpProfessionalUniversityContainer,
     LOADING: <div>Loading...</div>
