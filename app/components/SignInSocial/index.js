@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import MuiButton from 'components/Material-ui/MuiButton';
 
 import { MuiButton } from 'components';
 
