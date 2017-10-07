@@ -1,30 +1,47 @@
+import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import Modal from 'react-modal';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 
-import { MuiSnackbar, MuiButton } from 'components';
+import { connect } from 'react-redux';
+import { MuiButton, MuiSnackbar } from 'components';
+import * as formActions from 'actions/form';
+
 import SignInSocialContainer from 'containers/SignInSocialContainer';
+import ValidationUtils from 'utils/ValidationUtils';
 
 import SignInFormInputs from './SignInFormInputs';
 import stylesheet from './index.css';
 
 class SignIn extends Component {
+  static propTypes = {
+    onRequestClose: PropTypes.func.isRequired,
+    onContinueButtonClick: PropTypes.func.isRequired,
+    values: PropTypes.object
+  };
+
   state = {
-    email: '',
-    password: '',
     snackMessage: 'Good Job',
     isSnackOpen: false
   };
 
+  validation = {
+    email: ValidationUtils.emailValidation,
+    password: ValidationUtils.passwordValidation
+  }
+
   handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
 
-  handleChange = ({ name, value }) =>
-    this.setState({ [name]: value });
-
   handleContinueButtonClick = () => {
-    this.setState({ isSnackOpen: true });
-    this.props.onContinueButtonClick(this.state);
+    const { error } = this.props.values;
+
+    const isNotValid = error
+      && Object.keys(error).reduce((acc, key) => (acc && !error[key]), true);
+
+    return !isNotValid
+      ? this.setState({ snackMessage: 'Invalid inputs', isSnackOpen: true })
+      : this.props.onContinueButtonClick();
   }
 
   render() {
@@ -41,7 +58,9 @@ class SignIn extends Component {
               <p className="titleContainer">SIGN IN</p>
               <div className="formContainer">
                 <div className="formInputsContainer">
-                  <SignInFormInputs params={this.state} onChange={this.handleChange} />
+                  <SignInFormInputs
+                    validation={this.validation}
+                  />
                   <a className="forgotPassword" href="#" >Forgot your password?</a>
                 </div>
                 <div className="continueButtonContainer">
@@ -78,9 +97,11 @@ class SignIn extends Component {
   }
 }
 
-SignIn.propTypes = {
-  onRequestClose: PropTypes.func.isRequired,
-  onContinueButtonClick: PropTypes.func.isRequired
-};
+const mapStateToProps = state => ({ values: state.form });
 
-export default SignIn;
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(formActions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+
