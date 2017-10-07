@@ -148,18 +148,6 @@ p {
   margin-bottom: 10px;
 }
 
-.formInputsContainer {
-  width: 100%;
-
-  @media screen and (min-width: 768px) {
-    position: relative;
-    margin-top: 30px;
-    top: -450px;
-    left: 214px;
-    width: 40%;
-  }
-}
-
 .signUpStudentSocialContainer p {
   margin-bottom: 10px;
 }

@@ -15,7 +15,7 @@ class PageHeaderContainer extends Component {
 
   render() {
     const buttons = [
-      { title: 'Join as professional', onClick: this.props.showSignUpProfessionalUniversity },
+      { title: 'Join as professional', onClick: this.props.showSignUpProfessionalModal },
       { title: 'Sign up', onClick: this.props.showSignUpStudentModal },
       { title: 'Login', onClick: this.props.showSignInModal }
     ];
@@ -41,7 +41,7 @@ class PageHeaderContainer extends Component {
 PageHeaderContainer.propTypes = {
   authenticated: PropTypes.bool,
   showSignInModal: PropTypes.func.isRequired,
-  showSignUpProfessionalUniversity: PropTypes.func.isRequired,
+  showSignUpProfessionalModal: PropTypes.func.isRequired,
   showSignUpStudentModal: PropTypes.func.isRequired
 };
 

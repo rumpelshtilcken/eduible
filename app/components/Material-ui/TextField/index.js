@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 
@@ -20,7 +19,7 @@ const MuiTextField = ({ type, name, title, value, errorText, onChange }) => (
 );
 
 MuiTextField.propTypes = {
-  validation: PropTypes.func,
+  errorText: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
