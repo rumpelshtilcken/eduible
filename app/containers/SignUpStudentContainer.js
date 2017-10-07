@@ -11,6 +11,7 @@ import * as formActions from 'actions/form';
 
 class SignUpStudentContainer extends Component {
   static propTypes = {
+    showSignInModal: PropTypes.func.isRequired,
     signupStudent: PropTypes.func.isRequired,
     hideModal: PropTypes.func,
     values: PropTypes.object.isRequired,
@@ -60,7 +61,7 @@ class SignUpStudentContainer extends Component {
     return (
       <SignUpStudent
         onContinueButtonClick={this.handleContinueButtonClick}
-        onLoginButtonClick={this.handleLoginButtonClick}
+        onLoginButtonClick={this.props.showSignInModal}
         {...this.props}
       />
     );
