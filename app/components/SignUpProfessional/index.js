@@ -13,7 +13,7 @@ import SignInSocialContainer from 'containers/SignInSocialContainer';
 import ValidationUtils from 'utils/ValidationUtils';
 
 import SignUpFormInputs from './SignUpFormInputs';
-import style from './index.css';
+import stylesheet from './index.css';
 
 class SignUpProfessional extends Component {
   static propTypes = {
@@ -28,29 +28,29 @@ class SignUpProfessional extends Component {
     isSnackOpen: false
   };
 
-  handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
-
-  handleContinueButtonClick = () => {
-    const { error } = this.props.values;
-
-    const isNotValid = error
-      && Object.keys(error).reduce((acc, key) => (!error[key]), false);
-
-    return isNotValid
-      ? this.setState({ snackMessage: 'Invalid inputs', isSnackOpen: true })
-      : this.props.onContinueButtonClick();
-  }
-
   validation = {
     fullname: ValidationUtils.fullnameValidation,
     email: ValidationUtils.emailValidation,
     password: ValidationUtils.passwordValidation
   }
 
+  handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
+
+  handleContinueButtonClick = () => {
+    const { error } = this.props.values;
+
+    const isNotValid = error
+      && Object.keys(error).reduce((acc, key) => (acc && !error[key]), true);
+
+    return !isNotValid
+      ? this.setState({ snackMessage: 'Invalid inputs', isSnackOpen: true })
+      : this.props.onContinueButtonClick();
+  }
+
   render() {
     return (
       <MuiThemeProvider>
-        <Scrollbars autohide>
+        <Scrollbars>
           <Modal
             contentLabel={''}
             isOpen
@@ -89,7 +89,7 @@ class SignUpProfessional extends Component {
                   </button>
                 </div>
               </div>
-              <style global jsx>{style}</style>
+              <style global jsx>{stylesheet}</style>
             </div>
           </Modal>
           <MuiSnackbar
@@ -112,4 +112,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpProfessional);
-
