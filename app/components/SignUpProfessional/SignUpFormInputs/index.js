@@ -4,6 +4,14 @@ import PropTypes from 'prop-types';
 import { AuthForm } from 'components';
 
 class SignUpFormInputs extends Component {
+  static propTypes = {
+    validation: PropTypes.shape({
+      fullname: PropTypes.func,
+      email: PropTypes.func,
+      password: PropTypes.func
+    })
+  };
+
   inputs = [
     {
       params: {
@@ -64,13 +72,5 @@ class SignUpFormInputs extends Component {
     );
   }
 }
-
-SignUpFormInputs.propTypes = {
-  validation: PropTypes.shape({
-    fullname: PropTypes.func,
-    email: PropTypes.func,
-    password: PropTypes.func
-  })
-};
 
 export default SignUpFormInputs;
