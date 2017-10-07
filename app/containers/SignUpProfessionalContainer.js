@@ -18,6 +18,10 @@ class SignUpProfessionalContainer extends Component {
     reset: PropTypes.func.isRequired
   };
 
+  componentWillUnmount() {
+    this.props.reset();
+  }
+
   handleContinueButtonClick = () => {
     const params = this.prepareParams();
     this.props.signupProfessional(params, this.handleDidSignUp);
