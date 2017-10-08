@@ -5,18 +5,18 @@ import { ResponsiveMenu } from 'components';
 
 import stylesheet from './index.css';
 
-const PageHeader = ({ authenticated, buttons, links }) => (
+const PageHeader = ({ buttons, links, onLogoutButtonClick }) => (
   <MuiThemeProvider>
     <div>
       <div className="headerContainer">
         <div className="logo">
           <img src={'static/Icons/logoColored.svg'} alt={'logo'} />
         </div>
-        {
-          authenticated
-            ? <ResponsiveMenu links={links} />
-            : <ResponsiveMenu buttons={buttons} />
-        }
+        <ResponsiveMenu
+          buttons={buttons}
+          links={links}
+          onLogoutButtonClick={onLogoutButtonClick}
+        />
       </div>
 
       <style jsx>{stylesheet}</style>
@@ -25,8 +25,9 @@ const PageHeader = ({ authenticated, buttons, links }) => (
 );
 
 PageHeader.propTypes = {
-  authenticated: PropTypes.bool,
+  onLogoutButtonClick: PropTypes.func,
   buttons: PropTypes.arrayOf(PropTypes.shape({
+    profile: PropTypes.bool,
     title: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired
   })),
