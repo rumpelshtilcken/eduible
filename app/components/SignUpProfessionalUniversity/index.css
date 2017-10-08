@@ -95,13 +95,6 @@
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
+  padding: 10px;
 }
 
-.btn {
-  width: 80%;
-  margin: auto;
-
-  @media (min-width: 768px) {
-    width: 90%;
-  }
-}
