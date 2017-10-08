@@ -2,8 +2,11 @@ import PropTypes from 'prop-types';
 
 import stylesheet from './index.css';
 
-const ProfessionalProfileImg = ({ imgUrl }) => (
+const ProfessionalProfileImg = ({ imgUrl, children }) => (
   <div className="headerImage">
+    <div className="buttonContainer">
+      {children}
+    </div>
     <div className="profileImg">
       <img src={imgUrl} alt="profile" />
     </div>
@@ -16,6 +19,7 @@ ProfessionalProfileImg.defaultProps = {
 };
 
 ProfessionalProfileImg.propTypes = {
-  imgUrl: PropTypes.string
+  imgUrl: PropTypes.string,
+  children: PropTypes.element
 };
 export default ProfessionalProfileImg;
