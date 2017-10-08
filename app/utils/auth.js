@@ -35,12 +35,11 @@ export const decodeJwtToken = (idToken, claim) => {
   const base64Url = idToken.split('.')[1];
   const base64 = base64Url.replace('-', '+').replace('_', '/');
   const result = JSON.parse(window.atob(base64));
-  console.log(result);
   return claim ? result[claim] : result;
 };
 
 export const getCurrentUserData = (claim) => {
-  if (!localStorage) return null;
+  if (!process.browser) return null;
   const token = localStorage.getItem('id_token');
   return token && decodeJwtToken(token, claim);
 };
