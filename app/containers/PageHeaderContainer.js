@@ -45,23 +45,22 @@ class PageHeaderContainer extends Component {
       { title: 'Login', onClick: this.props.showSignInModal }
     ]);
 
-  prepareLinks = () => this.props.authenticated && [
-    { url: '/searchUniversity', title: 'Search university', prefetch: true },
-    { url: '/searchProfessional', title: 'Search professional', prefetch: true }
-  ];
+  prepareLinks = () => (this.props.authenticated
+    ? [
+      { url: '/searchUniversity', title: 'Search university', prefetch: true },
+      { url: '/searchProfessional', title: 'Search professional', prefetch: true }
+    ]
+    : null);
 
   render() {
     const buttons = this.prepareButtons();
     const links = this.prepareLinks();
 
     return (
-      <div>
-        <PageHeader
-          links={links}
-          buttons={buttons}
-          onLogoutButtonClick={this.handleLogoutButtonClick}
-        />
-      </div>
+      <PageHeader
+        links={links}
+        buttons={buttons}
+      />
     );
   }
 }
