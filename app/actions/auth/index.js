@@ -34,7 +34,6 @@ export const signupProfessional =
           callback();
           return err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER });
         });
-        dispatch({ type: AUTH_USER });
       } catch (error) {
         const errorMsg = error.description || error.message || 'Unspecified error';
         dispatch(authError(errorMsg));
