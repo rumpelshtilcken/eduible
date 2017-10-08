@@ -26,15 +26,8 @@ class SignInContainer extends Component {
 
   handleContinueButtonClick = () => {
     const params = this.prepareParams();
-    this.props.signinUser(params, this.handleDidSignIn);
+    this.props.signinUser(params, () => {});
   };
-
-  handleDidSignIn = () => {
-    if (this.props.authenticated) {
-      this.props.reset();
-      this.props.hideModal();
-    }
-  }
 
   prepareParams = () => {
     const values = _.omit(this.props.values, ['error']);
@@ -55,6 +48,11 @@ class SignInContainer extends Component {
 
     if (this.props.error) {
       console.log('Error state');
+    }
+
+    if (this.props.authenticated) {
+      this.props.reset();
+      this.props.hideModal();
     }
     /* eslint-enable */
 
