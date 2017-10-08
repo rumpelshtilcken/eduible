@@ -8,11 +8,72 @@ import MobileBurgerMenu from './MobileBurgerMenu';
 import stylesheet from './index.css';
 
 class ResponsiveMenu extends Component {
+  static propTypes = {
+    buttons: PropTypes.arrayOf(PropTypes.shape({
+      profile: PropTypes.bool,
+      title: PropTypes.string.isRequired,
+      onClick: PropTypes.func.isRequired
+    })),
+    links: PropTypes.arrayOf(PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      prefetch: PropTypes.bool
+    }))
+  };
+
   state = {
     isMenuHidden: true
   };
 
   handleBurgerMenuClick = () => this.setState({ isMenuHidden: !this.state.isMenuHidden });
+
+  renderLinks = ({ url, title, prefetch }) => (
+    <div
+      key={title}
+      className={'linkContainer'}
+    >
+      <Link href={url} prefetch={prefetch} purple>
+        {title}
+      </Link>
+      <style jsx>{stylesheet}</style>
+    </div>
+  );
+
+  renderButtons = ({ title, onClick, profile }) => (
+    <div>
+      {profile &&
+        <div
+          key="profile"
+          className={cx('linkContainer', {
+            profile: true
+          })}
+        >
+          <button
+            className="button"
+            onClick={onClick}
+          >
+            {'Profile'}
+          </button>
+        </div>
+      }
+      <div
+        key={title}
+        className={cx('', {
+          linkContainer: !profile
+        })}
+      >
+        <button
+          className={cx('button', {
+            hidden: profile
+          })}
+          onClick={onClick}
+        >
+          {title.toUpperCase()}
+        </button>
+      </div>
+      <style jsx>{stylesheet}</style>
+    </div>
+  );
 
   render() {
     const { links, buttons } = this.props;
@@ -28,29 +89,8 @@ class ResponsiveMenu extends Component {
           hideLinks: this.state.isMenuHidden
         })}
         >
-          {links && links.map(({ url, title, prefetch }) => (
-            <div key={title} className={url === '/profile' ? 'linkContainer hidden' : 'linkContainer'} >
-              <Link href={url} prefetch={prefetch} purple>
-                {title}
-              </Link>
-            </div>
-          ))}
-          <div key="profile" className="linkContainer profile">
-            <Link href="/profile" purple>
-              Profile
-            </Link>
-          </div>
-
-          {buttons && buttons.map(({ title, onClick }) => (
-            <div key={title} className="linkContainer">
-              <button
-                className="button"
-                onClick={onClick}
-              >
-                {title.toUpperCase()}
-              </button>
-            </div>
-          ))}
+          {links && links.map(this.renderLinks)}
+          {buttons && buttons.map(this.renderButtons)}
         </div>
 
         <style jsx>{stylesheet}</style>
@@ -58,17 +98,5 @@ class ResponsiveMenu extends Component {
     );
   }
 }
-
-ResponsiveMenu.propTypes = {
-  buttons: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired
-  })),
-  links: PropTypes.arrayOf(PropTypes.shape({
-    url: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    prefetch: PropTypes.bool
-  }))
-};
 
 export default ResponsiveMenu;
