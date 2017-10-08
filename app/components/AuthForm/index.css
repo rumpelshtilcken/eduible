@@ -51,3 +51,15 @@
     order: 4;
   }
 }
+
+.university,
+.major,
+.startYear,
+.endYear {
+  @media (min-width: 768px) {
+    width: 40%;
+    margin: 15px;
+    margin-top: 0;
+  }
+}
+
