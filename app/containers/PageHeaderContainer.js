@@ -34,7 +34,7 @@ class PageHeaderContainer extends Component {
     },
     prefetch: true });
 
-  prepareButtons = () => (this.props.authenticated
+  prepareButtons = () => ((this.props.authenticated && this.props.user)
     ? [
       { title: `Hi, ${this.props.user.name.split(' ')[0]}`, onClick: this.profileButtonClick, profile: true },
       { title: 'Logout', onClick: this.handleLogoutButtonClick }
@@ -45,7 +45,7 @@ class PageHeaderContainer extends Component {
       { title: 'Login', onClick: this.props.showSignInModal }
     ]);
 
-  prepareLinks = () => (this.props.authenticated
+  prepareLinks = () => ((this.props.authenticated && this.props.user)
     ? [
       { url: '/searchUniversity', title: 'Search university', prefetch: true },
       { url: '/searchProfessional', title: 'Search professional', prefetch: true }
