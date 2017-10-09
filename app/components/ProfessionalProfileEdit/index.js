@@ -1,61 +1,47 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import TabBarMenu from './TabBarMenu';
+import { TabMenu } from 'components';
+
 import ProfileEditTab from './ProfileEditTab';
-import styles from './index.css';
 import PayOut from './PayOutTab';
+import stylesheet from './index.css';
 
 class ProfessionalProfileEdit extends Component {
-  state = {
-    currentTab: 'ProfileEditTab'
+  static propTypes = {
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      birthday: PropTypes.string,
+      professional: PropTypes.shape({
+        about: PropTypes.string,
+        price: PropTypes.number
+      })
+    }),
+    onSaveButtonClick: PropTypes.func.isRequired
   };
 
-  links = [
-    { label: 'Profile Edit', value: 'ProfileEditTab', className: 'link current' },
-    { label: 'Pay Out', value: 'PayOut', className: 'link' }
+  tabs = [
+    { title: 'Profile Edit', isNotifiable: true },
+    { title: 'Pay Out', isNotifiable: false }
   ];
-
-  changeTab = currentTab => this.setState({ currentTab });
 
   render() {
     return (
-      <div className="component">
-        <TabBarMenu
-          currentTab={this.state.currentTab}
-          changeTab={this.changeTab}
-          links={this.links}
+      <div className="professionalProfileEditContainer">
+        <TabMenu
+          tabs={this.tabs}
+          childrens={[
+            <ProfileEditTab
+              user={this.props.user}
+              onSaveButtonClick={this.handleSaveButtonClick}
+            />,
+            <PayOut />
+          ]}
         />
-        {this.state.currentTab === this.links[0].value ? (
-          <ProfileEditTab
-            user={this.props.user}
-            handleSaveButtonPress={this.props.handleSaveButtonPress}
-            images={this.props.images}
-          />
-        ) : (
-          <PayOut />
-        )}
-        <style jsx>{styles}</style>
+        <style jsx>{stylesheet}</style>
       </div>
     );
   }
 }
-ProfessionalProfileEdit.propTypes = {
-  user: PropTypes.shape({
-    fullName: PropTypes.string.isRequired,
-    dateOfBirth: PropTypes.string.isRequired,
-    about: PropTypes.string.isRequired,
-    cost: PropTypes.string.isRequired,
-    per: PropTypes.string.isRequired,
-    dayComment: PropTypes.string.isRequired,
-    currentPass: PropTypes.string.isRequired,
-    newPass: PropTypes.string.isRequired
-  }),
-  handleSaveButtonPress: PropTypes.func.isRequired,
-  images: PropTypes.shape({
-    background: PropTypes.string,
-    avatar: PropTypes.string
-  })
-};
 
 export default ProfessionalProfileEdit;

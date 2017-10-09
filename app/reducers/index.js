@@ -1,5 +1,6 @@
 import auth from './authReducer';
-import modal from './modalReducer';
 import form from './formReducer';
+import modal from './modalReducer';
+import search from './searchReducer';
 
-export default { auth, modal, form };
+export default { auth, modal, form, search };

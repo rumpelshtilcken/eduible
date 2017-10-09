@@ -6,7 +6,7 @@ import { StudentProfileCard as Card } from 'components';
 
 import stylesheet from './index.css';
 
-const TabMenu = ({ tabs, children }) => (
+const TabMenu = ({ tabs, childrens }) => (
   <div className="wrapper">
     <Tabs>
       <div className="tabList">
@@ -28,7 +28,7 @@ const TabMenu = ({ tabs, children }) => (
       </div>
 
       <div className="tabPanel">
-        { children.map(child => <TabPanel>{child}</TabPanel>) }
+        { childrens.map(children => <TabPanel>{children}</TabPanel>) }
       </div>
     </Tabs>
     <style jsx global>{stylesheet}</style>
@@ -36,8 +36,11 @@ const TabMenu = ({ tabs, children }) => (
 );
 
 TabMenu.propTypes = {
-  tabs: PropTypes.arrayOf(PropTypes.object).isRequired,
-  children: PropTypes.arrayOf(PropTypes.element)
+  tabs: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    isNotifiable: PropTypes.bool
+  })).isRequired,
+  childrens: PropTypes.arrayOf(PropTypes.element).isRequired
 };
 
 export default TabMenu;
