@@ -11,12 +11,12 @@ const SearchTextInput = ({ placeholder, onChange }) => (
 );
 
 SearchTextInput.propTypes = {
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func.isRequired
 };
 
 SearchTextInput.defaultProps = {
-  placeholder: 'search...',
-  onChange: PropTypes.func.isRequired
+  placeholder: 'search...'
 };
 
 export default SearchTextInput;

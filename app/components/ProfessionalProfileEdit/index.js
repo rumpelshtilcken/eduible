@@ -33,7 +33,7 @@ class ProfessionalProfileEdit extends Component {
           childrens={[
             <ProfileEditTab
               user={this.props.user}
-              onSaveButtonClick={this.handleSaveButtonClick}
+              onSaveButtonClick={this.props.onSaveButtonClick}
             />,
             <PayOut />
           ]}
