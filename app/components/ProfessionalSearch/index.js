@@ -53,11 +53,15 @@ class ProfessionalSearch extends Component {
     });
   };
 
+  handleSearchChange = (event) => {
+    this.props.onSearchChange(event.target);
+  };
+
   render() {
     return (
       <div className="con">
         <p className="title">Browse through more than 1000+ professionals in the US </p>
-        <SearchTextInput placeholder="search by name, profession, degree..." />
+        <SearchTextInput placeholder="search by name, profession, degree..." onChange={this.handleSearchChange} />
         <hr />
         <div className="step">
           <div className="selects">
@@ -86,7 +90,7 @@ class ProfessionalSearch extends Component {
               <option key="HIGHEST PRICE">HIGHEST PRICE</option>
               <option key="LOWEST PRICE">LOWEST PRICE</option>
             </select>
-            {this.state.profs && this.state.profs.map(prof => console.log(prof.user.name) || (
+            {this.props.professionals && this.props.professionals.map(prof => (
               <Card>
                 <div className="prof">
                   <div className="infoHeader">
@@ -147,7 +151,8 @@ class ProfessionalSearch extends Component {
 ProfessionalSearch.propTypes = {
   professionals: PropTypes.array.isRequired,
   universities: PropTypes.array.isRequired,
-  professions: PropTypes.array
+  professions: PropTypes.array,
+  onSearchChange: PropTypes.func
 };
 
 export default ProfessionalSearch;

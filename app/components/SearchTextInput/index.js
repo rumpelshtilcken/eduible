@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import stylesheet from './index.css';
 
-const SearchTextInput = ({ placeholder }) => (
+const SearchTextInput = ({ placeholder, onChange }) => (
   <div className="search">
-    <input className="searchBar" placeholder={placeholder} />{' '}
+    <input className="searchBar" onChange={onChange} placeholder={placeholder} />{' '}
     <img className="searchIcon" src="../../static/search.png" alt="search" />
     <style jsx>{stylesheet}</style>
   </div>
@@ -15,7 +15,8 @@ SearchTextInput.propTypes = {
 };
 
 SearchTextInput.defaultProps = {
-  placeholder: 'search...'
+  placeholder: 'search...',
+  onChange: PropTypes.func.isRequired
 };
 
 export default SearchTextInput;
