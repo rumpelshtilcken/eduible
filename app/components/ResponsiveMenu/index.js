@@ -68,7 +68,7 @@ class ResponsiveMenu extends Component {
           })}
           onClick={onClick}
         >
-          {title.toUpperCase()}
+          {profile ? title : title.toUpperCase()}
         </button>
       </div>
       <style jsx>{stylesheet}</style>
