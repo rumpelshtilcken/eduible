@@ -1,26 +1,64 @@
+import { Component } from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
+
+import { Card, RoundedButton } from 'components';
 
 import ProfessionalProfileHeader from './ProfessionalProfileHeader';
-import Content from './Content';
 import stylesheet from './index.css';
 
-const ProfessionalProfile = ({
-  user,
-  isCurrentUser,
-  onRequestCallClick,
-  onEditButtonClick
-}) => (
-  <div className="container">
-    <ProfessionalProfileHeader
-      user={user}
-      isCurrentUser={isCurrentUser}
-      onRequestCallClick={onRequestCallClick}
-      onEditButtonClick={onEditButtonClick}
-    />
-    <Content user={user} />
-    <style jsx>{stylesheet}</style>
-  </div>
-);
+class ProfessionalProfile extends Component {
+  handleOpenCalendarClick = () => {};
+
+  render() {
+    const {
+      user,
+      isCurrentUser,
+      onRequestCallClick,
+      onEditButtonClick
+    } = this.props;
+
+    return (
+      <div className="professionalProfileContainer">
+        <ProfessionalProfileHeader
+          user={user}
+          isCurrentUser={isCurrentUser}
+          onRequestCallClick={onRequestCallClick}
+          onEditButtonClick={onEditButtonClick}
+        />
+        <div className="professionalInfoBody">
+          <div className={cx('professionalInfoBodyItemContainer', {
+            professionalProfileLeftItem: true
+          })}
+          >
+            <Card>
+              <div className="professionalInfoBodyItemContentContainer">
+                <p className="professionalInfoBodyItemTitle">{'About'}</p>
+                <p className="professionalProfileAbout">{user.professional.about}</p>
+              </div>
+            </Card>
+          </div>
+          <div className="professionalInfoBodyItemContainer">
+            <Card>
+              <div className="professionalInfoBodyItemContentContainer">
+                <div className="professionalCalendarHeaderContainer">
+                  <p className="professionalInfoBodyItemTitle">{'Availability calendar'}</p>
+                  <p className="professionalProfileCalendar">{'(October 2017)'}</p>
+                </div>
+                <div className="openCalendarButtonContainer">
+                  <div className="buttonContainer">
+                    <RoundedButton onClick={this.handleOpenCalendarClick} title={'Open calendar'} />
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+        <style jsx>{stylesheet}</style>
+      </div>
+    );
+  }
+}
 
 ProfessionalProfile.propTypes = {
   onRequestCallClick: PropTypes.func,

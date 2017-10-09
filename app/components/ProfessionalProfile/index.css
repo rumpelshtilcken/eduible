@@ -1,4 +1,72 @@
-.container {
-  width: 100%;
+.professionalProfileContainer {
+  max-width: 1024px;
+  margin: auto;
   background-color: #f9f9f9;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
+  }
+}
+
+.professionalInfoBody {
+  width: 90%;
+  margin: 5% auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    width: 700px;
+  }
+}
+
+.professionalInfoBodyItemContainer {
+  flex-grow: 1;
+  min-height: 80px;
+  min-width: 300px;
+}
+
+.professionalProfileLeftItem {
+  margin: 0;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 20px;
+  }
+}
+
+.professionalInfoBodyItemContentContainer {
+  margin: 15px;
+}
+
+.professionalInfoBodyItemTitle {
+  font-size: 14px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.professionalInfoBodyItemContent {
+  font-size: 14px;
+  text-align: left;
+}
+
+.professionalCalendarHeaderContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.professionalProfileCalendar {
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+.openCalendarButtonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttonContainer {
+  width: 126px;
+  height: 29px;
 }
