@@ -1,16 +1,19 @@
 import Head from 'next/head';
 
-import Main from 'components/Main';
-// import StudentProfileContainer from 'containers/StudentProfileContainer';
+// import Main from 'components/Main';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import withPage from 'hoc/withPage';
+import { StudentProfileEdit } from 'components';
 
 const Homepage = () => (
-  <div>
-    <Head>
-      <title>{'Eduible'}</title>
-    </Head>
-    <Main />
-  </div>
+  <MuiThemeProvider>
+    <div>
+      <Head>
+        <title>{'Eduible'}</title>
+      </Head>
+      <StudentProfileEdit />
+    </div>
+  </MuiThemeProvider>
 );
 
 export default withPage(Homepage);
