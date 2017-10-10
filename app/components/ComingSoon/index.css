@@ -32,8 +32,8 @@ p {
   }
 }
 
-input,
-button {
+.input,
+.button {
   box-sizing: border-box;
   width: 70%;
   max-width: 300px;
@@ -73,7 +73,7 @@ input::placeholder {
   color: #777;
 }
 
-button {
+.button {
   background-color: #ad8be1;
   color: white;
   margin-top: 10px;
