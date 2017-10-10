@@ -5,17 +5,21 @@ import { ResponsiveMenu } from 'components';
 
 import stylesheet from './index.css';
 
-const PageHeader = ({ buttons, links, onLogoutButtonClick }) => (
+const PageHeader = ({ buttons, links, onLogoClick }) => (
   <MuiThemeProvider>
     <div>
       <div className="headerContainer">
-        <div className="logo">
+        <div
+          tabIndex={0}
+          role="button"
+          onClick={onLogoClick}
+          className="logo"
+        >
           <img src={'static/Icons/logoColored.svg'} alt={'logo'} />
         </div>
         <ResponsiveMenu
           buttons={buttons}
           links={links}
-          onLogoutButtonClick={onLogoutButtonClick}
         />
       </div>
 
@@ -25,7 +29,7 @@ const PageHeader = ({ buttons, links, onLogoutButtonClick }) => (
 );
 
 PageHeader.propTypes = {
-  onLogoutButtonClick: PropTypes.func,
+  onLogoClick: PropTypes.func.isRequired,
   buttons: PropTypes.arrayOf(PropTypes.shape({
     profile: PropTypes.bool,
     title: PropTypes.string.isRequired,

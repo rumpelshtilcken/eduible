@@ -20,6 +20,7 @@
 }
 
 .logo {
+  outline: none;
   margin: auto;
   margin-left: 16px;
 }
