@@ -1,9 +1,63 @@
-.titleSmall {
+.professionalProfileEditContainer {
+  max-width: 352px;
+  min-width: 282px;
+  margin: auto;
+}
+
+.professionalProfileEditTitle {
   text-align: center;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 18px;
   font-family: Effra;
-  padding: 20px;
+}
+
+.profileImagesContainer {
+  display: flex;
+  height: 60px;
+}
+
+.pickProfileImageContainer {
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 30px;
+  position: relative;
+  font-size: 10px;
+  font-weight: normal;
+}
+
+.professionalProfileImage {
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+
+  @media screen and (min-width: 768px) {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.overlayButton {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--white);
+  border: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.professionalBackgroundImage {
+  width: 272px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.pickProfileBackgroundImageContainer {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
 }
 
 .title {
@@ -12,48 +66,6 @@
   font-size: 18px;
   font-family: Effra;
   padding: 20px;
-}
-
-.profile {
-  display: block;
-  margin: auto;
-  width: 90%;
-
-  @media screen and (min-width: 768px) {
-    float: right;
-    width: 70%;
-  }
-}
-
-.inputH {
-  visibility: hidden;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-}
-
-.photos {
-  display: flex;
-  margin: auto;
-  height: 60px;
-  justify-content: space-between;
-
-  @media screen and (min-width: 768px) {
-    width: 100%;
-  }
-}
-
-.photo {
-  width: 20%;
-  margin-right: 4%;
-  max-width: 60px;
-  min-width: 60px;
-  justify-content: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: left;
-  cursor: pointer;
 }
 
 .uploadButton {

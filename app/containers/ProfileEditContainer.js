@@ -5,11 +5,18 @@ import ProfessionalProfileEditContainer from './ProfessionalProfileEditContainer
 
 const ProfileEditContainer = ({ userType, userId, onCancelButtonClick }) => {
   if (userType === 'Professional') {
-    console.log(userId, onCancelButtonClick);
-    return <ProfessionalProfileEditContainer />;
+    return (
+      <ProfessionalProfileEditContainer
+        userId={userId}
+        onCancelButtonClick={onCancelButtonClick}
+      />);
   }
 
-  return <StudentProfileEditContainer />;
+  return (
+    <StudentProfileEditContainer
+      userId={userId}
+      onCancelButtonClick={onCancelButtonClick}
+    />);
 };
 
 ProfileEditContainer.propTypes = {

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Router from 'next/router';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 
@@ -15,11 +16,12 @@ class profileEdit extends Component {
     })
   };
 
-  handleCancelButtonClick = () => {};
+  handleDidSave = () => {};
+
+  handleCancelButtonClick = () => console.log(Router);
 
   render() {
     const { userId, userType } = this.props.url.query;
-    console.log('ProfileEditPage: ', this.props);
     return (
       <div>
         <Head>

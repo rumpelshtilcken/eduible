@@ -15,9 +15,7 @@ export const signupStudent = (attr, callback) => async (dispatch) => {
   dispatch({ type: AUTH_IN_PROGRESS });
 
   try {
-    console.log('sign up student');
     await auth.signup('Student', attr, (err) => {
-      console.log('ssss', callback);
       callback();
       return err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER });
     });
@@ -32,16 +30,11 @@ export const signupProfessional =
       dispatch({ type: AUTH_IN_PROGRESS });
 
       try {
-        console.log('sign up dsds', attr);
-        const result = await auth.signup('Professional', attr, (err) => {
-          console.log('callback');
+        await auth.signup('Professional', attr, (err) => {
           callback();
           return err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER });
         });
-        console.log('result: ', result);
-        dispatch({ type: AUTH_USER });
       } catch (error) {
-        console.log(error);
         const errorMsg = error.description || error.message || 'Unspecified error';
         dispatch(authError(errorMsg));
       }
@@ -52,7 +45,6 @@ export const signinUser = ({ email, password }, callback) => async (dispatch) =>
 
   try {
     await auth.signin(email, password, (err) => {
-      console.log('callback');
       callback();
       return err ? dispatch(authError('err')) : dispatch({ type: AUTH_USER });
     });
@@ -68,7 +60,6 @@ export const signinFacebook = () => async (dispatch) => {
     await auth.signinSocial('facebook');
     return dispatch({ type: AUTH_IN_PROGRESS });
   } catch (error) {
-    console.log(error);
     const errorMsg = error.description || error.message || 'Unspecified error';
     return dispatch(authError(errorMsg));
   }
@@ -100,7 +91,6 @@ export const socialSignInCallback = hash => async (dispatch) => {
     await auth.signinSocialCallback(hash);
     return dispatch({ type: AUTH_USER });
   } catch (error) {
-    console.log(error);
     const errorMsg = error.description || error.message || 'Unspecified error';
     return dispatch(authError(errorMsg));
   }

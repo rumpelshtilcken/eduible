@@ -1,168 +1,158 @@
-import { Component, PropTypes } from 'react';
+/* eslint-disable */
+import { Component } from 'react';
+import PropTypes from 'prop-types';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import DatePickerContainer from 'containers/DatePickerContainer';
+import TextFieldContainer from 'containers/TextFieldContainer';
 
 import styles from './index.css';
 
+const professionalImage = 'https://dontlosehair.com/wp-content/uploads/2016/02/3_Problems_that_Bald_People_Face_on_a_Regular_Basis.jpg';
+const backgroundImage = '/static/prof/profileHeaderBackground.svg';
+
 class ProfileEditTab extends Component {
-  state = {
-    defaultBackground: '/static/ProfileBackgroundImage(large).svg',
-    defaultAvatar: '/static/Profile Picture.svg'
+  static propTypes = {
+    onSaveButtonClick: PropTypes.func.isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      birthday: PropTypes.string,
+      professional: PropTypes.shape({
+        about: PropTypes.string,
+        price: PropTypes.number
+      })
+    })
   };
 
-  options = ['Per minute', 'Per day', 'Per hour'];
+  handleBackgroundImageChange = () => {};
 
   openCalendar = (e) => {
     e.preventDefault();
   };
+
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.handleSaveButtonPress({
-      fullName: this.fullNameRef.value,
-      dateOfBirth: this.dateOfBirthRef.value,
-      about: this.aboutRef.value,
-      cost: this.costRef.value,
-      per: this.perRef.value,
-      dayComment: this.dayCommentRef.value,
-      currentPass: this.currentPassRef.value,
-      newPass: this.newPassRef.value
-    });
+
+    console.log();
   };
 
   render() {
     const {
-      fullName,
-      dateOfBirth,
-      about,
-      cost,
-      per,
-      dayComment,
-      currentPass,
-      newPass
+      name,
+      birthday,
+      professional
     } = this.props.user;
+    console.log(this.props.user);
+    const { about, price } = professional;
 
-    const { background, avatar } = this.props.images;
-    /* eslint-disable */
     return (
-      <div>
-        <div className="titleSmall"> Profile Edit</div>
-        <form className="profile">
-          <div className="photos">
-            <label
-              htmlFor="inputPhoto"
-              className="photo"
-              style={{
-                backgroundImage: `url(${avatar === '' ? `'${this.state.defaultAvatar}'` : avatar})`
-              }}
-            />
-            <input type="file" accept="image/*" className="inputH" id="inputPhoto" />
-            <label
-              htmlFor="inputBack"
-              className="uploadButton"
-              style={{
-                backgroundImage: `url(${background === ''
-                  ? `'${this.state.defaultBackground}'`
-                  : background})`
-              }}
-            />
-            <input type="file" accept="image/*" className="inputH" id="inputBack" />
+      <MuiThemeProvider>
+        <div className="professionalProfileEditContainer">
+          <div className="professionalProfileEditTitle">
+            {'Profile Edit'}
           </div>
-          <div className="step">
-            <div className="step_child">
-              <div className="label">Full Name</div>
+          <form className="professionalProfleEditFormContainer">
+            <div className="profileImagesContainer">
+              <div className="pickProfileImageContainer">
+                <img
+                  className="professionalProfileImage"
+                  src={professionalImage}
+                  alt="profileImage"
+                />
+                <button className="overlayButton" onClick={this.handleBackgroundImageChange}>
+                  {'Change'}
+                </button>
+                {/* <input type="file" accept="image/*" className="inputH" id="inputBack" /> */}
+              </div>
+              <div className="pickProfileBackgroundImageContainer">
+                <img
+                  className="professionalBackgroundImage"
+                  src={backgroundImage}
+                  alt="profileBackground"
+                />
+                <button className="overlayButton" onClick={this.handleBackgroundImageChange}>
+                  {'Upload image'}
+                </button>
+                {/* <input type="file" accept="image/*" className="inputH" id="inputBack" /> */}
+              </div>
+            </div>
+            <div className="step">
+              <div className="step_child">
+                <TextFieldContainer
+                  name={'name'}
+                  placeholder={'John Smith'}
+                  title={'Full Name'}
+                  type="string"
+                  validation={() => {}}
+                />
+              </div>
+              <div className="step_child">
+                <DatePickerContainer
+                  name={'date'}
+                  title={'Birthday'}
+                  placeholder={birthday || '1900-01-01'}
+                />
+              </div>
+            </div>
+            <TextFieldContainer
+              name={'about'}
+              placeholder={'Tell us about you'}
+              title={'About'}
+              type="text"
+              validation={() => {}}
+              multiLine
+            />
+            <div className="label">Set Estimated Cost</div>
+            <div className="dollarSign">
+              <input
+                className="input small"
+                ref={ref => (this.priceRef = ref)}
+                defaultValue={price}
+                type="text"
+              />
+              <div>{'Per Minute'}</div>
+            </div>
+            <div className="label">{'Suggest Day When You are Free to Talk'}</div>
+            <div className="step2">
+              <button className="button" onClick={this.openCalendar}>
+                {'Open Calendar'}
+              </button>
+              <TextFieldContainer
+                name={'calendarComment'}
+                placeholder={''}
+                type="string"
+                validation={() => {}}
+              />
+            </div>
+            <div className="label">{'Change Password'}</div>
+            <div className="passwords">
+              <input
+                className="input pass"
+                ref={ref => (this.currentPassRef = ref)}
+                type="text"
+                placeholder="Current Password"
+              />
               <input
                 className="input"
-                ref={ref => (this.fullNameRef = ref)}
+                ref={ref => (this.newPassRef = ref)}
                 type="text"
-                defaultValue={fullName}
+                placeholder="New Password"
               />
             </div>
-            <div className="step_child">
-              <div className="label">Date Of Birth</div>
-              <input
-                className="input date"
-                ref={ref => (this.dateOfBirthRef = ref)}
-                type="date"
-                defaultValue={dateOfBirth}
-              />
+            <div className="buttons">
+              <button className="button cancel" type="reset">
+                {'Cancel'}
+              </button>
+              <button className="button save" type="submit" onClick={this.handleSubmit}>
+                {'Save Updates'}
+              </button>
             </div>
-          </div>
-          <div className="label">About</div>
-          <textarea
-            className="input about"
-            ref={ref => (this.aboutRef = ref)}
-            placeholder="Tell us about you."
-            defaultValue={about}
-          />
-          <div className="label">Set Estimated Cost</div>
-          <div className="dollarSign">
-            <input
-              className="input small"
-              ref={ref => (this.costRef = ref)}
-              defaultValue={cost}
-              type="text"
-            />
-            <select className="input select" ref={ref => (this.perRef = ref)} defaultValue={per}>
-              {this.options.map(item => <option>{item}</option>)}
-            </select>
-          </div>
-          <div className="label">Suggest Day When You're Free to Talk</div>
-          <div className="step2">
-            <button className="button" onClick={this.openCalendar}>
-              Open Calendar
-            </button>
-            <input
-              className="input comment"
-              ref={ref => (this.dayCommentRef = ref)}
-              type="text"
-              defaultValue={dayComment}
-            />
-          </div>
-          <div className="label">Change Password</div>
-          <div className="passwords">
-            <input
-              className="input pass"
-              ref={ref => (this.currentPassRef = ref)}
-              type="text"
-              placeholder="Current Password"
-              defaultValue={currentPass}
-            />
-            <input
-              className="input"
-              ref={ref => (this.newPassRef = ref)}
-              type="text"
-              placeholder="New Password"
-              defaultValue={newPass}
-            />
-          </div>
-          <div className="buttons">
-            <button className="button cancel" type="reset">
-              Cancel
-            </button>
-            <button className="button save" type="submit" onClick={this.handleSubmit}>
-              Save Updates
-            </button>
-          </div>
-        </form>
-        <style jsx>{styles}</style>
-      </div>
+          </form>
+          <style jsx>{styles}</style>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
-ProfileEditTab.propTypes = {
-  user: PropTypes.shape({
-    fullName: PropTypes.string.isRequired,
-    dateOfBirth: PropTypes.string.isRequired,
-    about: PropTypes.string.isRequired,
-    cost: PropTypes.string.isRequired,
-    per: PropTypes.string.isRequired,
-    dayComment: PropTypes.string.isRequired,
-    currentPass: PropTypes.string.isRequired,
-    newPass: PropTypes.string.isRequired
-  }),
-  handleSaveButtonPress: PropTypes.func.isRequired,
-  images: PropTypes.shape({
-    background: PropTypes.string,
-    avatar: PropTypes.string
-  })
-};
 
 export default ProfileEditTab;

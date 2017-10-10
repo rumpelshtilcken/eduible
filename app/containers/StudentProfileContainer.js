@@ -3,12 +3,9 @@ import PropTypes from 'prop-types';
 
 import { StudentProfile } from 'components';
 
-const StudentProfileContainer = ({ user, onProfileEditButtonClick }) => {
-  console.log(user);
-  return user
-    ? <StudentProfile user={user} onProfileEditButtonClick={onProfileEditButtonClick} />
-    : <div>Loading...</div>;
-};
+const StudentProfileContainer = ({ user, onProfileEditButtonClick }) => (user
+  ? <StudentProfile user={user} onProfileEditButtonClick={onProfileEditButtonClick} />
+  : <div>Loading...</div>);
 
 StudentProfileContainer.propTypes = {
   user: PropTypes.object,
@@ -26,15 +23,11 @@ StudentProfileContainer.propTypes = {
 //   }
 // `;
 
-// export default graphql(getStudentById, {
-//   options: ({ id }) => console.log('here is the id passed to studentprofile', id) || ({
-//     variables: {
-//       id
-//     }
-//   }),
-//   props: ({ data: { allUsers } }) => ({
-//     user: allUsers && allUsers[0]
-//   })
-// })(StudentProfileContainer);
-
-export default StudentProfileContainer;
+export default graphql(getStudentById, {
+  options: ({ id }) => ({
+    variables: { id }
+  }),
+  props: ({ data: { allUsers } }) => ({
+    user: allUsers && allUsers[0]
+  })
+})(StudentProfileContainer);

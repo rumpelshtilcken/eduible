@@ -71,7 +71,7 @@ class SignIn extends Component {
 
                 <div className="additionalButtonsContainer">
                   <div className="socialButtonsTitle">OR SIGN IN USING</div>
-                  <SignInSocialContainer renderButtons={['Facebook', 'Google']} />
+                  <SignInSocialContainer renderButtons={['Facebook', 'Google', 'Linkedin']} />
                   <div className="signUpLink">
                     <img className="line" src="/static/Line.jpg" alt="hrline" />
                     <p>DON&#39;T HAVE AN ACCOUNT?</p>

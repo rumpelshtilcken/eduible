@@ -12,7 +12,7 @@ const Main = () => (
             <Link href="/searchProfessional" prefetch>
               <a className="text">
                 <h1>PROFESSIONALS</h1>
-                <p>lorem ipsum dolor sit amet vulputate consectetur adipiscing elit</p>
+                <p>{'Connect with pros to gain knowledge, answer your questions & stay ahead of competition.'}</p>
               </a>
             </Link>
           </div>
@@ -22,7 +22,7 @@ const Main = () => (
             <Link href="/searchUniversity" prefetch>
               <a className="text">
                 <h1>UNIVERSITY</h1>
-                <p>lorem ipsum dolor sit amet vulputate consectetur adipiscing elit</p>
+                <p>{'Search by College or Major, get your personal admittance chart & take successful path.'}</p>
               </a>
             </Link>
           </div>

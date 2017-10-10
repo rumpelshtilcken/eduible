@@ -59,8 +59,8 @@ export default class Auth {
             callback(err);
             throw err;
           }
-          callback();
           this.setSession(authResult);
+          callback();
         });
     } catch (error) {
       throw error;

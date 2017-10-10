@@ -115,8 +115,7 @@ const updateProfessional = gql`
   }
 `;
 
-export default
-compose(
+export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   graphql(getProfessionalByAuth0Id, {
     name: 'users',

@@ -37,7 +37,7 @@ export default class GraphCool {
     let updateUserQueryString = Object.keys(fields).map((key) => {
       switch (key) {
         case 'userId':
-          return `${key}: $id`;
+          return '';
         case 'userType':
           return `${key}: $${key}, ${lowercasedUserType}: $${lowercasedUserType}`;
         case 'location':
@@ -58,12 +58,10 @@ export default class GraphCool {
     let mutationArgumentsString = Object.keys(fields).map((key) => {
       let typeString;
       switch (key) {
-        case 'userId':
-          return '$userId: ID!';
         case 'id':
           return '$id: ID!';
         case 'birthday':
-          return '$birthday: DateTime!';
+          return '$birthday: DateTime';
         case 'userType':
           typeString = fields[key] === 'Student' ? 'UserstudentStudent' : 'UserprofessionalProfessional';
           return `$${key}: UserType!, $${fields[key].toLowerCase()}: ${typeString}`;
@@ -94,9 +92,11 @@ export default class GraphCool {
     fields must not contain any nested objects 
   */
   constructMutationUpdate = (fields) => {
+    console.log(fields);
     const mutationArgumentsString = this.constructMutationArguments(fields);
     const updateUserQueryString = this.constructUpdateUserQuery(fields);
-
+    console.log(mutationArgumentsString);
+    console.log(updateUserQueryString);
     const mutationString = `${mutationArgumentsString}${updateUserQueryString}`;
     return mutationString;
   }
@@ -137,6 +137,12 @@ export default class GraphCool {
       query GetUserByAuth0UserId($auth0UserId: String!) {
         allUsers(filter: { auth0UserId: $auth0UserId }) {
           id
+          professional {
+            id
+          }
+          student {
+            id
+          }
         }
       }
     `;
@@ -186,76 +192,180 @@ export default class GraphCool {
     }
   };
 
-  updateSocialProfessionalUser = async (userId, attrs) => {
-    console.log('Update: ', attrs);
-    // extract all data from attributes
-    const { name, email, birthday, location, positions } = attrs;
-
-    // prepare attributes for mutation
-    // mustn't contain any nested variables
-    const preparedAttr = { id: userId, userType: 'Professional', name };
-    // prepare attibutes for mutation variables
-    // in this variables we should create all nested objects
-    // Example professional: {job: {jobTitle: { title }}}
-    const mutationArguments = { id: userId,
-      userType: 'Professional',
-      name,
-      professional: {
-        userId
-      } };
-    // add an optional data
-    if (email) {
-      preparedAttr.email = email;
-      mutationArguments.email = email;
-    }
-
-    if (birthday) {
-      const birthdayISO = convertDateToISO(attrs.birthday);
-      preparedAttr.birthday = birthdayISO;
-      mutationArguments.birthday = birthdayISO;
-    }
-
-    if (location) {
-      preparedAttr.location = {
-        country: `${location.name}i`
-      };
-      mutationArguments.professional.location = preparedAttr.location;
-    }
-
-    if (positions && positions.values) {
-      positions.values.map((position) => {
-        if (!position.isCurrent) {
-          return position;
-        }
-        const { company, title } = position;
-        preparedAttr.job =
-          {
-            jobTitle: { title },
-            company: {
-              name: company.name
-            }
-          };
-        mutationArguments.professional.job = preparedAttr.job;
-        return position;
-      });
-    }
-
-    const updateUserMutation = gql`${this.constructMutationUpdate(preparedAttr)}`;
-
+  updateSocialProfessionalUser = async (userId, professionalId, attrs) => {
     try {
+      // extract all data from attributes
+      const { name, email, birthday, location, positions } = attrs;
+
+      // prepare attributes for mutation
+      // mustn't contain any nested variables
+      let preparedAttr = { id: userId, userType: 'Professional', name };
+      // prepare attibutes for mutation variables
+      // in this variables we should create all nested objects
+      // Example professional: {job: {jobTitle: { title }}}
+      const mutationArguments = { id: userId,
+        userType: 'Professional',
+        name,
+        professional: {
+          userId
+        } };
+      // add an optional data
+      if (email) {
+        preparedAttr.email = email;
+        mutationArguments.email = email;
+      }
+
+      if (birthday) {
+        const birthdayISO = convertDateToISO(attrs.birthday);
+        preparedAttr.birthday = birthdayISO;
+        mutationArguments.birthday = birthdayISO;
+      }
+
+      if (location) {
+        const locationCountry = await this.getLocation(location.name);
+        preparedAttr = { ...preparedAttr, ...locationCountry };
+        mutationArguments.professional.location = preparedAttr.location;
+      }
+
+      let jobName;
+      let companyName;
+      if (positions && positions.values) {
+        positions.values.map((position) => {
+          if (!position.isCurrent) {
+            return position;
+          }
+
+          jobName = position.title;
+          companyName = position.company.name;
+          return position;
+        });
+      }
+
+      let jobTitle;
+      if (jobName) jobTitle = await this.getJobTitle(jobName);
+      let company;
+      if (companyName) company = await this.getCompany(companyName);
+
+      preparedAttr = { ...preparedAttr, ...jobTitle, ...company };
+      mutationArguments.professional.job = preparedAttr.job;
+      // ${this.constructMutationUpdate(preparedAttr)}
+      const updateUser = gql`
+        mutation updateUser (
+          $name: String
+          $email: String
+          $birthday: DateTime
+          $id: ID!
+        ) {
+          updateUser( 
+            id: $id 
+            name: $name
+            email: $email
+            birthday: $birthday
+          ) {
+            id
+          }
+        }
+      `;
+
+      const updateProfessional = gql`
+        mutation updateProfessional (
+          $id: ID!
+          $companyId: ID
+          $jobTitleId: ID
+          $locationId: ID
+          $company: JobcompanyCompany
+          $jobTitle: JobjobTitleJobTitle
+          $location: ProfessionallocationLocation
+        ) {
+          updateProfessional (
+            id: $id
+            job: {
+              jobTitleId: $jobTitleId
+              companyId: $companyId
+              jobTitle: $jobTitle
+              company: $company
+            }
+            locationId: $locationId
+            location: $location
+          ) {
+            id
+          }
+        }
+      `;
+
       await this.apolloClient.mutate({
-        mutation: updateUserMutation,
-        variables: mutationArguments
+        mutation: updateUser,
+        variables: preparedAttr
+      });
+      preparedAttr = { ...preparedAttr, id: professionalId };
+      await this.apolloClient.mutate({
+        mutation: updateProfessional,
+        variables: preparedAttr
       });
     } catch (err) {
       throw err;
     }
   }
 
+  getJobTitle = async (title) => {
+    const query = gql`
+      query getJobTitle($title: String!) {
+        allJobTitles(filter: {
+          title: $title
+        }) {
+          id
+          title
+        }
+      }
+    `;
+
+    const jobTitle = await this.apolloClient.query({ query, variables: { title } });
+
+    return jobTitle.data.allJobTitles[0]
+      ? { jobTitleId: jobTitle.data.allJobTitles[0].id }
+      : { jobTitle: { title } };
+  };
+
+  getCompany = async (name) => {
+    const query = gql`
+      query getCompany($name: String!) {
+        allCompanies(filter: {
+          name: $name
+        }) {
+          id
+          name
+        }
+      }
+    `;
+
+    const company = await this.apolloClient.query({ query, variables: { name } });
+
+    return company.data.allCompanies[0]
+      ? { companyId: company.data.allCompanies[0].id }
+      : { company: { name } };
+  };
+
+  getLocation = async (country) => {
+    const query = gql`
+      query allLocations($country: String!) {
+        allLocations(filter: {
+          country: $country
+        }) {
+          id
+        }
+      }
+    `;
+
+    const location = await this.apolloClient.query({ query, variables: { country } });
+
+    return location.data.allLocations[0]
+      ? { locationId: location.data.allLocations[0].id }
+      : { location: { country } };
+  };
+
   // linkedin
   createSocialProfessionalUser = async (attrs) => {
     // extract all needed data from attributes
-    console.log('Create: ', attrs);
     const { name, email, birthday, sub, location, positions } = attrs;
 
     // prepare attribute for mutation
@@ -316,10 +426,8 @@ export default class GraphCool {
     const authResult = (auth0 && await auth0.parseHash(hash, (err, authResult) => {
       console.log(err, ', ', authResult);
     })) || parseHash(hash);
-    console.log('Upsert user: ', authResult);
     // decode idToken and take all data in token
     const attrs = decodeJwtToken(authResult.idToken);
-    console.log(attrs);
     // extract from attrs auth0 userId
     const auth0UserId = attrs.sub;
     // check user type
@@ -335,9 +443,10 @@ export default class GraphCool {
     ) {
       // user already exist and should be updated
       const userId = response.data.allUsers[0].id;
+      const professionalId = !isStudent && response.data.allUsers[0].professional.id;
       return await isStudent
         ? this.updateSocialStudentUser(userId, attrs)
-        : this.updateSocialProfessionalUser(userId, attrs);
+        : this.updateSocialProfessionalUser(userId, professionalId, attrs);
     }
     // create new user
     return await isStudent

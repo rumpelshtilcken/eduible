@@ -1,12 +1,5 @@
-.component {
+.professionalProfileEditContainer {
   margin: auto;
-  margin-top: 10px;
-  width: 100%;
-  background-color: #f9f9f9;
-  height: 900px;
-
-  @media screen and (min-width: 768px) {
-    width: 550px;
-    justify-content: center;
-  }
+  margin-top: 40px;
+  max-width: 1024px;
 }
