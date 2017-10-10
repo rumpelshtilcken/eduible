@@ -1,61 +1,31 @@
-import React from 'react';
+import { Component } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+
+import { AuthForm, MuiButton } from 'components';
 
 import style from './index.css';
 
-class SignUpProfessionalStep2Modal extends React.Component {
-  state = {
-    jobTitle: '',
-    company: ''
-  };
-
-  inpt = [
+class SignUpProfessionalStep2Modal extends Component {
+  inputs = [
     {
-      title: 'JOB TITLE',
-      input: {
+      params: {
+        title: 'JOB TITLE',
         type: 'string',
         name: 'jobTitle',
-        className: 'input',
-        hintText: 'IT developer'
+        placeholder: 'IT developer'
       }
     },
     {
-      title: 'COMPANY',
-      input: {
+      params: {
+        title: 'COMPANY',
         type: 'string',
         name: 'company',
-        className: 'input',
-        hintText: 'Facebook'
+        placeholder: 'Facebook'
       }
     }
-  ];
-
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
-
-  handleContinueButtonClick = () => this.props.onContinueButtonClick(this.state);
-
-  renderInput = x => (
-    <TextField
-      key={x.title}
-      type={x.input.type}
-      name={x.input.name}
-      floatingLabelText={x.title}
-      floatingLabelFixed
-      fullWidth
-      hintText={x.input.hintText}
-      hintStyle={hintStyle}
-      inputStyle={inputStyle}
-      floatingLabelStyle={floatingLabelStyle}
-      onChange={this.handleChange}
-    />
-  );
+  ]
 
   render() {
     return (
@@ -74,18 +44,16 @@ class SignUpProfessionalStep2Modal extends React.Component {
               </div>
               <div className="container-box">
                 <div className="box">
-                  <div>{this.inpt.map(this.renderInput)}</div>
+
+                  <AuthForm inputs={this.inputs} />
                   <div className="p-box">
                     <p className="share provide">Providing your job title and company name will help users find you on Eduible</p>
                   </div>
                 </div>
                 <div className="box2">
-                  <RaisedButton
+                  <MuiButton
                     label="Continue"
-                    className="btn"
-                    buttonStyle={{ backgroundColor: '#7262BF', fullWidth: true }}
-                    labelStyle={{ color: 'white', fontSize: '11px' }}
-                    onClick={this.handleContinueButtonClick}
+                    onClick={this.props.onContinueButtonClick}
                   />
                   <div className="share-div">
                     <button className="share" onClick={this.props.onSkip}>{'skip this step'}</button>
@@ -100,19 +68,6 @@ class SignUpProfessionalStep2Modal extends React.Component {
     );
   }
 }
-
-const inputStyle = {
-  fontSize: '11px'
-};
-
-const hintStyle = {
-  fontSize: '11px'
-};
-
-const floatingLabelStyle = {
-  fontSize: '12px',
-  color: '#626262'
-};
 
 SignUpProfessionalStep2Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,

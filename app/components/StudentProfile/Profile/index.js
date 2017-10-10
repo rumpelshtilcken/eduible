@@ -13,12 +13,13 @@ const Profile = ({ user, onEditButtonClick }) => (
           <h2 className="userName">{user.name}</h2>
           <p className="userLocation">{user.location}</p>
         </div>
-        <div
-          className="edit editIcon"
+        <button
+          className="edit"
           onClick={onEditButtonClick}
-          role="button"
           tabIndex="0"
-        />
+        >
+          <img className="editIcon" alt="editIcon " />
+        </button>
         <div className="edit editButton">
           <button onClick={onEditButtonClick}>Edit profile</button>
         </div>

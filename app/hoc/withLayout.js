@@ -12,18 +12,34 @@ const withLayout = hoistStatics((CompositeComponent) => {
     footerLinks = [
       {
         title: 'ABOUT',
+        firstLinkTitle: 'How it Works',
+        firstLinkURL: '#',
+        secondLinkTitle: 'Success Stories',
+        secondLinkURL: '#',
         url: '/about'
       },
       {
         title: 'PROFESSIONALS',
+        firstLinkTitle: 'Join As Professional',
+        firstLinkURL: '#',
+        secondLinkTitle: 'Search For Professional',
+        secondLinkURL: '#',
         url: '/professionals'
       },
       {
         title: 'UNIVERSITIES',
+        firstLinkTitle: 'Create Account',
+        firstLinkURL: '#',
+        secondLinkTitle: 'Search For University',
+        secondLinkURL: '#',
         url: '/universities'
       },
       {
         title: 'ANSWERS',
+        firstLinkTitle: 'FAQ´s',
+        firstLinkURL: '#',
+        secondLinkTitle: 'Privacy Policy',
+        secondLinkURL: '#',
         url: '/answers'
       }
     ];
@@ -40,7 +56,7 @@ const withLayout = hoistStatics((CompositeComponent) => {
           <ModalRootContainer />
           <PageHeaderContainer />
           <CompositeComponent {...this.props} />
-          <Footer urlsMenu={this.footerLinks} copyright={'COPYRIGHT (C) 2017'} />
+          <Footer urlsMenu={this.footerLinks} />
         </Layout>
       );
     }

@@ -1,36 +1,19 @@
-.SignUpAsStudent {
-  height: 600px;
-  width: 255px;
+.signUpStudentModalContainer {
+  max-height: 600px;
+  min-height: 418px;
+  max-width: 426px;
+  min-width: 255px;
   border-radius: 20px;
   padding: 0;
   background: rgb(255, 255, 255);
   border: 1px solid rgb(204, 204, 204);
   outline: none;
-  overflow: auto;
+  overflow: scroll;
   margin: auto;
-
-  @media (min-width: 768px) {
-    width: 426px;
-    height: 418px;
-    margin: auto;
-  }
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
-.inputs {
-  display: block;
-
-  @media (min-width: 768px) {
-    order: 1;
-    width: 50%;
-    margin: auto;
-  }
-}
-
-.OverlayModal {
+.signUpStudentModalOverlayModal {
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;
@@ -42,30 +25,16 @@
   justify-content: center;
 }
 
-button {
-  text-decoration: none;
-  border: none;
-  outline: 0;
-  background: none;
-  font-size: 12px;
-  color: #00ff1f;
+::-webkit-scrollbar {
+  display: none;
 }
 
-.signUpLink {
-  box-sizing: border-box;
+.signUpStudentContainer {
   width: 100%;
   margin: auto;
-  font-size: 11px;
-  margin-top: 2px;
-  text-decoration: none;
-  color: #00ff1f;
 }
 
-.line {
-  width: 100%;
-}
-
-h1,
+.signUpStudentContainer h1,
 p {
   font-size: 11px;
   font-family: var(--font);
@@ -74,12 +43,15 @@ p {
   font-weight: bold;
 }
 
-.container {
-  width: 100%;
-  margin: auto;
+.loginButton {
+  background: transparent;
+  border: 0;
+  text-decoration: none;
+  font-size: 12px;
+  color: #00ff1f;
 }
 
-.container-div {
+.signUpStudentBodyContainer {
   width: 192px;
   margin: auto;
 
@@ -102,7 +74,7 @@ p {
   }
 }
 
-.sign {
+.signUpStudentHeaderTitle {
   font-family: var(--font);
   color: #4e4e4e;
   width: 100%;
@@ -111,93 +83,71 @@ p {
   margin-top: 10px;
   margin-bottom: 6px;
 
-  @media(min-width: 768px) {
+  @media screen and (min-width: 768px) {
     margin-bottom: 5px;
     margin-top: 30px;
   }
 
-  @media(min-width: 1440px) {
+  @media screen and (min-width: 1440px) {
     font-size: 20px;
     margin-top: 33px;
     margin-bottom: 5px;
   }
 }
 
-.continuebtn-div {
+.signUpStudentContinueButton {
   width: 100%;
   margin-top: 16px;
   margin-bottom: 24px;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     margin-top: 20px;
-    order: 3;
   }
 }
 
-.signIns {
-  width: 192px;
-  @media (min-width: 768px) {
-    width: 152px;
-    order: 2;
-    margin-left: 35px;
-    margin-top: 17px;
-  }
-}
-
-.linkedinbtn-div {
-  width: 100%;
-  display: grid;
-
-  @media (min-width: 768px) {
-    margin: auto;
-    margin-top: 0;
-  }
-}
-.linkedinbtn-div p {
-  margin: 10px 0 8px;
-  @media (min-width: 768px) {
-    margin-top: 0;
-  }
-}
-.loginhere-div {
-  width: 100%;
+.signUpStudentLoginContainer {
   margin-top: 15px;
   margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    position: relative;
+    margin-top: 40px;
+    top: -350px;
+    left: 67px;
+    width: 40%;
+  }
 }
-.loginhere-div img {
+
+.signUpStudentLoginContainer img {
   width: 192px;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 152px;
   }
 }
 
-.loginhere-div p {
+.signUpStudentLoginContainer p {
   color: #626262;
   margin-top: 8px;
   font-size: 12px;
 }
 
-.fullname {
-  width: 192px;
-}
-
-.date {
-  width: 192px;
-}
-
-.email {
-  width: 192px;
-}
-
-.pwd {
-  width: 192px;
-}
-
-.formInputsContainer {
+.signUpStudentSocialContainer {
   width: 100%;
 
-  @media (min-width: 768px) {
-    width: 50%;
+  @media screen and (min-width: 768px) {
+    position: relative;
+    margin-top: 30px;
+    top: -450px;
+    left: 214px;
+    width: 40%;
   }
+}
+
+.signUpStudentSocialContainer p {
+  margin-bottom: 10px;
+}
+
+.signUpStudentSocialContainer p {
+  margin-bottom: 10px;
 }

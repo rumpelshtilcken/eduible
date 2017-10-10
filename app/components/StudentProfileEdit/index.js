@@ -1,20 +1,23 @@
 // import { Component } from 'react';
 // import PropTypes from 'prop-types';
+import { MuiTextField, MuiButton } from 'components';
 import stylesheet from './index.css';
-// import PropTypes from 'prop-types';
-
-import StudentProfile from './StudentProfile';
-import StudentProfileDetails from './StudentProfileDetails';
 
 const StudentProfileEdit = () => (
   <div className="container">
-    <StudentProfile
-      profileName={'ANNA STARK'}
-      profileImageUrl={'/static/anna.jpg'}
-      profileLocation={'MIAMI, FL'}
-      profileLocUrl={'/static/loc.jpg'}
-    />
-    <StudentProfileDetails />
+    <div className="profile-div">
+      <p>Profile Edit</p>
+      <img src="" alt="profileImg" />
+      <div className="Mui-div">
+        <MuiTextField
+          title="Fullname"
+          value="Miguel Carrera"
+        />
+      </div>
+      <div>
+        <MuiButton label="submit" />
+      </div>
+    </div>
     <style jsx>{stylesheet}</style>
   </div>
 );

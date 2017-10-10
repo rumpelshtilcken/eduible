@@ -1,97 +1,60 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import DatePicker from 'material-ui/DatePicker';
-import TextField from 'material-ui/TextField';
+import { AuthForm } from 'components';
 
 class SignUpFormInputs extends Component {
+  static propTypes = {
+    validation: PropTypes.shape({
+      fullname: PropTypes.func,
+      email: PropTypes.func,
+      password: PropTypes.func
+    })
+  };
+
   inputs = [
     {
-      title: 'FIRST AND LAST NAME',
-      input: {
-        type: 'string',
+      params: {
         name: 'fullname',
-        hintText: this.props.params.fullname || 'John'
+        title: 'FIRST AND LAST NAME',
+        type: 'string',
+        validation: this.props.validation.fullname,
+        placeholder: 'John'
       }
     },
     {
-      title: 'DATE OF BIRTH',
-      input: {
+      type: 'Date',
+      params: {
         name: 'date',
-        hintText: this.props.params.date || '13/11/1992',
-        errorText: []
+        title: 'BIRTH DATE',
+        placeholder: '13/11/1992'
       }
     },
     {
-      title: 'EMAIL',
-      input: {
-        type: 'string',
+      params: {
+        title: 'EMAIL',
         name: 'email',
-        hintText: this.props.params.email || 'john@mail.com'
+        type: 'email',
+        validation: this.props.validation.email,
+        placeholder: 'john@mail.com'
       }
     },
     {
-      title: 'PASSWORD',
-      input: {
-        type: 'string',
+      params: {
+        title: 'PASSWORD',
         name: 'password',
-        hintText: this.props.params.password || 'at least 6 characters'
+        type: 'password',
+        validation: this.props.validation.password,
+        placeholder: 'at least six characters'
       }
     }
   ];
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    return this.props.onChange && this.props.onChange({ name, value });
-  };
-
-  renderInput = ({ title, input }) => (
-    input.name === 'date'
-      ? <div key={input.name} className={input.name}>
-        <DatePicker
-          floatingLabelText={title}
-          floatingLabelFixed
-          floatingLabelStyle={{ fontSize: '12px', color: '#626262' }}
-          hintText={input.hintText}
-          hintStyle={{ fontSize: '11px' }}
-          inputStyle={{ fontSize: '11px' }}
-          mode="landscape"
-          fullWidth
-        />
-      </div>
-      : <div key={input.name} className={input.name}>
-        <TextField
-          type={input.type}
-          name={input.name}
-          floatingLabelText={title}
-          floatingLabelFixed
-          fullWidth
-          hintText={input.hintText}
-          hintStyle={{ fontSize: '11px' }}
-          inputStyle={{ fontSize: '11px', color: '#AFAFAF' }}
-          floatingLabelStyle={{ fontSize: '12px', color: '#626262', fontWeight: 'bold' }}
-          onChange={this.handleChange}
-        />
-      </div>
-  );
-
   render() {
     return (
-      <div className="formInputsContainer">
-        {this.inputs.map(this.renderInput)}
-      </div>
+      <AuthForm inputs={this.inputs} />
     );
   }
 }
-
-SignUpFormInputs.propTypes = {
-  onChange: PropTypes.func,
-  params: PropTypes.shape({
-    fullname: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired
-  }).isRequired
-};
 
 export default SignUpFormInputs;

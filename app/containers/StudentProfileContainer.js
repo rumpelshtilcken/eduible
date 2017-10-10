@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 
 import { StudentProfile } from 'components';
 
-const StudentProfileContainer = ({ user }) => {
+const StudentProfileContainer = ({ user, onProfileEditButtonClick }) => {
   console.log(user);
-  return user ? <StudentProfile user={user} /> : <div>Loading...</div>;
+  return user
+    ? <StudentProfile user={user} onProfileEditButtonClick={onProfileEditButtonClick} />
+    : <div>Loading...</div>;
 };
 
 StudentProfileContainer.propTypes = {
-  user: PropTypes.object
+  user: PropTypes.object,
+  onProfileEditButtonClick: PropTypes.func.isRequired
 };
 
 // const getStudentById = gql`

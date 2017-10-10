@@ -14,7 +14,17 @@ const ValidationUtils = {
   isValidName: candidate =>
     /^[A-Z](('[A-Z][a-z]+)|([a-z]+)|(.[ ][A-Z][a-z]+))(-[A-Z][a-z]+)?([ ][A-Z][.])?([ ][A-Z][a-z]+)((-[A-Z][a-z]+)?)$/.test(
       candidate
-    )
+    ),
+  fullnameValidation: candidate =>
+    !ValidationUtils.isValidName(candidate)
+    &&
+    'First name and last name must be uppercased',
+  emailValidation: email =>
+    !ValidationUtils.isValidEmail(email) && 'Email not valid',
+  passwordValidation: password =>
+    !ValidationUtils.isValidPassword(password)
+    &&
+    'Password must be more than 6 character'
 };
 
 export default ValidationUtils;

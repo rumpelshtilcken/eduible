@@ -1,0 +1,30 @@
+.footerLinksBlock {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 14px;
+  text-align: center;
+  color: #a8acb9;
+  margin-bottom: 16px;
+}
+
+.iconContainer {
+  width: 40%;
+  height: 17px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.icon {
+  max-width: 17px;
+  margin-left: 8px;
+  margin-right: 8px;
+  height: 17px;
+}

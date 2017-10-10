@@ -4,16 +4,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import { SignUpProfessional } from 'components';
+import { SignUpStudent } from 'components';
 import * as authActions from 'actions/auth';
 import * as modalActions from 'actions/modal';
 import * as formActions from 'actions/form';
 
-class SignUpProfessionalContainer extends Component {
+class SignUpStudentContainer extends Component {
   static propTypes = {
     showSignInModal: PropTypes.func.isRequired,
-    showSignUpProfessionalStep2Modal: PropTypes.func.isRequired,
-    signupProfessional: PropTypes.func.isRequired,
+    signupStudent: PropTypes.func.isRequired,
+    hideModal: PropTypes.func,
     values: PropTypes.object.isRequired,
     reset: PropTypes.func.isRequired
   };
@@ -22,14 +22,14 @@ class SignUpProfessionalContainer extends Component {
     this.props.reset();
   }
 
-  handleContinueButtonClick = () => {
+  handleContinueButtonClick = async () => {
     const params = this.prepareParams();
-    this.props.signupProfessional(params, this.handleDidSignUp);
+    this.props.signupStudent(params, this.handleDidSignUp);
   };
 
   handleDidSignUp = () => {
     this.props.reset();
-    this.props.showSignUpProfessionalStep2Modal();
+    this.props.hideModal();
   }
 
   prepareParams = () => {
@@ -59,7 +59,7 @@ class SignUpProfessionalContainer extends Component {
 
   render() {
     return (
-      <SignUpProfessional
+      <SignUpStudent
         onContinueButtonClick={this.handleContinueButtonClick}
         onLoginButtonClick={this.props.showSignInModal}
         {...this.props}
@@ -85,5 +85,5 @@ const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(modalActions, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpProfessionalContainer);
 
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpStudentContainer);
