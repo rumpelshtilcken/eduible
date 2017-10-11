@@ -23,6 +23,8 @@ class PageHeaderContainer extends Component {
     showSignUpStudentModal: PropTypes.func.isRequired
   };
 
+  handleLogoClick = () => Router.push({ pathname: '/' });
+
   handleLogoutButtonClick = () => {
     this.props.signoutUser();
     Router.push({ pathname: '/' });
@@ -58,6 +60,7 @@ class PageHeaderContainer extends Component {
 
     return (
       <PageHeader
+        onLogoClick={this.handleLogoClick}
         links={links}
         buttons={buttons}
       />
@@ -83,6 +86,7 @@ const getUserByAuth0Id = gql`
 
 export default compose(
   graphql(getUserByAuth0Id, {
+    skip: () => !getCurrentUserData(),
     options: () => ({ variables: { auth0UserId: getCurrentUserData('sub') } }),
     props: ({ data }) => ({ user: data && data.allUsers && data.allUsers[0] })
   }),
