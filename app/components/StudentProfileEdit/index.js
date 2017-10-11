@@ -11,7 +11,7 @@ const StudentProfileEdit = () => (
       <div className="MuiTextField-div">
         <MuiTextField
           title="Full Name"
-          value="Miguel Carrera"
+          value="Anna Stark"
         />
         <MuiDatePicker
           title="Birth Date"

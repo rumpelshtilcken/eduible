@@ -47,12 +47,6 @@ class SignUpProfessional extends Component {
       : this.props.onContinueButtonClick();
   }
 
-  validation = {
-    fullname: ValidationUtils.fullnameValidation,
-    email: ValidationUtils.emailValidation,
-    password: ValidationUtils.passwordValidation
-  }
-
   render() {
     return (
       <MuiThemeProvider>
