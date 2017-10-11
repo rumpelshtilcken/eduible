@@ -4,14 +4,14 @@
   border: 1px solid rgb(204, 204, 204);
   margin: auto;
   width: 238px;
-  height: 528px;
+  height: 548px;
   outline: none;
   overflow: scroll;
   padding: 0;
 
-  @media screen and (min-width: 768px) {
+  @media(min-width: 768px) {
     width: 420px;
-    height: 340px;
+    height: 380px;
   }
 }
 

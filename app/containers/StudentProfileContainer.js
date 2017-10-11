@@ -12,16 +12,16 @@ StudentProfileContainer.propTypes = {
   onProfileEditButtonClick: PropTypes.func.isRequired
 };
 
-// const getStudentById = gql`
-//   query GetUserById($id: ID!) {
-//     allUsers(filter: {id: $id}) {
-//       name
-//       student {
-//         id
-//       }
-//     }
-//   }
-// `;
+const getStudentById = gql`
+  query GetUserById($id: ID!) {
+    allUsers(filter: {id: $id}) {
+      name
+      student {
+        id
+      }
+    }
+  }
+`;
 
 export default graphql(getStudentById, {
   options: ({ id }) => ({

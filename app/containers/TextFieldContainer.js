@@ -45,7 +45,7 @@ class TextFieldContainer extends Component {
     const { name, title, type, values } = this.props;
     return (
       <MuiTextField
-        {...this.props}
+        // {...this.props}
         errorText={values && values.error && values.error[name]}
         name={name}
         onChange={this.handleChange}
