@@ -1,15 +1,37 @@
+import { Component } from 'react';
 import Head from 'next/head';
+import Router from 'next/router';
 
 import withPage from 'hoc/withPage';
 import ProfessionalSearchContainer from '../containers/ProfessionalSearchContainer';
 
-const ProfessionalSearchPage = () => (
-  <div>
-    <Head>
-      <title>{'Professional search'}</title>
-    </Head>
-    <ProfessionalSearchContainer />
-  </div>
-);
+class ProfessionalSearchPage extends Component {
+  handleRequestButtonClick = ({ professionalId }) => {
+    console.log(professionalId);
+  };
+
+  handleProfessionalChoose = ({ userId }) => {
+    Router.push({
+      pathname: '/profile',
+      query: {
+        userId
+      }
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <Head>
+          <title>{'Professional search'}</title>
+        </Head>
+        <ProfessionalSearchContainer
+          onRequestButtonClick={this.handleRequestButtonClick}
+          onProfessionalChoose={this.handleProfessionalChoose}
+        />
+      </div>
+    );
+  }
+}
 
 export default withPage(ProfessionalSearchPage);

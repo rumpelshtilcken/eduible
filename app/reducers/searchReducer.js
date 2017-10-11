@@ -1,6 +1,7 @@
 import {
   SEARCH_UPDATE,
-  SEARCH_RESET
+  SEARCH_RESET,
+  RESET_FILTER
 } from 'actions/search/types';
 
 const INIT = {
@@ -10,9 +11,11 @@ const INIT = {
 export default (state = INIT, action) => {
   switch (action.type) {
     case SEARCH_UPDATE:
-      return { ...state, input: action.input };
+      return { ...state, [action.name]: action.value };
     case SEARCH_RESET:
       return INIT;
+    case RESET_FILTER:
+      return { ...state, [action.name]: null };
     default:
       return state;
   }

@@ -1,35 +1,7 @@
-.con {
-  margin: auto;
-  font-size: 13px;
-  font-family: Effra;
-  padding-top: 30px;
-  background: #f9f9f9;
-  padding-bottom: 20px;
 
-  @media screen and (min-width: 768px) {
-    display: block;
-  }
-}
-
-.title {
-  text-align: center;
-  width: 80%;
-  margin: auto;
-  margin-bottom: 20px;
-  font-size: 14px;
-
-  @media screen and (min-width: 768px) {
-    width: 100%;
-  }
-}
-
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  margin-top: -5px;
-  border-top: 1px solid #ccc;
-  padding: 0;
+.professionalChooseButton {
+  width: 100%;
+  height: 100%;
 }
 
 .hidden {
@@ -64,33 +36,6 @@ hr {
   }
 }
 
-.profs {
-  margin: auto;
-  margin-top: 0;
-  width: 96%;
-
-  @media screen and (min-width: 768px) {
-    width: 550px;
-    margin-right: 0;
-    display: block;
-    float: right;
-  }
-
-  @media screen and (min-width: 1024px) {
-    width: 750px;
-  }
-}
-
-.prof {
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-
-  @media screen and (min-width: 768px) {
-    display: flex;
-  }
-}
-
 .selects {
   width: 84%;
   display: flex;
@@ -105,7 +50,8 @@ hr {
   }
 }
 
-.selectDropdown {
+.professions,
+.universities {
   display: block;
   width: 44%;
   background-color: white;

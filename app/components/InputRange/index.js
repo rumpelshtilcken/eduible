@@ -5,7 +5,7 @@ import stylesheet from './index.css';
 
 class InputRange extends Component {
   state = {
-    value: [1, 99]
+    value: [1, 9999999]
   };
   getValue = () => this.state.value;
 
@@ -16,7 +16,7 @@ class InputRange extends Component {
   };
 
   handleUpperBoundChange = (e) => {
-    if (e.target.value >= this.state.value[0] && e.target.value <= 99) {
+    if (e.target.value >= this.state.value[0] && e.target.value <= 9999999) {
       this.handleRangeChange({ upperPrice: +parseInt(e.target.value, 10) });
     }
   };
@@ -45,7 +45,7 @@ class InputRange extends Component {
       <div getValue={this.getValue}>
         <Range
           min={1}
-          max={99}
+          max={9999999}
           allowCross={false}
           value={this.state.value}
           onChange={this.handleSliderChange}
