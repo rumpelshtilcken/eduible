@@ -51,6 +51,11 @@ const runServer = async () => {
   );
   server.get('*', (req, res) => handler(req, res));
 
+  server.get('/', (request, response) => {
+    const result = 'App is running';
+    response.send(result);
+  });
+
   // production error handler
   // no stacktraces leaked to user
   /* eslint-disable */
