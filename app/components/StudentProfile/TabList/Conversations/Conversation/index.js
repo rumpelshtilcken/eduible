@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import RoundedButton from 'components/RoundedButton';
+import { RoundedButton } from 'components';
 import style from './index.css';
 
 const Conversation = ({ user }) => (
