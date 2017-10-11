@@ -31,7 +31,7 @@ const StudentProfileEdit = () => (
       </div>
       <a href="#"> I want to remove my account</a>
       <div className="Muibtn-div">
-        <div className="btn"><MuiButton label="Cancel" backgroundColor="#E8E8E8" labelColor="#000000" /></div>
+        <div className="btn"><MuiButton label="Cancel" backgroundColor="#E8E8E8" labelStyle={{ color: 'black', fontSize: 11 }} /></div>
         <div className="btn"><MuiButton label="Save Changes" /></div>
       </div>
     </div>

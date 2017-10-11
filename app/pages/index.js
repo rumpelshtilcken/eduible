@@ -1,9 +1,9 @@
 import Head from 'next/head';
 
-// import Main from 'components/Main';
+import Main from 'components/Main';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import withPage from 'hoc/withPage';
-import { StudentProfileEdit } from 'components';
+// import { StudentProfileEdit } from 'components';
 
 const Homepage = () => (
   <MuiThemeProvider>
@@ -11,7 +11,8 @@ const Homepage = () => (
       <Head>
         <title>{'Eduible'}</title>
       </Head>
-      <StudentProfileEdit />
+      <Main />
+      {/* <StudentProfileEdit /> */}
     </div>
   </MuiThemeProvider>
 );
