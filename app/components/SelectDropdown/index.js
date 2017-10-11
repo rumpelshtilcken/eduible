@@ -2,8 +2,14 @@ import PropTypes from 'prop-types';
 
 import stylesheet from './index.css';
 
-const SelectDropdown = ({ className, key, onChange, options, value }) => (
-  <select className={className || 'select'} key={key} onChange={onChange} value={value}>
+const SelectDropdown = ({ className, key, onChange, options, value, defaultValue }) => (
+  <select
+    defaultValue={defaultValue || ''}
+    className={className || 'select'}
+    key={key}
+    onChange={onChange}
+    value={value}
+  >
     {options.map(opt => (
       <option key={opt.key || opt.value} value={opt.value}>
         {opt.label}
@@ -15,6 +21,7 @@ const SelectDropdown = ({ className, key, onChange, options, value }) => (
 );
 
 SelectDropdown.propTypes = {
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
@@ -25,7 +32,7 @@ SelectDropdown.propTypes = {
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
     }).isRequired
   ).isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 export default SelectDropdown;
