@@ -1,22 +1,35 @@
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import stylesheet from './index.css';
 
-const SearchTextInput = ({ placeholder, onChange }) => (
-  <div className="search">
-    <input className="searchBar" onChange={onChange} placeholder={placeholder} />{' '}
-    <img className="searchIcon" src="../../static/search.png" alt="search" />
-    <style jsx>{stylesheet}</style>
-  </div>
-);
+class SearchTextInput extends Component {
+  static defaultProps = {
+    placeholder: 'search...'
+  };
 
-SearchTextInput.propTypes = {
-  placeholder: PropTypes.string,
-  onChange: PropTypes.func.isRequired
-};
+  static propTypes = {
+    placeholder: PropTypes.string,
+    onChange: PropTypes.func.isRequired
+  };
 
-SearchTextInput.defaultProps = {
-  placeholder: 'search...'
-};
+  handleChange = (event) => {
+    this.props.onChange(event.target);
+  };
+
+  render() {
+    return (
+      <div className="search">
+        <input
+          className="searchBar"
+          onChange={this.handleChange}
+          placeholder={this.props.placeholder}
+        />
+        <img className="searchIcon" src="/static/search.png" alt="search" />
+        <style jsx>{stylesheet}</style>
+      </div>
+    );
+  }
+}
 
 export default SearchTextInput;

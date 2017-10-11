@@ -21,6 +21,7 @@
   box-sizing: border-box;
   box-shadow: 0 2px 2px 0 #dcd6d6;
   margin-bottom: 20px;
+  outline: none;
 }
 
 .searchIcon {
@@ -30,30 +31,4 @@
   right: +20px;
   width: 12px;
   height: 12px;
-}
-
-.searchBar::-webkit-input-placeholder {
-  /* WebKit, Blink, Edge */
-  color: #afafaf;
-  font-size: 11px;
-}
-
-.searchBar:-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
-  color: #afafaf;
-  font-size: 11px;
-  opacity: 1;
-}
-
-.searchBar::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
-  color: #afafaf;
-  font-size: 11px;
-  opacity: 1;
-}
-
-.searchBar:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #afafaf;
-  font-size: 11px;
 }
