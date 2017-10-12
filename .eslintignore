@@ -1,3 +1,4 @@
-.next/
-next.config.js
+app/.next/
+app/next.config.js
 postcss.config.js
+dist/
