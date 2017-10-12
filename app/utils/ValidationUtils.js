@@ -9,10 +9,12 @@ const ValidationUtils = {
   isValidCardNumber: candidate => /^(?:\d[ -]*?){12,18}$/.test(candidate),
   isValidCVV: candidate => /^(?:\d[ -]*?){3}$/.test(candidate),
   isCardExpired: candidate => console.log('expired'),
+  /* eslint-disable max-len*/
   isValidName: candidate =>
     /^[A-Z](('[A-Z][a-z]+)|([a-z]+)|(.[ ][A-Z][a-z]+))(-[A-Z][a-z]+)?([ ][A-Z][.])?([ ][A-Z][a-z]+)((-[A-Z][a-z]+)?)$/.test(
       candidate
     ),
+  /* eslint-enable max-len*/
   fullnameValidation: candidate =>
     !ValidationUtils.isValidName(candidate)
     &&
