@@ -2,8 +2,9 @@ import { Component } from 'react';
 import { TabMenu } from 'components';
 import PropTypes from 'prop-types';
 
-import Profile from './Profile';
 import Conversations from './TabList/Conversations';
+import Profile from './Profile';
+import Universities from './TabList/Universities';
 
 import stylesheet from './index.css';
 
@@ -36,37 +37,28 @@ class StudentProfile extends Component {
     // TODO: handle edit profile button click
   }
 
-  // handleReadMoreClick() {
-  //   // TODO: read more about university
-  // }
-
-  // handleCalculatedClick() {
-  //   // TODO: show how course percentage is calculated
-  // }
-
   render() {
-    console.log('SSS: ', this.props.onProfileEditButtonClick);
     return (
       <div className="container">
         <Profile
           user={this.props.user}
           onEditButtonClick={this.props.onProfileEditButtonClick}
         />
+        {this.props.universities &&
         <TabMenu
           tabs={this.tabs}
-        >
-          {/* {this.props.universities && (
+          childrens={[
             <Universities
               universities={this.props.universities}
               onRemoveFromListClick={this.props.onRemoveFromListClick}
               onReadMoreClick={this.handleReadMoreClick}
               onCalculatedClick={this.handleCalculatedClick}
-            />
-          )} */}
-          <h1>Section 1 is coming</h1>
-          <h1>Section 2 is coming</h1>
-          <Conversations />
-        </TabMenu>
+            />,
+            <h1>Section 1 is coming</h1>,
+            <h1>Section 2 is coming</h1>,
+            <Conversations />
+          ]}
+        />}
         <style jsx>{stylesheet}</style>
       </div>
     );
