@@ -9,8 +9,9 @@ node_modules
 *.log
 
 # Generated files
-.next
+app/.next
 dist
+yarnlock
 
 # Project spicific files
 .env

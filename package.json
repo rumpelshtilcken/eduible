@@ -9,7 +9,7 @@
     "precommit": "lint-staged && npm test",
     "prepush": "npm test",
     "dev": "nodemon server/index.js --config .nodemonrc",
-    "build": "npm run clean && next build app && babel server -d dist && cp server/config/config.json dist/config/config.json",
+    "build": "npm run clean && next build app && babel server -d dist",
     "clean": "rimraf dist && mkdir dist",
     "start": "NODE_ENV=production npm run build && node dist",
     "heroku-postbuild": "npm run build",
