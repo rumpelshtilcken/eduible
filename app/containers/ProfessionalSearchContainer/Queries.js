@@ -88,6 +88,7 @@ export default (params) => {
   const queryArguments = generateQueryArguments(params);
   Object.keys(queryArguments).map((argKey) => {
     query += `\n${argKey}:${queryArguments[argKey]}`;
+    return null;
   });
 
   const bindedParams = bindParamsWithQuery(params, queryArguments);
