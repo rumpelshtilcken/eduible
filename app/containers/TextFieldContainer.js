@@ -19,14 +19,15 @@ class TextFieldContainer extends Component {
   };
 
   componentDidMount() {
-    if (!this.props.validation) {
+    if (this.props.validation) {
       this.validation(this.props.name, (this.props.values[name] || ''));
     }
   }
 
-  handleChange = ({ target }) =>
-    (this.props.validation && this.validation(target.name, target.value)) ||
+  handleChange = ({ target }) => {
+    if (this.props.validation) this.validation(target.name, target.value);
     this.props.update({ name: target.name, value: target.value });
+  }
 
   validation = (name, value) => {
     const errorMessage = this.props.validation(value) || '';
@@ -45,7 +46,6 @@ class TextFieldContainer extends Component {
     const { name, title, type, values } = this.props;
     return (
       <MuiTextField
-        // {...this.props}
         errorText={values && values.error && values.error[name]}
         name={name}
         onChange={this.handleChange}
