@@ -1,5 +1,3 @@
 module.exports = {
-  "migrations-path": "server/migrations",
-  "config": "server/config/config.json",
-  "models-path": "server/models"
+  "config": "server/config/config.json"
 }
