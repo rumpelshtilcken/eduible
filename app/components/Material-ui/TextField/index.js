@@ -20,7 +20,6 @@ const MuiTextField = ({ type, name, title, value, errorText, onChange, ...props 
 );
 
 MuiTextField.propTypes = {
-  errorText: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,

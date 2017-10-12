@@ -19,7 +19,7 @@ class SignUpFormInputs extends Component {
         title: 'FIRST AND LAST NAME',
         type: 'string',
         validation: this.props.validation.fullname,
-        placeholder: 'John'
+        placeholder: 'John Doe'
       }
     },
     {

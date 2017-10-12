@@ -1,8 +1,6 @@
 .signUpProfessionalModal {
-  max-height: 765px;
   min-width: 255px;
   max-width: 426px;
-  min-height: 460px;
   border-radius: 20px;
   padding: 0;
   background: rgb(255, 255, 255);
@@ -21,6 +19,7 @@
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
+  z-index: 2;
   justify-content: center;
 }
 
@@ -42,10 +41,11 @@ p {
   display: flex;
   flex-wrap: wrap;
   margin-left: 30px;
-
+  height: 680px;
+  
   @media screen and (min-width: 768px) {
     width: 88%;
-    height: 370px;
+    height: 400px;
     margin: auto;
   }
 }
@@ -142,4 +142,7 @@ p {
 .signUpProfessionalLoginContainer p {
   color: #626262;
   font-size: 12px;
+}
+.lastbox {
+  
 }

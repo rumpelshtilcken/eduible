@@ -15,6 +15,7 @@ const MuiButton = ({ onClick, className, labelStyle, label, backgroundColor }) =
 MuiButton.defaultProps = {
   label: 'Continue',
   backgroundColor: '#7262BF',
+  primary: true,
   labelStyle: {
     color: 'white',
     fontSize: '11px'

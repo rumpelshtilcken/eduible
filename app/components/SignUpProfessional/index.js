@@ -36,7 +36,7 @@ class SignUpProfessional extends Component {
 
   handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
 
-  handleContinueButtonClick = () => {
+  onContinueButtonClick= () => {
     const { error } = this.props.values;
 
     const isNotValid = error
@@ -45,12 +45,6 @@ class SignUpProfessional extends Component {
     return !isNotValid
       ? this.setState({ snackMessage: 'Invalid inputs', isSnackOpen: true })
       : this.props.onContinueButtonClick();
-  }
-
-  validation = {
-    fullname: ValidationUtils.fullnameValidation,
-    email: ValidationUtils.emailValidation,
-    password: ValidationUtils.passwordValidation
   }
 
   render() {
@@ -89,7 +83,7 @@ class SignUpProfessional extends Component {
                   <p>{'Already a member?'.toUpperCase()}</p>
                   <button
                     className="loginButton"
-                    onClick={this.props.onLoginButtonClick}
+                    onClick={this.props.onContinueButtonClick}
                   >
                     {'Log in here'}
                   </button>

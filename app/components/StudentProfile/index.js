@@ -3,7 +3,7 @@ import { TabMenu } from 'components';
 import PropTypes from 'prop-types';
 
 import Profile from './Profile';
-import Universities from './Universities';
+import Conversations from './TabList/Conversations';
 
 import stylesheet from './index.css';
 
@@ -32,13 +32,17 @@ class StudentProfile extends Component {
     }
   ]
 
-  handleReadMoreClick() {
-    // TODO: read more about university
+  handleEditButtonClick = () => {
+    // TODO: handle edit profile button click
   }
 
-  handleCalculatedClick() {
-    // TODO: show how course percentage is calculated
-  }
+  // handleReadMoreClick() {
+  //   // TODO: read more about university
+  // }
+
+  // handleCalculatedClick() {
+  //   // TODO: show how course percentage is calculated
+  // }
 
   render() {
     console.log('SSS: ', this.props.onProfileEditButtonClick);
@@ -51,16 +55,17 @@ class StudentProfile extends Component {
         <TabMenu
           tabs={this.tabs}
         >
-          {this.props.universities && (
+          {/* {this.props.universities && (
             <Universities
               universities={this.props.universities}
               onRemoveFromListClick={this.props.onRemoveFromListClick}
               onReadMoreClick={this.handleReadMoreClick}
               onCalculatedClick={this.handleCalculatedClick}
             />
-          )}
+          )} */}
+          <h1>Section 1 is coming</h1>
           <h1>Section 2 is coming</h1>
-          <h1>Section 3 is coming</h1>
+          <Conversations />
         </TabMenu>
         <style jsx>{stylesheet}</style>
       </div>

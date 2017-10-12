@@ -1,15 +1,17 @@
 .signUpStudentModalContainer {
-  max-height: 600px;
-  min-height: 418px;
-  max-width: 426px;
-  min-width: 255px;
+  width: 255px;
+  height: 600px;
   border-radius: 20px;
   padding: 0;
   background: rgb(255, 255, 255);
   border: 1px solid rgb(204, 204, 204);
   outline: none;
-  overflow: scroll;
+  overflow: auto;
   margin: auto;
+  @media(min-width: 768px){
+    height: 442px;
+    width: 456px;
+  }
 }
 
 .signUpStudentModalOverlayModal {
@@ -102,6 +104,7 @@ p {
 
   @media screen and (min-width: 768px) {
     margin-top: 20px;
+    order: 1;
   }
 }
 
@@ -110,11 +113,8 @@ p {
   margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
-    position: relative;
     margin-top: 40px;
-    top: -350px;
-    left: 67px;
-    width: 40%;
+    margin-left: 35px;
   }
 }
 
@@ -136,11 +136,8 @@ p {
   width: 100%;
 
   @media screen and (min-width: 768px) {
-    position: relative;
-    margin-top: 30px;
-    top: -450px;
-    left: 214px;
-    width: 40%;
+    margin-top: 15px;
+    margin-left: 35px;
   }
 }
 
@@ -150,4 +147,10 @@ p {
 
 .signUpStudentSocialContainer p {
   margin-bottom: 10px;
+}
+.rigthSideBar {
+  width: 192px;
+}
+.inputs {
+  width: 192px;
 }
