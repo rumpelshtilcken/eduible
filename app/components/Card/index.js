@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import stylesheet from './index.css';
 
-const Card = ({ children }) =>
-  (<div className="cardContainer">
+const Card = ({ extraStyle, children }) =>
+  (<div className={cx('cardContainer', { extraStyle: !!extraStyle })}>
     {children}
     <style jsx>
       {stylesheet}
@@ -11,7 +12,8 @@ const Card = ({ children }) =>
   </div>);
 
 Card.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.element,
+  extraStyle: PropTypes.string
 };
 
 export default Card;
