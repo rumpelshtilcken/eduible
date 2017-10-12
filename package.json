@@ -12,7 +12,7 @@
     "build": "npm run clean && next build app && babel server -d dist",
     "clean": "rimraf dist && mkdir dist",
     "start": "NODE_ENV=production npm run build && node dist",
-    "heroku-postbuild": "next build",
+    "heroku-postbuild": "npm run build",
     "test": "NODE_ENV=test mocha --opts .mocharc"
   },
   "config": {
