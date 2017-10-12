@@ -5,17 +5,19 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import { SignUpProfessional } from 'components';
+import * as snackbarActions from 'actions/snackbar';
 import * as authActions from 'actions/auth';
 import * as modalActions from 'actions/modal';
 import * as formActions from 'actions/form';
 
 class SignUpProfessionalContainer extends Component {
   static propTypes = {
+    reset: PropTypes.func.isRequired,
     showSignInModal: PropTypes.func.isRequired,
     showSignUpProfessionalStep2Modal: PropTypes.func.isRequired,
+    showSnackbar: PropTypes.func,
     signupProfessional: PropTypes.func.isRequired,
-    values: PropTypes.object.isRequired,
-    reset: PropTypes.func.isRequired
+    values: PropTypes.object.isRequired
   };
 
   componentWillUnmount() {
@@ -23,12 +25,21 @@ class SignUpProfessionalContainer extends Component {
   }
 
   handleContinueButtonClick = () => {
+    if (!this.isInputsValid()) {
+      this.props.showSnackbar({ messageType: 'error', message: 'Invalid inputs' });
+      return;
+    }
     const params = this.prepareParams();
     this.props.signupProfessional(params, this.handleDidSignUp);
   };
 
+  isInputsValid = () =>
+    Object.keys(this.props.values.error).reduce((acc, key) =>
+      (acc && !this.props.values.error[key]), true);
+
   handleDidSignUp = () => {
     this.props.reset();
+    this.props.showSnackbar({ messageType: 'success', message: 'Success' });
     this.props.showSignUpProfessionalStep2Modal();
   }
 
@@ -82,7 +93,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(authActions, dispatch),
   ...bindActionCreators(formActions, dispatch),
-  ...bindActionCreators(modalActions, dispatch)
+  ...bindActionCreators(modalActions, dispatch),
+  ...bindActionCreators(snackbarActions, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpProfessionalContainer);
