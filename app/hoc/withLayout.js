@@ -1,11 +1,13 @@
 import { Component } from 'react';
-import Head from 'next/head';
 import { hoistStatics } from 'recompact';
+import Head from 'next/head';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { Footer, Layout } from 'components';
+import getDisplayName from 'utils/getDisplayName';
 import ModalRootContainer from 'containers/ModalRootContainer';
 import PageHeaderContainer from 'containers/PageHeaderContainer';
-import getDisplayName from 'utils/getDisplayName';
+import SnackbarContainer from 'containers/SnackbarContainer';
 
 const withLayout = hoistStatics((CompositeComponent) => {
   class WithLayout extends Component {
@@ -47,17 +49,20 @@ const withLayout = hoistStatics((CompositeComponent) => {
     handleOpenModal = () => {};
     render() {
       return (
-        <Layout>
-          <Head>
-            <meta charSet="utf-8" />
-            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            <link href="static/Fonts/Effra" rel="stylesheet" />
-          </Head>
-          <ModalRootContainer />
-          <PageHeaderContainer />
-          <CompositeComponent {...this.props} />
-          <Footer urlsMenu={this.footerLinks} />
-        </Layout>
+        <MuiThemeProvider>
+          <Layout>
+            <Head>
+              <meta charSet="utf-8" />
+              <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+              <link href="static/Fonts/Effra" rel="stylesheet" />
+            </Head>
+            <ModalRootContainer />
+            <PageHeaderContainer />
+            <CompositeComponent {...this.props} />
+            <SnackbarContainer />
+            <Footer urlsMenu={this.footerLinks} />
+          </Layout>
+        </MuiThemeProvider>
       );
     }
   }
