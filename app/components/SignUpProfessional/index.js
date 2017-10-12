@@ -1,14 +1,10 @@
-import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Modal from 'react-modal';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux';
-import { MuiButton, MuiSnackbar } from 'components';
-import * as formActions from 'actions/form';
-
+import { MuiButton } from 'components';
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 import ValidationUtils from 'utils/ValidationUtils';
 
@@ -19,32 +15,13 @@ class SignUpProfessional extends Component {
   static propTypes = {
     onContinueButtonClick: PropTypes.func.isRequired,
     onLoginButtonClick: PropTypes.func.isRequired,
-    onRequestClose: PropTypes.func.isRequired,
-    values: PropTypes.object
-  };
-
-  state = {
-    snackMessage: 'Good Job',
-    isSnackOpen: false
+    onRequestClose: PropTypes.func.isRequired
   };
 
   validation = {
     fullname: ValidationUtils.fullnameValidation,
     email: ValidationUtils.emailValidation,
     password: ValidationUtils.passwordValidation
-  }
-
-  handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
-
-  onContinueButtonClick= () => {
-    const { error } = this.props.values;
-
-    const isNotValid = error
-      && Object.keys(error).reduce((acc, key) => (acc && !error[key]), true);
-
-    return !isNotValid
-      ? this.setState({ snackMessage: 'Invalid inputs', isSnackOpen: true })
-      : this.props.onContinueButtonClick();
   }
 
   render() {
@@ -72,7 +49,7 @@ class SignUpProfessional extends Component {
                 />
                 <MuiButton
                   className="signUpProfessionalContinueButton"
-                  onClick={this.handleContinueButtonClick}
+                  onClick={this.props.onContinueButtonClick}
                 />
                 <div className="signUpProfessionalSocialContainer" >
                   <p>{'Or join with'.toUpperCase()}</p>
@@ -83,7 +60,7 @@ class SignUpProfessional extends Component {
                   <p>{'Already a member?'.toUpperCase()}</p>
                   <button
                     className="loginButton"
-                    onClick={this.props.onContinueButtonClick}
+                    onClick={this.props.onLoginButtonClick}
                   >
                     {'Log in here'}
                   </button>
@@ -92,23 +69,10 @@ class SignUpProfessional extends Component {
               <style global jsx>{stylesheet}</style>
             </div>
           </Modal>
-          <MuiSnackbar
-            isOpen={this.state.isSnackOpen}
-            action="UNDO"
-            message={this.state.snackMessage}
-            handleActionTouchTap={this.handleRequestSnackClose}
-            handleRequestClose={this.handleRequestSnackClose}
-          />
         </Scrollbars>
       </MuiThemeProvider>
     );
   }
 }
 
-const mapStateToProps = state => ({ values: state.form });
-
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators(formActions, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpProfessional);
+export default SignUpProfessional;
