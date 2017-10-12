@@ -9,7 +9,7 @@ import stylesheet from './index.css';
 const AuthForm = ({ inputs }) => (
   <div className="formInputsContainer">
     {inputs.map(({ type, params }) => (
-      params.name === 'country' || 'zip'
+      (params.name === 'country' || params.name === 'zip')
         ? <div
           key={params.name}
           className={cx('input', {
