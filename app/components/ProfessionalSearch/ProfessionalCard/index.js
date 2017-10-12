@@ -7,7 +7,7 @@ import ProfessionalRating from '../ProfessionalRating';
 import stylesheet from './index.css';
 
 const ProfessionalCard = ({ professional, onRequestButtonClick, onProfessionalChoose }) => (
-  <Card>
+  <Card extraStyle="professional">
     <div
       role="button"
       tabIndex={professional.id}

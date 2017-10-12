@@ -115,8 +115,8 @@ class ProfessionalSearch extends Component {
               defaultValue="LOWEST PRICE"
               onChange={this.handleSort}
             >
-              <option key="HIGHEST PRICE" value={'price_ASC'}>HIGHEST PRICE</option>
-              <option key="LOWEST PRICE" value={'price_DESC'}>LOWEST PRICE</option>
+              <option key="LOWEST PRICE" value={'price_ASC'}>LOWEST PRICE</option>
+              <option key="HIGHEST PRICE" value={'price_DESC'}>HIGHEST PRICE</option>
             </select>
             {this.props.professionals && this.props.professionals.map(this.renderProfessional)}
           </div>
