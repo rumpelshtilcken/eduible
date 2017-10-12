@@ -32,7 +32,7 @@ class ResponsiveMenu extends Component {
       key={title}
       className={'linkContainer'}
     >
-      <Link href={url} prefetch={prefetch} purple>
+      <Link href={url} prefetch={prefetch} style={{ fontSize: '13px', color: '#7262bf' }} purple>
         {title}
       </Link>
       <style jsx>{stylesheet}</style>
@@ -68,7 +68,7 @@ class ResponsiveMenu extends Component {
           })}
           onClick={onClick}
         >
-          {profile ? title : title.toUpperCase()}
+          {profile ? title : title}
         </button>
       </div>
       <style jsx>{stylesheet}</style>
