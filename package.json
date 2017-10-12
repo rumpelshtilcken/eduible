@@ -1,6 +1,6 @@
 {
   "name": "eduible",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "lint:js": "eslint --fix .",
     "lint:css": "stylelint \"./app/{pages,components}/**/*.css\"",
@@ -14,10 +14,6 @@
     "start": "NODE_ENV=production npm run build && sequelize db:migrate && node dist",
     "heroku-postbuild": "npm run build",
     "test": "NODE_ENV=test mocha --opts .mocharc"
-  },
-  "engines": {
-    "node": "8.2.1",
-    "yarn": "0.27.5"
   },
   "config": {
     "validate-commit-msg": {
