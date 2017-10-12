@@ -13,6 +13,7 @@
   background-color: #f9f9f9;
   box-shadow: 0 2px 2px 0 #dcd6d6;
   flex-direction: row;
+  margin-bottom: 3px;
 }
 
 .grayHeader {
