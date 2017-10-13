@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 
-const MuiTextField = ({ type, name, title, value, errorText, onChange, ...props }) => (
+const MuiTextField = ({ type, name, title, value, errorText, onChange }) => (
   <TextField
-    {...props}
     errorText={errorText}
     floatingLabelFixed
     floatingLabelStyle={{ fontSize: '13px', color: '#626262', fontWeight: 'bold' }}
@@ -21,6 +20,7 @@ const MuiTextField = ({ type, name, title, value, errorText, onChange, ...props 
 
 MuiTextField.propTypes = {
   name: PropTypes.string.isRequired,
+  errorText: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
