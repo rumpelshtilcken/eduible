@@ -4,12 +4,12 @@
   border: 1px solid rgb(204, 204, 204);
   margin: auto;
   width: 238px;
-  height: 548px;
+  height: 550px;
   outline: none;
   overflow: scroll;
   padding: 0;
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     width: 420px;
     height: 380px;
   }
@@ -17,6 +17,11 @@
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+
+.ReactModal__Body--open {
+  overflow-y: hidden;
 }
 
 

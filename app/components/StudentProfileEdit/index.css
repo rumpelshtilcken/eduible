@@ -4,29 +4,35 @@
   margin: auto;
   background-color: #F9F9F9;
 }
+
 .profile-div {
   width: 170px;
   height: 229px;
   margin: auto;
   text-align: center;
 }
+
 .MuiTextField-div {
   width: 100%;
 }
+
 .Muibtn-div {
   width: 114px;
   margin: auto;
   margin-top: 40px;
-  @media(min-width: 768px) {
+
+  @media (min-width: 768px) {
     display: flex;
     width: 272px;
     justify-content: space-between;
     margin-left: -48px;
   }
 }
+
 .pwd-div {
- margin: 15px 0 40px 0;
+  margin: 15px 0 40px;
 }
+
 a {
   font-size: 11px;
   color: #626262;
@@ -34,19 +40,22 @@ a {
   font-family: "Efrra";
   text-decoration: none;
 }
+
 #title {
-  margin:40px 0 30px 0; 
+  margin: 40px 0 30px;
   font-family: "Effra";
   font-size: 18px;
   font-weight: 600;
   color: #000;
 }
+
 img {
   border-radius: 50%;
   width: 70px;
   height: 70px;
   margin-bottom: 15px;
 }
+
 .btn {
   margin: 15px 0;
   width: 126px;

@@ -1,3 +1,8 @@
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
+
+
 .signUpProfessionalModal {
   min-width: 255px;
   max-width: 426px;
@@ -8,6 +13,10 @@
   outline: none;
   overflow: scroll;
   margin: auto;
+
+  @media screen and (min-width: 768px) {
+    height: 560px;
+  }
 }
 
 .signUpProfessionalOverlayModal {
@@ -42,7 +51,7 @@ p {
   flex-wrap: wrap;
   margin-left: 30px;
   height: 680px;
-  
+
   @media screen and (min-width: 768px) {
     width: 88%;
     height: 400px;
