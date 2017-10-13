@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 
-import { MuiButton } from 'components';
+import { MuiButton, StatefulView } from 'components';
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 import ValidationUtils from 'utils/ValidationUtils';
 
@@ -35,42 +35,45 @@ class SignUpProfessional extends Component {
             className="signUpProfessionalModal"
             overlayClassName="signUpProfessionalOverlayModal"
           >
-            <div className="signUpProfessionalContainer">
-              <p className="signUpProfessionalHeaderTitle">
-                {'Join as professional'.toUpperCase()}
-              </p>
-              <p className="signUpProfessionalHeaderDescription">
-                {'Share your knowledge and experience. Start now - it’s free'}
-              </p>
+            <StatefulView {...this.props}>
+              <div className="signUpProfessionalContainer">
+                <p className="signUpProfessionalHeaderTitle">
+                  {'Join as professional'.toUpperCase()}
+                </p>
+                <p className="signUpProfessionalHeaderDescription">
+                  {'Share your knowledge and experience. Start now - it’s free'}
+                </p>
 
-              <div className="signUpProfessionalBodyContainer">
-                <SignUpFormInputs
-                  validation={this.validation}
-                />
-                <MuiButton
-                  className="signUpProfessionalContinueButton"
-                  onClick={this.props.onContinueButtonClick}
-                />
-                <div className="signUpProfessionalSocialContainer" >
-                  <p>{'Or join with'.toUpperCase()}</p>
-                  <SignInSocialContainer renderButtons={['Linkedin']} />
-                </div>
-                <div className="signUpProfessionalLoginContainer">
-                  <img src="static/Line.jpg" alt="dividerLine" />
-                  <p>{'Already a member?'.toUpperCase()}</p>
-                  <button
-                    className="loginButton"
-                    onClick={this.props.onLoginButtonClick}
-                  >
-                    {'Log in here'}
-                  </button>
+                <div className="signUpProfessionalBodyContainer">
+                  <SignUpFormInputs
+                    validation={this.validation}
+                  />
+                  <MuiButton
+                    className="signUpProfessionalContinueButton"
+                    onClick={this.props.onContinueButtonClick}
+                  />
+                  <div className="signUpProfessionalSocialContainer" >
+                    <p>{'Or join with'.toUpperCase()}</p>
+                    <SignInSocialContainer renderButtons={['Linkedin']} />
+                  </div>
+                  <div className="signUpProfessionalLoginContainer">
+                    <img src="static/Line.jpg" alt="dividerLine" />
+                    <p>{'Already a member?'.toUpperCase()}</p>
+                    <button
+                      className="loginButton"
+                      onClick={this.props.onLoginButtonClick}
+                    >
+                      {'Log in here'}
+                    </button>
+                  </div>
                 </div>
               </div>
-              <style global jsx>{stylesheet}</style>
-            </div>
+            </StatefulView>
           </Modal>
+          <style global jsx>{stylesheet}</style>
         </Scrollbars>
       </MuiThemeProvider>
+
     );
   }
 }
