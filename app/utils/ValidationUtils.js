@@ -16,7 +16,7 @@ const ValidationUtils = {
   fullnameValidation: candidate =>
     !ValidationUtils.isValidName(candidate)
     &&
-    'First name and last name must be uppercased',
+    'First letters of the first and the last name must be uppercased',
   emailValidation: email =>
     !ValidationUtils.isValidEmail(email) && 'Email not valid',
   passwordValidation: password =>
