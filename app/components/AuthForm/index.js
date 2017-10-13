@@ -9,42 +9,26 @@ import stylesheet from './index.css';
 const AuthForm = ({ inputs }) => (
   <div className="formInputsContainer">
     {inputs.map(({ type, params }) => (
-      (params.name === 'country' || params.name === 'zip')
-        ? <div
-          key={params.name}
-          className={cx('input', {
-            [params.name]: true
-          })}
-        >
-          <TextFieldContainer
+      <div
+        key={params.name}
+        className={cx('input', {
+          [params.name]: true
+        })}
+      >
+        {type === 'Date'
+          ? <DatePickerContainer
+            name={params.name}
+            title={params.title}
+            placeholder={params.placeholder}
+          />
+          : <TextFieldContainer
             name={params.name}
             title={params.title}
             type={params.type}
             validation={params.validation}
             placeholder={params.placeholder}
-          />
-        </div>
-        :
-        <div
-          key={params.name}
-          className={cx('input', {
-            [params.name]: true
-          })}
-        >
-          {type === 'Date'
-            ? <DatePickerContainer
-              name={params.name}
-              title={params.title}
-              placeholder={params.placeholder}
-            />
-            : <TextFieldContainer
-              name={params.name}
-              title={params.title}
-              type={params.type}
-              validation={params.validation}
-              placeholder={params.placeholder}
-            />}
-        </div>
+          />}
+      </div>
     ))
     }
     <style jsx>{stylesheet}</style>
