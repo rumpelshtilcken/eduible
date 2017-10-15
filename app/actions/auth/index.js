@@ -18,14 +18,15 @@ export const signupStudent = (attr, callback) => async (dispatch) => {
     await auth.signup('Student', attr, (err) => {
       if (err) {
         dispatch(authError(err.description || err.message || 'Unspecified error'));
-        return callback(err);
+        return callback && callback(err);
       }
       dispatch({ type: AUTH_USER });
-      return callback();
+      return callback && callback();
     });
   } catch (error) {
     const errorMsg = error.description || error.message || 'Unspecified error';
     dispatch(authError(errorMsg));
+    return callback && callback(errorMsg);
   }
 };
 
@@ -37,14 +38,15 @@ export const signupProfessional =
         await auth.signup('Professional', attr, (err) => {
           if (err) {
             dispatch(authError(err.description || err.message || 'Unspecified error'));
-            return callback(err);
+            return callback && callback(err);
           }
           dispatch({ type: AUTH_USER });
-          return callback();
+          return callback && callback();
         });
       } catch (error) {
         const errorMsg = error.description || error.message || 'Unspecified error';
         dispatch(authError(errorMsg));
+        return callback && callback(errorMsg);
       }
     };
 
@@ -55,15 +57,16 @@ export const signinUser = ({ email, password }, callback) => async (dispatch) =>
     await auth.signin(email, password, (err) => {
       if (err) {
         dispatch(authError(err.description || err.message || 'Unspecified error'));
-        return callback(err);
+        return callback && callback(err);
       }
 
       dispatch({ type: AUTH_USER });
-      return callback();
+      return callback && callback();
     });
   } catch (error) {
     const errorMsg = error.description || error.message || 'Unspecified error';
-    return dispatch(authError(errorMsg));
+    dispatch(authError(errorMsg));
+    return callback && callback(errorMsg);
   }
 };
 
