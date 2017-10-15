@@ -22,20 +22,25 @@ class ModalRootContainer extends Component {
   };
 
   render() {
-    const { type } = this.props;
+    const { type, modalProps } = this.props;
     if (type === null) {
       return null;
     }
 
     const SpecificModal = this.MODAL_COMPONENTS[type];
     return (
-      <SpecificModal isOpen onRequestClose={this.props.hideModal} />
+      <SpecificModal
+        {...modalProps}
+        isOpen
+        onRequestClose={this.props.hideModal}
+      />
     );
   }
 }
 
 ModalRootContainer.propTypes = {
   type: PropTypes.string,
+  modalProps: PropTypes.object,
   hideModal: PropTypes.func.isRequired
 };
 

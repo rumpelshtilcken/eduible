@@ -8,7 +8,8 @@ const modalReducer = (state = INIT, action) => {
   switch (action.type) {
     case SHOW_MODAL:
       return {
-        type: action.modalType
+        type: action.modalType,
+        modalProps: action.modalProps
       };
     case HIDE_MODAL:
       return INIT;
