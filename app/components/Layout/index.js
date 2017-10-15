@@ -5,9 +5,7 @@ import stylesheet from './index.css';
 const Layout = ({ children }) => (
   <div className="content">
     {children}
-    <style jsx global>
-      {stylesheet}
-    </style>
+    <style jsx global>{stylesheet}</style>
   </div>
 );
 
