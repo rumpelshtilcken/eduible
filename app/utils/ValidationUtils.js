@@ -24,7 +24,10 @@ const ValidationUtils = {
   passwordValidation: password =>
     !ValidationUtils.isValidPassword(password)
     &&
-    'Password must be more than 6 character'
+    'Password must be more than 6 character',
+  isReduxInputsValid: (inputs) => 
+    Object.keys(inputs).reduce((acc, key) =>
+      (acc && !inputs[key]), true)
 };
 
 export default ValidationUtils;
