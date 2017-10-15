@@ -7,8 +7,8 @@ const MuiSnackbar = ({
   messageType,
   message,
   action,
-  handleRequestClose,
-  handleActionTouchTap
+  onRequestClose,
+  onActionTouchTap
 }) => (
   isOpen
     ? <Snackbar
@@ -17,8 +17,8 @@ const MuiSnackbar = ({
       action={action}
       contentStyle={{ color: '#383838' }}
       autoHideDuration={4000}
-      onRequestClose={handleRequestClose}
-      onActionTouchTap={handleActionTouchTap}
+      onRequestClose={onRequestClose}
+      onActionTouchTap={onActionTouchTap}
       bodyStyle={messageType === 'success' ? successColor : errorColor}
     />
     : null
@@ -32,8 +32,8 @@ MuiSnackbar.propTypes = {
   action: PropTypes.string,
   message: PropTypes.string.isRequired,
   messageType: PropTypes.string,
-  handleRequestClose: PropTypes.func.isRequired,
-  handleActionTouchTap: PropTypes.func
+  onRequestClose: PropTypes.func.isRequired,
+  onActionTouchTap: PropTypes.func
 };
 
 export default MuiSnackbar;
