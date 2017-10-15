@@ -1,17 +1,20 @@
+import _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import { SignUpProfessional } from 'components';
-import * as snackbarActions from 'actions/snackbar';
 import * as authActions from 'actions/auth';
-import * as modalActions from 'actions/modal';
 import * as formActions from 'actions/form';
+import * as modalActions from 'actions/modal';
+import * as snackbarActions from 'actions/snackbar';
+import ValidationUtils from 'utils/ValidationUtils';
 
 class SignUpProfessionalContainer extends Component {
   static propTypes = {
+    authenticated: PropTypes.bool,
+    error: PropTypes.string,
     reset: PropTypes.func.isRequired,
     showSignInModal: PropTypes.func.isRequired,
     showSignUpProfessionalStep2Modal: PropTypes.func.isRequired,
@@ -20,28 +23,37 @@ class SignUpProfessionalContainer extends Component {
     values: PropTypes.object.isRequired
   };
 
+  componentWillReceiveProps(nextProps) {
+    const { error, authenticated } = nextProps;
+    if (authenticated) this.handleDidSignUp();
+
+    const { error: prevError } = this.props;
+    if (!_.isEqual(error, prevError)) {
+      this.handleSignUpError(this.props.error);
+    }
+  }
+
   componentWillUnmount() {
     this.props.reset();
   }
 
   handleContinueButtonClick = () => {
-    if (!this.isInputsValid()) {
+    if (!ValidationUtils.isReduxInputsValid(this.props.values.error)) {
       this.props.showSnackbar({ messageType: 'error', message: 'Invalid inputs' });
       return;
     }
     const params = this.prepareParams();
-    this.props.signupProfessional(params, this.handleDidSignUp);
+    this.props.signupProfessional(params);
   };
-
-  isInputsValid = () =>
-    Object.keys(this.props.values.error).reduce((acc, key) =>
-      (acc && !this.props.values.error[key]), true);
 
   handleDidSignUp = () => {
     this.props.reset();
     this.props.showSnackbar({ messageType: 'success', message: 'Success' });
     this.props.showSignUpProfessionalStep2Modal();
   }
+
+  handleSignUpError = error =>
+    this.props.showSnackbar({ messageType: 'error', message: error });
 
   prepareParams = () => {
     const values = _.omit(this.props.values, ['error']);
@@ -80,11 +92,10 @@ class SignUpProfessionalContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { error, timestamp, forgotMsg, loading } = state.auth;
+  const { authenticated, error, loading } = state.auth;
   return {
+    authenticated,
     error,
-    timestamp,
-    forgotMsg,
     loading,
     values: state.form
   };
