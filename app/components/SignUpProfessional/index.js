@@ -1,7 +1,5 @@
 import { Component } from 'react';
-import { Scrollbars } from 'react-custom-scrollbars';
 import Modal from 'react-modal';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 
 import { MuiButton, StatefulView } from 'components';
@@ -26,54 +24,49 @@ class SignUpProfessional extends Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-        <Scrollbars>
-          <Modal
-            contentLabel={''}
-            isOpen
-            onRequestClose={this.props.onRequestClose}
-            className="signUpProfessionalModal"
-            overlayClassName="signUpProfessionalOverlayModal"
-          >
-            <StatefulView {...this.props}>
-              <div className="signUpProfessionalContainer">
-                <p className="signUpProfessionalHeaderTitle">
-                  {'Join as professional'.toUpperCase()}
-                </p>
-                <p className="signUpProfessionalHeaderDescription">
-                  {'Share your knowledge and experience. Start now - it’s free'}
-                </p>
+      <Modal
+        contentLabel={''}
+        isOpen
+        onRequestClose={this.props.onRequestClose}
+        className="signUpProfessionalModal"
+        overlayClassName="signUpProfessionalOverlayModal"
+      >
+        <StatefulView {...this.props}>
+          <div className="signUpProfessionalContainer">
+            <p className="signUpProfessionalHeaderTitle">
+              {'Join as professional'.toUpperCase()}
+            </p>
+            <p className="signUpProfessionalHeaderDescription">
+              {'Share your knowledge and experience. Start now - it’s free'}
+            </p>
 
-                <div className="signUpProfessionalBodyContainer">
-                  <SignUpFormInputs
-                    validation={this.validation}
-                  />
-                  <MuiButton
-                    className="signUpProfessionalContinueButton"
-                    onClick={this.props.onContinueButtonClick}
-                  />
-                  <div className="signUpProfessionalSocialContainer" >
-                    <p>{'Or join with'.toUpperCase()}</p>
-                    <SignInSocialContainer renderButtons={['Linkedin']} />
-                  </div>
-                  <div className="signUpProfessionalLoginContainer">
-                    <img src="static/Line.jpg" alt="dividerLine" />
-                    <p>{'Already a member?'.toUpperCase()}</p>
-                    <button
-                      className="loginButton"
-                      onClick={this.props.onLoginButtonClick}
-                    >
-                      {'Log in here'}
-                    </button>
-                  </div>
-                </div>
+            <div className="signUpProfessionalBodyContainer">
+              <SignUpFormInputs
+                validation={this.validation}
+              />
+              <MuiButton
+                className="signUpProfessionalContinueButton"
+                onClick={this.props.onContinueButtonClick}
+              />
+              <div className="signUpProfessionalSocialContainer" >
+                <p>{'Or join with'.toUpperCase()}</p>
+                <SignInSocialContainer renderButtons={['Linkedin']} />
               </div>
-            </StatefulView>
-          </Modal>
-          <style global jsx>{stylesheet}</style>
-        </Scrollbars>
-      </MuiThemeProvider>
-
+              <div className="signUpProfessionalLoginContainer">
+                <img src="static/Line.jpg" alt="dividerLine" />
+                <p>{'Already a member?'.toUpperCase()}</p>
+                <button
+                  className="loginButton"
+                  onClick={this.props.onLoginButtonClick}
+                >
+                  {'Log in here'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </StatefulView>
+        <style global jsx>{stylesheet}</style>
+      </Modal>
     );
   }
 }
