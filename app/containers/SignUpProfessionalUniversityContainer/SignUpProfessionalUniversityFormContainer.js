@@ -1,47 +1,49 @@
 import { Component } from 'react';
 import { compose, graphql, gql } from 'react-apollo';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { SignUpProfessionalUniversity } from 'components';
+import * as snackbarActions from 'actions/snackbar';
 
 class SignUpProfessionalUniversityFormContainer extends Component {
   static propTypes = {
     universityName: PropTypes.string,
     majorName: PropTypes.string,
-    universities: PropTypes.shape({
-      allUniversities: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired
-      })).isRequired
+    university: PropTypes.shape({
+      id: PropTypes.string.isRequired
     }),
+    startYear: PropTypes.string,
+    endYear: PropTypes.string,
     majors: PropTypes.shape({
       allMajors: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string.isRequired
       })).isRequired
     }),
     onAddButtonClick: PropTypes.func.isRequired,
-    onSkip: PropTypes.func.isRequired
+    onSkip: PropTypes.func.isRequired,
+    showSnackbar: PropTypes.func
   };
 
   handleAddButtonClick = () => {
-    console.log('Press', this.props);
-    if (!this.props.majorName || !this.props.universityName) {
-      // TODO: handle error
+    if (!this.props.majorName ||
+      !this.props.universityName ||
+      !this.props.startYear ||
+      !this.props.endYear
+    ) {
+      this.props.showSnackbar({ messageType: 'error', message: 'Fill all fields' });
       return;
     }
 
     const education = this.prepareParams();
-    console.log(education);
     this.props.onAddButtonClick(education);
   };
 
   prepareParams = () => {
-    const { universities } = this.props;
-    const universityId = universities
-                      && universities.allUniversities
-                      && universities.allUniversities[0]
-                      && universities.allUniversities[0].id;
+    const { university, startYear, endYear } = this.props;
+    const universityId = university && university.id;
 
-    const education = {};
+    const education = { startYear, endYear };
     education.major = { name: this.props.majorName };
     education.university = universityId || { name: this.props.universityName };
 
@@ -60,19 +62,20 @@ class SignUpProfessionalUniversityFormContainer extends Component {
 
 const getUniversities = gql`
   query getUniversities($universityName: String!) {
-    allUniversities (filter: { name: $universityName }) {
+    University(name: $universityName) {
       id
-      name
     }
   }
 `;
 
 export default
 compose(
+  connect(null, snackbarActions),
   graphql(getUniversities, {
-    name: 'universities',
+    name: 'university',
     skip: ({ universityName }) => !universityName,
-    options: ({ universityName }) => ({ variables: { universityName } })
+    options: ({ universityName }) => ({ variables: { universityName } }),
+    props: ({ university }) => ({ university: university.University })
   })
 )(SignUpProfessionalUniversityFormContainer);
 
