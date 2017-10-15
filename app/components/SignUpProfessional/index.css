@@ -1,24 +1,3 @@
-.ReactModal__Body--open {
-  overflow-y: hidden;
-}
-
-
-.signUpProfessionalModal {
-  min-width: 255px;
-  max-width: 426px;
-  border-radius: 20px;
-  padding: 0;
-  background: rgb(255, 255, 255);
-  border: 1px solid rgb(204, 204, 204);
-  outline: none;
-  overflow: scroll;
-  margin: auto;
-
-  @media screen and (min-width: 768px) {
-    height: 560px;
-  }
-}
-
 .signUpProfessionalOverlayModal {
   position: fixed;
   top: 0;
@@ -30,6 +9,22 @@
   align-items: center;
   z-index: 2;
   justify-content: center;
+}
+
+.signUpProfessionalModal {
+  min-width: 255px;
+  max-width: 426px;
+  border-radius: 20px;
+  padding: 0;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(204, 204, 204);
+  outline: none;
+  overflow: hidden;
+  margin: auto;
+
+  @media screen and (min-width: 768px) {
+    height: 560px;
+  }
 }
 
 .signUpProfessionalContainer {
@@ -151,7 +146,4 @@ p {
 .signUpProfessionalLoginContainer p {
   color: #626262;
   font-size: 12px;
-}
-.lastbox {
-  
 }
