@@ -1,9 +1,8 @@
 import { Component } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import { AuthForm, MuiButton } from 'components';
+import { AuthForm, MuiButton, StatefulView } from 'components';
 
 import style from './index.css';
 
@@ -29,48 +28,46 @@ class SignUpProfessionalStep2Modal extends Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-        <div>
-          <Modal
-            isOpen={this.props.isOpen}
-            onRequestClose={this.props.onRequestClose}
-            className="SignupPropfessionalStep2Modal"
-            overlayClassName="OverlayModal"
-          >
-            <div className="container">
-              <div className="head-text">
-                <p className="sign">JOIN AS PROFESSIONAL</p>
-                <p className="share share2">Share your knowledge and experience. Start now - it’s free</p>
-              </div>
-              <div className="container-box">
-                <div className="box">
-
-                  <AuthForm inputs={this.inputs} />
-                  <div className="p-box">
-                    <p className="share provide">Providing your job title and company name will help users find you on Eduible</p>
-                  </div>
-                </div>
-                <div className="box2">
-                  <MuiButton
-                    label="Continue"
-                    onClick={this.props.onContinueButtonClick}
-                  />
-                  <div className="share-div">
-                    <button className="share" onClick={this.props.onSkip}>{'skip this step'}</button>
-                  </div>
-                </div>
-              </div>
-              <style global jsx>{style}</style>
+      <Modal
+        contentLabel={''}
+        isOpen
+        onRequestClose={this.props.onRequestClose}
+        className="SignupPropfessionalStep2Modal"
+        overlayClassName="OverlayModal"
+      >
+        <StatefulView {...this.props}>
+          <div className="container">
+            <div className="head-text">
+              <p className="sign">JOIN AS PROFESSIONAL</p>
+              <p className="share share2">Share your knowledge and experience. Start now - it’s free</p>
             </div>
-          </Modal>
-        </div>
-      </MuiThemeProvider>
+            <div className="container-box">
+              <div className="box">
+
+                <AuthForm inputs={this.inputs} />
+                <div className="p-box">
+                  <p className="share provide">Providing your job title and company name will help users find you on Eduible</p>
+                </div>
+              </div>
+              <div className="box2">
+                <MuiButton
+                  label="Continue"
+                  onClick={this.props.onContinueButtonClick}
+                />
+                <div className="share-div">
+                  <button className="share" onClick={this.props.onSkip}>{'skip this step'}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </StatefulView>
+        <style global jsx>{style}</style>
+      </Modal>
     );
   }
 }
 
 SignUpProfessionalStep2Modal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
   onContinueButtonClick: PropTypes.func,
   onSkip: PropTypes.func
