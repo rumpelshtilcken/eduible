@@ -1,20 +1,19 @@
 import Modal from 'react-modal';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 
-import { MuiButton } from 'components';
+import { MuiButton, StatefulView } from 'components';
 
 import SignUpFormInputs from './SignUpFormInputs';
 import stylesheet from './index.css';
 
-const SignUpProfessionalUniversity = ({ isOpen, onRequestClose, onAddButtonClick, onSkip }) => (
-  <MuiThemeProvider>
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
-      className="SignUpProfessionalUniversity"
-      overlayClassName="OverlayModal"
-    >
+const SignUpProfessionalUniversity = ({ onRequestClose, onAddButtonClick, onSkip, ...props }) => (
+  <Modal
+    isOpen
+    onRequestClose={onRequestClose}
+    className="SignUpProfessionalUniversity"
+    overlayClassName="OverlayModal"
+  >
+    <StatefulView {...props}>
       <div className="container">
         <div className="headerTitle">{'Let’s add University, Major and Years studied to your profile.'}</div>
         <div className="description">
@@ -30,12 +29,11 @@ const SignUpProfessionalUniversity = ({ isOpen, onRequestClose, onAddButtonClick
         />
       </div>
       <style global jsx>{stylesheet}</style>
-    </Modal>
-  </MuiThemeProvider>
+    </StatefulView>
+  </Modal>
 );
 
 SignUpProfessionalUniversity.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
   onAddButtonClick: PropTypes.func.isRequired,
   onSkip: PropTypes.func

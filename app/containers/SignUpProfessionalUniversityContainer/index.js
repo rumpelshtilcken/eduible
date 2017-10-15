@@ -4,41 +4,61 @@ import { connect } from 'react-redux';
 import { compose, graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import { getCurrentUserData } from 'utils/auth';
+import { convertDateToISO } from 'utils/auth';
 import * as authActions from 'actions/auth';
-import * as modalActions from 'actions/modal';
 import * as formActions from 'actions/form';
+import * as modalActions from 'actions/modal';
+import * as snackbarActions from 'actions/snackbar';
 
 import SignUpProfessionalUniversityFormContainer from './SignUpProfessionalUniversityFormContainer';
 
 class SignUpProfessionalUniversityContainer extends Component {
   static propTypes = {
-    signupProfessional: PropTypes.func,
-    signinLinkedin: PropTypes.func,
     hideModal: PropTypes.func,
-    data: PropTypes.object,
+    showSnackbar: PropTypes.func,
+    professionalId: PropTypes.string.isRequired,
+    signinLinkedin: PropTypes.func,
+    signupProfessional: PropTypes.func,
     updateProfessional: PropTypes.func,
     values: PropTypes.object,
-    users: PropTypes.array
+    reset: PropTypes.func
   };
 
-  handleAddButtonClick = async ({ major, university }) => {
-    const variables = this.prepareParams({ major, university });
-    await this.props.updateProfessional({ variables });
-    this.props.hideModal();
+  state = {
+    loading: false
+  }
+
+  componentWillUnmount() {
+    this.props.reset();
+  }
+
+  handleAddButtonClick = async (params) => {
+    try {
+      this.setState({ loading: true });
+      const variables = this.prepareParams(params);
+      console.log(variables);
+      await this.props.updateProfessional({ variables });
+      this.props.showSnackbar({ messageType: 'success', message: 'Success' });
+      this.props.hideModal();
+      this.setState({ loading: false });
+    } catch (err) {
+      this.setState({ loading: false });
+      this.props.showSnackbar({ messageType: 'error', message: 'Server error' });
+    }
   };
 
-  prepareParams = ({ major, university }) => {
-    const { users } = this.props;
-    const id = users
-                  && users.allUsers[0]
-                  && users.allUsers[0].professional.id;
-
+  prepareParams = ({ major, university, startYear, endYear }) => {
     const universityParam = university.name
       ? { universityName: university }
       : { universityId: university };
 
-    return { majorName: major.name, ...universityParam, id };
+    return {
+      majorName: major.name,
+      ...universityParam,
+      id: this.props.professionalId,
+      startYear: convertDateToISO(startYear),
+      endYear: convertDateToISO(endYear)
+    };
   };
 
   handleSkipButtonClick = () => {
@@ -46,7 +66,7 @@ class SignUpProfessionalUniversityContainer extends Component {
   };
 
   render() {
-    const { university, major } = this.props.values;
+    const { university, major, startYear, endYear } = this.props.values;
 
     return (
       <SignUpProfessionalUniversityFormContainer
@@ -54,7 +74,10 @@ class SignUpProfessionalUniversityContainer extends Component {
         onAddButtonClick={this.handleAddButtonClick}
         onSkip={this.handleSkipButtonClick}
         majorName={major}
+        startYear={startYear}
+        endYear={endYear}
         universityName={university}
+        loading={this.state.loading}
       />
     );
   }
@@ -65,28 +88,10 @@ const mapStateToProps = state => ({ values: state.form });
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(authActions, dispatch),
   ...bindActionCreators(formActions, dispatch),
-  ...bindActionCreators(modalActions, dispatch)
+  ...bindActionCreators(modalActions, dispatch),
+  ...bindActionCreators(snackbarActions, dispatch)
 });
 
-const getProfessionalByAuth0Id = gql`
-  query allUsers($auth0UserId: String!) {
-    allUsers (filter: {auth0UserId: $auth0UserId}) {
-      id
-      professional {
-        id
-        majors {
-          name
-          school {
-            name
-            university {
-              name
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 const updateProfessional = gql`
   mutation updateProfessional (
     $id: ID!
@@ -94,21 +99,23 @@ const updateProfessional = gql`
     $schoolName: String
     $universityId: ID,
     $universityName: SchooluniversityUniversity
-    $majorsIds: [ID!]
-  ) { 
+    $startYear: DateTime!
+    $endYear: DateTime!
+  ) {
     updateProfessional (
       id: $id
-      majors: [
-        {
-          name: $majorName
-          school: {
-            name: $schoolName
-            universityId: $universityId
-            university: $universityName
-          }
-        }
-      ],
-      majorsIds: $majorsIds
+      educations: {
+        startYear: $startYear
+        endYear: $endYear
+        major: {
+            name: $majorName
+            school: {
+              name: $schoolName
+              universityId: $universityId
+              university: $universityName
+            }
+        },
+      }
     ){
       id
     }
@@ -117,15 +124,6 @@ const updateProfessional = gql`
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  graphql(getProfessionalByAuth0Id, {
-    name: 'users',
-    skip: () => !getCurrentUserData('sub'),
-    options: () => ({
-      variables: {
-        auth0UserId: getCurrentUserData('sub')
-      }
-    })
-  }),
   graphql(updateProfessional, {
     props: ({ mutate }) => ({
       updateProfessional: ({ variables }) => mutate({
