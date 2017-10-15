@@ -28,7 +28,13 @@ export default (state = INIT, action) => {
     case FORGOT_SUCCESS:
       return { ...state, ...INIT, forgotMsg: action.message };
     case AUTH_ERROR:
-      return { ...state, ...INIT, error: action.error, timestamp: action.timestamp };
+      return {
+        ...state,
+        ...INIT,
+        error: action.error,
+        timestamp: action.timestamp,
+        loading: false
+      };
     default:
       return state;
   }
