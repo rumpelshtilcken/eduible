@@ -32,9 +32,12 @@ export const getOriginAccessToken = () => {
 };
 
 export const decodeJwtToken = (idToken, claim) => {
+  let result = JSON.parse(atob(idToken));
+  if (result && result.sub) return claim ? result[claim] : result;
+
   const base64Url = idToken.split('.')[1];
   const base64 = base64Url.replace('-', '+').replace('_', '/');
-  const result = JSON.parse(window.atob(base64));
+  result = JSON.parse(atob(base64));
   return claim ? result[claim] : result;
 };
 
