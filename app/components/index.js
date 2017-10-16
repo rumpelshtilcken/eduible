@@ -18,7 +18,6 @@ export { default as PageHeader } from './PageHeader';
 export { default as PaymentDetails } from './PaymentDetails';
 export { default as ProfessionalProfile } from './ProfessionalProfile';
 export { default as ProfessionalProfileEdit } from './ProfessionalProfileEdit';
-export { default as ProfessionalProfileOwner } from './ProfessionalProfileOwner';
 export { default as ProfessionalRating } from './ProfessionalSearch/ProfessionalRating';
 export { default as ProfessionalSearch } from './ProfessionalSearch';
 export { default as ProfileEdit } from './ProfileEdit';
