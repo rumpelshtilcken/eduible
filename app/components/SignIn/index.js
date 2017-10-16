@@ -55,32 +55,33 @@ class SignIn extends Component {
             overlayClassName="OverlayModal"
           >
             <div className="signInContainer">
-              <p className="titleContainer">SIGN IN</p>
-              <div className="formContainer">
-                <div className="formInputsContainer">
-                  <SignInFormInputs
-                    validation={this.validation}
-                  />
-                  <a className="forgotPassword" href="#" >Forgot your password?</a>
-                </div>
-                <div className="continueButtonContainer">
-                  <MuiButton
-                    onClick={this.handleContinueButtonClick}
-                  />
-                </div>
-
-                <div className="additionalButtonsContainer">
-                  <div className="socialButtonsTitle">OR SIGN IN USING</div>
-                  <SignInSocialContainer renderButtons={['Facebook', 'Google', 'Linkedin']} />
-                  <div className="signUpLink">
-                    <img className="line" src="/static/Line.jpg" alt="hrline" />
-                    <p>DON&#39;T HAVE AN ACCOUNT?</p>
-                    <a className="signUpLink" href="#" >Sign Up here</a>
+              <form>
+                <p className="titleContainer">SIGN IN</p>
+                <div className="formContainer">
+                  <div className="formInputsContainer">
+                    <SignInFormInputs
+                      validation={this.validation}
+                    />
+                    <a className="forgotPassword" href="#" >Forgot your password?</a>
+                  </div>
+                  <div className="continueButtonContainer">
+                    <MuiButton
+                      onClick={this.handleContinueButtonClick}
+                      type="submit"
+                    />
+                  </div>
+                  <div className="additionalButtonsContainer">
+                    <div className="socialButtonsTitle">OR SIGN IN USING</div>
+                    <SignInSocialContainer renderButtons={['Facebook', 'Google', 'Linkedin']} />
+                    <div className="signUpLink">
+                      <img className="line" src="/static/Line.jpg" alt="hrline" />
+                      <p>DON&#39;T HAVE AN ACCOUNT?</p>
+                      <a className="signUpLink" href="#" >Sign Up here</a>
+                    </div>
                   </div>
 
                 </div>
-
-              </div>
+              </form>
             </div>
           </Modal>
           <MuiSnackbar
