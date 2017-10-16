@@ -19,7 +19,9 @@ class ProfessionalSearchContainer extends Component {
     searchUpdate: PropTypes.func.isRequired,
     resetFilter: PropTypes.func.isRequired,
     universityId: PropTypes.string,
-    jobTitleId: PropTypes.string
+    jobTitleId: PropTypes.string,
+    loading: PropTypes.boolean,
+    error: PropTypes.object
   };
 
   handleUniversityChoose = universityId => (universityId
@@ -52,6 +54,8 @@ class ProfessionalSearchContainer extends Component {
         universities={this.props.allUniversities}
         handleSort={this.handleSort}
         handleRangeChange={this.handleRangeChange}
+        loading={this.props.loading}
+        error={this.props.error}
       />
     );
   }
@@ -80,10 +84,10 @@ export default compose(
         input && { userOptions: { user: { name_contains: input } } },
         input && {
           univerOptions: {
-            majors_some: {
-              school: {
-                university: {
-                  name_contains: input
+            educations_some: {
+              major: {
+                school: {
+                  university: { name_contains: input }
                 }
               }
             }
@@ -91,18 +95,32 @@ export default compose(
         },
         input && { companyOptions: { job: { company: { name_contains: input } } } },
         input && { jobOptions: { job: { jobTitle: { title_contains: input } } } },
-        input && { majorOptions: { majors_some: { name_contains: input } } },
+        input && {
+          majorOptions: {
+            educations_some: {
+              major: { name_contains: input }
+            }
+          }
+        },
       );
 
       const andOptions = Object.assign({},
         universityId &&
         {
           univerOptions: {
-            majors_some:
-            { school: { university: { id: universityId } } }
+            educations_some: {
+              major: {
+                school: { university: { id: universityId } }
+              }
+            }
           }
         },
-        majorId && { majorOptions: { majors_some: { id: majorId } } },
+        majorId && {
+          majorOptions: {
+            educations_some: {
+              majors_some: { id: majorId } }
+          }
+        },
         companyId && { companyOptions: { job: { company: { id: companyId } } } },
         jobTitleId && { jobOptions: { job: { jobTitle: { id: jobTitleId } } } },
         priceLte && { priceLOptions: { price_lte: priceLte } },
@@ -121,7 +139,9 @@ export default compose(
       return { variables };
     },
     props: ({ allProfessionals }) => ({
-      allProfessionals: allProfessionals && allProfessionals.allProfessionals
+      allProfessionals: allProfessionals && allProfessionals.allProfessionals,
+      loading: allProfessionals.loading,
+      error: allProfessionals.error
     }),
     name: 'allProfessionals'
   }),
