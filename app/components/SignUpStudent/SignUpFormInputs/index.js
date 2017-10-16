@@ -9,7 +9,8 @@ class SignUpFormInputs extends Component {
       fullname: PropTypes.func,
       email: PropTypes.func,
       password: PropTypes.func
-    })
+    }),
+    onContinueButtonClick: PropTypes.func.isRequired
   };
 
   inputs = [
@@ -52,7 +53,7 @@ class SignUpFormInputs extends Component {
 
   render() {
     return (
-      <AuthForm inputs={this.inputs} />
+      <AuthForm inputs={this.inputs} onContinueButtonClick={this.props.onContinueButtonClick} />
     );
   }
 }

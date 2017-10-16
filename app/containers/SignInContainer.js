@@ -5,29 +5,64 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import { SignIn } from 'components';
+import ValidationUtils from 'utils/ValidationUtils';
 import * as authActions from 'actions/auth';
 import * as formActions from 'actions/form';
 import * as modalActions from 'actions/modal';
+import * as snackbarActions from 'actions/snackbar';
 
 class SignInContainer extends Component {
   static propTypes = {
     signinUser: PropTypes.func.isRequired,
+    validation: PropTypes.object,
+    inputs: PropTypes.arrayOf(PropTypes.object),
     signinFacebook: PropTypes.func.isRequired,
     signinGoogle: PropTypes.func.isRequired,
     hideModal: PropTypes.func.isRequired,
     values: PropTypes.object.isRequired,
     reset: PropTypes.func.isRequired,
-    authenticated: PropTypes.bool
+    authenticated: PropTypes.bool,
+    error: PropTypes.string,
+    showSnackbar: PropTypes.func.isRequired
   };
 
+  state = {
+    isSnackOpen: false
+  }
+
+
+  componentWillReceiveProps(nextProps) {
+    const { error, authenticated } = nextProps;
+    if (authenticated) this.handleDidSignIn();
+
+    const { error: prevError } = this.props;
+    if (!_.isEqual(error, prevError)) {
+      this.handleSignInError(this.props.error);
+    }
+  }
   componentWillUnmount() {
     this.props.reset();
   }
 
+  handleDidSignIn = () => {
+    this.props.reset();
+    this.props.showSnackbar({ messageType: 'success', message: 'Success' });
+    this.props.hideModal();
+  }
+
   handleContinueButtonClick = () => {
+    if (!ValidationUtils.isReduxInputsValid(this.props.values.error)) {
+      this.props.showSnackbar({ messageType: 'error', message: 'Invalid inputs' });
+      return;
+    }
     const params = this.prepareParams();
     this.props.signinUser(params, () => {});
   };
+
+  handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
+
+  handleSignInError = error =>
+    this.props.showSnackbar({ messageType: 'error', message: error });
 
   prepareParams = () => {
     const values = _.omit(this.props.values, ['error']);
@@ -40,26 +75,38 @@ class SignInContainer extends Component {
     return params;
   };
 
+  validation = {
+    email: ValidationUtils.emailValidation,
+    password: ValidationUtils.passwordValidation
+  }
+  inputs = [
+    {
+      params: {
+        title: 'EMAIL',
+        name: 'email',
+        type: 'email',
+        validation: this.validation.email,
+        placeholder: 'john@mail.com'
+      }
+    },
+    {
+      params: {
+        title: 'PASSWORD',
+        name: 'password',
+        type: 'password',
+        validation: this.validation.password,
+        placeholder: 'at least six characters'
+      }
+    }
+  ]
+
+
   render() {
-    /* eslint-disable */
-    if (this.props.loading) {
-      console.log('Loading state');
-    }
-
-    if (this.props.error) {
-      console.log('Error state');
-    }
-
-    if (this.props.authenticated) {
-      this.props.reset();
-      this.props.hideModal();
-    }
-    /* eslint-enable */
-
     return (
       <SignIn
-        onContinueButtonClick={this.handleContinueButtonClick}
         {...this.props}
+        onContinueButtonClick={this.handleContinueButtonClick}
+        inputs={this.inputs}
       />
     );
   }
@@ -80,7 +127,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(authActions, dispatch),
   ...bindActionCreators(formActions, dispatch),
-  ...bindActionCreators(modalActions, dispatch)
+  ...bindActionCreators(modalActions, dispatch),
+  ...bindActionCreators(snackbarActions, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInContainer);

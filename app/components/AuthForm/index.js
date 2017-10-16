@@ -6,7 +6,7 @@ import DatePickerContainer from 'containers/DatePickerContainer';
 
 import stylesheet from './index.css';
 
-const AuthForm = ({ inputs }) => (
+const AuthForm = ({ inputs, onContinueButtonClick }) => (
   <div className="formInputsContainer">
     {inputs.map(({ type, params }) => (
       <div
@@ -25,6 +25,8 @@ const AuthForm = ({ inputs }) => (
             name={params.name}
             title={params.title}
             type={params.type}
+            onEnterKeyPress={onContinueButtonClick}
+            onContinueButtonClick={onContinueButtonClick}
             validation={params.validation}
             placeholder={params.placeholder}
           />}
@@ -36,6 +38,7 @@ const AuthForm = ({ inputs }) => (
 );
 
 AuthForm.propTypes = {
+  onContinueButtonClick: PropTypes.func.isRequired,
   inputs: PropTypes.arrayOf(
     PropTypes.shape({
       type: PropTypes.oneOf(['Date']),

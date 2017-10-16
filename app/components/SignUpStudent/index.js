@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { MuiButton, MuiSnackbar } from 'components';
 import * as formActions from 'actions/form';
 
-import { Scrollbars } from 'react-custom-scrollbars';
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 import ValidationUtils from 'utils/ValidationUtils';
 
@@ -49,60 +48,57 @@ class SignUpStudent extends Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-        <Scrollbars>
-          <div>
-            <Modal
-              isOpen
-              onRequestClose={this.props.onRequestClose}
-              className="signUpStudentModalContainer"
-              overlayClassName="signUpStudentModalOverlayModal"
-            >
-              <div className="signUpStudentContainer">
-                <p className="signUpStudentHeaderTitle">
-                  {'Sign up'.toUpperCase()}
-                </p>
-                <div className="signUpStudentBodyContainer">
-                  <div className="inputs">
-                    <SignUpFormInputs
-                      validation={this.validation}
-                    />
-                  </div>
-                  <div className="signUpStudentContinueButton">
-                    <MuiButton
-                      onClick={this.handleContinueButtonClick}
-                    />
-                  </div>
-                  <div className="rightSideBar">
-                    <div className="signUpStudentSocialContainer">
-                      <p>{'Or sign up using'.toUpperCase()}</p>
-                      <SignInSocialContainer renderButtons={['Facebook', 'Google']} />
-                    </div>
-                    <div className="signUpStudentLoginContainer">
-                      <img src="static/Line.jpg" alt="dividerLine" />
-                      <p>{'Already a member?'.toUpperCase()}</p>
-                      <input
-                        type="button"
-                        className="loginButton"
-                        onClick={this.props.onLoginButtonClick}
-                        value={'Log in here'}
-                      />
-                    </div>
-                  </div>
+      <div>
+        <Modal
+          isOpen
+          onRequestClose={this.props.onRequestClose}
+          className="signUpStudentModalContainer"
+          overlayClassName="signUpStudentModalOverlayModal"
+        >
+          <div className="signUpStudentContainer">
+            <p className="signUpStudentHeaderTitle">
+              {'Sign up'.toUpperCase()}
+            </p>
+            <div className="signUpStudentBodyContainer">
+              <div className="inputs">
+                <SignUpFormInputs
+                  validation={this.validation}
+                  onContinueButtonClick={this.handleContinueButtonClick}
+                />
+              </div>
+              <div className="signUpStudentContinueButton">
+                <MuiButton
+                  onClick={this.handleContinueButtonClick}
+                />
+              </div>
+              <div className="rightSideBar">
+                <div className="signUpStudentSocialContainer">
+                  <p>{'Or sign up using'.toUpperCase()}</p>
+                  <SignInSocialContainer renderButtons={['Facebook', 'Google']} />
+                </div>
+                <div className="signUpStudentLoginContainer">
+                  <img src="static/Line.jpg" alt="dividerLine" />
+                  <p>{'Already a member?'.toUpperCase()}</p>
+                  <input
+                    type="button"
+                    className="loginButton"
+                    onClick={this.props.onLoginButtonClick}
+                    value={'Log in here'}
+                  />
                 </div>
               </div>
-              <style global jsx>{style}</style>
-            </Modal>
-            <MuiSnackbar
-              isOpen={this.state.isSnackOpen}
-              action="UNDO"
-              message={this.state.snackMessage}
-              handleActionTouchTap={this.handleRequestSnackClose}
-              handleRequestClose={this.handleRequestSnackClose}
-            />
+            </div>
           </div>
-        </Scrollbars>
-      </MuiThemeProvider>
+          <style global jsx>{style}</style>
+        </Modal>
+        <MuiSnackbar
+          isOpen={this.state.isSnackOpen}
+          action="UNDO"
+          message={this.state.snackMessage}
+          handleActionTouchTap={this.handleRequestSnackClose}
+          handleRequestClose={this.handleRequestSnackClose}
+        />
+      </div>
     );
   }
 }

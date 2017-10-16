@@ -32,38 +32,41 @@ class SignUpProfessional extends Component {
         overlayClassName="signUpProfessionalOverlayModal"
       >
         <StatefulView {...this.props}>
-          <div className="signUpProfessionalContainer">
-            <p className="signUpProfessionalHeaderTitle">
-              {'Join as professional'.toUpperCase()}
-            </p>
-            <p className="signUpProfessionalHeaderDescription">
-              {'Share your knowledge and experience. Start now - it’s free'}
-            </p>
+          <form>
+            <div className="signUpProfessionalContainer">
+              <p className="signUpProfessionalHeaderTitle">
+                {'Join as professional'.toUpperCase()}
+              </p>
+              <p className="signUpProfessionalHeaderDescription">
+                {'Share your knowledge and experience. Start now - it’s free'}
+              </p>
 
-            <div className="signUpProfessionalBodyContainer">
-              <SignUpFormInputs
-                validation={this.validation}
-              />
-              <MuiButton
-                className="signUpProfessionalContinueButton"
-                onClick={this.props.onContinueButtonClick}
-              />
-              <div className="signUpProfessionalSocialContainer" >
-                <p>{'Or join with'.toUpperCase()}</p>
-                <SignInSocialContainer renderButtons={['Linkedin']} />
-              </div>
-              <div className="signUpProfessionalLoginContainer">
-                <img src="static/Line.jpg" alt="dividerLine" />
-                <p>{'Already a member?'.toUpperCase()}</p>
-                <button
-                  className="loginButton"
-                  onClick={this.props.onLoginButtonClick}
-                >
-                  {'Log in here'}
-                </button>
+              <div className="signUpProfessionalBodyContainer">
+                <SignUpFormInputs
+                  validation={this.validation}
+                />
+                <MuiButton
+                  className="signUpProfessionalContinueButton"
+                  onClick={this.props.onContinueButtonClick}
+                  type="submit"
+                />
+                <div className="signUpProfessionalSocialContainer" >
+                  <p>{'Or join with'.toUpperCase()}</p>
+                  <SignInSocialContainer renderButtons={['Linkedin']} />
+                </div>
+                <div className="signUpProfessionalLoginContainer">
+                  <img src="static/Line.jpg" alt="dividerLine" />
+                  <p>{'Already a member?'.toUpperCase()}</p>
+                  <button
+                    className="loginButton"
+                    onClick={this.props.onLoginButtonClick}
+                  >
+                    {'Log in here'}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </StatefulView>
         <style global jsx>{stylesheet}</style>
       </Modal>
