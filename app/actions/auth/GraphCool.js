@@ -423,11 +423,16 @@ export default class GraphCool {
 
   upsertUser = async (hash, auth0) => {
     // decode hole hash getted from url
-    const authResult = (auth0 && await auth0.parseHash(hash, (err, authResult) => {
-      console.log(err, ', ', authResult);
-    })) || parseHash(hash);
-    // decode idToken and take all data in token
-    const attrs = decodeJwtToken(authResult.idToken);
+    let authResult;
+    if (!auth0) throw new Error('Server error');
+
+    await auth0.parseHash(hash, (err, result) => {
+      if (err) throw err;
+
+      authResult = result;
+    });
+
+    const attrs = { ...authResult.idTokenPayload };
     // extract from attrs auth0 userId
     const auth0UserId = attrs.sub;
     // check user type
