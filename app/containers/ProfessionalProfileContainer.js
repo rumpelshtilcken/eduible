@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import { ProfessionalProfile } from 'components';
+import { ProfessionalProfile, StatefulView } from 'components';
 
 class ProfessionalProfileContainer extends Component {
   handleRequestCallClick = () =>
@@ -19,16 +19,20 @@ class ProfessionalProfileContainer extends Component {
       onProfileEditButtonClick
     } = this.props;
 
-    if (loading) return <div>Loading</div>;
+    console.log(user);
+    console.log(loading);
+    console.log(error);
     if (error) return <div>{error}</div>;
 
     return (
-      <ProfessionalProfile
-        user={user}
-        onProfileEditButtonClick={onProfileEditButtonClick}
-        onRequestCallClick={this.handleRequestCallClick}
-        onEditButtonClick={this.props.onEditButtonClick}
-      />
+      <StatefulView loading={loading} error={error}>
+        <ProfessionalProfile
+          user={user}
+          onProfileEditButtonClick={onProfileEditButtonClick}
+          onRequestCallClick={this.handleRequestCallClick}
+          onEditButtonClick={this.props.onEditButtonClick}
+        />
+      </StatefulView>
     );
   }
 }
@@ -54,11 +58,11 @@ ProfessionalProfileContainer.propTypes = {
         company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
         jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired
       }),
-      majors: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        school: PropTypes.shape({
-          university: PropTypes.shape({
-            name: PropTypes.string.isRequired
+      educations: PropTypes.arrayOf(PropTypes.shape({
+        major: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          school: PropTypes.shape({
+            university: PropTypes.shape({ name: PropTypes.string.isRequired })
           })
         })
       }))
@@ -81,11 +85,13 @@ const getProfessionalById = gql`
           company { name }
           jobTitle { title }
         }
-        majors {
-          name
-          school {
-            university {
-              name
+        educations {
+          major {
+            name
+            school {
+              university {
+                name
+              }
             }
           }
         }
@@ -95,8 +101,9 @@ const getProfessionalById = gql`
 `;
 
 export default graphql(getProfessionalById, {
+  name: 'user',
   options: ({ id }) => ({ variables: { id } }),
-  props: ({ data: { User, error, loading } }) => ({
+  props: ({ user: { User, error, loading } }) => ({
     loading, error, user: User
   })
 })(ProfessionalProfileContainer);

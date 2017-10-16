@@ -65,6 +65,7 @@ ProfessionalProfile.propTypes = {
   onEditButtonClick: PropTypes.func,
   isCurrentUser: PropTypes.bool,
   user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     auth0UserId: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     professional: PropTypes.shape({
@@ -77,11 +78,11 @@ ProfessionalProfile.propTypes = {
         company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
         jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired
       }),
-      majors: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        school: PropTypes.shape({
-          university: PropTypes.shape({
-            name: PropTypes.string.isRequired
+      educations: PropTypes.arrayOf(PropTypes.shape({
+        major: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          school: PropTypes.shape({
+            university: PropTypes.shape({ name: PropTypes.string.isRequired })
           })
         })
       }))

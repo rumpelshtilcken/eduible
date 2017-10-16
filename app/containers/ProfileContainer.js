@@ -1,52 +1,43 @@
-import { Component } from 'react';
 import { graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
+
+import { StatefulView } from 'components';
 
 import ProfessionalProfileContainer from 'containers/ProfessionalProfileContainer';
 import StudentProfileContainer from 'containers/StudentProfileContainer';
 
-class ProfileContainer extends Component {
-  static propTypes = {
-    user: PropTypes.object,
-    onRequestCallClick: PropTypes.func.isRequired,
-    onEditButtonClick: PropTypes.func.isRequired
+const ProfileContainer = ({ user, error, onRequestCallClick, onEditButtonClick, ...props }) => {
+  if (error) {
+    return <div>{'Error'}</div>;
   }
 
-  handleProfileEditButtonClick = () =>
-    this.props.onEditButtonClick({
-      userType: this.props.user.userType,
-      userId: this.props.user.id
-    });
-
-  render() {
-    const { user } = this.props;
-
-    if (!user) {
-      return <div>Loading...</div>;
-    }
-
-    return (
-      <div>
-        {user && user.userType === 'Student' &&
-        <StudentProfileContainer
+  return (
+    <StatefulView {...props}>
+      {user && user.userType === 'Student'
+        ? <StudentProfileContainer
           id={user.id}
-          onRequestCallClick={this.props.onRequestCallClick}
-          onEditButtonClick={this.props.onEditButtonClick}
-        />}
-        {user && user.userType === 'Professional' &&
-        <ProfessionalProfileContainer
+          onRequestCallClick={onRequestCallClick}
+          onEditButtonClick={onEditButtonClick}
+        />
+        : <ProfessionalProfileContainer
           id={user.id}
-          onRequestCallClick={this.props.onRequestCallClick}
-          onEditButtonClick={this.handleProfileEditButtonClick}
+          onRequestCallClick={onRequestCallClick}
+          onEditButtonClick={onEditButtonClick}
         />}
-      </div>
-    );
-  }
-}
+    </StatefulView>
+  );
+};
+
+ProfileContainer.propTypes = {
+  error: PropTypes.object,
+  user: PropTypes.object,
+  onRequestCallClick: PropTypes.func.isRequired,
+  onEditButtonClick: PropTypes.func.isRequired
+};
 
 const getUserByAuth0Id = gql`
-  query allUsers($id: ID!) {
-    allUsers (filter: {id: $id}) {
+  query User($id: ID!) {
+    User (id: $id) {
       id
       userType
     }
@@ -54,12 +45,13 @@ const getUserByAuth0Id = gql`
 `;
 
 export default graphql(getUserByAuth0Id, {
+  name: 'user',
   options: ({ userId }) => ({
     variables: {
       id: userId
     }
   }),
-  props: ({ data }) => ({
-    user: data && data.allUsers && data.allUsers[0]
+  props: ({ user }) => ({
+    user: user.User, loading: user.loading, error: user.error
   })
 })(ProfileContainer);

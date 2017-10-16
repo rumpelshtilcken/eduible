@@ -15,8 +15,11 @@ class ProfessionalProfileHeader extends Component {
     onEditButtonClick: PropTypes.func,
     isCurrentUser: PropTypes.bool,
     user: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      auth0UserId: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       professional: PropTypes.shape({
+        about: PropTypes.string,
         price: PropTypes.number,
         location: PropTypes.shape({
           country: PropTypes.string
@@ -25,11 +28,11 @@ class ProfessionalProfileHeader extends Component {
           company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
           jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired
         }),
-        majors: PropTypes.arrayOf(PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          school: PropTypes.shape({
-            university: PropTypes.shape({
-              name: PropTypes.string.isRequired
+        educations: PropTypes.arrayOf(PropTypes.shape({
+          major: PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            school: PropTypes.shape({
+              university: PropTypes.shape({ name: PropTypes.string.isRequired })
             })
           })
         }))

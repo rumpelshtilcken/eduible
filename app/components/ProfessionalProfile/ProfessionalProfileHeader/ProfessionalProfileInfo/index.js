@@ -6,8 +6,12 @@ import stylesheet from './index.css';
 class ProfessionalProfileInfo extends Component {
   static propTypes = {
     user: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      auth0UserId: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       professional: PropTypes.shape({
+        about: PropTypes.string,
+        price: PropTypes.number,
         location: PropTypes.shape({
           country: PropTypes.string
         }),
@@ -15,11 +19,11 @@ class ProfessionalProfileInfo extends Component {
           company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
           jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired
         }),
-        majors: PropTypes.arrayOf(PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          school: PropTypes.shape({
-            university: PropTypes.shape({
-              name: PropTypes.string.isRequired
+        educations: PropTypes.arrayOf(PropTypes.shape({
+          major: PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            school: PropTypes.shape({
+              university: PropTypes.shape({ name: PropTypes.string.isRequired })
             })
           })
         }))
@@ -47,8 +51,8 @@ class ProfessionalProfileInfo extends Component {
 
     if (professional.majors && professional.majors[0]) {
       info.push({
-        headerText: professional.majors[0].school.university.name,
-        bodyText: professional.majors[0].name
+        headerText: professional.educations[0].major.school.university.name,
+        bodyText: professional.educations[0].major.name
       });
     }
 

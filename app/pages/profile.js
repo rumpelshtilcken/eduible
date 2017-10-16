@@ -15,13 +15,9 @@ class ProfilePage extends Component {
     })
   };
 
-  handleProfileEditButtonClick = ({ userType, userId }) =>
+  handleProfileEditButtonClick = () =>
     Router.push({
-      pathname: '/profileEdit',
-      query: {
-        userType,
-        userId
-      }
+      pathname: '/profileEdit'
     });
 
   handleRequestCallClick = ({ professionalId }) =>
