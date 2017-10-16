@@ -83,18 +83,18 @@ class ProfessionalProfileHeader extends Component {
             <p className="additionalInfo">price</p>
           </div>}
 
-          {user.professional.rating &&
+
           <div className={cx('additionalInfoContainer', {
             ratingContainer: true
           })}
           >
             <div className="roundedContainer">
               <p className="additionalInfoContent">
-                {user.professional.rating}
+                {user.professional.rating || 0}
               </p>
             </div>
             <p className="additionalInfo">rating</p>
-          </div>}
+          </div>
         </div>
         <style jsx>{stylesheet}</style>
       </div>

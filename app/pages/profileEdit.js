@@ -22,6 +22,7 @@ class profileEdit extends Component {
 
   render() {
     const { userId, userType } = this.props.url.query;
+    console.log('cont', this.props);
     return (
       <div>
         <Head>

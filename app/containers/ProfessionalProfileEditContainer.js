@@ -86,9 +86,10 @@ const updateProfessional = gql`
 
 export default compose(
   graphql(getProfessionalById, {
+    name: 'user',
     options: ({ userId }) => ({ variables: { id: userId } }),
-    props: ({ data: { User, error, loading } }) => ({
-      loading, error, user: User
+    props: ({ user }) => ({
+      user: user.User, loading: user.loading, error: user.error
     })
   }),
   graphql(updateProfessional, {

@@ -15,12 +15,12 @@ const ProfileContainer = ({ user, error, onRequestCallClick, onEditButtonClick, 
     <StatefulView {...props}>
       {user && user.userType === 'Student'
         ? <StudentProfileContainer
-          id={user.id}
+          id={props.userId}
           onRequestCallClick={onRequestCallClick}
           onEditButtonClick={onEditButtonClick}
         />
         : <ProfessionalProfileContainer
-          id={user.id}
+          id={props.userId}
           onRequestCallClick={onRequestCallClick}
           onEditButtonClick={onEditButtonClick}
         />}
@@ -29,6 +29,7 @@ const ProfileContainer = ({ user, error, onRequestCallClick, onEditButtonClick, 
 };
 
 ProfileContainer.propTypes = {
+  userId: PropTypes.string,
   error: PropTypes.object,
   user: PropTypes.object,
   onRequestCallClick: PropTypes.func.isRequired,

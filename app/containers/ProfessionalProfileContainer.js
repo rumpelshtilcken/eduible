@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import { ProfessionalProfile, StatefulView } from 'components';
+import { ProfessionalProfile } from 'components';
 
 class ProfessionalProfileContainer extends Component {
   handleRequestCallClick = () =>
@@ -19,20 +19,16 @@ class ProfessionalProfileContainer extends Component {
       onProfileEditButtonClick
     } = this.props;
 
-    console.log(user);
-    console.log(loading);
-    console.log(error);
     if (error) return <div>{error}</div>;
+    if (loading) return <div>{'Loading'}</div>;
 
     return (
-      <StatefulView loading={loading} error={error}>
-        <ProfessionalProfile
-          user={user}
-          onProfileEditButtonClick={onProfileEditButtonClick}
-          onRequestCallClick={this.handleRequestCallClick}
-          onEditButtonClick={this.props.onEditButtonClick}
-        />
-      </StatefulView>
+      <ProfessionalProfile
+        user={user}
+        onProfileEditButtonClick={onProfileEditButtonClick}
+        onRequestCallClick={this.handleRequestCallClick}
+        onEditButtonClick={this.props.onEditButtonClick}
+      />
     );
   }
 }
@@ -71,7 +67,7 @@ ProfessionalProfileContainer.propTypes = {
 };
 
 const getProfessionalById = gql`
-  query GetUserById($id: ID!) {
+  query User($id: ID!) {
     User(id: $id) {
       userType
       auth0UserId
@@ -103,7 +99,7 @@ const getProfessionalById = gql`
 export default graphql(getProfessionalById, {
   name: 'user',
   options: ({ id }) => ({ variables: { id } }),
-  props: ({ user: { User, error, loading } }) => ({
-    loading, error, user: User
+  props: ({ user }) => ({
+    user: user.User, loading: user.loading, error: user.error
   })
 })(ProfessionalProfileContainer);
