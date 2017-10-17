@@ -14,21 +14,23 @@ const SignUpProfessionalUniversity = ({ onRequestClose, onAddButtonClick, onSkip
     overlayClassName="OverlayModal"
   >
     <StatefulView {...props}>
-      <div className="container">
-        <div className="headerTitle">{'Let’s add University, Major and Years studied to your profile.'}</div>
-        <div className="description">
-          {'It will increase attractiveness of your profile by users who are willing to take same academic pathway.'}
+      <div>
+        <div className="container">
+          <div className="headerTitle">{'Let’s add University, Major and Years studied to your profile.'}</div>
+          <div className="description">
+            {'It will increase attractiveness of your profile by users who are willing to take same academic pathway.'}
+          </div>
+          <SignUpFormInputs />
+          <button className="skip" onClick={onSkip}>{'skip this step'}</button>
         </div>
-        <SignUpFormInputs />
-        <button className="skip" onClick={onSkip}>{'skip this step'}</button>
+        <div className="button">
+          <MuiButton
+            label="Add"
+            onClick={onAddButtonClick}
+          />
+        </div>
+        <style global jsx>{stylesheet}</style>
       </div>
-      <div className="button">
-        <MuiButton
-          label="Add"
-          onClick={onAddButtonClick}
-        />
-      </div>
-      <style global jsx>{stylesheet}</style>
     </StatefulView>
   </Modal>
 );
