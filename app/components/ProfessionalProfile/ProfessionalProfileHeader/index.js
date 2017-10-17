@@ -40,9 +40,13 @@ class ProfessionalProfileHeader extends Component {
     })
   };
 
-  renderHeaderButton = () => (this.props.isCurrentUser
-    ? <RoundedButton title={'Request call'} onClick={this.props.onRequestCallClick} />
-    : <RoundedButton title={'Edit Profile'} onClick={this.props.onEditButtonClick} />)
+  renderHeaderButton = () => {
+    if (!this.props.user) { return null; }
+
+    return (this.props.isCurrentUser
+      ? <RoundedButton title={'Edit Profile'} onClick={this.props.onEditButtonClick} />
+      : <RoundedButton title={'Request call'} onClick={this.props.onRequestCallClick} />);
+  }
 
   render() {
     const { user } = this.props;
