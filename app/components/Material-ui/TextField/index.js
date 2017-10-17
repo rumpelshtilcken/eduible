@@ -1,7 +1,16 @@
 import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 
-const MuiTextField = ({ type, name, title, value, errorText, onChange, onEnterKeyPress }) => (
+const MuiTextField = ({
+  errorText,
+  name,
+  onChange,
+  onEnterKeyPress,
+  placeholder,
+  title,
+  type,
+  value
+}) => (
   <TextField
     errorText={errorText}
     floatingLabelFixed
@@ -9,7 +18,8 @@ const MuiTextField = ({ type, name, title, value, errorText, onChange, onEnterKe
     floatingLabelText={title}
     fullWidth
     hintStyle={{ fontSize: '11px' }}
-    hintText={value}
+    hintText={placeholder}
+    value={value}
     inputStyle={{ fontSize: '11px' }}
     mode="landscape"
     name={name}
@@ -20,13 +30,14 @@ const MuiTextField = ({ type, name, title, value, errorText, onChange, onEnterKe
 );
 
 MuiTextField.propTypes = {
-  name: PropTypes.string.isRequired,
   errorText: PropTypes.string,
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  onEnterKeyPress: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onEnterKeyPress: PropTypes.func.isRequired
+  value: PropTypes.string.isRequired
 };
 
 export default MuiTextField;

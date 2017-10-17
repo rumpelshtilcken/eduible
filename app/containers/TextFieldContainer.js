@@ -25,10 +25,7 @@ class TextFieldContainer extends Component {
       this.validation(this.props.name, (this.props.values[name] || ''));
     }
   }
-  handleEnterKeyPress = (event) => {
-    console.log('done');
-    return (event.key === 'Enter') && this.props.onContinueButtonClick();
-  }
+  handleEnterKeyPress = event => (event.key === 'Enter') && this.props.onContinueButtonClick()
 
   handleChange = ({ target }) => {
     if (this.props.validation) this.validation(target.name, target.value);
@@ -40,17 +37,13 @@ class TextFieldContainer extends Component {
     this.props.errorMessage({ name, errorMessage });
   };
 
-  defineValue = () => {
-    if (this.props.values && this.props.values[this.props.name]) {
-      return this.props.values[this.props.name];
-    }
-
-    return this.props.placeholder || '';
-  };
-
+  defineValue = () =>
+    this.props.values &&
+    this.props.values[this.props.name] &&
+    this.props.values[this.props.name];
 
   render() {
-    const { name, title, type, values } = this.props;
+    const { name, title, type, values, placeholder } = this.props;
     return (
       <MuiTextField
         onEnterKeyPress={this.handleEnterKeyPress}
@@ -59,6 +52,7 @@ class TextFieldContainer extends Component {
         onChange={this.handleChange}
         title={title}
         type={type}
+        placeholder={placeholder}
         value={this.defineValue()}
       />
     );
