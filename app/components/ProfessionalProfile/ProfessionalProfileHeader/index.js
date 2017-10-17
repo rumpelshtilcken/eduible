@@ -83,7 +83,6 @@ class ProfessionalProfileHeader extends Component {
             <p className="additionalInfo">price</p>
           </div>}
 
-
           <div className={cx('additionalInfoContainer', {
             ratingContainer: true
           })}

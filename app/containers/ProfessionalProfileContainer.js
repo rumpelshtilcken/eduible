@@ -69,19 +69,23 @@ ProfessionalProfileContainer.propTypes = {
 const getProfessionalById = gql`
   query User($id: ID!) {
     User(id: $id) {
+      id
       userType
       auth0UserId
       name
       professional {
+        id
         price
         location {
           country
         }
         job {
+          id
           company { name }
           jobTitle { title }
         }
         educations {
+          id
           major {
             name
             school {

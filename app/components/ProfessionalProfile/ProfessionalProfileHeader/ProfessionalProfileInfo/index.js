@@ -49,7 +49,7 @@ class ProfessionalProfileInfo extends Component {
       });
     }
 
-    if (professional.majors && professional.majors[0]) {
+    if (professional.educations && professional.educations[0]) {
       info.push({
         headerText: professional.educations[0].major.school.university.name,
         bodyText: professional.educations[0].major.name
@@ -75,8 +75,9 @@ class ProfessionalProfileInfo extends Component {
   render() {
     const userInfo = this.prepareInfo();
     return (
-      <div>
+      <div className="professionaProfileInfoContainer">
         {userInfo.map(this.renderProfileInfo)}
+        <style jsx>{stylesheet}</style>
       </div>
     );
   }
