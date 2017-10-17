@@ -50,18 +50,20 @@ const withLayout = hoistStatics((CompositeComponent) => {
     render() {
       return (
         <MuiThemeProvider>
-          <Layout>
-            <Head>
-              <meta charSet="utf-8" />
-              <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-              <link href="static/Fonts/Effra" rel="stylesheet" />
-            </Head>
-            <ModalRootContainer />
-            <PageHeaderContainer />
-            <CompositeComponent {...this.props} />
-            <SnackbarContainer />
+          <div>
+            <Layout>
+              <Head>
+                <meta charSet="utf-8" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <link href="static/Fonts/Effra" rel="stylesheet" />
+              </Head>
+              <ModalRootContainer />
+              <PageHeaderContainer />
+              <CompositeComponent {...this.props} />
+              <SnackbarContainer />
+            </Layout>
             <Footer urlsMenu={this.footerLinks} />
-          </Layout>
+          </div>
         </MuiThemeProvider>
       );
     }
