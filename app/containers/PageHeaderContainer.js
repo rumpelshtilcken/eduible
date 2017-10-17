@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import { compose, graphql, gql } from 'react-apollo';
@@ -17,26 +18,29 @@ class PageHeaderContainer extends Component {
       name: PropTypes.string.name
     }),
     signoutUser: PropTypes.func,
-    authenticated: PropTypes.bool,
     showSignInModal: PropTypes.func.isRequired,
     showSignUpProfessionalModal: PropTypes.func.isRequired,
     showSignUpStudentModal: PropTypes.func.isRequired
   };
 
-  handleLogoClick = () => Router.push({ pathname: '/' });
+  shouldComponentUpdate(nextProps) {
+    const { user: prevUser } = this.props;
+    const { user } = nextProps;
+    return !_.isEqual(user, prevUser);
+  }
+
+  handleLogoClick = () => Router.push({ pathname: '/', prefetch: true });
 
   handleLogoutButtonClick = () => {
     this.props.signoutUser();
-    Router.push({ pathname: '/' });
+    Router.push({ pathname: '/', prefetch: true });
   };
 
   profileButtonClick = () => Router.push({ pathname: '/profile',
-    query: {
-      userId: this.props.user.id
-    },
+    query: { userId: this.props.user.id },
     prefetch: true });
 
-  prepareButtons = () => ((this.props.authenticated && this.props.user)
+  prepareButtons = () => (this.props.user
     ? [
       { title: `Hi, ${this.props.user.name.split(' ')[0]}`, onClick: this.profileButtonClick, profile: true },
       { title: 'Logout', onClick: this.handleLogoutButtonClick }
@@ -47,7 +51,7 @@ class PageHeaderContainer extends Component {
       { title: 'Login', onClick: this.props.showSignInModal }
     ]);
 
-  prepareLinks = () => ((this.props.authenticated && this.props.user)
+  prepareLinks = () => (this.props.user
     ? [
       { url: '/searchUniversity', title: 'Search university', prefetch: true },
       { url: '/searchProfessional', title: 'Search professional', prefetch: true }
@@ -76,8 +80,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const getUserByAuth0Id = gql`
-  query allUsers($auth0UserId: String!) {
-    allUsers (filter: {auth0UserId: $auth0UserId}) {
+  query User($auth0UserId: String!) {
+    User (auth0UserId: $auth0UserId) {
       id
       name
     }
@@ -88,7 +92,7 @@ export default compose(
   graphql(getUserByAuth0Id, {
     skip: () => !getCurrentUserData(),
     options: () => ({ variables: { auth0UserId: getCurrentUserData('sub') } }),
-    props: ({ data }) => ({ user: data && data.allUsers && data.allUsers[0] })
+    props: ({ data }) => ({ user: data.User })
   }),
   connect(mapStateToProps, mapDispatchToProps)
 )(PageHeaderContainer);
