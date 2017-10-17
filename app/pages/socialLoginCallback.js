@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 
+import { StatefulView } from 'components';
 import * as authActions from 'actions/auth';
 import * as modalActions from 'actions/modal';
 import withData from 'hoc/withData';
@@ -14,7 +15,9 @@ class SocialLoginCallback extends Component {
     loading: PropTypes.bool,
     authenticated: PropTypes.bool,
     error: PropTypes.string,
-    hideModal: PropTypes.func
+    hideModal: PropTypes.func,
+    modalType: PropTypes.string,
+    showSignUpProfessionalStep2Modal: PropTypes.func
   };
 
   componentDidMount() {
@@ -22,18 +25,24 @@ class SocialLoginCallback extends Component {
     this.props.socialSignInCallback(hash);
   }
 
-  render() {
-    if (this.props.authenticated) {
+  componentWillReceiveProps(nextProps) {
+    const { authenticated } = nextProps;
+    if (authenticated && authenticated !== this.props.authenticated) {
+      this.handleAutheticated();
+    }
+  }
+
+  handleAutheticated = () => {
+    if (this.props.modalType === 'SIGN_UP_PROFESSIONAL') {
+      this.props.showSignUpProfessionalStep2Modal();
+    } else {
       this.props.hideModal();
-      Router.push({ pathname: '/' });
     }
 
-    if (this.props.loading) {
-      return (
-        <div>
-          {'Loading'}
-        </div>);
-    }
+    Router.push({ pathname: '/' });
+  };
+
+  render() {
     if (this.props.error) {
       return (
         <div>
@@ -41,9 +50,9 @@ class SocialLoginCallback extends Component {
         </div>);
     }
     return (
-      <div>
+      <StatefulView {...this.props}>
         {'App will redirect'}
-      </div>
+      </StatefulView>
     );
   }
 }
@@ -55,7 +64,8 @@ const mapStateToProps = (state) => {
     error,
     timestamp,
     forgotMsg,
-    loading
+    loading,
+    modalType: state.modal.type
   };
 };
 
