@@ -11,6 +11,10 @@
   }
 }
 
+.mainTitleContainer {
+  text-align: center;
+}
+
 .start {
   width: 100%;
   padding: 26px 0 12px;

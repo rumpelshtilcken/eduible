@@ -5,7 +5,19 @@ import stylesheet from './index.css';
 const Main = () => (
   <div>
     <div className="container">
-      <div className="start"><div>LETS START LOOKING FOR</div></div>
+      <div className="start">
+        <div className="mainTitleContainer">
+          <div>
+            {'Welcome to Eduible Platform'}
+          </div>
+          <div>
+            {'Place where questions find it\'s answers from primary source'}
+          </div>
+          <div>
+            {'Connect with professionals from any industry and search for Universities worldwide'}
+          </div>
+        </div>
+      </div>
       <div className="chooseBoxes">
         <div className="box">
           <div className="professionalsBox">
