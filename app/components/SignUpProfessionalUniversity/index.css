@@ -46,7 +46,6 @@
 }
 
 .headerTitle {
-  font-family: var(--font);
   font-size: 11px;
   text-align: center;
   font-weight: bold;
