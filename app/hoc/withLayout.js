@@ -56,6 +56,7 @@ const withLayout = hoistStatics((CompositeComponent) => {
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <link href="static/Fonts/Effra" rel="stylesheet" />
+                <link rel="icon" href="static/favicon.ico?v=1.1" />
               </Head>
               <ModalRootContainer />
               <PageHeaderContainer />
