@@ -51,8 +51,8 @@ class ProfessionalProfileInfo extends Component {
 
     if (professional.educations && professional.educations[0]) {
       info.push({
-        headerText: professional.educations[0].major.school.university.name,
-        bodyText: professional.educations[0].major.name
+        headerText: professional.educations[0].major.name,
+        bodyText: professional.educations[0].major.school.university.name
       });
     }
 
