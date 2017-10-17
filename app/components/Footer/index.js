@@ -11,10 +11,9 @@ const Footer = ({ urlsMenu }) => (
     <div className="menuLinks">
       {urlsMenu &&
         urlsMenu.map(urlMenu => (
-          <div className="footerLinksBlock">
+          <div key={urlMenu.firstLinkTitle} className="footerLinksBlock">
             <div className="linkBlockTitle"> {urlMenu.title} </div>
             <Link
-              key={urlMenu.firstLinkTitle}
               href={urlMenu.firstLinkURL}
               style={{
                 border: 0,
