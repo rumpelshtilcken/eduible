@@ -62,9 +62,7 @@ class SignUpProfessionalUniversityFormContainer extends Component {
 
 const getUniversities = gql`
   query getUniversities($universityName: String!) {
-    University(name: $universityName) {
-      id
-    }
+    University(name: $universityName) { id }
   }
 `;
 

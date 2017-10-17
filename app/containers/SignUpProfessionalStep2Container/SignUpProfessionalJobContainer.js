@@ -49,18 +49,13 @@ class SignUpProfessionalJobContainer extends Component {
 
 const getJobTitle = gql`
   query getJobTitle($jobTitle: String!) {
-    JobTitle(title: $jobTitle) {
-      id 
-      title
-    }
+    JobTitle(title: $jobTitle) { id }
   }
 `;
 
 const getCompany = gql`
   query getCompany($companyName: String!) {
-    Company( name: $companyName ) { 
-      id 
-    }
+    Company( name: $companyName ) { id }
   }
 `;
 
@@ -77,7 +72,8 @@ compose(
     name: 'jobTitle',
     skip: ({ jobTitleTitle }) => !jobTitleTitle,
     options: ({ jobTitleTitle }) => ({ variables: { jobTitle: jobTitleTitle } }),
-    props: ({ jobTitle }) => ({ jobTitle: jobTitle.JobTitle })
+    props: ({ jobTitle }) => console.log(jobTitle) ||
+      ({ jobTitle: jobTitle.JobTitle, jobTitleLoading: jobTitle })
   })
 )(SignUpProfessionalJobContainer);
 
