@@ -32,7 +32,7 @@ class ResponsiveMenu extends Component {
       key={title}
       className={'linkContainer'}
     >
-      <Link href={url} prefetch={prefetch} style={{ fontSize: '13px', color: '#7262bf' }} purple>
+      <Link key={url} href={url} prefetch={prefetch} style={{ fontSize: '13px', color: '#7262bf' }} purple>
         {title}
       </Link>
       <style jsx>{stylesheet}</style>
@@ -40,26 +40,10 @@ class ResponsiveMenu extends Component {
   );
 
   renderButtons = ({ title, onClick, profile }) => (
-    <div>
-      {profile &&
-        <div
-          key="profile"
-          className={cx('linkContainer', {
-            profile: true
-          })}
-        >
-          <button
-            className="button"
-            onClick={onClick}
-          >
-            {'Profile'}
-          </button>
-        </div>
-      }
+    <div key={title}>
       <div
-        key={title}
-        className={cx('', {
-          linkContainer: !profile
+        className={cx('linkContainer', {
+          profile
         })}
       >
         <button
@@ -68,7 +52,7 @@ class ResponsiveMenu extends Component {
           })}
           onClick={onClick}
         >
-          {profile ? title : title}
+          {title}
         </button>
       </div>
       <style jsx>{stylesheet}</style>

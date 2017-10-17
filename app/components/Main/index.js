@@ -11,8 +11,10 @@ const Main = () => (
           <div className="professionalsBox">
             <Link href="/searchProfessional" prefetch>
               <a className="text">
-                <h1>PROFESSIONALS</h1>
-                <p>{'Connect with pros to gain knowledge, answer your questions & stay ahead of competition.'}</p>
+                <div>
+                  <h1>PROFESSIONALS</h1>
+                  <p>{'Connect with pros to gain knowledge, answer your questions & stay ahead of competition.'}</p>
+                </div>
               </a>
             </Link>
           </div>
@@ -21,8 +23,10 @@ const Main = () => (
           <div className="universityBox">
             <Link href="/searchUniversity" prefetch>
               <a className="text">
-                <h1>UNIVERSITY</h1>
-                <p>{'Search by College or Major, get your personal admittance chart & take successful path.'}</p>
+                <div>
+                  <h1>UNIVERSITY</h1>
+                  <p>{'Search by College or Major, get your personal admittance chart & take successful path.'}</p>
+                </div>
               </a>
             </Link>
           </div>
