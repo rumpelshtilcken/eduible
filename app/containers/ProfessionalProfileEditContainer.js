@@ -51,6 +51,7 @@ class ProfessionalProfileEditContainer extends Component {
 const getProfessionalById = gql`
   query GetUserById($id: ID!) {
     User(id: $id) {
+      id
       userType
       name
       birthday

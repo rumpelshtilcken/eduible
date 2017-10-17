@@ -6,26 +6,32 @@ import { getCurrentUserData } from 'utils/auth';
 import StudentProfileEditContainer from './StudentProfileEditContainer';
 import ProfessionalProfileEditContainer from './ProfessionalProfileEditContainer';
 
-const ProfileEditContainer = ({ userType, userId, onCancelButtonClick }) => {
+const ProfileEditContainer = ({ user, loading, error, onCancelButtonClick }) => {
+  if (error) return <div>{error}</div>;
+  if (loading) return null;
+  const { userType, id } = user;
   if (userType === 'Professional') {
     return (
       <ProfessionalProfileEditContainer
-        userId={userId}
+        userId={id}
         onCancelButtonClick={onCancelButtonClick}
       />);
   } else if (userType === 'Student') {
     return (
       <StudentProfileEditContainer
-        userId={userId}
+        userId={id}
         onCancelButtonClick={onCancelButtonClick}
       />);
   }
-  return (<div> 404</div>);
 };
 
 ProfileEditContainer.propTypes = {
-  userType: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    userType: PropTypes.string
+  }),
+  error: PropTypes.string,
+  loading: PropTypes.bool,
   onCancelButtonClick: PropTypes.func.isRequired
 };
 
@@ -41,12 +47,12 @@ query User($auth0UserId: String!) {
 
 export default graphql(getUserByAuth0Id, {
   name: 'user',
+  skip: () => !getCurrentUserData('sub'),
   options: () => ({
     variables: {
       auth0UserId: getCurrentUserData('sub')
     }
   }),
-  skip: () => !getCurrentUserData('sub'),
   props: ({ user }) => ({
     user: user.User, loading: user.loading, error: user.error
   })
