@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose, graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import { convertDateToISO } from 'utils/auth';
+import { convertDateToISO, getCurrentUserData } from 'utils/auth';
 import * as authActions from 'actions/auth';
 import * as formActions from 'actions/form';
 import * as modalActions from 'actions/modal';
@@ -21,11 +21,22 @@ class SignUpProfessionalUniversityContainer extends Component {
     signupProfessional: PropTypes.func,
     updateProfessional: PropTypes.func,
     values: PropTypes.object,
-    reset: PropTypes.func
+    reset: PropTypes.func,
+    update: PropTypes.func
   };
 
   state = {
     loading: false
+  }
+
+  componentDidMount() {
+    if (process.browser) {
+      const headline = getCurrentUserData('headline');
+      if (headline) {
+        const university = headline.split(' - ')[1];
+        this.props.update({ name: 'university', value: university });
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -36,14 +47,12 @@ class SignUpProfessionalUniversityContainer extends Component {
     try {
       this.setState({ loading: true });
       const variables = this.prepareParams(params);
-      console.log(variables);
       await this.props.updateProfessional({ variables });
-      this.props.showSnackbar({ messageType: 'success', message: 'Success' });
-      this.props.hideModal();
+      this.handleDidAddUniversity();
       this.setState({ loading: false });
     } catch (err) {
       this.setState({ loading: false });
-      this.props.showSnackbar({ messageType: 'error', message: 'Server error' });
+      this.handleAddUniversityError();
     }
   };
 
@@ -60,6 +69,14 @@ class SignUpProfessionalUniversityContainer extends Component {
       endYear: convertDateToISO(endYear)
     };
   };
+
+  handleDidAddUniversity = () => {
+    this.props.showSnackbar({ messageType: 'success', message: 'Success' });
+    this.props.hideModal();
+  };
+
+  handleAddUniversityError = () =>
+    this.props.showSnackbar({ messageType: 'error', message: 'Server error' });;
 
   handleSkipButtonClick = () => {
     this.props.hideModal();
