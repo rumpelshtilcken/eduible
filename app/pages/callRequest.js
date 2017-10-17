@@ -1,15 +1,25 @@
 import { Component } from 'react';
 import Head from 'next/head';
+import PropTypes from 'prop-types';
 
 import withPage from 'hoc/withPage';
 import CallRequestContainer from 'containers/CallRequestContainer';
 
-class callRequest extends Component {
+class CallRequest extends Component {
+  static propTypes = {
+    url: PropTypes.shape({
+      query: PropTypes.shape({
+        professionalId: PropTypes.string.isRequired
+      })
+    })
+  };
+
   handleBackButtonClick = () => {
     // TODO: navigate back
   };
 
   render() {
+    console.log(this.props.url);
     return (
       <div>
         <Head>
@@ -21,5 +31,5 @@ class callRequest extends Component {
   }
 }
 
-export default withPage(callRequest);
+export default withPage(CallRequest);
 
