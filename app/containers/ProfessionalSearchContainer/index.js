@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose, graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import { ProfessionalSearch } from 'components';
+import { ProfessionalSearch, Loader } from 'components';
 import * as searchActions from 'actions/search';
 
 import { getProfessionals, getJobTitles, getUniveristies } from './Queries';
@@ -20,7 +20,7 @@ class ProfessionalSearchContainer extends Component {
     resetFilter: PropTypes.func.isRequired,
     universityId: PropTypes.string,
     jobTitleId: PropTypes.string,
-    loading: PropTypes.boolean,
+    loading: PropTypes.bool,
     error: PropTypes.object
   };
 
@@ -41,10 +41,13 @@ class ProfessionalSearchContainer extends Component {
   }
 
   render() {
+    if (this.props.loading) {
+      return <Loader />;
+    }
     return (
       <ProfessionalSearch
         chosenUniversityId={this.props.universityId}
-        chosenJoTitleId={this.props.jobTitleId}
+        chosenJobTitleId={this.props.jobTitleId}
         jobTitles={this.props.allJobTitles}
         onJobTitleChoose={this.handleJobTitleChoose}
         onProfessionalChoose={this.props.onProfessionalChoose}
@@ -54,7 +57,6 @@ class ProfessionalSearchContainer extends Component {
         universities={this.props.allUniversities}
         handleSort={this.handleSort}
         handleRangeChange={this.handleRangeChange}
-        loading={this.props.loading}
         error={this.props.error}
       />
     );
@@ -140,8 +142,8 @@ export default compose(
     },
     props: ({ allProfessionals }) => ({
       allProfessionals: allProfessionals && allProfessionals.allProfessionals,
-      loading: allProfessionals.loading,
-      error: allProfessionals.error
+      loading: !allProfessionals || allProfessionals.loading,
+      error: allProfessionals && allProfessionals.error
     }),
     name: 'allProfessionals'
   }),

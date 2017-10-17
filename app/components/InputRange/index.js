@@ -7,7 +7,6 @@ class InputRange extends Component {
   state = {
     value: [1, 9999999]
   };
-  getValue = () => this.state.value;
 
   handleLowerBoundChange = (e) => {
     if (e.target.value <= this.state.value[1] && e.target.value >= 1) {
@@ -42,7 +41,7 @@ class InputRange extends Component {
     const Range = Slider.Range;
 
     return (
-      <div getValue={this.getValue}>
+      <div>
         <Range
           min={1}
           max={9999999}

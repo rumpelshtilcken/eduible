@@ -79,8 +79,8 @@ ProfessionalCard.propTypes = {
       name: PropTypes.string.isRequired
     }).isRequired,
     job: PropTypes.shape({
-      jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired,
-      company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired
+      jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }),
+      company: PropTypes.shape({ name: PropTypes.string.isRequired })
     }),
     majors: PropTypes.shape({
       name: PropTypes.string,

@@ -11,7 +11,7 @@ import ProfessionalCard from './ProfessionalCard';
 import stylesheet from './index.css';
 
 class ProfessionalSearch extends Component {
-  propTypes = {
+  static propTypes = {
     onProfessionalChoose: PropTypes.func.isRequired,
     onRequestButtonClick: PropTypes.func.isRequired,
     professionals: PropTypes.array.isRequired,
@@ -20,7 +20,7 @@ class ProfessionalSearch extends Component {
     onUniversityChoose: PropTypes.func.isRequired,
     onJobTitleChoose: PropTypes.func.isRequired,
     chosenUniversityId: PropTypes.string,
-    chosenJoTitleId: PropTypes.string,
+    chosenJobTitleId: PropTypes.string,
     handleSort: PropTypes.func,
     handleRangeChange: PropTypes.func
   };
@@ -88,7 +88,7 @@ class ProfessionalSearch extends Component {
         />}
         {jobTitles &&
         <SelectDropdown
-          defaultValue={this.props.chosenJoTitleId}
+          defaultValue={this.props.chosenJobTitleId}
           className="selectDropdown"
           onChange={this.handleJobTitleChoose}
           options={jobTitles}
