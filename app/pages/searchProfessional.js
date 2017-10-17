@@ -6,8 +6,13 @@ import withPage from 'hoc/withPage';
 import ProfessionalSearchContainer from '../containers/ProfessionalSearchContainer';
 
 class ProfessionalSearchPage extends Component {
-  handleRequestButtonClick = () => {
-    // TODO get professionalId and call page onRequestButtonClick
+  handleRequestButtonClick = ({ professionalId }) => {
+    Router.push({
+      pathname: '/callRequest',
+      query: {
+        professionalId
+      }
+    });
   };
 
   handleProfessionalChoose = ({ userId }) => {

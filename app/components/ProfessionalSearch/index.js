@@ -46,10 +46,12 @@ class ProfessionalSearch extends Component {
     this.props.onJobTitleChoose(e.target.value);
 
   renderProfessional = (professional) => {
-    const handleRequestCallClick = () =>
+    const handleRequestCallClick = (e) => {
+      e.stopPropagation();
       this.props.onRequestButtonClick({
         professionalId: professional.id
       });
+    };
 
     const handleProfessionalChoose = () =>
       this.props.onProfessionalChoose({
