@@ -5,4 +5,5 @@ body {
 
 .content {
   font-family: 'Effra', sans-serif;
+  min-height: 90vh;
 }
