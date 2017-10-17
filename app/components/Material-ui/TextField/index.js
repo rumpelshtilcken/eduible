@@ -37,7 +37,7 @@ MuiTextField.propTypes = {
   placeholder: PropTypes.string,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired
+  value: PropTypes.string
 };
 
 export default MuiTextField;
