@@ -18,7 +18,7 @@ Loader.propTypes = {
 };
 
 Loader.defaultProps = {
-  color: '#26A65B',
+  color: '#7262BF',
   size: '16px',
   margin: '4px'
 };

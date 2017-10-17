@@ -8,11 +8,11 @@ import * as searchAction from 'actions/search';
 class SearchTextInputContainer extends Component {
   static propTypes = {
     placeholder: PropTypes.string,
-    searchUpdate: PropTypes.func.isRequired
+    searchInput: PropTypes.func.isRequired
   };
 
   handleSearchChange = (input) => {
-    this.props.searchUpdate({ name: 'input', value: input.value });
+    this.props.searchInput(input.value);
   };
 
   render() {

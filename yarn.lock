@@ -6811,6 +6811,10 @@ reduce-function-call@^1.0.1, reduce-function-call@^1.0.2:
   dependencies:
     balanced-match "^0.4.2"
 
+redux-observable@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/redux-observable/-/redux-observable-0.16.0.tgz#dc431d0f47a9c3af232639d6bdd70d80c1b620d9"
+
 redux-persist@^4.8.3:
   version "4.10.1"
   resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-4.10.1.tgz#4fb2b789942f10f56d51cc7ad068d9d6beb46124"
@@ -7091,7 +7095,7 @@ rx-lite@*, rx-lite@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
 
-rxjs@^5.0.0-beta.11:
+rxjs@^5.0.0-beta.11, rxjs@^5.4.3:
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.4.3.tgz#0758cddee6033d68e0fd53676f0f3596ce3d483f"
   dependencies:

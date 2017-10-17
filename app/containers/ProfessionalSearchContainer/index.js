@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose, graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import { ProfessionalSearch, Loader } from 'components';
+import { ProfessionalSearch } from 'components';
 import * as searchActions from 'actions/search';
 
 import { getProfessionals, getJobTitles, getUniveristies } from './Queries';
@@ -41,9 +41,6 @@ class ProfessionalSearchContainer extends Component {
   }
 
   render() {
-    if (this.props.loading) {
-      return <Loader />;
-    }
     return (
       <ProfessionalSearch
         chosenUniversityId={this.props.universityId}
@@ -57,6 +54,7 @@ class ProfessionalSearchContainer extends Component {
         universities={this.props.allUniversities}
         handleSort={this.handleSort}
         handleRangeChange={this.handleRangeChange}
+        loading={this.props.loading}
         error={this.props.error}
       />
     );

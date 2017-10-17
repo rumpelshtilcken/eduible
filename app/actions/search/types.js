@@ -1,3 +1,4 @@
 export const SEARCH_UPDATE = 'SEARCH_UPDATE';
+export const SEARCH_INPUT = 'SEARCH_INPUT';
 export const SEARCH_RESET = 'SEARCH_RESET';
 export const RESET_FILTER = 'RESET_FILTER';

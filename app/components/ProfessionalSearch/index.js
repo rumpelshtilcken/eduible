@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import {
   InputRange,
+  Loader,
   SelectDropdown
 } from 'components';
 import SearchTextInputContainer from 'containers/SearchTextInputContainer';
@@ -12,17 +13,18 @@ import stylesheet from './index.css';
 
 class ProfessionalSearch extends Component {
   static propTypes = {
+    chosenJobTitleId: PropTypes.string,
+    chosenUniversityId: PropTypes.string,
+    handleRangeChange: PropTypes.func,
+    handleSort: PropTypes.func,
+    jobTitles: PropTypes.array.isRequired,
+    loading: PropTypes.bool,
+    onJobTitleChoose: PropTypes.func.isRequired,
     onProfessionalChoose: PropTypes.func.isRequired,
     onRequestButtonClick: PropTypes.func.isRequired,
-    professionals: PropTypes.array.isRequired,
-    universities: PropTypes.array.isRequired,
-    jobTitles: PropTypes.array.isRequired,
     onUniversityChoose: PropTypes.func.isRequired,
-    onJobTitleChoose: PropTypes.func.isRequired,
-    chosenUniversityId: PropTypes.string,
-    chosenJobTitleId: PropTypes.string,
-    handleSort: PropTypes.func,
-    handleRangeChange: PropTypes.func
+    professionals: PropTypes.array.isRequired,
+    universities: PropTypes.array.isRequired
   };
 
   prepareDataToSelectDropdown = data => data.map(item => ({
@@ -119,8 +121,9 @@ class ProfessionalSearch extends Component {
               <option key="HIGHEST PRICE" value={'price_DESC'}>HIGHEST PRICE</option>
             </select>
             {
-              this.props.professionals && this.props.professionals.map(
-                this.renderProfessional)
+              this.props.loading ? <Loader /> :
+                (this.props.professionals && this.props.professionals.map(
+                  this.renderProfessional))
             }
           </div>
         </div>

@@ -1,8 +1,10 @@
+import { createEpicMiddleware } from 'redux-observable';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import reduxThunk from 'redux-thunk';
 
-import reducers from 'reducers';
+import * as reducers from 'reducers';
+import rootEpic from 'epics';
 
 let reduxStore = null;
 
@@ -13,6 +15,7 @@ if (process.browser && window.__REDUX_DEVTOOLS_EXTENSION__) {
 }
 
 function create(apollo, initialState = {}) {
+  const epicMiddleware = createEpicMiddleware(rootEpic);
   const store = createStore(
     combineReducers({
       // Setup reducers
@@ -21,7 +24,7 @@ function create(apollo, initialState = {}) {
     }),
     initialState, // Hydrate the store with server-side data
     compose(
-      applyMiddleware(apollo.middleware(), reduxThunk), // Add additional middleware here
+      applyMiddleware(apollo.middleware(), reduxThunk, epicMiddleware), // Add additional middleware here
       autoRehydrate(),
       devtools
     )

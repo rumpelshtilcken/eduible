@@ -1,13 +1,5 @@
-import auth from './authReducer';
-import form from './formReducer';
-import modal from './modalReducer';
-import search from './searchReducer';
-import snackbar from './snackbarReducer';
-
-export default {
-  auth,
-  form,
-  modal,
-  search,
-  snackbar
-};
+export { default as auth } from './authReducer';
+export { default as form } from './formReducer';
+export { default as modal } from './modalReducer';
+export { default as search } from './searchReducer';
+export { default as snackbar } from './snackbarReducer';

@@ -1,5 +1,9 @@
 import * as types from './types';
 
+export const searchInput = value => dispatch => dispatch({
+  type: types.SEARCH_INPUT, value
+});
+
 export const searchUpdate = ({ name, value }) => dispatch => dispatch({
   type: types.SEARCH_UPDATE, name, value
 });
