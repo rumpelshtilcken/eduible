@@ -16,9 +16,14 @@ class SignUpProfessionalStep2Container extends Component {
     loading: PropTypes.bool.isRequired,
     user: PropTypes.shape({
       professional: PropTypes.shape({
-        id: PropTypes.string
+        id: PropTypes.string,
+        job: PropTypes.shape({
+          jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }),
+          company: PropTypes.shape({ name: PropTypes.string.isRequired })
+        })
       })
     }).isRequired,
+    update: PropTypes.func,
     showSnackbar: PropTypes.func,
     updateProfessionalJob: PropTypes.func.isRequired,
     showSignUpProfessionalUniversity: PropTypes.func.isRequired,
@@ -28,6 +33,16 @@ class SignUpProfessionalStep2Container extends Component {
 
   state = {
     loading: false
+  }
+
+  componentDidMount() {
+    if (!this.props.loading) {
+      const { job } = this.props.user.professional;
+      if (job) {
+        if (job.jobTitle) this.props.update({ name: 'jobTitle', value: job.jobTitle.title });
+        if (job.company) this.props.update({ name: 'company', value: job.company.name });
+      }
+    }
   }
 
   componentWillUnmount() {
