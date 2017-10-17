@@ -39,25 +39,51 @@ class ResponsiveMenu extends Component {
     </div>
   );
 
-  renderButtons = ({ title, onClick, profile }) => (
-    <div key={title}>
+  renderProfileButton = ({ title, onClick }) => (
+    <div>
       <div
-        className={cx('linkContainer', {
-          profile
-        })}
+        key={title}
+        className={cx('linkContainer', { hidden: true })}
       >
         <button
-          className={cx('button', {
-            hidden: profile
-          })}
+          className="button"
           onClick={onClick}
         >
           {title}
         </button>
+        <style jsx>{stylesheet}</style>
       </div>
-      <style jsx>{stylesheet}</style>
+      <div
+        key={`${title}1`}
+        className={cx('linkContainer', { profile: true })}
+      >
+        <button
+          className="button"
+          onClick={onClick}
+        >
+          {'Profile'}
+        </button>
+        <style jsx>{stylesheet}</style>
+      </div>
     </div>
   );
+
+  renderButtons = ({ title, onClick, profile }) => (profile
+    ? this.renderProfileButton({ title, onClick, profile })
+    : (
+      <div
+        key={title}
+        className="linkContainer"
+      >
+        <button
+          className="button"
+          onClick={onClick}
+        >
+          {title}
+        </button>
+        <style jsx>{stylesheet}</style>
+      </div>
+    ));
 
   render() {
     const { links, buttons } = this.props;
