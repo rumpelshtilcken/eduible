@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import { auth0Config } from 'config';
 import { decodeJwtToken } from 'utils/auth';
-import GraphCool from './GraphCool';
+import GraphCool from 'utils/GraphCool';
 
 export default class Auth {
   auth0 = new auth0.WebAuth(auth0Config);

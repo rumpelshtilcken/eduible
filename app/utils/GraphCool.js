@@ -1,6 +1,6 @@
 import { gql } from 'react-apollo';
 
-import { convertDateToISO, decodeJwtToken, parseHash } from 'utils/auth';
+import { convertDateToISO } from 'utils/auth';
 import initApollo from 'lib/initApollo';
 
 export default class GraphCool {
