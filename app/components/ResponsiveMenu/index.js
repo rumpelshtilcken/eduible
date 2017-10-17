@@ -32,7 +32,7 @@ class ResponsiveMenu extends Component {
       key={title}
       className={'linkContainer'}
     >
-      <Link href={url} prefetch={prefetch} style={{ fontSize: '13px', color: '#7262bf' }} purple>
+      <Link key={url} href={url} prefetch={prefetch} style={{ fontSize: '13px', color: '#7262bf' }} purple>
         {title}
       </Link>
       <style jsx>{stylesheet}</style>
@@ -43,7 +43,7 @@ class ResponsiveMenu extends Component {
     <div>
       {profile &&
         <div
-          key="profile"
+          key={title}
           className={cx('linkContainer', {
             profile: true
           })}
