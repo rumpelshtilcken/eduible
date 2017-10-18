@@ -15,7 +15,7 @@ class CallRequest extends Component {
   };
 
   handleBackButtonClick = () => {
-    // TODO: navigate back
+    window.history.back();
   };
 
   render() {
