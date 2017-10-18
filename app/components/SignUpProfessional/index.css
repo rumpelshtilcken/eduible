@@ -11,20 +11,33 @@
   justify-content: center;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+  transition-delay: background-color 5000s, color 5000s;
+}
+
+
 .signUpProfessionalModal {
   min-width: 255px;
   max-width: 426px;
+  height: 560px;
   border-radius: 20px;
   padding: 0;
   background: rgb(255, 255, 255);
   border: 1px solid rgb(204, 204, 204);
   outline: none;
-  overflow: hidden;
+  overflow: -moz-scrollbars-none;
+  overflow: auto;
   margin: auto;
 
   @media screen and (min-width: 768px) {
-    height: 560px;
+    height: 580px;
   }
+}
+
+.ReactModal__Body--open {
+  overflow-y: hidden;
 }
 
 .signUpProfessionalContainer {
@@ -44,11 +57,12 @@ p {
   display: flex;
   flex-wrap: wrap;
   margin-left: 30px;
+  box-sizing: border-box;
   height: 680px;
 
   @media screen and (min-width: 768px) {
     width: 88%;
-    height: 400px;
+    height: 500px;
     margin: auto;
   }
 }
@@ -92,15 +106,22 @@ p {
   color: #00ff1f;
 }
 
+
 .signUpProfessionalContinueButton {
   width: 100%;
   margin-top: 16px;
   margin-bottom: 15px;
 
   @media screen and (min-width: 768px) {
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    margin-top: auto;
     height: 32px;
+  }
+}
+
+.loginContainerLine {
+  @media screen and (min-width: 768px) {
+    display: none;
   }
 }
 
@@ -108,11 +129,18 @@ p {
   width: 100%;
 
   @media screen and (min-width: 768px) {
-    position: relative;
-    margin-top: 30px;
-    top: -179px;
-    left: 214px;
-    width: 40%;
+    display: none;
+  }
+}
+
+.signUpProfessionalSocialContainerIn {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+    order: 5;
+    width: 150px;
+    margin-left: 24px;
   }
 }
 
@@ -125,11 +153,18 @@ p {
   margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
-    position: relative;
-    margin-top: 40px;
-    top: -270px;
-    left: 67px;
-    width: 40%;
+    display: none;
+  }
+}
+
+.signUpProfessionalLoginContainerIn {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+    order: 6;
+    width: 150px;
+    margin-left: 24px;
   }
 }
 

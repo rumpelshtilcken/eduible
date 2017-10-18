@@ -23,7 +23,9 @@ class SignInContainer extends Component {
     reset: PropTypes.func.isRequired,
     authenticated: PropTypes.bool,
     error: PropTypes.string,
-    showSnackbar: PropTypes.func.isRequired
+    showSnackbar: PropTypes.func.isRequired,
+    showSignUpProfessionalModal: PropTypes.func.isRequired,
+    showSignUpStudentModal: PropTypes.func.isRequired
   };
 
   state = {
@@ -106,6 +108,8 @@ class SignInContainer extends Component {
       <SignIn
         {...this.props}
         onContinueButtonClick={this.handleContinueButtonClick}
+        onSignUpStudentButtonClick={this.props.showSignUpStudentModal}
+        onSignUpProfessionalButtonClick={this.props.showSignUpProfessionalModal}
         inputs={this.inputs}
       />
     );

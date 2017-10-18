@@ -12,6 +12,7 @@
   }
 }
 
+
 .title {
   text-align: center;
   width: 80%;
@@ -132,7 +133,8 @@ hr {
   width: 50%;
   background-color: #f9f9f9;
   height: 34px;
-  padding: 10px;
+  padding-left: 10px;
+  color: #626262;
   border: none;
 
   @media screen and (min-width: 768px) {
