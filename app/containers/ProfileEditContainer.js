@@ -8,14 +8,8 @@ import { StatefulView } from 'components';
 import StudentProfileEditContainer from './StudentProfileEditContainer';
 import ProfessionalProfileEditContainer from './ProfessionalProfileEditContainer';
 
-const ProfileEditContainer = ({
-  error,
-  loading,
-  onCancelButtonClick,
-  onDidProfileSave,
-  onDidRemoveProfile,
-  user
-}) => {
+const ProfileEditContainer = ({ user, loading, error, onCancelButtonClick, onDidProfileSave, onDidRemoveProfile }) => {
+  if (!process.browser) return null;
   if (error) return <div>{error}</div>;
 
   return (

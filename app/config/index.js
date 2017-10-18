@@ -8,7 +8,7 @@ export const auth0Config = {
   callbackUrl: 'http://localhost:3000/socialLoginCallback',
   realm: 'Username-Password-Authentication',
   scope: 'openid email  profile',
-  redirectUri: 'http://localhost:3000/socialLoginCallback'
+  redirectUri: 'http://www.eduible.com/socialLoginCallback'
 };
 
 export const mailingConfig = {

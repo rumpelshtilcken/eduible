@@ -20,7 +20,7 @@ class TextFieldContainer extends Component {
   };
 
   componentDidMount() {
-    if (this.props.validation) {
+    if (!this.props.validation) {
       this.validation(this.props.name, (this.props.values[name] || ''));
     }
   }

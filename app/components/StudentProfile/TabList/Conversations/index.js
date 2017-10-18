@@ -26,6 +26,16 @@ const user = [
     }
   },
   {
+    name: 'Simona Kate',
+    imgUrl: '/static/anna.jpg',
+    conversation: {
+      duration: '17 minutes',
+      date: '21 August, 2017',
+      time: '8:30PM',
+      conference: true
+    }
+  },
+  {
     name: 'Mona Albert',
     imgUrl: '/static/mona.jpg',
     conversation: {
