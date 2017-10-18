@@ -13,7 +13,7 @@ class StudentProfile extends Component {
       PropTypes.object
     ).isRequired,
     onRemoveFromListClick: PropTypes.func.isRequired,
-    onProfileEditButtonClick: PropTypes.func.isRequired
+    onEditButtonClick: PropTypes.func.isRequired
   };
 
   tabs = [
@@ -31,16 +31,12 @@ class StudentProfile extends Component {
     }
   ]
 
-  handleEditButtonClick = () => {
-    // TODO: handle edit profile button click
-  }
-
   render() {
     return (
       <div className="container">
         <Profile
           user={this.props.user}
-          onEditButtonClick={this.props.onProfileEditButtonClick}
+          onEditButtonClick={this.props.onEditButtonClick}
         />
         <Conversations />
         <style jsx>{stylesheet}</style>
