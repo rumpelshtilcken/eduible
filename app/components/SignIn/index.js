@@ -2,12 +2,13 @@ import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 
 import { AuthForm, MuiButton, StatefulView } from 'components';
-
 import SignInSocialContainer from 'containers/SignInSocialContainer';
+
 
 import stylesheet from './index.css';
 
-const SignIn = ({ onRequestClose, onContinueButtonClick, inputs, ...props }) => (
+
+const SignIn = ({ ...props, onRequestClose, onContinueButtonClick, inputs, onSignUpStudentButtonClick, onSignUpProfessionalButtonClick }) => (
   <div>
     <Modal
       isOpen
@@ -34,7 +35,18 @@ const SignIn = ({ onRequestClose, onContinueButtonClick, inputs, ...props }) => 
               <div className="signUpLink">
                 <img className="line" src="/static/Line.jpg" alt="hrline" />
                 <p>DON&#39;T HAVE AN ACCOUNT?</p>
-                <a className="signUpLink" href="#" >Sign Up here</a>
+                <button
+                  className="signUpButton"
+                  onClick={onSignUpStudentButtonClick}
+                >
+                  {'Sign Up as Professional'}
+                </button>
+                <button
+                  className="signUpButton"
+                  onClick={onSignUpProfessionalButtonClick}
+                >
+                  {'Sign Up as Student'}
+                </button>
               </div>
             </div>
           </div>
@@ -49,7 +61,9 @@ const SignIn = ({ onRequestClose, onContinueButtonClick, inputs, ...props }) => 
 SignIn.propTypes = {
   onRequestClose: PropTypes.func.isRequired,
   onContinueButtonClick: PropTypes.func.isRequired,
-  inputs: PropTypes.arrayOf(PropTypes.object)
+  inputs: PropTypes.arrayOf(PropTypes.object),
+  onSignUpStudentButtonClick: PropTypes.func.isRequired,
+  onSignUpProfessionalButtonClick: PropTypes.func.isRequired
 };
 
 export default SignIn;

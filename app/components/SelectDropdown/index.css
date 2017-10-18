@@ -9,6 +9,14 @@
   color: #000;
   font-family: "Effra";
   font-size: 11px;
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+}
+
+
+select::-ms-expand {
+  display: none;
 }
 
 .professions,

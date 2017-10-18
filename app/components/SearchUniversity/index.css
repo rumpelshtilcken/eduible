@@ -91,6 +91,7 @@
   }
 }
 
+
 .pricesFilter {
   display: block;
   margin: auto;
@@ -99,8 +100,9 @@
   width: 44%;
   background-color: #f9f9f9;
   height: 34px;
-  padding: 10px;
+  padding-left: 10px;
   border: none;
+  color: #626262;
 
   @media screen and (min-width: 768px) {
     margin-left: auto;

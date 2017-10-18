@@ -1,6 +1,6 @@
 .signUpStudentModalContainer {
-  width: 255px;
-  height: 600px;
+  width: 238px;
+  height: 560px;
   border-radius: 20px;
   padding: 0;
   background: rgb(255, 255, 255);
@@ -10,13 +10,16 @@
   margin: auto;
 
   @media (min-width: 768px) {
-    height: 442px;
+    min-height: 500px;
+    height: 500px;
     width: 456px;
   }
+}
 
-  @media (min-width: 1024px) {
-    height: 560px;
-  }
+input:-webkit-autofill,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+  transition-delay: background-color 5000s, color 5000s;
 }
 
 .ReactModal__Body--open {
@@ -107,11 +110,12 @@ p {
 
 .signUpStudentContinueButton {
   width: 100%;
-  margin-top: 16px;
+  margin-top: 30px;
   margin-bottom: 24px;
 
   @media screen and (min-width: 768px) {
-    margin-top: 20px;
+    margin-top: 40px;
+    margin-bottom: 0;
     order: 1;
   }
 }
@@ -147,10 +151,6 @@ p {
     margin-top: 15px;
     margin-left: 35px;
   }
-}
-
-.signUpStudentSocialContainer p {
-  margin-bottom: 10px;
 }
 
 .signUpStudentSocialContainer p {
