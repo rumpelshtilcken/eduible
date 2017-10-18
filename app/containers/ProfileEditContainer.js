@@ -6,7 +6,14 @@ import { getCurrentUserData } from 'utils/auth';
 import StudentProfileEditContainer from './StudentProfileEditContainer';
 import ProfessionalProfileEditContainer from './ProfessionalProfileEditContainer';
 
-const ProfileEditContainer = ({ user, loading, error, onCancelButtonClick }) => {
+const ProfileEditContainer = ({
+  error,
+  loading,
+  onCancelButtonClick,
+  onDidProfileSave,
+  onDidRemoveProfile,
+  user
+}) => {
   if (!process.browser) return null;
   if (error) return <div>{error}</div>;
   if (loading) return null;
@@ -16,12 +23,16 @@ const ProfileEditContainer = ({ user, loading, error, onCancelButtonClick }) => 
       <ProfessionalProfileEditContainer
         userId={id}
         onCancelButtonClick={onCancelButtonClick}
+        onDidProfileSave={onDidProfileSave}
+        onDidRemoveProfile={onDidRemoveProfile}
       />);
   } else if (userType === 'Student') {
     return (
       <StudentProfileEditContainer
         userId={id}
         onCancelButtonClick={onCancelButtonClick}
+        onDidProfileSave={onDidProfileSave}
+        onDidRemoveProfile={onDidRemoveProfile}
       />);
   }
 };
@@ -33,7 +44,9 @@ ProfileEditContainer.propTypes = {
   }),
   error: PropTypes.string,
   loading: PropTypes.bool,
-  onCancelButtonClick: PropTypes.func.isRequired
+  onCancelButtonClick: PropTypes.func.isRequired,
+  onDidProfileSave: PropTypes.func.isRequired,
+  onDidRemoveProfile: PropTypes.func.isRequired
 };
 
 const getUserByAuth0Id = gql`

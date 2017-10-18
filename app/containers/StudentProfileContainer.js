@@ -3,18 +3,24 @@ import PropTypes from 'prop-types';
 
 import { StudentProfile } from 'components';
 
-const StudentProfileContainer = ({ user, onProfileEditButtonClick }) => (user
-  ? <StudentProfile user={user} onProfileEditButtonClick={onProfileEditButtonClick} />
-  : <div>Loading...</div>);
+const StudentProfileContainer = ({ user, loading, error, onEditButtonClick }) => {
+  if (loading) return (<div>Loading...</div>);
+  if (error) return (<div>{`Error: ${error}`}</div>);
+
+  return <StudentProfile user={user} onEditButtonClick={onEditButtonClick} />;
+};
 
 StudentProfileContainer.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.string,
   user: PropTypes.object,
-  onProfileEditButtonClick: PropTypes.func.isRequired
+  onEditButtonClick: PropTypes.func.isRequired
 };
 
 const getStudentById = gql`
   query GetUserById($id: ID!) {
     User(id: $id) {
+      id
       name
       student {
         id
@@ -27,7 +33,7 @@ export default graphql(getStudentById, {
   options: ({ id }) => ({
     variables: { id }
   }),
-  props: ({ data: { User } }) => ({
-    user: User, loading: User.loading, error: User.error
+  props: ({ data: { User, loading, error } }) => ({
+    user: User, loading, error
   })
 })(StudentProfileContainer);

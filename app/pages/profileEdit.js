@@ -6,9 +6,14 @@ import ProfileEditContainer from 'containers/ProfileEditContainer';
 import withPage from 'hoc/withPage';
 
 class profileEdit extends Component {
-  handleDidSave = () => {};
+  handleDidProfileSave = userId => Router.push({ pathname: '/profile',
+    query: { userId },
+    prefetch: true
+  });
 
-  handleCancelButtonClick = () => console.log(Router.back());
+  handleCancelButtonClick = () => console.log(Router.back()) || Router.back();
+
+  handleDidRemoveProfile = () => Router.push({ pathname: '/' });
 
   render() {
     return (
@@ -18,6 +23,8 @@ class profileEdit extends Component {
         </Head>
         <ProfileEditContainer
           onCancelButtonClick={this.handleCancelButtonClick}
+          onDidProfileSave={this.handleDidProfileSave}
+          onDidRemoveProfile={this.handleDidRemoveProfile}
         />
       </div>
     );

@@ -20,7 +20,7 @@ export default (state = INIT, action) => {
     case CLEARDOWN:
       return { ...state, ...INIT };
     case AUTH_USER:
-      return { ...state, ...INIT, authenticated: true };
+      return { ...state, ...INIT, authenticated: true, loading: false };
     case AUTH_IN_PROGRESS:
       return { ...state, ...INIT, loading: true };
     case UNAUTH_USER:

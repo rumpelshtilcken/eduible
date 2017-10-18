@@ -1,42 +1,62 @@
-// import { Component } from 'react';
-// import PropTypes from 'prop-types';
-import { MuiTextField, MuiButton, MuiDatePicker } from 'components';
+import PropTypes from 'prop-types';
+
+import { MuiButton } from 'components';
+import TextFieldContainer from 'containers/TextFieldContainer';
+import DatePickerContainer from 'containers/DatePickerContainer';
+
 import stylesheet from './index.css';
 
-const StudentProfileEdit = () => (
+const StudentProfileEdit = ({ onSaveButtonClick, onCancelButtonClick, onRemoveAccountButtonClick }) => (
   <div className="container">
     <div className="profile-div">
-      <p id="title">Profile Edit</p>
+      <p id="title">{'Profile Edit'}</p>
       <img src="/static/user_profile_photo.jpeg" alt="profileImg" />
       <div className="MuiTextField-div">
-        <MuiTextField
-          title="Full Name"
-          value="Anna Stark"
+        <TextFieldContainer
+          title={'Fullname'}
+          type={'string'}
+          name={'name'}
+          placeholder={'John Smith'}
+          onContinueButtonClick={onSaveButtonClick}
         />
-        <MuiDatePicker
-          title="Birth Date"
-          value="11/13/2017"
+        <DatePickerContainer
+          title={'Birthday'}
+          name={'birthday'}
+          placeholder={'13/11/1996'}
         />
-        <div className="pwd-div">
-          <MuiTextField
-            title="Password"
-            value="Current Password"
-            type="password"
-          />
-          <MuiTextField
-            type="password"
-            value="New Password"
+      </div>
+      <div
+        onClick={onRemoveAccountButtonClick}
+        role="button"
+        tabIndex={0}
+      >
+         I want to remove my account
+      </div>
+      <div className="Muibtn-div">
+        <div className="btn">
+          <MuiButton
+            label="Cancel"
+            backgroundColor="#E8E8E8"
+            labelStyle={{ color: 'black', fontSize: 11 }}
+            onClick={onCancelButtonClick}
           />
         </div>
-      </div>
-      <a href="#"> I want to remove my account</a>
-      <div className="Muibtn-div">
-        <div className="btn"><MuiButton label="Cancel" backgroundColor="#E8E8E8" labelStyle={{ color: 'black', fontSize: 11 }} /></div>
-        <div className="btn"><MuiButton label="Save Changes" /></div>
+        <div className="btn">
+          <MuiButton
+            label="Save Changes"
+            onClick={onSaveButtonClick}
+          />
+        </div>
       </div>
     </div>
     <style jsx>{stylesheet}</style>
   </div>
 );
+
+StudentProfileEdit.propTypes = {
+  onSaveButtonClick: PropTypes.func.isRequired,
+  onCancelButtonClick: PropTypes.func.isRequired,
+  onRemoveAccountButtonClick: PropTypes.func.isRequired
+};
 
 export default StudentProfileEdit;
