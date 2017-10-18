@@ -7,6 +7,7 @@ import StudentProfileEditContainer from './StudentProfileEditContainer';
 import ProfessionalProfileEditContainer from './ProfessionalProfileEditContainer';
 
 const ProfileEditContainer = ({ user, loading, error, onCancelButtonClick }) => {
+  if (!process.browser) return null;
   if (error) return <div>{error}</div>;
   if (loading) return null;
   const { userType, id } = user;
@@ -35,14 +36,13 @@ ProfileEditContainer.propTypes = {
   onCancelButtonClick: PropTypes.func.isRequired
 };
 
-
 const getUserByAuth0Id = gql`
-query User($auth0UserId: String!) {
-  User (auth0UserId: $auth0UserId) {
-    id
-    userType
+  query User($auth0UserId: String!) {
+    User (auth0UserId: $auth0UserId) {
+      id
+      userType
+    }
   }
-}
 `;
 
 export default graphql(getUserByAuth0Id, {
@@ -53,8 +53,8 @@ export default graphql(getUserByAuth0Id, {
       auth0UserId: getCurrentUserData('sub')
     }
   }),
-  props: ({ user }) => ({
-    user: user.User, loading: user.loading, error: user.error
+  props: data => ({
+    user: data.user.User, loading: data.user.loading, error: data.user.error
   })
 })(ProfileEditContainer);
 
