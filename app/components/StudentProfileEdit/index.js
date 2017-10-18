@@ -34,7 +34,7 @@ const StudentProfileEdit = ({
         role="button"
         tabIndex={0}
       >
-         I want to remove my account
+        I want to remove my account
       </div>
       <div className="Muibtn-div">
         <div className="btn">
