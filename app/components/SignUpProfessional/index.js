@@ -62,7 +62,6 @@ class SignUpProfessional extends Component {
               <MuiButton
                 className="signUpProfessionalContinueButton"
                 onClick={this.props.onContinueButtonClick}
-                type="submit"
               />
               <div className="signUpProfessionalSocialContainer" >
                 <p>{'Or join with'.toUpperCase()}</p>
