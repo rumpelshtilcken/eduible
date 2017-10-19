@@ -14,7 +14,6 @@
   text-overflow: '';
 }
 
-
 select::-ms-expand {
   display: none;
 }

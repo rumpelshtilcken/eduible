@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import {
   InputRange,
-  Loader,
-  SelectDropdown
+  Loader
 } from 'components';
 import SearchTextInputContainer from 'containers/SearchTextInputContainer';
+import SelectDropDownContainer from 'containers/SelectDropDownContainer';
 
 import ProfessionalCard from './ProfessionalCard';
 import stylesheet from './index.css';
@@ -84,18 +84,14 @@ class ProfessionalSearch extends Component {
       <div className="selects">
         <div className="hidden labels">FILTERS</div>
         {universities &&
-        <SelectDropdown
-          defaultValue={this.props.chosenUniversityId}
-          className="selectDropdown"
-          onChange={this.handleUniversityChoose}
+        <SelectDropDownContainer
+          reduxStoreName="universityId"
           options={universities}
         />}
         {jobTitles &&
-        <SelectDropdown
-          defaultValue={this.props.chosenJobTitleId}
-          className="selectDropdown"
-          onChange={this.handleJobTitleChoose}
+        <SelectDropDownContainer
           options={jobTitles}
+          reduxStoreName="jobTitleId"
         />}
         <div className="hidden">
           <p className="hidden labels">PRICE RANGE</p>
