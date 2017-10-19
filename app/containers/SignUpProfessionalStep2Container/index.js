@@ -36,8 +36,14 @@ class SignUpProfessionalStep2Container extends Component {
   }
 
   componentDidMount() {
+    console.log('====================================');
+    console.log(this.props.authenticated);
+    console.log('====================================');
     if (!this.props.loading) {
       const { job } = this.props.user.professional;
+      console.log('====================================');
+      console.log(this.props.user);
+      console.log('====================================');
       if (job) {
         if (job.jobTitle) this.props.update({ name: 'jobTitle', value: job.jobTitle.title });
         if (job.company) this.props.update({ name: 'company', value: job.company.name });
@@ -108,13 +114,20 @@ class SignUpProfessionalStep2Container extends Component {
 
 const getProfessionalByAuth0Id = gql`
   query User($auth0UserId: String!) {
-    User (auth0UserId: $auth0UserId) {
+    User (auth0UserId: $auth0UserId) { 
       id
-      professional {
+      professional { 
         id
         job {
-          jobTitle { title }
-          company { name }
+          id
+          jobTitle {
+            id
+            title 
+          }
+          company {
+            id
+            name 
+          }
         }
       }
     }
@@ -140,7 +153,8 @@ const updateProfessionalJob = gql`
   }
 `;
 
-const mapStateToProps = state => ({ values: state.form });
+const mapStateToProps = ({ form, auth: { authenticated } }) =>
+  ({ values: form, authenticated });
 
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(formActions, dispatch),
@@ -148,7 +162,8 @@ const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(snackbarActions, dispatch)
 });
 
-const EnhancedSignUpProfessionalStep2Container = compose(
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
   graphql(getProfessionalByAuth0Id, {
     name: 'user',
     skip: () => !getCurrentUserData('sub'),
@@ -161,7 +176,4 @@ const EnhancedSignUpProfessionalStep2Container = compose(
     })
   })
 )(SignUpProfessionalStep2Container);
-
-export default
-connect(mapStateToProps, mapDispatchToProps)(EnhancedSignUpProfessionalStep2Container);
 
