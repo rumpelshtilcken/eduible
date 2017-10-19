@@ -1,3 +1,5 @@
+import jwtDecode from 'jwt-decode';
+
 export const getIdToken = () => {
   const idToken = localStorage.getItem('id_token');
   if (!idToken) {
@@ -31,15 +33,7 @@ export const getOriginAccessToken = () => {
   return originAccessToken;
 };
 
-export const decodeJwtToken = (idToken, claim) => {
-  let result = JSON.parse(atob(idToken));
-  if (result && result.sub) return claim ? result[claim] : result;
-
-  const base64Url = idToken.split('.')[1];
-  const base64 = base64Url.replace('-', '+').replace('_', '/');
-  result = JSON.parse(atob(base64));
-  return claim ? result[claim] : result;
-};
+export const decodeJwtToken = (idToken, claim) => jwtDecode(idToken)[claim];
 
 export const getCurrentUserData = (claim) => {
   if (!process.browser) return null;

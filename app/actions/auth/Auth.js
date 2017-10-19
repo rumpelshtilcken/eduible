@@ -127,10 +127,8 @@ export default class Auth {
       }
 
       if (authResult.idTokenPayload) {
-        const objJsonStr = JSON.stringify(authResult.idTokenPayload);
-        const objJsonB64 = new Buffer(objJsonStr).toString('base64');
         return this.setSession({
-          idToken: objJsonB64,
+          idToken: authResult.idToken,
           expiresIn: authResult.idTokenPayload.exp
         });
       }
