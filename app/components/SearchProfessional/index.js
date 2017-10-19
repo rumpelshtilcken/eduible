@@ -7,7 +7,7 @@ import {
 } from 'components';
 import SearchTextInputContainer from 'containers/SearchTextInputContainer';
 import SelectDropDownContainer from 'containers/SelectDropDownContainer';
-
+import SelectPriceContainer from 'containers/SelectPriceContainer';
 import ProfessionalCard from './ProfessionalCard';
 import stylesheet from './index.css';
 
@@ -110,14 +110,7 @@ class ProfessionalSearch extends Component {
         <div className="step">
           {this.renderLeftFilters()}
           <div className="profs">
-            <select
-              className="hidden pricesFilter"
-              defaultValue="LOWEST PRICE"
-              onChange={this.handleSort}
-            >
-              <option key="LOWEST PRICE" value={'price_ASC'}>LOWEST PRICE</option>
-              <option key="HIGHEST PRICE" value={'price_DESC'}>HIGHEST PRICE</option>
-            </select>
+            {/* <SelectPriceContainer /> */}
             {
               this.props.loading ? <Loader /> :
                 (this.props.professionals && this.props.professionals.map(
