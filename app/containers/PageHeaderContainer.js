@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import { compose, graphql, gql } from 'react-apollo';
@@ -22,12 +21,6 @@ class PageHeaderContainer extends Component {
     showSignUpProfessionalModal: PropTypes.func.isRequired,
     showSignUpStudentModal: PropTypes.func.isRequired
   };
-
-  shouldComponentUpdate(nextProps) {
-    const { user: prevUser } = this.props;
-    const { user } = nextProps;
-    return !_.isEqual(user, prevUser);
-  }
 
   handleLogoClick = () => Router.push({ pathname: '/', prefetch: true });
 
