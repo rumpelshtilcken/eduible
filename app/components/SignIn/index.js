@@ -4,11 +4,16 @@ import PropTypes from 'prop-types';
 import { AuthForm, MuiButton, StatefulView } from 'components';
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 
-
 import stylesheet from './index.css';
 
-
-const SignIn = ({ ...props, onRequestClose, onContinueButtonClick, inputs, onSignUpStudentButtonClick, onSignUpProfessionalButtonClick }) => (
+const SignIn = ({
+  ...props,
+  onRequestClose,
+  onContinueButtonClick,
+  inputs,
+  onSignUpStudentButtonClick,
+  onSignUpProfessionalButtonClick
+}) => (
   <div>
     <Modal
       isOpen
