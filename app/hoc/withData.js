@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ApolloProvider, getDataFromTree } from 'react-apollo';
+import { persistStore } from 'redux-persist';
 import Head from 'next/head';
+
 import initApollo from 'lib/initApollo';
 import initRedux from 'lib/initRedux';
 
@@ -75,12 +77,23 @@ export default ComposedComponent => class WithData extends React.Component {
       this.redux = initRedux(this.apollo, this.props.serverState);
     }
 
+    state = {
+      loading: true
+    };
+
+    componentWillMount() {
+      if (process.browser) {
+        persistStore(this.redux, { blacklist: ['form'] }, () =>
+          this.setState({ loading: false }));
+      }
+    }
+
     render() {
       return (
         // No need to use the Redux Provider
         // because Apollo sets up the store for us
         <ApolloProvider client={this.apollo} store={this.redux}>
-          <ComposedComponent {...this.props} />
+          {this.state.loading ? <div /> : <ComposedComponent {...this.props} />}
         </ApolloProvider>
       );
     }
