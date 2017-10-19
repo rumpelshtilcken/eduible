@@ -2,6 +2,7 @@
   appearance: none;
   background: #fff url("/static/Icons/select-arrow.svg") no-repeat 90% 50%;
   padding: 5px 35px 5px 5px;
+  margin-bottom: 5px;
   border: 1px solid #d9d9d9;
   outline: none;
   width: 100%;
@@ -11,7 +12,20 @@
   font-size: 11px;
   -moz-appearance: none;
   text-indent: 0.01px;
-  text-overflow: '';
+}
+
+.transparent {
+  background-color: transparent;
+  width: 50%;
+  height: 30px;
+  margin: auto;
+  margin-bottom: 5px;
+  display: block;
+
+  @media screen and (min-width: 768px) {
+    float: right;
+    width: 23%;
+  }
 }
 
 select::-ms-expand {

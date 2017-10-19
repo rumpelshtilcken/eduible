@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import stylesheet from './index.css';
 
@@ -14,7 +15,8 @@ class SelectDropdown extends Component {
         value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
         label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
       }).isRequired
-    ).isRequired
+    ).isRequired,
+    transparent: PropTypes.bool
   };
 
   handleChange = (event) => {
@@ -22,11 +24,13 @@ class SelectDropdown extends Component {
   };
 
   render() {
-    const { key, value, options } = this.props;
+    const { key, value, options, transparent } = this.props;
 
     return (
       <select
-        className="select"
+        className={cx('select', {
+          transparent
+        })}
         key={key}
         onChange={this.handleChange}
         value={value}
