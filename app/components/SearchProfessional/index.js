@@ -7,25 +7,24 @@ import {
 } from 'components';
 import SearchTextInputContainer from 'containers/SearchTextInputContainer';
 import SelectDropDownContainer from 'containers/SelectDropDownContainer';
-import SelectPriceContainer from 'containers/SelectPriceContainer';
 import ProfessionalCard from './ProfessionalCard';
 import stylesheet from './index.css';
 
 class ProfessionalSearch extends Component {
   static propTypes = {
-    chosenJobTitleId: PropTypes.string,
-    chosenUniversityId: PropTypes.string,
     handleRangeChange: PropTypes.func,
-    handleSort: PropTypes.func,
     jobTitles: PropTypes.array.isRequired,
     loading: PropTypes.bool,
-    onJobTitleChoose: PropTypes.func.isRequired,
     onProfessionalChoose: PropTypes.func.isRequired,
     onRequestButtonClick: PropTypes.func.isRequired,
-    onUniversityChoose: PropTypes.func.isRequired,
     professionals: PropTypes.array.isRequired,
     universities: PropTypes.array.isRequired
   };
+
+  orderBy = [
+    { key: 'LOWEST PRICE', label: 'LOWEST PRICE', value: 'price_ASC' },
+    { key: 'HIGHEST PRICE', label: 'HIGHEST PRICE', value: 'price_DESC' }
+  ];
 
   prepareDataToSelectDropdown = data => data.map(item => ({
     key: item.id,
@@ -33,17 +32,8 @@ class ProfessionalSearch extends Component {
     value: item.id
   }));
 
-  handleSort = e =>
-    this.props.handleSort(e.target.value);
-
   handleRangeChange = ({ minCost, maxCost }) =>
     this.props.handleRangeChange({ min: minCost, max: maxCost });
-
-  handleUniversityChoose = e =>
-    this.props.onUniversityChoose(e.target.value);
-
-  handleJobTitleChoose = e =>
-    this.props.onJobTitleChoose(e.target.value);
 
   renderProfessional = (professional) => {
     const handleRequestCallClick = (e) => {
@@ -110,11 +100,15 @@ class ProfessionalSearch extends Component {
         <div className="step">
           {this.renderLeftFilters()}
           <div className="profs">
-            {/* <SelectPriceContainer /> */}
-            {
-              this.props.loading ? <Loader /> :
-                (this.props.professionals && this.props.professionals.map(
-                  this.renderProfessional))
+            <SelectDropDownContainer
+              options={this.orderBy}
+              reduxStoreName="orderBy"
+              transparent
+            />
+            { this.props.loading
+              ? <Loader />
+              : (this.props.professionals && this.props.professionals.map(
+                this.renderProfessional))
             }
           </div>
         </div>

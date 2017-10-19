@@ -298,25 +298,3 @@ hr {
     padding-right: 10px;
   }
 }
-
-.transparent {
-  appearance: none;
-  background: transparent url("/static/Icons/select-arrow.svg") no-repeat 90% 50%;
-  padding: 5px 35px 5px 5px;
-  outline: none;
-  border: none;
-  width: 23%;
-  height: 30px;
-  color: #000;
-  font-family: "Effra";
-  font-size: 11px;
-  -moz-appearance: none;
-  text-indent: 0.01px;
-  text-overflow: '';
-  margin: auto;
-  display: block;
-
-  @media only screen and (min-width: 1024px) {
-    float: right;
-  }
-}
