@@ -16,15 +16,18 @@ class SelectDropDownContainer extends Component {
         label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
       }).isRequired
     ).isRequired,
-    search: PropTypes.object
+    search: PropTypes.object,
+    resetFilter: PropTypes.func.isRequired
   };
 
-  handleChange = value =>
-    this.props.searchUpdate({ name: [this.props.reduxStoreName], value });
+  handleChange = value => (value
+    ? this.props.searchUpdate({ name: [this.props.reduxStoreName], value })
+    : this.props.resetFilter({ name: [this.props.reduxStoreName] }))
 
   render() {
     return (
       <SelectDropdown
+        {...this.props}
         key={this.props.reduxStoreName}
         options={this.props.options}
         value={this.props.search[this.props.reduxStoreName]}
