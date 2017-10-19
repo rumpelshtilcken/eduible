@@ -1,12 +1,8 @@
-import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import Modal from 'react-modal';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux';
-import { MuiButton, MuiSnackbar } from 'components';
-import * as formActions from 'actions/form';
+import { MuiButton, StatefulView } from 'components';
 
 import SignInSocialContainer from 'containers/SignInSocialContainer';
 import ValidationUtils from 'utils/ValidationUtils';
@@ -18,13 +14,7 @@ class SignUpStudent extends Component {
   static propTypes = {
     onRequestClose: PropTypes.func.isRequired,
     onLoginButtonClick: PropTypes.func.isRequired,
-    onContinueButtonClick: PropTypes.func.isRequired,
-    values: PropTypes.object
-  };
-
-  state = {
-    isSnackOpen: false,
-    snackMessage: 'Good Job'
+    onContinueButtonClick: PropTypes.func.isRequired
   };
 
   validation = {
@@ -33,28 +23,15 @@ class SignUpStudent extends Component {
     password: ValidationUtils.passwordValidation
   }
 
-  handleRequestSnackClose = () => this.setState({ isSnackOpen: false });
-
-  handleContinueButtonClick = () => {
-    const { error } = this.props.values;
-
-    const isNotValid = error
-      && Object.keys(error).reduce((acc, key) => (acc && !error[key]), true);
-
-    return !isNotValid
-      ? this.setState({ snackMessage: 'Invalid inputs', isSnackOpen: true })
-      : this.props.onContinueButtonClick();
-  }
-
   render() {
     return (
-      <div>
-        <Modal
-          isOpen
-          onRequestClose={this.props.onRequestClose}
-          className="signUpStudentModalContainer"
-          overlayClassName="signUpStudentModalOverlayModal"
-        >
+      <Modal
+        isOpen
+        onRequestClose={this.props.onRequestClose}
+        className="signUpStudentModalContainer"
+        overlayClassName="signUpStudentModalOverlayModal"
+      >
+        <StatefulView {...this.props}>
           <div className="signUpStudentContainer">
             <p className="signUpStudentHeaderTitle">
               {'Sign up'.toUpperCase()}
@@ -63,13 +40,11 @@ class SignUpStudent extends Component {
               <div className="inputs">
                 <SignUpFormInputs
                   validation={this.validation}
-                  onContinueButtonClick={this.handleContinueButtonClick}
+                  onContinueButtonClick={this.props.onContinueButtonClick}
                 />
               </div>
               <div className="signUpStudentContinueButton">
-                <MuiButton
-                  onClick={this.handleContinueButtonClick}
-                />
+                <MuiButton onClick={this.props.onContinueButtonClick} />
               </div>
               <div className="rightSideBar">
                 <div className="signUpStudentSocialContainer">
@@ -89,24 +64,11 @@ class SignUpStudent extends Component {
               </div>
             </div>
           </div>
-          <style global jsx>{style}</style>
-        </Modal>
-        <MuiSnackbar
-          isOpen={this.state.isSnackOpen}
-          action="UNDO"
-          message={this.state.snackMessage}
-          handleActionTouchTap={this.handleRequestSnackClose}
-          handleRequestClose={this.handleRequestSnackClose}
-        />
-      </div>
+        </StatefulView>
+        <style global jsx>{style}</style>
+      </Modal>
     );
   }
 }
 
-const mapStateToProps = state => ({ values: state.form });
-
-const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators(formActions, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpStudent);
+export default SignUpStudent;
