@@ -36,14 +36,8 @@ class SignUpProfessionalStep2Container extends Component {
   }
 
   componentDidMount() {
-    console.log('====================================');
-    console.log(this.props.authenticated);
-    console.log('====================================');
     if (!this.props.loading) {
       const { job } = this.props.user.professional;
-      console.log('====================================');
-      console.log(this.props.user);
-      console.log('====================================');
       if (job) {
         if (job.jobTitle) this.props.update({ name: 'jobTitle', value: job.jobTitle.title });
         if (job.company) this.props.update({ name: 'company', value: job.company.name });

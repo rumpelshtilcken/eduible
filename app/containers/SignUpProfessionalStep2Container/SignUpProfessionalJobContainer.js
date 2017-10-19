@@ -72,7 +72,7 @@ compose(
     name: 'jobTitle',
     skip: ({ jobTitleTitle }) => !jobTitleTitle,
     options: ({ jobTitleTitle }) => ({ variables: { jobTitle: jobTitleTitle } }),
-    props: ({ jobTitle }) => console.log(jobTitle) ||
+    props: ({ jobTitle }) =>
       ({ jobTitle: jobTitle.JobTitle, jobTitleLoading: jobTitle })
   })
 )(SignUpProfessionalJobContainer);

@@ -47,11 +47,7 @@ const getUserByAuth0Id = gql`
 
 export default graphql(getUserByAuth0Id, {
   name: 'user',
-  options: ({ userId }) => ({
-    variables: {
-      id: userId
-    }
-  }),
+  options: ({ userId }) => ({ variables: { id: userId } }),
   props: ({ user }) => ({
     user: user.User, loading: user.loading, error: user.error
   })

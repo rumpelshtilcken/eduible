@@ -17,7 +17,6 @@ class SearchTextInputContainer extends Component {
   };
 
   render() {
-    console.log(this.props.input);
     return (
       <SearchTextInput
         value={this.props.input}

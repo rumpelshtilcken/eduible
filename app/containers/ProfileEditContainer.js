@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { graphql, gql } from 'react-apollo';
+import { compose, graphql, gql } from 'react-apollo';
+import { connect } from 'react-redux';
 
 import { getCurrentUserData } from 'utils/auth';
 
@@ -14,7 +15,6 @@ const ProfileEditContainer = ({
   onDidRemoveProfile,
   user
 }) => {
-  if (!process.browser) return null;
   if (error) return <div>{error}</div>;
   if (loading) return null;
   const { userType, id } = user;
@@ -58,16 +58,21 @@ const getUserByAuth0Id = gql`
   }
 `;
 
-export default graphql(getUserByAuth0Id, {
-  name: 'user',
-  skip: () => !getCurrentUserData('sub'),
-  options: () => ({
-    variables: {
-      auth0UserId: getCurrentUserData('sub')
-    }
-  }),
-  props: data => ({
-    user: data.user.User, loading: data.user.loading, error: data.user.error
+const mapStateToProps = ({ auth: { authenticated } }) => ({ authenticated });
+
+export default compose(
+  connect(mapStateToProps, null),
+  graphql(getUserByAuth0Id, {
+    name: 'user',
+    skip: ({ authenticated }) => !authenticated,
+    options: () => ({
+      variables: {
+        auth0UserId: getCurrentUserData('sub')
+      }
+    }),
+    props: data => ({
+      user: data.user.User, loading: data.user.loading, error: data.user.error
+    })
   })
-})(ProfileEditContainer);
+)(ProfileEditContainer);
 

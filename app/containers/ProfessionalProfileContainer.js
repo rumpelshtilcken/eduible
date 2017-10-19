@@ -79,19 +79,28 @@ const getProfessionalById = gql`
         id
         price
         location {
+          id
           country
         }
         job {
           id
-          company { name }
-          jobTitle { title }
+          company { 
+            id
+            name 
+          }
+          jobTitle { 
+            id
+            title 
+          }
         }
         educations {
           id
           major {
             name
             school {
+              id
               university {
+                id
                 name
               }
             }
