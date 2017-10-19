@@ -43,3 +43,14 @@
   width: 100%;
   margin-bottom: 40px;
 }
+
+.linkButton {
+  border: 0;
+  text-decoration: none;
+  color: #4f5362;
+  outline: none;
+  font-family: Effra;
+  margin-top: 5px;
+  font-size: 14px;
+  background-color: transparent;
+}

@@ -1,48 +1,52 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import { hoistStatics } from 'recompact';
 import Head from 'next/head';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { Footer, Layout } from 'components';
+import * as modalActions from 'actions/modal';
 import getDisplayName from 'utils/getDisplayName';
 import ModalRootContainer from 'containers/ModalRootContainer';
 import PageHeaderContainer from 'containers/PageHeaderContainer';
+import PropTypes from 'prop-types';
 import SnackbarContainer from 'containers/SnackbarContainer';
 
 const withLayout = hoistStatics((CompositeComponent) => {
   class WithLayout extends Component {
+    static propTypes = {
+      showSignUpProfessionalModal: PropTypes.func.isRequired,
+      showSignUpStudentModal: PropTypes.func.isRequired
+    }
+
     footerLinks = [
       {
         title: 'ABOUT',
-        firstLinkTitle: 'How it Works',
-        firstLinkURL: '#',
-        secondLinkTitle: 'Success Stories',
-        secondLinkURL: '#',
-        url: '/about'
+        links: [
+          { title: 'How it Works', url: '#' },
+          { title: 'Success Stories', url: '#' }
+        ]
       },
       {
         title: 'PROFESSIONALS',
-        firstLinkTitle: 'Join As Professional',
-        firstLinkURL: '#',
-        secondLinkTitle: 'Search For Professional',
-        secondLinkURL: '#',
-        url: '/professionals'
+        links: [
+          { title: 'Join As Professional', onClick: this.props.showSignUpProfessionalModal },
+          { title: 'Search For Professional', url: '/searchProfessional' }
+        ]
       },
       {
         title: 'UNIVERSITIES',
-        firstLinkTitle: 'Create Account',
-        firstLinkURL: '#',
-        secondLinkTitle: 'Search For University',
-        secondLinkURL: '#',
-        url: '/universities'
+        links: [
+          { title: 'Create Account', onClick: this.props.showSignUpStudentModal },
+          { title: 'Search For University', url: '/searchUniversity' }
+        ]
       },
       {
         title: 'ANSWERS',
-        firstLinkTitle: 'FAQ´s',
-        firstLinkURL: '#',
-        secondLinkTitle: 'Privacy Policy',
-        secondLinkURL: '#',
-        url: '/answers'
+        links: [
+          { title: 'FAQ´s', url: 'http://www.google.com' },
+          { title: 'Privacy Policy', url: '/privacyPolicy' }
+        ]
       }
     ];
 
@@ -72,7 +76,7 @@ const withLayout = hoistStatics((CompositeComponent) => {
 
   WithLayout.displayName = `WithLayout(${getDisplayName(CompositeComponent)})`;
 
-  return WithLayout;
+  return connect(null, modalActions)(WithLayout);
 });
 
 export default withLayout;

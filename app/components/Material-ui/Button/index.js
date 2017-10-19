@@ -2,10 +2,9 @@ import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 
 
-const MuiButton = ({ onClick, type, className, labelStyle, label, backgroundColor }) => (
+const MuiButton = ({ onClick, className, labelStyle, label, backgroundColor }) => (
   <RaisedButton
     label={label}
-    type={type}
     className={className}
     labelStyle={labelStyle}
     fullWidth
@@ -27,7 +26,6 @@ MuiButton.defaultProps = {
 
 MuiButton.propTypes = {
   backgroundColor: PropTypes.string,
-  type: PropTypes.string,
   className: PropTypes.string,
   label: PropTypes.string,
   labelStyle: PropTypes.objectOf(PropTypes.string),
