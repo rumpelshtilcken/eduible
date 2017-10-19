@@ -7,21 +7,26 @@ import * as searchAction from 'actions/search';
 
 class SearchTextInputContainer extends Component {
   static propTypes = {
+    input: PropTypes.string,
     placeholder: PropTypes.string,
-    searchInput: PropTypes.func.isRequired
+    searchUpdate: PropTypes.func.isRequired
   };
 
   handleSearchChange = (input) => {
-    this.props.searchInput(input.value);
+    this.props.searchUpdate({ name: 'input', value: input.value });
   };
 
   render() {
+    console.log(this.props.input);
     return (
       <SearchTextInput
+        value={this.props.input}
         onChange={this.handleSearchChange}
         placeholder={this.props.placeholder}
       />);
   }
 }
 
-export default connect(null, searchAction)(SearchTextInputContainer);
+const mapStateToProps = ({ search }) => ({ input: search.input });
+
+export default connect(mapStateToProps, searchAction)(SearchTextInputContainer);

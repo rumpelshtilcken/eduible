@@ -9,6 +9,7 @@ class SearchTextInput extends Component {
   };
 
   static propTypes = {
+    value: PropTypes.string,
     placeholder: PropTypes.string,
     onChange: PropTypes.func.isRequired
   };
@@ -21,6 +22,7 @@ class SearchTextInput extends Component {
     return (
       <div className="search">
         <input
+          value={this.props.value}
           className="searchBar"
           onChange={this.handleChange}
           placeholder={this.props.placeholder}
