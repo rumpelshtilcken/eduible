@@ -50,7 +50,6 @@ const withLayout = hoistStatics((CompositeComponent) => {
       }
     ];
 
-    handleOpenModal = () => {};
     render() {
       return (
         <MuiThemeProvider>
