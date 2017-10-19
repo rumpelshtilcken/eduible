@@ -11,6 +11,7 @@ node_modules
 # Generated files
 app/.next
 dist
+yarn.lock
 yarnlock
 
 # Project spicific files
