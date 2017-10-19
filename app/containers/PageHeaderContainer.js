@@ -65,7 +65,7 @@ class PageHeaderContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({ authenticated: state.auth.authenticated });
+const mapStateToProps = state => ({ authenticated: state.auth.authenticated, holeState: state });
 
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(authActions, dispatch),
@@ -82,10 +82,10 @@ const getUserByAuth0Id = gql`
 `;
 
 export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
   graphql(getUserByAuth0Id, {
-    skip: () => !getCurrentUserData(),
+    skip: ({ authenticated }) => !authenticated,
     options: () => ({ variables: { auth0UserId: getCurrentUserData('sub') } }),
-    props: ({ data }) => ({ user: data.User })
-  }),
-  connect(mapStateToProps, mapDispatchToProps)
+    props: ({ data: { User, loading, error } }) => ({ user: User, loading, error })
+  })
 )(PageHeaderContainer);
