@@ -1,7 +1,7 @@
 import stylesheet from './index.css';
 
 const PrivacyPolicy = () => (
-  <p className="privatePolicyContent">
+  <div className="privatePolicyContent">
     <p>PRIVACY POLICY</p>
 
     <p>
@@ -572,6 +572,6 @@ const PrivacyPolicy = () => (
       for notices that are not labeled or sent properly, or do not have complete information.
     </p>
     <style jsx>{stylesheet}</style>
-  </p>
+  </div>
 );
 export default PrivacyPolicy;
