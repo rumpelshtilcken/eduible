@@ -1,6 +1,6 @@
 import { createEpicMiddleware } from 'redux-observable';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { persistStore, autoRehydrate } from 'redux-persist';
+import { autoRehydrate } from 'redux-persist';
 import reduxThunk from 'redux-thunk';
 
 import * as reducers from 'reducers';
@@ -24,13 +24,16 @@ function create(apollo, initialState = {}) {
     }),
     initialState, // Hydrate the store with server-side data
     compose(
-      applyMiddleware(apollo.middleware(), reduxThunk, epicMiddleware), // Add additional middleware here
+      applyMiddleware(
+        apollo.middleware(),
+        reduxThunk,
+        epicMiddleware
+      ), // Add additional middleware here
       autoRehydrate(),
       devtools
     )
   );
 
-  if (typeof self === 'object') persistStore(store, { blacklist: ['form'] });
   return store;
 }
 
