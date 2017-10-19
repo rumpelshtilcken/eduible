@@ -24,17 +24,6 @@ class ProfessionalSearchContainer extends Component {
     error: PropTypes.object
   };
 
-  handleUniversityChoose = universityId => (universityId
-    ? this.props.searchUpdate({ name: 'universityId', value: universityId })
-    : this.props.resetFilter({ name: 'universityId' }));
-
-  handleJobTitleChoose = jobTitleId => (jobTitleId
-    ? this.props.searchUpdate({ name: 'jobTitleId', value: jobTitleId })
-    : this.props.resetFilter({ name: 'jobTitleId' }));
-
-  handleSort = by =>
-    this.props.searchUpdate({ name: 'orderBy', value: by })
-
   handleRangeChange = ({ min, max }) => {
     this.props.searchUpdate({ name: 'priceGte', value: min });
     this.props.searchUpdate({ name: 'priceLte', value: max });
@@ -43,19 +32,14 @@ class ProfessionalSearchContainer extends Component {
   render() {
     return (
       <ProfessionalSearch
-        chosenUniversityId={this.props.universityId}
-        chosenJobTitleId={this.props.jobTitleId}
+        {...this.props}
         jobTitles={this.props.allJobTitles}
         onJobTitleChoose={this.handleJobTitleChoose}
-        onProfessionalChoose={this.props.onProfessionalChoose}
-        onRequestButtonClick={this.props.onRequestButtonClick}
         onUniversityChoose={this.handleUniversityChoose}
         professionals={this.props.allProfessionals}
         universities={this.props.allUniversities}
         handleSort={this.handleSort}
         handleRangeChange={this.handleRangeChange}
-        loading={this.props.loading}
-        error={this.props.error}
       />
     );
   }
