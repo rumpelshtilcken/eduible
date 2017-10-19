@@ -158,12 +158,18 @@ const getProfessionalByAuth0Id = gql`
       professional {
         id
         educations {
+          id
           startYear
           endYear
           major {
+            id
             name
             school {
-              university { name }
+              id
+              university { 
+                id
+                name 
+              }
             }
           }
         }
