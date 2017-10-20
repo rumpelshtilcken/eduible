@@ -4,6 +4,7 @@ import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import { persistStore } from 'redux-persist';
 import Head from 'next/head';
 
+import { StatefulView } from 'components';
 import initApollo from 'lib/initApollo';
 import initRedux from 'lib/initRedux';
 
@@ -93,7 +94,9 @@ export default ComposedComponent => class WithData extends React.Component {
         // No need to use the Redux Provider
         // because Apollo sets up the store for us
         <ApolloProvider client={this.apollo} store={this.redux}>
-          {this.state.loading ? <div /> : <ComposedComponent {...this.props} />}
+          {this.state.loading
+            ? <StatefulView loading />
+            : <ComposedComponent {...this.props} />}
         </ApolloProvider>
       );
     }
