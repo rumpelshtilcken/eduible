@@ -60,7 +60,7 @@ class ProfessionalProfileInfo extends Component {
   };
 
   renderProfileInfo = ({ headerText, bodyText }) => (
-    <div className="list">
+    <div className="list" key={headerText}>
       <div className="profileItem">
         {headerText && <p className="profileTitle">{headerText}</p>}
         {bodyText && <div className="profileContent">
