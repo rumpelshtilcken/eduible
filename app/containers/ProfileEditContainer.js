@@ -3,6 +3,7 @@ import { compose, graphql, gql } from 'react-apollo';
 import { connect } from 'react-redux';
 
 import { getCurrentUserData } from 'utils/auth';
+import { StatefulView } from 'components';
 
 import StudentProfileEditContainer from './StudentProfileEditContainer';
 import ProfessionalProfileEditContainer from './ProfessionalProfileEditContainer';
@@ -16,25 +17,24 @@ const ProfileEditContainer = ({
   user
 }) => {
   if (error) return <div>{error}</div>;
-  if (loading) return null;
-  const { userType, id } = user;
-  if (userType === 'Professional') {
-    return (
-      <ProfessionalProfileEditContainer
-        userId={id}
-        onCancelButtonClick={onCancelButtonClick}
-        onDidProfileSave={onDidProfileSave}
-        onDidRemoveProfile={onDidRemoveProfile}
-      />);
-  } else if (userType === 'Student') {
-    return (
-      <StudentProfileEditContainer
-        userId={id}
-        onCancelButtonClick={onCancelButtonClick}
-        onDidProfileSave={onDidProfileSave}
-        onDidRemoveProfile={onDidRemoveProfile}
-      />);
-  }
+
+  return (
+    <StatefulView loading={loading}>
+      {user.userType === 'Student'
+        ? <StudentProfileEditContainer
+          userId={user.id}
+          onCancelButtonClick={onCancelButtonClick}
+          onDidProfileSave={onDidProfileSave}
+          onDidRemoveProfile={onDidRemoveProfile}
+        />
+        : <ProfessionalProfileEditContainer
+          userId={user.id}
+          onCancelButtonClick={onCancelButtonClick}
+          onDidProfileSave={onDidProfileSave}
+          onDidRemoveProfile={onDidRemoveProfile}
+        />}
+    </StatefulView>
+  );
 };
 
 ProfileEditContainer.propTypes = {

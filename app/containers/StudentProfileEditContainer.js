@@ -6,7 +6,7 @@ import { graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
 import { convertFromISOStringFormat, convertDateToISO } from 'utils/auth';
-import { StudentProfileEdit } from 'components';
+import { StudentProfileEdit, StatefulView } from 'components';
 import * as authActions from 'actions/auth';
 import * as formActions from 'actions/form';
 
@@ -44,7 +44,7 @@ class StudentProfileEditContainer extends Component {
   handleSaveButtonClick = async () => {
     try {
       const birthday = convertDateToISO(this.props.birthday);
-      const result = await this.props.updateStudentProfile({
+      await this.props.updateStudentProfile({
         id: this.props.userId,
         name: this.props.name,
         birthday
@@ -69,19 +69,20 @@ class StudentProfileEditContainer extends Component {
   };
 
   render() {
-    if (this.props.loading) return (<div>Loading</div>);
     if (this.props.error) return (<div>{`Error: ${this.props.error}`}</div>);
 
     const { name, birthday } = this.props;
     console.log(name, birthday);
     return (
-      <StudentProfileEdit
-        name={name}
-        birthday={birthday}
-        onCancelButtonClick={this.props.onCancelButtonClick}
-        onRemoveAccountButtonClick={this.handleRemoveAccountButtonClick}
-        onSaveButtonClick={this.handleSaveButtonClick}
-      />
+      <StatefulView loading={this.props.loading}>
+        <StudentProfileEdit
+          name={name}
+          birthday={birthday}
+          onCancelButtonClick={this.props.onCancelButtonClick}
+          onRemoveAccountButtonClick={this.handleRemoveAccountButtonClick}
+          onSaveButtonClick={this.handleSaveButtonClick}
+        />
+      </StatefulView>
     );
   }
 }

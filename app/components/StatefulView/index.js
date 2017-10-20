@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 
 import Spinner from './Spinner';
 
-const StatefulView = ({ loading, children }) => (
+const StatefulView = ({ loading, children }) => (loading
+  ? <Spinner />
+  :
   <div>
-    {loading && <Spinner />}
     {children}
   </div>
 );

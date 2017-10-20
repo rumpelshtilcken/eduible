@@ -7,9 +7,7 @@ import ProfessionalProfileContainer from 'containers/ProfessionalProfileContaine
 import StudentProfileContainer from 'containers/StudentProfileContainer';
 
 const ProfileContainer = ({ user, error, onRequestCallClick, onEditButtonClick, ...props }) => {
-  if (error) {
-    return <div>{'Error'}</div>;
-  }
+  if (error) { return <div>{'Error'}</div>; }
 
   return (
     <StatefulView {...props}>

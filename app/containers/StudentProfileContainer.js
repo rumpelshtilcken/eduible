@@ -1,13 +1,16 @@
 import { graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import { StudentProfile } from 'components';
+import { StudentProfile, StatefulView } from 'components';
 
 const StudentProfileContainer = ({ user, loading, error, onEditButtonClick }) => {
-  if (loading) return (<div>Loading...</div>);
   if (error) return (<div>{`Error: ${error}`}</div>);
 
-  return <StudentProfile user={user} onEditButtonClick={onEditButtonClick} />;
+  return (
+    <StatefulView loading={loading}>
+      <StudentProfile user={user} onEditButtonClick={onEditButtonClick} />
+    </StatefulView>
+  );
 };
 
 StudentProfileContainer.propTypes = {

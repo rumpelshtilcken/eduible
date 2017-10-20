@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import { ProfessionalProfile } from 'components';
+import { ProfessionalProfile, StatefulView } from 'components';
 import { getCurrentUserData } from 'utils/auth';
 
 class ProfessionalProfileContainer extends Component {
@@ -21,16 +21,18 @@ class ProfessionalProfileContainer extends Component {
     } = this.props;
 
     if (error) return <div>{error}</div>;
-    if (loading) return <div>{'Loading'}</div>;
+
     const isCurrentUser = getCurrentUserData('sub') === user.auth0UserId;
     return (
-      <ProfessionalProfile
-        user={user}
-        onProfileEditButtonClick={onProfileEditButtonClick}
-        onRequestCallClick={this.handleRequestCallClick}
-        onEditButtonClick={this.props.onEditButtonClick}
-        isCurrentUser={isCurrentUser}
-      />
+      <StatefulView loading={loading}>
+        <ProfessionalProfile
+          user={user}
+          onProfileEditButtonClick={onProfileEditButtonClick}
+          onRequestCallClick={this.handleRequestCallClick}
+          onEditButtonClick={this.props.onEditButtonClick}
+          isCurrentUser={isCurrentUser}
+        />
+      </StatefulView>
     );
   }
 }

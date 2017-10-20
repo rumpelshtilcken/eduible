@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { compose, graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
-import { ProfessionalProfileEdit } from 'components';
+import { ProfessionalProfileEdit, StatefulView } from 'components';
 
 class ProfessionalProfileEditContainer extends Component {
   static propTypes = {
@@ -36,14 +36,15 @@ class ProfessionalProfileEditContainer extends Component {
   handleCancelButtonClick = () => this.props.onCancelButtonClick;
 
   render() {
-    if (this.props.loading) return <div>Loading</div>;
     if (this.props.error) return <div>{`Error ${this.props.error}`}</div>;
 
     return (
-      <ProfessionalProfileEdit
-        user={this.props.user}
-        handleSaveButtonClick={this.handleSaveButtonClick}
-      />
+      <StatefulView loading={this.props.loading}>
+        <ProfessionalProfileEdit
+          user={this.props.user}
+          handleSaveButtonClick={this.handleSaveButtonClick}
+        />
+      </StatefulView>
     );
   }
 }
