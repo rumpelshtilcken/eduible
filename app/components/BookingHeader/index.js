@@ -26,9 +26,7 @@ class BookingHeader extends Component {
         <div className="elementsContainer">
           {this.props.elements.map(this.renderElement)}
         </div>
-        <style jsx>
-          {stylessheet}
-        </style>
+        <style jsx> {stylessheet} </style>
       </div>
     );
   }
