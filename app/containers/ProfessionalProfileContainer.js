@@ -7,10 +7,45 @@ import { ProfessionalProfile, StatefulView } from 'components';
 import { getCurrentUserData } from 'utils/auth';
 
 class ProfessionalProfileContainer extends Component {
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    onRequestCallClick: PropTypes.func,
+    onEditButtonClick: PropTypes.func,
+    onProfileEditButtonClick: PropTypes.func.isRequired,
+    loading: PropTypes.boolean,
+    error: PropTypes.object,
+    user: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      auth0UserId: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      professional: PropTypes.shape({
+        about: PropTypes.string,
+        price: PropTypes.number,
+        location: PropTypes.shape({
+          country: PropTypes.string
+        }),
+        job: PropTypes.shape({
+          company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
+          jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired
+        }),
+        educations: PropTypes.arrayOf(PropTypes.shape({
+          major: PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            school: PropTypes.shape({
+              university: PropTypes.shape({ name: PropTypes.string.isRequired })
+            })
+          })
+        }))
+      })
+    })
+  };
+
   handleRequestCallClick = () =>
     this.props.onRequestCallClick({
       professionalId: this.props.user.id
     });
+
+  isCurrentUser = () => getCurrentUserData('sub') === this.props.user.auth0UserId;
 
   render() {
     const {
@@ -19,10 +54,8 @@ class ProfessionalProfileContainer extends Component {
       error,
       onProfileEditButtonClick
     } = this.props;
-
     if (error) return <div>{error}</div>;
 
-    const isCurrentUser = getCurrentUserData('sub') === user.auth0UserId;
     return (
       <StatefulView loading={loading}>
         <ProfessionalProfile
@@ -30,45 +63,12 @@ class ProfessionalProfileContainer extends Component {
           onProfileEditButtonClick={onProfileEditButtonClick}
           onRequestCallClick={this.handleRequestCallClick}
           onEditButtonClick={this.props.onEditButtonClick}
-          isCurrentUser={isCurrentUser}
+          isCurrentUser={this.isCurrentUser()}
         />
       </StatefulView>
     );
   }
 }
-
-ProfessionalProfileContainer.propTypes = {
-  id: PropTypes.string.isRequired,
-  onRequestCallClick: PropTypes.func,
-  onEditButtonClick: PropTypes.func,
-  onProfileEditButtonClick: PropTypes.func.isRequired,
-  loading: PropTypes.boolean,
-  error: PropTypes.object,
-  user: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    auth0UserId: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    professional: PropTypes.shape({
-      about: PropTypes.string,
-      price: PropTypes.number,
-      location: PropTypes.shape({
-        country: PropTypes.string
-      }),
-      job: PropTypes.shape({
-        company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
-        jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired
-      }),
-      educations: PropTypes.arrayOf(PropTypes.shape({
-        major: PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          school: PropTypes.shape({
-            university: PropTypes.shape({ name: PropTypes.string.isRequired })
-          })
-        })
-      }))
-    })
-  })
-};
 
 const getProfessionalById = gql`
   query User($id: ID!) {
@@ -98,6 +98,7 @@ const getProfessionalById = gql`
         educations {
           id
           major {
+            id
             name
             school {
               id

@@ -6,19 +6,25 @@ import { StatefulView } from 'components';
 import ProfessionalProfileContainer from 'containers/ProfessionalProfileContainer';
 import StudentProfileContainer from 'containers/StudentProfileContainer';
 
-const ProfileContainer = ({ user, error, onRequestCallClick, onEditButtonClick, ...props }) => {
+const ProfileContainer = ({
+  user,
+  error,
+  loading,
+  onRequestCallClick,
+  onEditButtonClick
+}) => {
   if (error) { return <div>{'Error'}</div>; }
 
   return (
-    <StatefulView {...props}>
+    <StatefulView loading={loading}>
       {user && user.userType === 'Student'
         ? <StudentProfileContainer
-          id={props.userId}
+          id={user.id}
           onRequestCallClick={onRequestCallClick}
           onEditButtonClick={onEditButtonClick}
         />
         : <ProfessionalProfileContainer
-          id={props.userId}
+          id={user.id}
           onRequestCallClick={onRequestCallClick}
           onEditButtonClick={onEditButtonClick}
         />}
@@ -27,7 +33,7 @@ const ProfileContainer = ({ user, error, onRequestCallClick, onEditButtonClick, 
 };
 
 ProfileContainer.propTypes = {
-  userId: PropTypes.string,
+  loading: PropTypes.bool,
   error: PropTypes.object,
   user: PropTypes.object,
   onRequestCallClick: PropTypes.func.isRequired,
