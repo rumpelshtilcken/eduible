@@ -6,7 +6,7 @@ const ProfesstionalBasicInfo = ({ profileImageUrl, profileName }) =>
   (<div className="professInfoContainer">
     <img className="professImage" src={profileImageUrl} alt="profilePicture" />
     <p className="professInfoText">
-      {profileName.toUpperCase()}
+      {profileName && profileName.toUpperCase()}
     </p>
 
     <style jsx>

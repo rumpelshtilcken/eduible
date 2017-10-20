@@ -1,11 +1,18 @@
 import PropTypes from 'prop-types';
 
+import { convertFromISOToObject } from 'utils/auth';
+
 import stylessheet from './index.css';
 
-const ProfesstionalEducationInfo = ({ education }) =>
+const ProfesstionalEducationInfo = ({ education, startYear, endYear }) =>
   (<div>
     <p className="professInfoText">
-      {education.toUpperCase()} 2001-2007
+      {education && `${education.toUpperCase()}`}
+      {' '}
+      {startYear &&
+        `${convertFromISOToObject(startYear).year}`}
+      {'-'}
+      {endYear && `${convertFromISOToObject(endYear).year}`}
     </p>
     <style jsx>
       {stylessheet}
@@ -13,7 +20,9 @@ const ProfesstionalEducationInfo = ({ education }) =>
   </div>);
 
 ProfesstionalEducationInfo.propTypes = {
-  education: PropTypes.string.isRequired
+  education: PropTypes.string.isRequired,
+  startYear: PropTypes.date,
+  endYear: PropTypes.date
 };
 
 export default ProfesstionalEducationInfo;
