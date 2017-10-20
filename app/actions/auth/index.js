@@ -83,7 +83,7 @@ export const signinFacebook = () => async (dispatch) => {
 
 export const signinGoogle = () => async (dispatch) => {
   try {
-    await auth.signinSocial('google');
+    await auth.signinSocial('google-oauth2');
     return dispatch({ type: AUTH_IN_PROGRESS });
   } catch (error) {
     const errorMsg = error.description || error.message || 'Unspecified error';
