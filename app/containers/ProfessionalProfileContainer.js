@@ -11,14 +11,14 @@ class ProfessionalProfileContainer extends Component {
     id: PropTypes.string.isRequired,
     onRequestCallClick: PropTypes.func,
     onEditButtonClick: PropTypes.func,
-    onProfileEditButtonClick: PropTypes.func.isRequired,
-    loading: PropTypes.boolean,
+    loading: PropTypes.bool,
     error: PropTypes.object,
     user: PropTypes.shape({
       id: PropTypes.string.isRequired,
       auth0UserId: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       professional: PropTypes.shape({
+        id: PropTypes.string,
         about: PropTypes.string,
         price: PropTypes.number,
         location: PropTypes.shape({
@@ -42,7 +42,7 @@ class ProfessionalProfileContainer extends Component {
 
   handleRequestCallClick = () =>
     this.props.onRequestCallClick({
-      professionalId: this.props.user.id
+      professionalId: this.props.user.professional.id
     });
 
   isCurrentUser = () => getCurrentUserData('sub') === this.props.user.auth0UserId;
@@ -51,8 +51,7 @@ class ProfessionalProfileContainer extends Component {
     const {
       user,
       loading,
-      error,
-      onProfileEditButtonClick
+      error
     } = this.props;
     if (error) return <div>{error}</div>;
 
@@ -60,7 +59,6 @@ class ProfessionalProfileContainer extends Component {
       <StatefulView loading={loading}>
         <ProfessionalProfile
           user={user}
-          onProfileEditButtonClick={onProfileEditButtonClick}
           onRequestCallClick={this.handleRequestCallClick}
           onEditButtonClick={this.props.onEditButtonClick}
           isCurrentUser={this.isCurrentUser()}

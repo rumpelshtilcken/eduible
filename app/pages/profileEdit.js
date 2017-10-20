@@ -11,7 +11,7 @@ class profileEdit extends Component {
     prefetch: true
   });
 
-  handleCancelButtonClick = () => console.log(Router.back()) || Router.back();
+  handleCancelButtonClick = () => Router.back();
 
   handleDidRemoveProfile = () => Router.push({ pathname: '/' });
 

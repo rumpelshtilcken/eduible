@@ -38,7 +38,6 @@ class ProfessionalSearchContainer extends Component {
         onUniversityChoose={this.handleUniversityChoose}
         professionals={this.props.allProfessionals}
         universities={this.props.allUniversities}
-        handleSort={this.handleSort}
         handleRangeChange={this.handleRangeChange}
       />
     );
