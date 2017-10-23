@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as formActions from 'actions/form';
 
+import { convertFromISOToObject } from 'utils/auth';
 import { MuiDatePicker } from 'components';
 
 class DatePickerContainer extends Component {
@@ -20,7 +21,8 @@ class DatePickerContainer extends Component {
 
   defineValue = () => {
     if (this.props.values && this.props.values[this.props.name]) {
-      return this.props.values[this.props.name].toString();
+      const { year, month, dt } = convertFromISOToObject(this.props.values[this.props.name]);
+      return `${year}-${month}-${dt}`;
     }
 
     return this.props.placeholder || '';
