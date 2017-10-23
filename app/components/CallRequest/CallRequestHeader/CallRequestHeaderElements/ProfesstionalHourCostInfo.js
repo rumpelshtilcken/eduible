@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 
 import stylessheet from './index.css';
 
-const ProfesstionalHourCostInfo = ({ cost }) =>
+const ProfesstionalHourCostInfo = ({ price }) =>
   (<div>
     <p className="professInfoText">
-      {cost}
+      {`$${price} per minute`}
     </p>
     <style jsx>
       {stylessheet}
@@ -13,7 +13,7 @@ const ProfesstionalHourCostInfo = ({ cost }) =>
   </div>);
 
 ProfesstionalHourCostInfo.propTypes = {
-  cost: PropTypes.string.isRequired
+  price: PropTypes.string.isRequired
 };
 
 export default ProfesstionalHourCostInfo;

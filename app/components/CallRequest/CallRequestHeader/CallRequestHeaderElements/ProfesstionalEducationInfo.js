@@ -9,10 +9,9 @@ const ProfesstionalEducationInfo = ({ education, startYear, endYear }) =>
     <p className="professInfoText">
       {education && `${education.toUpperCase()}`}
       {' '}
-      {startYear &&
-        `${convertFromISOToObject(startYear).year}`}
-      {'-'}
-      {endYear && `${convertFromISOToObject(endYear).year}`}
+      {startYear && endYear &&
+        `${convertFromISOToObject(startYear).year} - ${convertFromISOToObject(endYear).year}`
+      }
     </p>
     <style jsx>
       {stylessheet}

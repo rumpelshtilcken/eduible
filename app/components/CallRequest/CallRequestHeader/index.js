@@ -11,6 +11,28 @@ import {
 } from './CallRequestHeaderElements';
 
 class CallRequestHeader extends Component {
+  propTypes = {
+    professional: PropTypes.shape({
+      price: PropTypes.number,
+      user: PropTypes.shape({ name: PropTypes.string.isRequired }),
+      educations: PropTypes.arrayOf({
+        startYear: PropTypes.date,
+        endYear: PropTypes.date,
+        major: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          school: PropTypes.shape({
+            university: PropTypes.shape({ name: PropTypes.string.isRequired })
+          })
+        })
+      }),
+      job: PropTypes.shape({
+        jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }),
+        company: PropTypes.shape({ name: PropTypes.string.isRequired })
+      })
+    }),
+    onBackButtonClick: PropTypes.func.isRequired
+  };
+
   headerElements = [
     {
       key: 'ProfesstionalBasicInfo',
@@ -59,27 +81,5 @@ class CallRequestHeader extends Component {
     );
   }
 }
-
-CallRequestHeader.propTypes = {
-  professional: PropTypes.shape({
-    price: PropTypes.number,
-    user: PropTypes.shape({ name: PropTypes.string.isRequired }),
-    educations: PropTypes.arrayOf({
-      startYear: PropTypes.date,
-      endYear: PropTypes.date,
-      major: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        school: PropTypes.shape({
-          university: PropTypes.shape({ name: PropTypes.string.isRequired })
-        })
-      })
-    }),
-    job: PropTypes.shape({
-      jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }),
-      company: PropTypes.shape({ name: PropTypes.string.isRequired })
-    })
-  }),
-  onBackButtonClick: PropTypes.func.isRequired
-};
 
 export default CallRequestHeader;

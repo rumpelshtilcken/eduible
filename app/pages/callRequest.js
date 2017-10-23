@@ -17,6 +17,8 @@ class CallRequest extends Component {
 
   handleBackButtonClick = () => Router.back();
 
+  handleDidAppointmentCreate = () => Router.back();
+
   render() {
     if (!this.props.url.query && !this.props.url.query.professionalId) return null;
 
@@ -28,8 +30,9 @@ class CallRequest extends Component {
           <title>{'Call request'}</title>
         </Head>
         <CallRequestContainer
-          professionalId={professionalId}
           onBackButtonClick={this.handleBackButtonClick}
+          onDidAppointmentCreate={this.handleDidAppointmentCreate}
+          professionalId={professionalId}
         />
       </div>
     );
