@@ -28,11 +28,6 @@ class SignInContainer extends Component {
     showSignUpStudentModal: PropTypes.func.isRequired
   };
 
-  state = {
-    isSnackOpen: false
-  }
-
-
   componentWillReceiveProps(nextProps) {
     const { error, authenticated } = nextProps;
     if (authenticated) this.handleDidSignIn();
