@@ -57,12 +57,12 @@ class ProfessionalProfileContainer extends Component {
 
     return (
       <StatefulView loading={loading}>
-        <ProfessionalProfile
+        {user && <ProfessionalProfile
           user={user}
           onRequestCallClick={this.handleRequestCallClick}
           onEditButtonClick={this.props.onEditButtonClick}
           isCurrentUser={this.isCurrentUser()}
-        />
+        />}
       </StatefulView>
     );
   }
@@ -114,7 +114,7 @@ const getProfessionalById = gql`
 
 export default graphql(getProfessionalById, {
   name: 'user',
-  options: ({ id }) => ({ variables: { id } }),
+  options: ({ id }) => ({ variables: { id }, fetchPolicy: 'network-only' }),
   props: ({ user }) => ({
     user: user.User, loading: user.loading, error: user.error
   })

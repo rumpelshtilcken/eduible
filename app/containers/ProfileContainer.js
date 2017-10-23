@@ -17,17 +17,20 @@ const ProfileContainer = ({
 
   return (
     <StatefulView loading={loading}>
-      {user && user.userType === 'Student'
-        ? <StudentProfileContainer
-          id={user.id}
-          onRequestCallClick={onRequestCallClick}
-          onEditButtonClick={onEditButtonClick}
-        />
-        : <ProfessionalProfileContainer
-          id={user.id}
-          onRequestCallClick={onRequestCallClick}
-          onEditButtonClick={onEditButtonClick}
-        />}
+      {user &&
+        (user.userType === 'Student'
+          ? <StudentProfileContainer
+            id={user.id}
+            onRequestCallClick={onRequestCallClick}
+            onEditButtonClick={onEditButtonClick}
+          />
+          : <ProfessionalProfileContainer
+            id={user.id}
+            onRequestCallClick={onRequestCallClick}
+            onEditButtonClick={onEditButtonClick}
+          />
+        )
+      }
     </StatefulView>
   );
 };
@@ -51,7 +54,7 @@ const getUserByAuth0Id = gql`
 
 export default graphql(getUserByAuth0Id, {
   name: 'user',
-  options: ({ userId }) => ({ variables: { id: userId } }),
+  options: ({ userId }) => ({ variables: { id: userId }, fetchPolicy: 'network-only' }),
   props: ({ user }) => ({
     user: user.User, loading: user.loading, error: user.error
   })
