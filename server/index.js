@@ -24,13 +24,10 @@ const runServer = async () => {
     })
   );
 
+  server.use('/api/v1/videochat', videochat);
+  server.use('/api/v1/aknowledgements', aknowledgements);
+
   server.get('*', (req, res) => handler(req, res));
-
-  server.post('/videochat', videochat);
-
-  server.post('/professionalAcknowledge', aknowledgements);
-
-  server.post('/studentAcknowledge');
 
   // production error handler
   // no stacktraces leaked to user
