@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import fetch from 'isomorphic-unfetch';
 import PropTypes from 'prop-types';
 
-
 import { mailingConfig } from 'config';
 import { CallRequest, StatefulView } from 'components';
 import { convertFromISOToObject, convertDateToISO, getCurrentUserData } from 'utils/auth';
 import * as snackbarActions from 'actions/snackbar';
+import * as formActions from 'actions/form';
 
 import {
   createAppointment,
@@ -35,6 +35,7 @@ class CallRequestContainer extends Component {
         id: PropTypes.string
       })
     }),
+    reset: PropTypes.func,
     createAppointment: PropTypes.func.isRequired,
     showSnackbar: PropTypes.func.isRequired,
     onDidAppointmentCreate: PropTypes.func.isRequired
@@ -43,6 +44,10 @@ class CallRequestContainer extends Component {
   state = {
     loading: false
   };
+
+  componentWillUnmount() {
+    this.props.reset();
+  }
 
   handleRequestCallClick = async () => {
     try {
@@ -141,7 +146,8 @@ class CallRequestContainer extends Component {
 const mapStateToProps = ({ form }) => ({ form });
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators(snackbarActions, dispatch)
+  ...bindActionCreators(snackbarActions, dispatch),
+  ...bindActionCreators(formActions, dispatch)
 });
 
 export default compose(
