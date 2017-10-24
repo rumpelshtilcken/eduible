@@ -18,7 +18,7 @@ let sendEmail = ({ callback }) => {
   });
 };
 
-if (NODE_ENV === 'test') {
+if (NODE_ENV !== 'test') {
   sendEmail = ({
     to,
     subject,
