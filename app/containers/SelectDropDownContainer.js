@@ -26,6 +26,15 @@ class SelectDropDownContainer extends Component {
     resetFilter: PropTypes.func.isRequired
   };
 
+  componentDidMount() {
+    const { value } = this.props.options[0];
+    if (this.props.isFormInput) {
+      this.props.update({ name: [this.props.reduxStoreName], value });
+    }
+
+    this.props.searchUpdate({ name: [this.props.reduxStoreName], value });
+  }
+
   handleSearchChange = value => (value
     ? this.props.searchUpdate({ name: [this.props.reduxStoreName], value })
     : this.props.resetFilter({ name: [this.props.reduxStoreName] }))
