@@ -9,7 +9,7 @@ import express from 'express';
 
 import { mailingConfig } from 'config';
 
-import aknowledgements from './index';
+import acknowledgements from './index';
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -32,7 +32,7 @@ describe('Mailing functionality', () => {
     // cleanup database and setup a new server on each test
     server = express();
     server.use(bodyParser.json());
-    server.use(aknowledgements);
+    server.use(acknowledgements);
   });
 
   it('Should return error: Key not provided', async () => {

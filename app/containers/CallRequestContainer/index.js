@@ -111,7 +111,7 @@ class CallRequestContainer extends Component {
     };
 
     try {
-      const response = await fetch('/api/v1/aknowledgements', init);
+      const response = await fetch('/api/v1/acknowledgements', init);
 
       if (response.status !== 200) {
         throw new Error('Error');

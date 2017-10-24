@@ -4,7 +4,7 @@ import next from 'next';
 import config from 'config';
 
 import videochat from 'routes/videochat';
-import aknowledgements from 'routes/aknowledgements';
+import acknowledgements from 'routes/acknowledgements';
 
 const { NODE_ENV, PORT } = config;
 
@@ -25,7 +25,7 @@ const runServer = async () => {
   );
 
   server.use('/api/v1/videochat', videochat);
-  server.use('/api/v1/aknowledgements', aknowledgements);
+  server.use('/api/v1/acknowledgements', acknowledgements);
 
   server.get('*', (req, res) => handler(req, res));
 
