@@ -3,6 +3,7 @@ import { gql } from 'react-apollo';
 export const getStudentId = gql`
   query getStudentId( $id: ID!) {
     User (auth0UserId: $id) {
+      name
       student { id }
     }
   }
@@ -14,12 +15,14 @@ export const createAppointment = gql`
     $message: String!
     $professionalId: ID!
     $studentId: ID!
+    $estimatedLength: Float!
   ) {
     createAppointment(
       dateTime: $dateTime
       message: $message
       professionalId: $professionalId
       studentId: $studentId
+      estimatedLength: $estimatedLength
     ) {
       id
     }
@@ -34,6 +37,7 @@ export const getProfessional = gql`
       user {
         id
         name
+        email
       }
       educations {
         id

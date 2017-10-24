@@ -2,8 +2,11 @@ import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import { compose, graphql } from 'react-apollo';
 import { connect } from 'react-redux';
+import fetch from 'isomorphic-unfetch';
 import PropTypes from 'prop-types';
 
+
+import { mailingConfig } from 'config';
 import { CallRequest, StatefulView } from 'components';
 import { convertFromISOToObject, convertDateToISO, getCurrentUserData } from 'utils/auth';
 import * as snackbarActions from 'actions/snackbar';
@@ -15,7 +18,7 @@ import {
 } from './Queries';
 
 class CallRequestContainer extends Component {
-  propTypes = {
+  static propTypes = {
     onBackButtonClick: PropTypes.func.isRequired,
     professional: PropTypes.object,
     error: PropTypes.string,
@@ -23,9 +26,11 @@ class CallRequestContainer extends Component {
     form: PropTypes.shape({
       appointmentDate: PropTypes.date,
       appointmentTime: PropTypes.date,
-      message: PropTypes.string
+      message: PropTypes.string,
+      appointmentLength: PropTypes.number
     }),
     user: PropTypes.shape({
+      name: PropTypes.string,
       student: PropTypes.shape({
         id: PropTypes.string
       })
@@ -45,6 +50,7 @@ class CallRequestContainer extends Component {
       const params = this.prepareParams();
       await this.props.createAppointment({ ...params });
       this.props.showSnackbar({ type: 'success', message: 'Appointment successfully created' });
+      this.sendAcknowledgements(params);
       this.props.onDidAppointmentCreate();
       this.setState({ loading: false });
     } catch (err) {
@@ -54,7 +60,7 @@ class CallRequestContainer extends Component {
   };
 
   prepareParams = () => {
-    const { appointmentDate, appointmentTime, message } = this.props.form;
+    const { appointmentDate, appointmentTime, message, appointmentLength } = this.props.form;
     const date = convertFromISOToObject(appointmentDate);
     const time = convertFromISOToObject(appointmentTime);
 
@@ -65,7 +71,56 @@ class CallRequestContainer extends Component {
     const { id: professionalId } = this.props.professional;
     const { id: studentId } = this.props.user.student;
 
-    return { dateTime, professionalId, studentId, message };
+    return {
+      estimatedLength: parseInt(appointmentLength, 10),
+      dateTime,
+      professionalId,
+      studentId,
+      message
+    };
+  };
+
+  sendAcknowledgements = async ({
+    estimatedLength,
+    dateTime,
+    message
+  }) => {
+    const encodedKey = btoa(mailingConfig.key);
+
+    const { name } = this.props.user;
+    const { user, price } = this.props.professional;
+    const { year, month, dt, hour, minute } = convertFromISOToObject(dateTime);
+    const date = `${year}-${month}-${dt} ${hour}:${minute}`;
+
+    const init = {
+      method: 'POST',
+      headers: {
+        Authorization: encodedKey,
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        professionalEmail: user.email,
+        professionalName: user.name,
+        studentName: name,
+        message,
+        appointmentLength: estimatedLength,
+        appointmentPrice: estimatedLength * price,
+        appointmentDate: date
+      })
+    };
+
+    try {
+      const response = await fetch('/api/v1/aknowledgements', init);
+
+      if (response.status !== 200) {
+        throw new Error('Error');
+      }
+
+      return this.props.showSnackbar('success', 'Email sended');
+    } catch (error) {
+      return this.props.showSnackbar('error', 'Email not sent');
+    }
   };
 
   render() {
@@ -73,11 +128,11 @@ class CallRequestContainer extends Component {
 
     return (
       <StatefulView loading={this.props.loading || this.state.loading}>
-        <CallRequest
+        {this.props.professional && <CallRequest
           professional={this.props.professional}
           onBackButtonClick={this.props.onBackButtonClick}
           onRequestCallClick={this.handleRequestCallClick}
-        />
+        />}
       </StatefulView>
     );
   }
@@ -112,12 +167,14 @@ export default compose(
       dateTime,
       message,
       professionalId,
-      studentId
+      studentId,
+      estimatedLength
     }) => mutate({ variables: {
       dateTime,
       message,
       professionalId,
-      studentId
+      studentId,
+      estimatedLength
     }
     })
   })

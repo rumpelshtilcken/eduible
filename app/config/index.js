@@ -9,4 +9,8 @@ export const auth0Config = {
   scope: 'openid email  profile',
   redirectUri: 'http://localhost:3000/socialLoginCallback'
 };
+
+export const mailingConfig = {
+  key: '9drj3dif32kDkr932f2308574731q'
+};
 // 'http://www.eduible.com/socialLoginCallback'
