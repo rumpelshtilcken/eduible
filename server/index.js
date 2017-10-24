@@ -4,6 +4,7 @@ import next from 'next';
 import config from 'config';
 
 import videochat from 'routes/videochat';
+import aknowledgements from 'routes/aknowledgements';
 
 const { NODE_ENV, PORT } = config;
 
@@ -26,6 +27,10 @@ const runServer = async () => {
   server.get('*', (req, res) => handler(req, res));
 
   server.post('/videochat', videochat);
+
+  server.post('/professionalAcknowledge', aknowledgements);
+
+  server.post('/studentAcknowledge');
 
   // production error handler
   // no stacktraces leaked to user

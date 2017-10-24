@@ -13,4 +13,8 @@ const vidyoConfig = {
   devKey: '7f0785e435ba4f1c82c49c6682c44081'
 };
 
-export { vidyoConfig };
+const mailingConfig = {
+  key: '9drj3dif32kDkr932f2308574731q'
+};
+
+export { vidyoConfig, mailingConfig };
