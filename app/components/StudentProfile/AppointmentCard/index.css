@@ -36,6 +36,7 @@
   flex-grow: 1;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 
   @media screen and (min-width: 768px) {
     margin-left: 49px;

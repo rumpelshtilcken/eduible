@@ -1,7 +1,7 @@
 import stylesheet from './index.css';
-
+/* eslint-disable */
 const PrivacyPolicy = () => (
-  // eslint-disable
+  
   <div className="privatePolicyContent">
     <p>PRIVACY POLICY</p>
 
@@ -574,6 +574,6 @@ const PrivacyPolicy = () => (
     </p>
     <style jsx>{stylesheet}</style>
   </div>
-  // eslint-enable
 );
 export default PrivacyPolicy;
+/* eslint-enable */

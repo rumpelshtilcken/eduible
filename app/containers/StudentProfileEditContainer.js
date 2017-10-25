@@ -24,7 +24,11 @@ class StudentProfileEditContainer extends Component {
     updateStudentProfile: PropTypes.func,
     name: PropTypes.string,
     birthday: PropTypes.string,
-    update: PropTypes.func
+    update: PropTypes.func,
+    onDidProfileSave: PropTypes.func.isRequired,
+    deleteProfile: PropTypes.func.isRequired,
+    signoutUser: PropTypes.func.isRequired,
+    onDidRemoveProfile: PropTypes.func.isRequired
   };
 
   componentDidMount() {

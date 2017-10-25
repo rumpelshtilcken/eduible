@@ -44,7 +44,10 @@ class SignUpProfessionalStep2Modal extends Component {
             <div className="container-box">
               <div className="box">
 
-                <AuthForm inputs={this.inputs} onContinueButtonClick={this.props.onContinueButtonClick} />
+                <AuthForm
+                  inputs={this.inputs}
+                  onContinueButtonClick={this.props.onContinueButtonClick}
+                />
                 <div className="p-box">
                   <p className="share provide">Providing your job title and company name will help users find you on Eduible</p>
                 </div>

@@ -20,7 +20,7 @@ const requestBody = {
   appointmentPrice: '5',
   appointmentDate: '23/5/1',
   message: 'Hi',
-  professionalEmail: 'adilkhankenzhetaev@gmail.com',
+  professionalEmail: 'SSS',
   professionalName: 'Professional Name',
   studentName: 'Student Name'
 };
@@ -83,14 +83,5 @@ describe('Mailing functionality', () => {
     }
 
     expect(false).to.be.ok;
-  });
-
-  it('Should send email', async () => {
-    const res = await chai
-      .request(server)
-      .post('/')
-      .set('authorization', key)
-      .send(requestBody);
-    expect(res.status).to.equal(200);
   });
 });

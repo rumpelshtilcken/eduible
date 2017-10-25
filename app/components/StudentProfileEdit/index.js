@@ -6,7 +6,11 @@ import DatePickerContainer from 'containers/DatePickerContainer';
 
 import stylesheet from './index.css';
 
-const StudentProfileEdit = ({ onSaveButtonClick, onCancelButtonClick, onRemoveAccountButtonClick }) => (
+const StudentProfileEdit = ({
+  onSaveButtonClick,
+  onCancelButtonClick,
+  onRemoveAccountButtonClick
+}) => (
   <div className="container">
     <div className="profile-div">
       <p id="title">{'Profile Edit'}</p>

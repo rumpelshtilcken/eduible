@@ -9,8 +9,9 @@ import { professionalText } from './texts';
 // const studentAcknowledgeUrl = 'http://www.eduible.com/studentAcknowledge';
 const apiKey = mailingConfig.key;
 const AcknowledgementsRouter = express.Router();
-
+/* eslint-disable */
 AcknowledgementsRouter.post('/', (req, res, next) => {
+/* eslint-enable */
   // extract all data
   const {
     appointmentLength,
