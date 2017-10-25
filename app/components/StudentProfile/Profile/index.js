@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
 
-import { StudentProfileCard as Card } from 'components';
-
 import style from './index.css';
 
 const Profile = ({ user, onEditButtonClick }) => (

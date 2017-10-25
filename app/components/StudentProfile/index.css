@@ -1,4 +1,4 @@
-.container {
+.studentProfileContainer {
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -25,10 +25,13 @@
   }
 }
 
-.collapseContainer {
-  @media screen and (min-width: 1024px) {
-    display: flex;
-    align-items: start;
-    margin: auto;
-  }
+.appointmentCardContainer {
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: 11px;
+  font-family: "Effra";
+  font-weight: 500;
+  color: #626262;
 }

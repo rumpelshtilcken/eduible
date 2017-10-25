@@ -27,6 +27,16 @@ const getStudentById = gql`
       name
       student {
         id
+        appointments {
+          dateTime
+          state
+          estimatedLength
+          professional {
+            user {
+              name
+            }
+          }
+        }
       }
     }
   }
