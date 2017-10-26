@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 
 import style from './index.css';
 
-const Profile = ({ user, onEditButtonClick }) => (
+const Profile = ({ student: { user: { name } }, onEditButtonClick }) => (
   <div className="container">
     <div className="profile">
       <div className="profileImg">
         <img src="static/Profile.jpg" alt="profileImage" />
       </div>
       <div className="profileData">
-        <p>{user.name}</p>
+        <p>{name}</p>
       </div>
     </div>
     <div className="btn">
@@ -30,7 +30,7 @@ const Profile = ({ user, onEditButtonClick }) => (
 );
 
 Profile.propTypes = {
-  user: PropTypes.object.isRequired,
+  student: PropTypes.object.isRequired,
   onEditButtonClick: PropTypes.func.isRequired
 };
 

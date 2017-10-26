@@ -9,18 +9,19 @@ import stylesheet from './index.css';
 class StudentProfile extends Component {
   static propTypes = {
     onEditButtonClick: PropTypes.func.isRequired,
-    user: PropTypes.shape({
-      student: PropTypes.shape({
-        appointments: PropTypes.shape({
-          dateTime: PropTypes.date,
-          state: PropTypes.string,
-          estimatedLength: PropTypes.number,
-          professional: PropTypes.shape({
-            user: PropTypes.shape({
-              name: PropTypes.string.isRequired
-            }).isRequired
-          }).isRequired
-        })
+    appointments: PropTypes.shape({
+      dateTime: PropTypes.date,
+      state: PropTypes.string,
+      estimatedLength: PropTypes.number,
+      professional: PropTypes.shape({
+        user: PropTypes.shape({
+          name: PropTypes.string.isRequired
+        }).isRequired
+      }).isRequired
+    }),
+    student: PropTypes.shape({
+      user: PropTypes.shape({
+        name: PropTypes.string
       }).isRequired
     })
   };
@@ -33,25 +34,25 @@ class StudentProfile extends Component {
   );
 
   render() {
-    const { user, onEditButtonClick } = this.props;
+    const { student, appointments, onEditButtonClick } = this.props;
 
     let historyAppointment;
     let comingAppointment;
     let requestAppointment;
 
-    if (user.student.appointments) {
-      historyAppointment = user.student.appointments
+    if (appointments) {
+      historyAppointment = appointments
         .filter(appointment => appointment.state === 'Ended');
-      comingAppointment = user.student.appointments
+      comingAppointment = appointments
         .filter(appointment => appointment.state === 'Approve');
-      requestAppointment = user.student.appointments
+      requestAppointment = appointments
         .filter(appointment => appointment.state === 'Request');
     }
 
     return (
       <div className="studentProfileContainer">
         <Profile
-          user={user}
+          student={student}
           onEditButtonClick={onEditButtonClick}
         />
 
