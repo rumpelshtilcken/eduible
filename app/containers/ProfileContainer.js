@@ -21,6 +21,7 @@ const ProfileContainer = ({
         (user.userType === 'Student'
           ? <StudentProfileContainer
             id={user.id}
+            studentId={user.student.id}
             onRequestCallClick={onRequestCallClick}
             onEditButtonClick={onEditButtonClick}
           />
@@ -48,6 +49,8 @@ const getUserByAuth0Id = gql`
     User (id: $id) {
       id
       userType
+      student { id }
+      professional { id }
     }
   }
 `;
