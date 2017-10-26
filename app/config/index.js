@@ -1,5 +1,6 @@
 // Graphcool
 export const apiUrl = 'https://api.graph.cool/simple/v1/cj7x06p6e0rin0138204qqj4x';
+export const subscriptionUrl = 'wss://subscriptions.graph.cool/v1/cj7x06p6e0rin0138204qqj4x';
 
 export const auth0Config = {
   domain: 'eduible.auth0.com',

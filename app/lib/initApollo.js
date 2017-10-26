@@ -1,7 +1,8 @@
 import { ApolloClient, createNetworkInterface } from 'react-apollo';
+import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 import fetch from 'isomorphic-fetch';
 
-import { apiUrl } from 'config';
+import { apiUrl, subscriptionUrl } from 'config';
 
 let apolloClient = null;
 
@@ -10,15 +11,22 @@ if (!process.browser) {
   global.fetch = fetch;
 }
 
-function create() {
+function create(wsClient) {
+  const networkInterface = createNetworkInterface({
+    uri: apiUrl, // Server URL (must be absolute)
+    opts: { // Additional fetch() options like `credentials` or `headers`
+      credentials: 'same-origin'
+    }
+  });
+
+  const combinedNetworkInterface = wsClient
+    ? addGraphQLSubscriptions(networkInterface, wsClient)
+    : networkInterface;
+
   return new ApolloClient({
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
-    networkInterface: createNetworkInterface({
-      uri: apiUrl, // Server URL (must be absolute)
-      opts: { // Additional fetch() options like `credentials` or `headers`
-        credentials: 'same-origin'
-      }
-    })
+    networkInterface: combinedNetworkInterface,
+    dataIdFromObject: o => o.id
   });
 }
 
@@ -31,7 +39,12 @@ export default function initApollo() {
 
   // Reuse client on the client-side
   if (!apolloClient) {
-    apolloClient = create();
+    const wsClient = new SubscriptionClient(subscriptionUrl, {
+      reconnect: true,
+      timeout: 5000
+    });
+
+    apolloClient = create(wsClient);
   }
 
   return apolloClient;
