@@ -6,21 +6,30 @@ import DatePickerContainer from 'containers/DatePickerContainer';
 
 import stylesheet from './index.css';
 
+const handleBackgroundImageChange = () => {};
+
 const StudentProfileEdit = ({
+  name,
+  birthday,
   onSaveButtonClick,
   onCancelButtonClick,
   onRemoveAccountButtonClick
 }) => (
-  <div className="container">
-    <div className="profile-div">
-      <p id="title">{'Profile Edit'}</p>
-      <img src="/static/user_profile_photo.jpeg" alt="profileImg" />
-      <div className="MuiTextField-div">
+  <div className="studentProfileContainer">
+    <div className="profile">
+      <p className="studentProfileTitle">{'Profile Edit'}</p>
+      <div className="pickProfileImageContainer">
+        <img src="/static/user_profile_photo.jpeg" alt="profileImg" className="studentProfileImage" />
+        <button className="overlayButton" onClick={handleBackgroundImageChange}>
+          {'Change'}
+        </button>
+      </div>
+      <div className="muiTextFieldBox">
         <TextFieldContainer
           title={'Fullname'}
           type={'string'}
           name={'name'}
-          placeholder={'John Smith'}
+          placeholder={name}
           onContinueButtonClick={onSaveButtonClick}
         />
         <DatePickerContainer
@@ -36,7 +45,7 @@ const StudentProfileEdit = ({
       >
         I want to remove my account
       </div>
-      <div className="Muibtn-div">
+      <div className="muibtnBox">
         <div className="btn">
           <MuiButton
             label="Cancel"
@@ -58,6 +67,8 @@ const StudentProfileEdit = ({
 );
 
 StudentProfileEdit.propTypes = {
+  name: PropTypes.string.isRequired,
+  birthday: PropTypes.string.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
   onCancelButtonClick: PropTypes.func.isRequired,
   onRemoveAccountButtonClick: PropTypes.func.isRequired

@@ -117,7 +117,7 @@ class ProfileEditTab extends Component {
               <div className="calendarComment">
                 <TextFieldContainer
                   name={'calendarComment'}
-                  placeholder={''}
+                  placeholder={'Usually available during lunch time and ..'}
                   type="string"
                   validation={() => {}}
                 />
