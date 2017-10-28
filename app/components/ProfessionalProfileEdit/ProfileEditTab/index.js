@@ -1,7 +1,6 @@
 /* eslint-disable */
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import DatePickerContainer from 'containers/DatePickerContainer';
 import TextFieldContainer from 'containers/TextFieldContainer';
@@ -46,7 +45,6 @@ class ProfileEditTab extends Component {
     const { about, price } = professional;
 
     return (
-      <MuiThemeProvider>
         <div className="professionalProfileEditContainer">
           <div className="professionalProfileEditTitle">
             {'Profile Edit'}
@@ -94,14 +92,13 @@ class ProfileEditTab extends Component {
                 />
               </div>
             </div>
-            <TextFieldContainer
-              name={'about'}
-              placeholder={'Tell us about you'}
-              title={'About'}
-              type="text"
-              validation={() => {}}
-              multiLine
-            />
+            <div className="aboutTextAreaBox">
+              <p>About</p>
+              <textarea
+                placeholder="Type your information"
+                validation = {() => {}}
+              />
+            </div>
             <div className="label">Set Estimated Cost</div>
             <div className="dollarSign">
               <input
@@ -110,34 +107,40 @@ class ProfileEditTab extends Component {
                 defaultValue={price}
                 type="text"
               />
-              <div>{'Per Minute'}</div>
+              <div className="perMinute">{'Per Minute'}</div>
             </div>
             <div className="label">{'Suggest Day When You are Free to Talk'}</div>
             <div className="step2">
               <button className="button" onClick={this.openCalendar}>
                 {'Open Calendar'}
               </button>
-              <TextFieldContainer
-                name={'calendarComment'}
-                placeholder={''}
-                type="string"
-                validation={() => {}}
-              />
+              <div className="calendarComment">
+                <TextFieldContainer
+                  name={'calendarComment'}
+                  placeholder={''}
+                  type="string"
+                  validation={() => {}}
+                />
+              </div>
             </div>
             <div className="label">{'Change Password'}</div>
             <div className="passwords">
-              <input
-                className="input pass"
-                ref={ref => (this.currentPassRef = ref)}
-                type="text"
-                placeholder="Current Password"
-              />
-              <input
-                className="input"
-                ref={ref => (this.newPassRef = ref)}
-                type="text"
-                placeholder="New Password"
-              />
+              <div className="passwordTextField">
+                <TextFieldContainer
+                  name={'name'}
+                  placeholder={'Current Password'}
+                  type="string"
+                  validation={() => {}}
+                />
+              </div>
+              <div className="passwordTextField">
+                <TextFieldContainer
+                  name={'name'}
+                  placeholder={'New Password'}
+                  type="string"
+                  validation={() => {}}
+                />
+              </div>
             </div>
             <div className="buttons">
               <button className="button cancel" type="reset">
@@ -150,7 +153,6 @@ class ProfileEditTab extends Component {
           </form>
           <style jsx>{styles}</style>
         </div>
-      </MuiThemeProvider>
     );
   }
 }

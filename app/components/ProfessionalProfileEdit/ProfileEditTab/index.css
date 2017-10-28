@@ -1,7 +1,10 @@
 .professionalProfileEditContainer {
-  max-width: 352px;
-  min-width: 282px;
+  width: 282px;
   margin: auto;
+
+  @media screen and (min-width: 768px) {
+    width: 352px;
+  }
 }
 
 .professionalProfileEditTitle {
@@ -9,6 +12,11 @@
   font-weight: normal;
   font-size: 18px;
   font-family: Effra;
+  color: #000;
+  margin: 20px 0 30px;
+  @media screen and (min-width: 768px) {
+    margin-top: 0;
+  }
 }
 
 .profileImagesContainer {
@@ -99,6 +107,12 @@
   }
 }
 
+.step2 button {
+  @media screen and (min-width: 768px) {
+    width: 100px;
+  }
+}
+
 .comment {
   @media screen and (min-width: 768px) {
     margin: 10px;
@@ -112,7 +126,7 @@
   padding: 15px 0 0;
   color: #626262;
   font-weight: bold;
-  padding-bottom: 3px;
+  padding-bottom: 7px;
 }
 
 .input {
@@ -145,6 +159,7 @@
 }
 
 .dollarSign {
+  display: flex;
   position: relative;
   padding-left: 0;
   font-family: Effra;
@@ -160,6 +175,12 @@
   content: "$";
 }
 
+.perMinute {
+  font-size: 11px;
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
 .select {
   margin-left: 2%;
   height: 30px;
@@ -168,7 +189,7 @@
 
 .button {
   border-radius: 100px;
-  width: 120px;
+  width: 126px;
   height: 30px;
   background-color: #7262bf;
   color: white;
@@ -176,12 +197,20 @@
   margin: 10px 0;
   font-size: 11px;
   cursor: pointer;
+  outline: none;
+  cursor: pointer;
 }
 
 .calendar {
   position: relative;
   top: -20px;
   left: +95%;
+}
+
+.calendarComment {
+  @media screen and (min-width: 768px) {
+    width: 240px;
+  }
 }
 
 .passwords {
@@ -193,11 +222,9 @@
   }
 }
 
-.pass {
-  margin-bottom: 10px;
-
+.passwordTextField {
   @media screen and (min-width: 768px) {
-    margin-right: 10px;
+    width: 165px; 
   }
 }
 
@@ -206,8 +233,8 @@
   width: 100%;
   margin: auto;
   height: 40px;
-  justify-content: space-between;
-  padding-bottom: 20px;
+  justify-content: space-around;
+  padding-bottom: 50px;
 
   @media screen and (min-width: 768px) {
     margin-top: 20px;
@@ -217,13 +244,30 @@
 .cancel {
   display: inline;
   float: left;
-  width: 140px;
   color: black;
   background-color: #e8e8e8;
 }
 
 .save {
   display: inline;
-  width: 140px;
   float: right;
+}
+
+.aboutTextAreaBox p {
+  font-family: 'Effra';
+  font-size: 11px;
+  font-weight: 400;
+  color: #626262;
+}
+
+.aboutTextAreaBox textarea {
+  width: 98%;
+  min-height: 120px;
+  outline: none;
+  resize: none;
+  border: 1px solid #D9D9D9;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: #F9F9F9;
+  color: #626262;
 }

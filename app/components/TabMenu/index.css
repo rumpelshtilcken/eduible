@@ -9,7 +9,7 @@
 .tabList {
   @media screen and (min-width: 1024px) {
     width: 150px;
-    margin-right: 20px;
+    margin-right: 40px;
   }
 }
 
@@ -50,11 +50,12 @@
   }
 }
 
+/* 
 .tabPanel {
   @media screen and (min-width: 1024px) {
     width: 730px;
   }
-}
+} */
 
 .notifyDot {
   display: inline-block;
