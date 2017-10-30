@@ -5,35 +5,36 @@ import stylesheet from './index.css';
 
 class ProfessionalProfileInfo extends Component {
   static propTypes = {
-    user: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      auth0UserId: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      professional: PropTypes.shape({
-        about: PropTypes.string,
-        price: PropTypes.number,
-        location: PropTypes.shape({
-          country: PropTypes.string
-        }),
-        job: PropTypes.shape({
-          company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
-          jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired
-        }),
-        educations: PropTypes.arrayOf(PropTypes.shape({
-          major: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            school: PropTypes.shape({
-              university: PropTypes.shape({ name: PropTypes.string.isRequired })
-            })
+    professional: PropTypes.shape({
+      user: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        auth0UserId: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+      }),
+      id: PropTypes.string,
+      about: PropTypes.string,
+      price: PropTypes.number,
+      location: PropTypes.shape({
+        country: PropTypes.string
+      }),
+      job: PropTypes.shape({
+        company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
+        jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired
+      }),
+      educations: PropTypes.arrayOf(PropTypes.shape({
+        major: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          school: PropTypes.shape({
+            university: PropTypes.shape({ name: PropTypes.string.isRequired })
           })
-        }))
-      })
+        })
+      }))
     })
   }
 
   prepareInfo = () => {
-    const { user } = this.props;
-    const { professional } = this.props.user;
+    const { professional } = this.props;
+    const { user } = this.props.professional;
 
     const info = [];
 

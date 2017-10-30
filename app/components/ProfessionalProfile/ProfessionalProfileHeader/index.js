@@ -14,34 +14,35 @@ class ProfessionalProfileHeader extends Component {
     onRequestCallClick: PropTypes.func,
     onEditButtonClick: PropTypes.func,
     isCurrentUser: PropTypes.bool,
-    user: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      auth0UserId: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      professional: PropTypes.shape({
-        about: PropTypes.string,
-        price: PropTypes.number,
-        location: PropTypes.shape({
-          country: PropTypes.string
-        }),
-        job: PropTypes.shape({
-          company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
-          jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired
-        }),
-        educations: PropTypes.arrayOf(PropTypes.shape({
-          major: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            school: PropTypes.shape({
-              university: PropTypes.shape({ name: PropTypes.string.isRequired })
-            })
+    professional: PropTypes.shape({
+      user: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        auth0UserId: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+      }),
+      id: PropTypes.string,
+      about: PropTypes.string,
+      price: PropTypes.number,
+      location: PropTypes.shape({
+        country: PropTypes.string
+      }),
+      job: PropTypes.shape({
+        company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
+        jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired
+      }),
+      educations: PropTypes.arrayOf(PropTypes.shape({
+        major: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          school: PropTypes.shape({
+            university: PropTypes.shape({ name: PropTypes.string.isRequired })
           })
-        }))
-      })
+        })
+      }))
     })
   };
 
   renderHeaderButton = () => {
-    if (!this.props.user) { return null; }
+    if (!this.props.professional) { return null; }
 
     return (this.props.isCurrentUser
       ? <RoundedButton title={'Edit Profile'} onClick={this.props.onEditButtonClick} />
@@ -49,7 +50,7 @@ class ProfessionalProfileHeader extends Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { professional } = this.props;
 
     return (
       <div className="professionalProfileHeader">
@@ -67,7 +68,7 @@ class ProfessionalProfileHeader extends Component {
           />
 
           <div className="professionalProfileBasicInfoContainer">
-            <ProfessionalProfileInfo user={user} />
+            <ProfessionalProfileInfo professional={professional} />
             <div className="mobileButtonWrapper">
               <div className="mobileButtonContainer">
                 {this.renderHeaderButton()}
@@ -75,13 +76,13 @@ class ProfessionalProfileHeader extends Component {
             </div>
           </div>
 
-          {user.professional.price && <div className={cx('additionalInfoContainer', {
+          {professional.price && <div className={cx('additionalInfoContainer', {
             priceContainer: true
           })}
           >
             <div className="roundedContainer">
               <p className="additionalInfoContent">
-                {user.professional.price}
+                {professional.price}
               </p>
             </div>
             <p className="additionalInfo">price</p>
@@ -93,7 +94,7 @@ class ProfessionalProfileHeader extends Component {
           >
             <div className="roundedContainer">
               <p className="additionalInfoContent">
-                {user.professional.rating || 0}
+                {professional.rating || 0}
               </p>
             </div>
             <p className="additionalInfo">rating</p>
