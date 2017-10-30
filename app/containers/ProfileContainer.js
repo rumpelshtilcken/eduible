@@ -1,8 +1,8 @@
 import { graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
+import { getCurrentUserData } from 'utils/auth';
 import { StatefulView } from 'components';
-
 import ProfessionalProfileContainer from 'containers/ProfessionalProfileContainer';
 import StudentProfileContainer from 'containers/StudentProfileContainer';
 
@@ -15,20 +15,23 @@ const ProfileContainer = ({
 }) => {
   if (error) { return <div>{'Error'}</div>; }
 
+  const isCurrentUser = user &&
+    (getCurrentUserData('sub') === user.auth0UserId);
+
   return (
     <StatefulView loading={loading}>
       {user &&
         (user.userType === 'Student'
           ? <StudentProfileContainer
-            id={user.id}
             studentId={user.student.id}
             onRequestCallClick={onRequestCallClick}
             onEditButtonClick={onEditButtonClick}
           />
           : <ProfessionalProfileContainer
-            id={user.id}
+            professionalId={user.professional.id}
             onRequestCallClick={onRequestCallClick}
             onEditButtonClick={onEditButtonClick}
+            isCurrentUser={isCurrentUser}
           />
         )
       }
@@ -48,6 +51,7 @@ const getUserByAuth0Id = gql`
   query User($id: ID!) {
     User (id: $id) {
       id
+      auth0UserId
       userType
       student { id }
       professional { id }
