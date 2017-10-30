@@ -98,7 +98,7 @@
     "rxjs": "^5.4.3",
     "sequelize": "^4.5.0",
     "sequelize-cli": "^2.8.0",
-    "subscriptions-transport-ws": "0.5.0",
+    "subscriptions-transport-ws": "0.8.1",
     "uuid": "^3.1.0",
     "validator": "^8.0.0",
     "webpack": "^3.5.5"

@@ -3,6 +3,7 @@ import { compose, graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
 import { StudentProfile, StatefulView } from 'components';
+import AppointmentUtils from 'utils/AppointmentUtils';
 
 const appointmentSubscription = gql`
   subscription subscribeToAppointments($id: ID!) {
@@ -52,7 +53,10 @@ class StudentProfileContainer extends Component {
   componentWillReceiveProps(newProps) {
     if (!newProps.loading || !newProps.appointments.loading) {
       if (this.subscription) {
-        if (newProps.appointments.allAppointments !== this.props.appointments.allAppointments) {
+        if (AppointmentUtils.isArrayEqual(
+          newProps.appointments.allAppointments,
+          this.props.appointments.allAppointments
+        )) {
           // if the feed has changed, we need to unsubscribe before resubscribing
           this.subscription();
         } else {
@@ -69,26 +73,26 @@ class StudentProfileContainer extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.subscription();
+  }
+
   handleDidAppointmentsUpdate = (
     previousState,
     { subscriptionData: { data: { Appointment: { node } } } }
-  ) => ({
-    allAppointments: [
-      {
-        ...node
-      },
-      ...previousState.allAppointments
-    ]
-  });
+  ) => {
+    const appointments = previousState.allAppointments.map(appointment =>
+      (appointment.id === node.id
+        ? node
+        : appointment)
+    ).filter(appointment => appointment.id === node.id)
+      ? appointments
+      : appointments.push(node);
+
+    return appointments;
+  };
 
   handleUpdateError = err => console.error(err)
-
-  renderAppointment = appointment => (
-    <div>
-      {appointment.professional.user.name}:
-      {appointment.state}
-    </div>
-  );
 
   render() {
     const {
@@ -99,11 +103,10 @@ class StudentProfileContainer extends Component {
       onEditButtonClick
     } = this.props;
     if (error) return (<div>{`StudentProfileContainer Error: ${error}`}</div>);
-    if (appointments.error) return (<div>{`StudentProfileContainer Error: ${error}`}</div>);
 
     return (
-      <StatefulView loading={loading || appointments.loading} >
-        {student && appointments.allAppointments &&
+      <StatefulView loading={loading} >
+        {student && appointments && appointments.allAppointments &&
         <StudentProfile
           student={student}
           appointments={appointments.allAppointments}
@@ -127,21 +130,21 @@ const getStudentById = gql`
 `;
 
 const getAppointmentByStudentId = gql`
-query getAppointmentByStudentId($id: ID!) {
-  allAppointments(filter: { student: { id: $id } }) {
-    id
-    dateTime
-    state
-    estimatedLength
-    professional {
+  query getAppointmentByStudentId($id: ID!) {
+    allAppointments(filter: { student: { id: $id } }) {
       id
-      user {
+      dateTime
+      state
+      estimatedLength
+      professional {
         id
-        name
+        user {
+          id
+          name
+        }
       }
     }
   }
-}
 `;
 
 export default compose(
@@ -151,9 +154,7 @@ export default compose(
       variables: { id: studentId }
     }),
     props: ({ student: { Student, loading, error } }) => ({
-      student: Student,
-      loading,
-      error
+      student: Student, loading, error
     })
   }),
   graphql(getAppointmentByStudentId, {

@@ -41,7 +41,7 @@ export default function initApollo() {
   if (!apolloClient) {
     const wsClient = new SubscriptionClient(subscriptionUrl, {
       reconnect: true,
-      timeout: 5000
+      timeout: 30000
     });
 
     apolloClient = create(wsClient);

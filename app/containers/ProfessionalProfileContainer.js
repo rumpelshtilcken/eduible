@@ -1,109 +1,194 @@
 import { Component } from 'react';
 
-import { graphql, gql } from 'react-apollo';
+import { compose, graphql, gql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
 import { ProfessionalProfile, StatefulView } from 'components';
-import { getCurrentUserData } from 'utils/auth';
+import AppointmentUtils from 'utils/AppointmentUtils';
+
+const appointmentSubscription = gql`
+  subscription subscribeToAppointments($id: ID!) {
+    Appointment (filter: {
+      node: {
+        professional: { id: $id }
+      }
+      mutation_in: [CREATED, UPDATED]
+    }) {
+      node {
+        id
+        dateTime
+        state
+        estimatedLength
+        student {
+          id
+          user {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+`;
 
 class ProfessionalProfileContainer extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
+    isCurrentUser: PropTypes.bool,
     onRequestCallClick: PropTypes.func,
     onEditButtonClick: PropTypes.func,
     loading: PropTypes.bool,
     error: PropTypes.object,
-    user: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      auth0UserId: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      professional: PropTypes.shape({
-        id: PropTypes.string,
-        about: PropTypes.string,
-        price: PropTypes.number,
-        location: PropTypes.shape({
-          country: PropTypes.string
-        }),
-        job: PropTypes.shape({
-          company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
-          jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired
-        }),
-        educations: PropTypes.arrayOf(PropTypes.shape({
-          major: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            school: PropTypes.shape({
-              university: PropTypes.shape({ name: PropTypes.string.isRequired })
-            })
-          })
-        }))
+    appointments: PropTypes.shape({
+      loading: PropTypes.bool,
+      error: PropTypes.string,
+      allAppointments: PropTypes.arrayOf({
+        dateTime: PropTypes.date,
+        state: PropTypes.string,
+        estimatedLength: PropTypes.number,
+        student: PropTypes.shape({
+          user: PropTypes.shape({ name: PropTypes.string })
+        })
       })
+    }),
+    professionalId: PropTypes.string,
+    professional: PropTypes.shape({
+      user: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        auth0UserId: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+      }),
+      id: PropTypes.string,
+      about: PropTypes.string,
+      price: PropTypes.number,
+      location: PropTypes.shape({
+        country: PropTypes.string
+      }),
+      job: PropTypes.shape({
+        company: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
+        jobTitle: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired
+      }),
+      educations: PropTypes.arrayOf(PropTypes.shape({
+        major: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          school: PropTypes.shape({
+            university: PropTypes.shape({ name: PropTypes.string.isRequired })
+          })
+        })
+      }))
     })
   };
 
+  componentWillReceiveProps(newProps) {
+    if (!newProps.loading || !newProps.appointments.loading) {
+      if (this.subscription) {
+        if (AppointmentUtils.isArrayEqual(
+          newProps.appointments.allAppointments,
+          this.props.appointments.allAppointments
+        )
+        ) {
+          // if the feed has changed, we need to unsubscribe before resubscribing
+          this.subscription();
+        } else {
+          // we already have an active subscription with the right params
+          return;
+        }
+      }
+      this.subscription = newProps.appointments.subscribeToMore({
+        document: appointmentSubscription,
+        skip: !this.props.isCurrentUser,
+        variables: { id: this.props.professionalId },
+        updateQuery: this.handleDidAppointmentsUpdate,
+        onError: this.handleUpdateError
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    this.subscription();
+  }
+
+  handleDidAppointmentsUpdate = (
+    previousState,
+    { subscriptionData: { data: { Appointment: { node } } } }
+  ) => {
+    const appointments = previousState.allAppointments.map(appointment =>
+      (appointment.id === node.id
+        ? node
+        : appointment)
+    ).filter(appointment => appointment.id === node.id)
+      ? appointments
+      : appointments.push(node);
+
+    return appointments;
+  };
+
+  handleUpdateError = err => console.error(err)
+
   handleRequestCallClick = () =>
     this.props.onRequestCallClick({
-      professionalId: this.props.user.professional.id
+      professionalId: this.props.professional.id
     });
-
-  isCurrentUser = () => getCurrentUserData('sub') === this.props.user.auth0UserId;
 
   render() {
     const {
-      user,
+      appointments,
+      professional,
       loading,
-      error
+      error,
+      isCurrentUser
     } = this.props;
     if (error) return <div>{error}</div>;
 
     return (
       <StatefulView loading={loading}>
-        {user && <ProfessionalProfile
-          user={user}
-          onRequestCallClick={this.handleRequestCallClick}
-          onEditButtonClick={this.props.onEditButtonClick}
-          isCurrentUser={this.isCurrentUser()}
-        />}
+        {professional && appointments && appointments.allAppointments &&
+          <ProfessionalProfile
+            professional={professional}
+            appointments={appointments.allAppointments}
+            onRequestCallClick={this.handleRequestCallClick}
+            onEditButtonClick={this.props.onEditButtonClick}
+            isCurrentUser={isCurrentUser}
+          />}
       </StatefulView>
     );
   }
 }
 
 const getProfessionalById = gql`
-  query User($id: ID!) {
-    User(id: $id) {
-      id
-      userType
-      auth0UserId
-      name
-      professional {
+  query Professional($id: ID!) {
+    Professional(id: $id) {
+      user {
         id
-        price
-        location {
+        name
+      }
+      id
+      price
+      location {
+        id
+        country
+      }
+      job {
+        id
+        company { 
           id
-          country
+          name 
         }
-        job {
+        jobTitle { 
           id
-          company { 
-            id
-            name 
-          }
-          jobTitle { 
-            id
-            title 
-          }
+          title 
         }
-        educations {
+      }
+      educations {
+        id
+        major {
           id
-          major {
+          name
+          school {
             id
-            name
-            school {
+            university {
               id
-              university {
-                id
-                name
-              }
+              name
             }
           }
         }
@@ -112,10 +197,38 @@ const getProfessionalById = gql`
   }
 `;
 
-export default graphql(getProfessionalById, {
-  name: 'user',
-  options: ({ id }) => ({ variables: { id }, fetchPolicy: 'network-only' }),
-  props: ({ user }) => ({
-    user: user.User, loading: user.loading, error: user.error
+const getAppointmentByProfessionalId = gql`
+  query getAppointmentByProfessionalId($id: ID!) {
+    allAppointments(filter: { professional: { id: $id } }) {
+      id
+      dateTime
+      state
+      estimatedLength
+      student {
+        id
+        user {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+
+export default compose(
+  graphql(getProfessionalById, {
+    name: 'professional',
+    options: ({ professionalId }) => ({ variables: { id: professionalId } }),
+    props: ({ professional: { Professional, loading, error } }) => ({
+      professional: Professional, loading, error
+    })
+  }),
+  graphql(getAppointmentByProfessionalId, {
+    name: 'appointments',
+    skip: ({ isCurrentUser }) => !isCurrentUser,
+    options: ({ professionalId }) => ({
+      forcePolicy: 'cache-and-network',
+      variables: { id: professionalId }
+    })
   })
-})(ProfessionalProfileContainer);
+)(ProfessionalProfileContainer);
