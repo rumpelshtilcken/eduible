@@ -8,6 +8,16 @@
   }
 }
 
+.appointmentCardsContainer {
+  max-width: 700px;
+  margin: 5% auto;
+  margin-bottom: 15px;
+}
+
+.appointmentCardContainer {
+  margin-bottom: 15px;
+}
+
 .professionalInfoBody {
   width: 90%;
   margin: 5% auto;
@@ -69,4 +79,11 @@
 .buttonContainer {
   width: 126px;
   height: 29px;
+}
+
+.title {
+  font-size: 11px;
+  font-family: "Effra";
+  font-weight: 500;
+  color: #626262;
 }

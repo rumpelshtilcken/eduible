@@ -1,3 +1,4 @@
+export { default as AppointmentCard } from './AppointmentCard';
 export { default as AuthForm } from './AuthForm';
 export { default as BookingHeader } from './BookingHeader';
 export { default as CallRequest } from './CallRequest';
