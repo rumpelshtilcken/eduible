@@ -14,6 +14,7 @@ const professionalImage = 'https://dontlosehair.com/wp-content/uploads/2016/02/3
 
 class AppointmentCard extends Component {
   static propTypes = {
+    isProfessional: PropTypes.bool,
     appointment: PropTypes.shape({
       id: PropTypes.string,
       dateTime: PropTypes.date,
@@ -22,7 +23,10 @@ class AppointmentCard extends Component {
     }).isRequired,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired
-    }).isRequired
+    }).isRequired,
+    onConnectButtonClick: PropTypes.func,
+    onAccepButtonClick: PropTypes.func,
+    onRejectButtonClick: PropTypes.func
   };
 
   getHours = () => {
@@ -42,13 +46,63 @@ class AppointmentCard extends Component {
     AppointmentUtils.isAppointmentNow(this.props.appointment.dateTime)
   );
 
+  handleConnectButtonClick = () =>
+    this.props.onConnectButtonClick(this.props.appointment.id);
+
+  handleAcceptButtonClick = () => {
+    this.props.onAccepButtonClick(this.props.appointment.id);
+  };
+
+  handleRejectButtonClick = () => {
+    this.props.onRejectButtonClick(this.props.appointment.id);
+  };
+
+  renderAppointmentButtons = () => {
+    const { state } = this.props.appointment;
+    const { isProfessional } = this.props;
+
+    if (state === 'Request' && isProfessional) {
+      return this.renderAppointmentOptions();
+    }
+
+    return (
+      <div className="connectButtonContainer">
+        <RoundedButton
+          disabled={this.isConnectButtonDisabled()}
+          title={'Connect'}
+          onClick={this.handleConnectButtonClick}
+        />
+        <style jsx>{stylesheet}</style>
+      </div>
+    );
+  };
+
+  renderAppointmentOptions = () => (
+    <div className="appointmentOptionsContainer">
+      <div className="connectButtonContainer">
+        <RoundedButton
+          title={'Accept'}
+          style={{ backgroundColor: '#73DF58' }}
+          onClick={this.handleAcceptButtonClick}
+        />
+      </div>
+      <div className="connectButtonContainer">
+        <RoundedButton
+          title={'Reject'}
+          style={{ backgroundColor: 'red' }}
+          onClick={this.handleRejectButtonClick}
+        />
+      </div>
+      <style jsx>{stylesheet}</style>
+    </div>
+  );
+
   render() {
     const { estimatedLength } = this.props.appointment;
     const { name } = this.props.user;
     return (
       <Card key={this.props.appointment.id}>
         <div className="appointmentContainer">
-          <p>{this.props.appointment.id}</p>
           <div className="professionalInfoContainer">
             <img
               className="appointmentProfileImage"
@@ -81,14 +135,10 @@ class AppointmentCard extends Component {
               </div>
             </div>
 
-            <div className="connectButtonContainer">
-              <RoundedButton
-                disabled={this.isConnectButtonDisabled()}
-                title={'Connect'}
-                onClick={() => {}}
-              />
-            </div>
+
+            {this.renderAppointmentButtons()}
           </div>
+
           <style jsx>{stylesheet}</style>
         </div>
       </Card>

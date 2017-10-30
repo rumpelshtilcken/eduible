@@ -34,6 +34,7 @@ const appointmentSubscription = gql`
 class ProfessionalProfileContainer extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
+    updateAppointment: PropTypes.func,
     isCurrentUser: PropTypes.bool,
     onRequestCallClick: PropTypes.func,
     onEditButtonClick: PropTypes.func,
@@ -130,6 +131,16 @@ class ProfessionalProfileContainer extends Component {
       professionalId: this.props.professional.id
     });
 
+  handleContinueButtonClick = () => {
+    // Open VideoChat
+  };
+
+  handleAcceptButtonClick = appointmentId =>
+    this.props.updateAppointment({ id: appointmentId, state: 'Approve' });
+
+  handleRejectButtonClick = appointmentId =>
+    this.props.updateAppointment({ id: appointmentId, state: 'Reject' });
+
   render() {
     const {
       appointments,
@@ -148,6 +159,9 @@ class ProfessionalProfileContainer extends Component {
             appointments={appointments.allAppointments}
             onRequestCallClick={this.handleRequestCallClick}
             onEditButtonClick={this.props.onEditButtonClick}
+            onConnectButtonClick={this.handleContinueButtonClick}
+            onAccepButtonClick={this.handleAcceptButtonClick}
+            onRejectButtonClick={this.handleRejectButtonClick}
             isCurrentUser={isCurrentUser}
           />}
       </StatefulView>
@@ -215,6 +229,14 @@ const getAppointmentByProfessionalId = gql`
   }
 `;
 
+const updateAppointment = gql`
+  mutation updateAppointment($id: ID!, $state: AppointmentState!) {
+      updateAppointment( id: $id, state: $state) {
+      id
+    }
+  }
+`;
+
 export default compose(
   graphql(getProfessionalById, {
     name: 'professional',
@@ -229,6 +251,11 @@ export default compose(
     options: ({ professionalId }) => ({
       forcePolicy: 'cache-and-network',
       variables: { id: professionalId }
+    })
+  }),
+  graphql(updateAppointment, { props: ({ mutate }) =>
+    ({
+      updateAppointment: ({ id, state }) => mutate({ variables: { id, state } })
     })
   })
 )(ProfessionalProfileContainer);

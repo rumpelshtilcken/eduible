@@ -48,14 +48,24 @@ class ProfessionalProfile extends Component {
           user: PropTypes.shape({ name: PropTypes.string })
         })
       })
-    })
+    }),
+    onConnectButtonClick: PropTypes.func,
+    onAccepButtonClick: PropTypes.func,
+    onRejectButtonClick: PropTypes.func
   };
 
   handleOpenCalendarClick = () => {};
 
   renderAppointment = appointment => (
     <div className="appointmentCardContainer">
-      <AppointmentCard appointment={appointment} user={appointment.student.user} />
+      <AppointmentCard
+        isProfessional
+        onConnectButtonClick={this.props.onConnectButtonClick}
+        onAccepButtonClick={this.props.onAccepButtonClick}
+        onRejectButtonClick={this.props.onRejectButtonClick}
+        appointment={appointment}
+        user={appointment.student.user}
+      />
       <style jsx>{stylesheet}</style>
     </div>
   );
