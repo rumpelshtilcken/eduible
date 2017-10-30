@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import AppointmentCard from './AppointmentCard';
-import Profile from './Profile';
+import { AppointmentCard } from 'components';
 
+import Profile from './Profile';
 import stylesheet from './index.css';
 
 class StudentProfile extends Component {
@@ -28,7 +28,7 @@ class StudentProfile extends Component {
 
   renderAppointment = appointment => (
     <div className="appointmentCardContainer">
-      <AppointmentCard appointment={appointment} />
+      <AppointmentCard appointment={appointment} user={appointment.professional.user} />
       <style jsx>{stylesheet}</style>
     </div>
   );
