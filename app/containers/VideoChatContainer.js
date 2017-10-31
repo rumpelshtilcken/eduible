@@ -122,6 +122,18 @@ class VideoChatContainer extends Component {
     } catch (err) {
       console.log('qwerty: Appointment error', err);
     }
+  }
+
+  // getCallId = () => {
+
+  // };
+
+  handleAppointmentLoad = () => {
+    // Appointment loaded
+    // TODO: create call
+    // TODO: create conversation
+    // TODO: generate token
+    // const callId = this.getCallId();
   };
 
   generateToken = async ({ userId, expiresInSeconds, resourceId }) => {
