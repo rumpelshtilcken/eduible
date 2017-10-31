@@ -1,10 +1,9 @@
 import { VideoBox, ProfileBox, ChatBox } from './VChat';
 
-/* eslint-disable */
-const VideoChat = ({ user, setVideoViewId, sendMessageTest }) => (
+const VideoChat = ({ companion, appointment, setVideoViewId, sendMessageTest }) => (
   <div>
     <VideoBox setVideoViewId={setVideoViewId} />
-    <ProfileBox user={user} />
+    <ProfileBox companion={companion} appointment={appointment} />
     <ChatBox sendMessageTest={sendMessageTest} />
   </div>
 );

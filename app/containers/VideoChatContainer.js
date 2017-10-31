@@ -126,18 +126,31 @@ class VideoChatContainer extends Component {
   };
 
   render() {
-    const { appointmentLoading, appointmentError } = this.props;
+    const {
+      appointment,
+      appointmentLoading,
+      appointmentError
+    } = this.props;
     if (appointmentError) return <div>{appointmentError}</div>;
 
     this.handleAppointmentLoad();
 
+    let companion;
+    if (!appointmentLoading) {
+      companion = getCurrentUserData('sub') !== appointment.student.user.auth0UserId
+        ? appointment.student
+        : appointment.professional;
+    }
+
     return (
       <StatefulView loading={appointmentLoading}>
-        <VideoChat
-          user={this.user}
-          setVideoViewId={this.props.onVideoViewIdLoad}
-          sendMessageTest={this.props.sendMessageTest}
-        />
+        {appointment &&
+          <VideoChat
+            companion={companion}
+            appointment={appointment}
+            setVideoViewId={this.props.onVideoViewIdLoad}
+            sendMessageTest={this.props.sendMessageTest}
+          />}
       </StatefulView>
     );
   }
@@ -163,6 +176,10 @@ const getAppointment = gql`
           id
           auth0UserId
           name
+        }
+        location {
+          id
+          country
         }
       }
       student {
