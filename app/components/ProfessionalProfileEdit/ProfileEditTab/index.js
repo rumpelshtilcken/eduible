@@ -127,17 +127,17 @@ class ProfileEditTab extends Component {
             <div className="passwords">
               <div className="passwordTextField">
                 <TextFieldContainer
-                  name={'name'}
+                  name={'pwdCurrent'}
                   placeholder={'Current Password'}
-                  type="string"
+                  type="password"
                   validation={() => {}}
                 />
               </div>
               <div className="passwordTextField">
                 <TextFieldContainer
-                  name={'name'}
+                  name={'pwdNew'}
                   placeholder={'New Password'}
-                  type="string"
+                  type="password"
                   validation={() => {}}
                 />
               </div>
