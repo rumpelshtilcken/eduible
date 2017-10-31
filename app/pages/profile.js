@@ -15,6 +15,12 @@ class ProfilePage extends Component {
     })
   };
 
+  handleConnectButtonClick = appointmentId =>
+    Router.push({
+      pathname: '/videoChat',
+      query: { appointmentId }
+    });
+
   handleProfileEditButtonClick = () =>
     Router.push({
       pathname: '/profileEdit'
@@ -40,6 +46,7 @@ class ProfilePage extends Component {
           userId={userId}
           onRequestCallClick={this.handleRequestCallClick}
           onEditButtonClick={this.handleProfileEditButtonClick}
+          onConnectButtonClick={this.handleConnectButtonClick}
         />
       </div>
     );

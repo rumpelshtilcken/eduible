@@ -38,6 +38,7 @@ class ProfessionalProfileContainer extends Component {
     isCurrentUser: PropTypes.bool,
     onRequestCallClick: PropTypes.func,
     onEditButtonClick: PropTypes.func,
+    onConnectButtonClick: PropTypes.func.isRequired,
     loading: PropTypes.bool,
     error: PropTypes.object,
     appointments: PropTypes.shape({
@@ -131,10 +132,6 @@ class ProfessionalProfileContainer extends Component {
       professionalId: this.props.professional.id
     });
 
-  handleContinueButtonClick = () => {
-    // Open VideoChat
-  };
-
   handleAcceptButtonClick = appointmentId =>
     this.props.updateAppointment({ id: appointmentId, state: 'Approve' });
 
@@ -159,7 +156,7 @@ class ProfessionalProfileContainer extends Component {
             appointments={appointments.allAppointments}
             onRequestCallClick={this.handleRequestCallClick}
             onEditButtonClick={this.props.onEditButtonClick}
-            onConnectButtonClick={this.handleContinueButtonClick}
+            onConnectButtonClick={this.props.onConnectButtonClick}
             onAccepButtonClick={this.handleAcceptButtonClick}
             onRejectButtonClick={this.handleRejectButtonClick}
             isCurrentUser={isCurrentUser}

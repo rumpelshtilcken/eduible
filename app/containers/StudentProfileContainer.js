@@ -47,7 +47,8 @@ class StudentProfileContainer extends Component {
         })
       })
     }),
-    onEditButtonClick: PropTypes.func.isRequired
+    onEditButtonClick: PropTypes.func.isRequired,
+    onConnectButtonClick: PropTypes.func.isRequired
   };
 
   componentWillReceiveProps(newProps) {
@@ -111,6 +112,7 @@ class StudentProfileContainer extends Component {
           student={student}
           appointments={appointments.allAppointments}
           onEditButtonClick={onEditButtonClick}
+          onConnectButtonClick={this.props.onConnectButtonClick}
         />}
       </StatefulView>
     );

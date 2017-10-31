@@ -11,7 +11,8 @@ const ProfileContainer = ({
   error,
   loading,
   onRequestCallClick,
-  onEditButtonClick
+  onEditButtonClick,
+  onConnectButtonClick
 }) => {
   if (error) { return <div>{'Error'}</div>; }
 
@@ -26,12 +27,14 @@ const ProfileContainer = ({
             studentId={user.student.id}
             onRequestCallClick={onRequestCallClick}
             onEditButtonClick={onEditButtonClick}
+            onConnectButtonClick={onConnectButtonClick}
           />
           : <ProfessionalProfileContainer
             professionalId={user.professional.id}
             onRequestCallClick={onRequestCallClick}
             onEditButtonClick={onEditButtonClick}
             isCurrentUser={isCurrentUser}
+            onConnectButtonClick={onConnectButtonClick}
           />
         )
       }
@@ -44,7 +47,8 @@ ProfileContainer.propTypes = {
   error: PropTypes.object,
   user: PropTypes.object,
   onRequestCallClick: PropTypes.func.isRequired,
-  onEditButtonClick: PropTypes.func.isRequired
+  onEditButtonClick: PropTypes.func.isRequired,
+  onConnectButtonClick: PropTypes.func.isRequired
 };
 
 const getUserByAuth0Id = gql`

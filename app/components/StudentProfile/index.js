@@ -8,6 +8,7 @@ import stylesheet from './index.css';
 
 class StudentProfile extends Component {
   static propTypes = {
+    onConnectButtonClick: PropTypes.func.isRequired,
     onEditButtonClick: PropTypes.func.isRequired,
     appointments: PropTypes.shape({
       dateTime: PropTypes.date,
@@ -28,7 +29,11 @@ class StudentProfile extends Component {
 
   renderAppointment = appointment => (
     <div className="appointmentCardContainer">
-      <AppointmentCard appointment={appointment} user={appointment.professional.user} />
+      <AppointmentCard
+        appointment={appointment}
+        user={appointment.professional.user}
+        onConnectButtonClick={this.props.onConnectButtonClick}
+      />
       <style jsx>{stylesheet}</style>
     </div>
   );
