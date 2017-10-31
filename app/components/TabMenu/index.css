@@ -1,8 +1,12 @@
+.wrapper {
+  width: 100%;
+  margin: auto;
+}
+
 .react-tabs {
+  margin: auto;
   @media screen and (min-width: 1024px) {
     display: flex;
-    width: 900px;
-    margin: auto;
   }
 }
 
@@ -50,8 +54,7 @@
   }
 }
 
-/* 
-.tabPanel {
+/* .tabPanel {
   @media screen and (min-width: 1024px) {
     width: 730px;
   }
