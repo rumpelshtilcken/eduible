@@ -51,7 +51,7 @@ const StudentProfileEdit = ({
             label="Cancel"
             backgroundColor="#E8E8E8"
             labelStyle={{ color: 'black', fontSize: 11 }}
-            onClick={onCancelButtonClick}
+            // onClick={onCancelButtonClick}
           />
         </div>
         <div className="btn">

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import DatePickerContainer from 'containers/DatePickerContainer';
 import TextFieldContainer from 'containers/TextFieldContainer';
+import { MuiButton } from 'components';
 
 import styles from './index.css';
 
@@ -31,7 +32,7 @@ class ProfileEditTab extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
+    this.props.onSaveButtonClick();
     console.log();
   };
 
@@ -142,13 +143,21 @@ class ProfileEditTab extends Component {
                 />
               </div>
             </div>
-            <div className="buttons">
-              <button className="button cancel" type="reset">
-                {'Cancel'}
-              </button>
-              <button className="button save" type="submit" onClick={this.handleSubmit}>
-                {'Save Updates'}
-              </button>
+            <div className="muibtnBox">
+              <div className="btn">
+                <MuiButton
+                  label="Cancel"
+                  backgroundColor="#E8E8E8"
+                  labelStyle={{ color: 'black', fontSize: 11 }}
+                  // onClick={onCancelButtonClick}
+                />
+              </div>
+              <div className="btn">
+                <MuiButton
+                  label="Save Changes"
+                  onClick={this.handleSubmit}
+                />
+              </div>
             </div>
           </form>
           <style jsx>{styles}</style>

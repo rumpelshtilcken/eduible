@@ -227,7 +227,7 @@
     width: 165px;
   }
 }
-
+/* 
 .buttons {
   display: flex;
   width: 100%;
@@ -239,7 +239,7 @@
   @media screen and (min-width: 768px) {
     margin-top: 20px;
   }
-}
+} */
 
 .cancel {
   display: inline;
@@ -270,4 +270,18 @@
   padding: 8px;
   background-color: #F9F9F9;
   color: #626262;
+}
+
+.muibtnBox {
+  margin: auto;
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.btn {
+  margin: 15px 0;
+  width: 126px;
 }
