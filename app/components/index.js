@@ -43,5 +43,5 @@ export { default as StudentProfileEdit } from './StudentProfileEdit';
 export { default as TabMenu } from './TabMenu';
 export { default as Textarea } from './Textarea';
 export { default as TextInput } from './TextInput';
-export { default as TimePicker } from './Material-ui/TimePicker';
+export { default as TimePicker } from './Material-ui/Timepicker';
 export { default as VideoChat } from './VideoChat';
