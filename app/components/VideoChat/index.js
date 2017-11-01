@@ -12,8 +12,8 @@ const VideoChat = ({
     <VideoBox setVideoViewId={setVideoViewId} />
     <ProfileBox companion={companion} appointment={appointment} />
     <ChatBox
-      subscribeOnMessageReceive={this.props.subscribeOnMessageReceive}
-      sendMessage={this.props.sendMessage}
+      subscribeOnMessageReceive={subscribeOnMessageReceive}
+      sendMessage={sendMessage}
     />
   </div>
 );

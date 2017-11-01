@@ -123,6 +123,17 @@ class VideoChatContainer extends Component {
       if (!callId) {
         return this.getCallId();
       }
+      const {appointment} = this.props;
+
+      const userName = getCurrentUserData('sub') === appointment.student.user.auth0UserId
+      ? appointment.student.user.name
+      : appointment.professional.user.name;
+
+      this.generateToken({
+        userName, 
+        expiresInSeconds: appointment.estimatedLength,
+        resourceId: callId
+      });
     } catch (err) {
       return err;
     }
