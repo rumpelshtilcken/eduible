@@ -1,43 +1,35 @@
 import PropTypes from 'prop-types';
-import cx from 'classnames';
-
 import stylesheet from './index.css';
 
 const professionalImage = 'https://dontlosehair.com/wp-content/uploads/2016/02/3_Problems_that_Bald_People_Face_on_a_Regular_Basis.jpg';
 const locationIcon = '/static/placeholderIcon.svg';
 
-const ProfileHeader = ({ companion, appointment }) => (
-  <div className="profileHeaderContainer">
-    <div className="profileInfoContainer">
-      <img
-        className="professionalProfileImage"
-        src={professionalImage}
-        alt="profile avatar"
-      />
-
-      <div className="professionalInfoWrapper">
-        <p className="professionalName">
-          {companion.user.name.toUpperCase()}
-        </p>
-        <div className="professionalLocationContainer">
-          <img src={locationIcon} alt="icon" />
-          { companion.location &&
-            <p className="professionalLocation">
-              {companion.location.country.toUpperCase()}
-            </p>
-          }
-        </div>
+const ProfileBox = ({ companion, appointment }) => (
+  <div className="section2">
+    <div className="profile-img">
+      <img src={professionalImage} alt="profileImg" />
+    </div>
+    <div className="profile-info">
+      <div>
+        <p>{companion.user.name.toUpperCase()}</p>
+      </div>
+      <div className="profile-city">
+        <img src={locationIcon} alt="icon" />
+        { companion.location &&
+          <p id="city">{companion.location.country.toUpperCase()}</p>
+        }
       </div>
     </div>
-
-    <p className={cx('professionalName', { appointmentEstimatedLength: true })}>
-      {appointment.estimatedLength}
-    </p>
+    <div className="profile-timer">
+      <p id="timer">
+        {appointment.estimatedLength}
+      </p>
+    </div>
     <style jsx>{stylesheet}</style>
   </div>
 );
 
-ProfileHeader.propTypes = {
+ProfileBox.propTypes = {
   companion: PropTypes.shape({
     user: PropTypes.shape({
       name: PropTypes.string.isRequired
@@ -50,4 +42,4 @@ ProfileHeader.propTypes = {
     estimatedLength: PropTypes.number
   })
 };
-export default ProfileHeader;
+export default ProfileBox;
