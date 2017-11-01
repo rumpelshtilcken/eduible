@@ -1,0 +1,49 @@
+.videoChatContainer {
+  width: 100%;
+  display: flex;
+  flex-flow: nowrap;
+
+  @media screen and (min-width: 768px) {
+    width: 610px;
+    flex-wrap: wrap;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 900px;
+  }
+}
+
+.videoConversationWrapper {
+  order: 1;
+  position: relative;
+
+  @media screen and (min-width: 768px) {
+    order: 2;
+    width: 610px;
+    height: 425px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    order: 1;
+  }
+}
+
+.profileInfoWrapper {
+  order: 2;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    order: 1;
+    width: 243px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    order: 2;
+  }
+}
+
+.chatWrapper {
+  order: 3;
+  width: 100%;
+  padding: 30px 38px;
+}

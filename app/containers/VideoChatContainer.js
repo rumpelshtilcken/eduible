@@ -182,11 +182,11 @@ class VideoChatContainer extends Component {
   handleDidVieoChatParamsLoad = ({ vidyoToken, resourceId }) => {
     this.props.update({
       name: 'vidyoToken',
-      value: vidyoToken
+      value: 'vidyoToken'
     });
     this.props.update({
       name: 'resourceId',
-      value: resourceId
+      value: 'resourceId'
     });
   };
 
