@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { Message } from 'react-chat-ui';
 import PropTypes from 'prop-types';
 
 import stylesheet from './index.css';
@@ -15,13 +14,13 @@ class TextInputBox extends Component {
     msg: ''
   }
 
-  handleChange =e => this.setState({ msg: e.target.value });
+  handleChange = e => this.setState({ msg: e.target.value });
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    this.props.onSubmitButtonClick(this.state.msg);
     this.setState({ msg: '' });
-    const newMessage = new Message({ id: 0, message: this.inputRef.value });
-    this.props.onSubmitButtonClick(newMessage);
   }
   /* eslint-disable */
   render() {

@@ -129,8 +129,8 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     handleConnectDisconnect = () => {};
 
     // Chat handler
-    sendMessage = message =>
-      this.vidyoConnector.sendChatMessage(message);
+    sendMessage = message => console.log('qwerty: hoc', this.videoChat, message) ||
+      this.videoChat.sendChatMessage(message);
 
     listeners = [];
 

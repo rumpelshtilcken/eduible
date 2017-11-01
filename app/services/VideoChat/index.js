@@ -69,7 +69,7 @@ const VideoChat = async ({
 
     // connect vidyoConnector with Vidyo backend
     VidyoConnector.connectVidyoConnector(vidyoConnector, {
-      displayName: 'Eduible',
+      displayName: 'Eduible1',
       resourceId,
       vidyoToken,
       onSuccess: onSuccess || (() => {}),
@@ -78,7 +78,7 @@ const VideoChat = async ({
     });
 
     return {
-      sendChatMessage: message => vidyoConnector.SendChatMessage(message),
+      sendChatMessage: message => console.log('qwerty: Service', message) || vidyoConnector.SendChatMessage(message),
       disconnect: async () => {
         window.removeEventListener('resize', handleWindowResize);
         await vidyoConnector.Disconnect();

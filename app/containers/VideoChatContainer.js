@@ -166,7 +166,7 @@ class VideoChatContainer extends Component {
           Accept: 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ userName, expiresInSeconds })
+        body: JSON.stringify({ userName: userName, expiresInSeconds })
       });
       console.log('qwerty: ', { userName, expiresInSeconds, resourceId });
       const json = await res.json();
