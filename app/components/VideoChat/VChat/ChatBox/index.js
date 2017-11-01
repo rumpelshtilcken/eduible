@@ -28,21 +28,22 @@ class ChatBox extends React.Component {
   }
 
   handleMessageReceive = (participant, chatMessage) => {
-    this.setState({
-      messages: [
-        ...this.state.messages,
-        { id: 1, message: chatMessage }
-      ]
-    });
+    console.log('====================================');
+    console.log('Message receive: ', chatMessage);
+    console.log('====================================');
+    // const messageHistory = this.state.messages.slice();
+    // messageHistory.push({ id: 1, message: chatMessage });
+    // this.setState({
+    //   messages: messageHistory
+    // });
   };
 
   handleSubmitButtonClick = (newMessage) => {
-    this.setState({
-      messages: [
-        ...this.state.messages,
-        { id: 1, message: newMessage }
-      ]
-    });
+    // const messageHistory = this.state.messages.slice();
+    // messageHistory.push({ id: 0, message: newMessage });
+    // this.setState({
+    //   messages: messageHistory
+    // });
     this.props.sendMessage(newMessage);
   }
   render() {

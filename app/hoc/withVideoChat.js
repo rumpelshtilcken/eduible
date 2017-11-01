@@ -50,6 +50,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
 
     componentWillUnmount() {
       this.disconnectVideoChat();
+      this.props.update({name: 'videoChatState', value: true})
     }
 
     disconnectVideoChat = async () => {
@@ -75,19 +76,24 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
       switch (status.state) {
         case 'READY':
           this.handleDidVCLoad();
+          this.props.update({name: 'videoChatState', value: true})
           return;
 
         case 'RETRYING': // The library operating is temporarily paused
+        this.props.update({name: 'videoChatState', value: false})
           return `Temporarily unavailable retrying in ${status.nextTimeout / 1000} seconds`;
 
         case 'FAILED': // The library operating has stopped
+        this.props.update({name: 'videoChatState', value: false})
           return `Failed: ${status.description}`;
 
         case 'FAILEDVERSION': // The library operating has stopped
+        this.props.update({name: 'videoChatState', value: false})
           this.setState({ pluginUrl: getPluginUrl(status) });
           return `Failed: ${status.description}`;
 
         case 'NOTAVAILABLE': // The library is not available
+        this.props.update({name: 'videoChatState', value: false})
           this.setState({ pluginUrl: getPluginUrl(status) });
           return `Failed: ${status.description}`;
 
@@ -97,6 +103,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     };
 
     handleDidVCLoad = async () => {
+      console.log('qwerty: ', this.props);
       this.videoChat = await VideoChat({
         VC: window.VC,
         vidyoToken: this.props.videoChat.vidyoToken,
@@ -115,9 +122,11 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
       console.log('qwerty: Connect');
     };
 
-    handleConnectFailure = () => {
-      console.log('qwerty: Failure');
+    handleConnectFailure = (sss, sds) => {
+      console.log('qwerty: Failure ', sss, sds);
     };
+
+    handleConnectDisconnect = () => {};
 
     // Chat handler
     sendMessage = message =>
@@ -150,7 +159,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
           </Head>
 
           <WrappedComponent
-            subscribeOnMessageReceive={this.listeners}
+            subscribeOnMessageReceive={this.subscribeOnMessageReceive}
             sendMessage={this.sendMessage}
             {...this.props}
           />

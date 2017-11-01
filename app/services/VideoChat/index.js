@@ -65,6 +65,8 @@ const VideoChat = async ({
       chatListener: { onChatMessageReceived }
     });
 
+    console.log('qwerty: Token', vidyoToken);
+
     // connect vidyoConnector with Vidyo backend
     VidyoConnector.connectVidyoConnector(vidyoConnector, {
       displayName: 'Eduible',

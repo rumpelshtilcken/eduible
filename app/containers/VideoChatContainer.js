@@ -55,6 +55,14 @@ class VideoChatContainer extends Component {
     || isErrorUpdate;
   }
 
+  componentWillReceiveProp(nextProps) {
+    const {callId} = nextProps.videoChat;
+    const {callId: prevCallId} = this.props.videoChat;
+    if (callId && callId != prevCallId) {
+      this.handleDidAppointmentLoad();
+    }
+  }
+
   getCallId = async () => {
     try {
       // check existed calls
@@ -95,7 +103,7 @@ class VideoChatContainer extends Component {
     const { appointment, appointmentLoading, videoChat } = this.props;
     if (!appointmentLoading &&
       process.browser &&
-      !videoChat.callId
+      !videoChat.videoChatState
     ) {
       const { student, professional } = appointment;
       const currentUserId = getCurrentUserData('sub');
@@ -130,8 +138,8 @@ class VideoChatContainer extends Component {
       : appointment.professional.user.name;
 
       this.generateToken({
-        userName, 
-        expiresInSeconds: appointment.estimatedLength,
+        userName: userName.slice(' ')[0], 
+        expiresInSeconds: (appointment.estimatedLength * 60),
         resourceId: callId
       });
     } catch (err) {
@@ -160,11 +168,12 @@ class VideoChatContainer extends Component {
         },
         body: JSON.stringify({ userName, expiresInSeconds })
       });
-
+      console.log('qwerty: ', { userName, expiresInSeconds, resourceId });
       const json = await res.json();
       this.handleDidVieoChatParamsLoad({
         vidyoToken: json.vidyoToken, resourceId
       });
+      console.log('qwerty: ', {vidyoToken: json.vidyoToken, resourceId});
     } catch (error) {
       console.log('Fetch error: ', error);
     }
@@ -173,11 +182,11 @@ class VideoChatContainer extends Component {
   handleDidVieoChatParamsLoad = ({ vidyoToken, resourceId }) => {
     this.props.update({
       name: 'vidyoToken',
-      value: 'json.vidyoToken'
+      value: vidyoToken
     });
     this.props.update({
       name: 'resourceId',
-      value: 'resourceId'
+      value: resourceId
     });
   };
 
