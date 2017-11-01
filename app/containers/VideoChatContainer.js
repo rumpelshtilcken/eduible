@@ -1,3 +1,5 @@
+/* eslint-disable */
+import _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { Component } from 'react';
 import { connect } from 'react-redux';
@@ -33,6 +35,25 @@ class VideoChatContainer extends Component {
     appointmentLoading: PropTypes.bool,
     appointmentError: PropTypes.string
   };
+
+  shouldComponentUpdate(nextProps) {
+    const { videoChat, appointment, appointmentLoading, appointmentError } = nextProps;
+    const {
+      videoChat: prevVideoChat,
+      appointment: prevAppointment,
+      appointmentLoading: prevAppointmentLoading,
+      appointmentError: prevAppointmentError
+    } = this.props;
+    const isVideoChatUpdate = !_.isEqual(videoChat, prevVideoChat);
+    const isAppointmentUpdate = !_.isEqual(appointment, prevAppointment);
+    const isLoadingUpdate = !_.isEqual(appointmentLoading, prevAppointmentLoading);
+    const isErrorUpdate = !_.isEqual(appointmentError, prevAppointmentError);
+
+    return isVideoChatUpdate
+    || isAppointmentUpdate
+    || isLoadingUpdate
+    || isErrorUpdate;
+  }
 
   getCallId = async () => {
     try {
@@ -107,6 +128,17 @@ class VideoChatContainer extends Component {
     }
   };
 
+  handleVideoViewLoaded = ({ localCameraViewId, remoteCameraViewId }) => {
+    this.props.update({
+      name: 'localCameraViewId',
+      value: localCameraViewId
+    });
+    this.props.update({
+      name: 'remoteCameraViewId',
+      value: remoteCameraViewId
+    });
+  };
+
   generateToken = async ({ userName, expiresInSeconds, resourceId }) => {
     try {
       const res = await fetch('/api/v1/videochat', {
@@ -119,10 +151,23 @@ class VideoChatContainer extends Component {
       });
 
       const json = await res.json();
-      this.props.onVideoChatParamsLoad({ vidyoToken: 'json.vidyoToken', resourceId });
+      this.handleDidVieoChatParamsLoad({
+        vidyoToken: json.vidyoToken, resourceId
+      });
     } catch (error) {
       console.log('Fetch error: ', error);
     }
+  };
+
+  handleDidVieoChatParamsLoad = ({ vidyoToken, resourceId }) => {
+    this.props.update({
+      name: 'vidyoToken',
+      value: 'json.vidyoToken'
+    });
+    this.props.update({
+      name: 'resourceId',
+      value: 'resourceId'
+    });
   };
 
   render() {
@@ -148,8 +193,9 @@ class VideoChatContainer extends Component {
           <VideoChat
             companion={companion}
             appointment={appointment}
-            setVideoViewId={this.props.onVideoViewIdLoad}
-            sendMessageTest={this.props.sendMessageTest}
+            setVideoViewId={this.handleVideoViewLoaded}
+            subscribeOnMessageReceive={this.props.subscribeOnMessageReceive}
+            sendMessage={this.props.sendMessage}
           />}
       </StatefulView>
     );

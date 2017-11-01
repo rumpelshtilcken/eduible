@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { ChatFeed, Message } from 'react-chat-ui';
@@ -21,12 +22,28 @@ class ChatBox extends React.Component {
 
     ]
   }
-  handleSubmitButtonClick = (newMessage) => {
-    const messageHistory = this.state.messages.slice();
-    messageHistory.push(newMessage);
+
+  componentDidMount() {
+    this.props.subscribeOnMessageReceive(this.handleMessageReceive);
+  }
+
+  handleMessageReceive = (participant, chatMessage) => {
     this.setState({
-      messages: messageHistory
+      messages: [
+        ...this.state.messages,
+        { id: 1, message: chatMessage }
+      ]
     });
+  };
+
+  handleSubmitButtonClick = (newMessage) => {
+    this.setState({
+      messages: [
+        ...this.state.messages,
+        { id: 1, message: newMessage }
+      ]
+    });
+    this.props.sendMessage(newMessage);
   }
   render() {
     return (
