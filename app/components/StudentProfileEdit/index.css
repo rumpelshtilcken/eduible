@@ -17,6 +17,11 @@
   font-weight: normal;
 }
 
+.pickProfileImageContainer input:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
 .studentProfileImage {
   background-color: rgba(0, 0, 0, 0.9);
   width: 70px;

@@ -32,6 +32,7 @@
   position: relative;
   font-size: 10px;
   font-weight: normal;
+  text-align: center;
 }
 
 .professionalProfileImage {
@@ -63,10 +64,17 @@
   object-fit: cover;
 }
 
+.pickProfileImageContainer input:hover,
+.pickProfileBackgroundImageContainer input:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
 .pickProfileBackgroundImageContainer {
   border-radius: 8px;
   overflow: hidden;
   position: relative;
+  text-align: center;
 }
 
 .title {
@@ -227,19 +235,6 @@
     width: 165px;
   }
 }
-/* 
-.buttons {
-  display: flex;
-  width: 100%;
-  margin: auto;
-  height: 40px;
-  justify-content: space-around;
-  padding-bottom: 50px;
-
-  @media screen and (min-width: 768px) {
-    margin-top: 20px;
-  }
-} */
 
 .cancel {
   display: inline;

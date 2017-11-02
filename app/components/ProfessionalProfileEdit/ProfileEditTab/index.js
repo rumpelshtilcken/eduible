@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import DatePickerContainer from 'containers/DatePickerContainer';
 import TextFieldContainer from 'containers/TextFieldContainer';
-import { MuiButton } from 'components';
+import { MuiButton , FileUploaderModal } from 'components';
 
 import styles from './index.css';
 
@@ -160,6 +160,11 @@ class ProfileEditTab extends Component {
               </div>
             </div>
           </form>
+          <FileUploaderModal 
+            isFileUploaderModalOpen={this.state.isModalOpen} 
+            onCloseFileUploaderModal={this.handleCloseModal}
+            previewImageUrl={professionalImage}
+          />
           <style jsx>{styles}</style>
         </div>
     );
