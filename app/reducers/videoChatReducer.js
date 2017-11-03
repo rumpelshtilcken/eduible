@@ -1,7 +1,8 @@
 import {
   VIDEOCHAT_FIELD_UPDATE,
   VIDEOCHAT_FIELD_ERROR,
-  VIDEOCHAT_FIELD_RESET
+  VIDEOCHAT_FIELD_RESET,
+  VIDEOCHAT_FIELD_RESET_VALUE
 } from 'actions/videoChat/types';
 
 const INIT = {};
@@ -12,6 +13,8 @@ export default (state = INIT, action) => {
       return { ...{}, ...state, [action.name]: action.value };
     case VIDEOCHAT_FIELD_ERROR:
       return { ...state, error: { ...state.error, [action.name]: action.errorMessage } };
+    case VIDEOCHAT_FIELD_RESET_VALUE:
+      return { ...state, [action.name]: null };
     case VIDEOCHAT_FIELD_RESET:
       return INIT;
     default:
