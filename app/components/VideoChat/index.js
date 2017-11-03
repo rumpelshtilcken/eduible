@@ -9,9 +9,9 @@ import stylesheet from './index.css';
 const VideoChat = ({
   appointment,
   companion,
-  sendMessage,
+  messages,
+  onMessageSent,
   setVideoViewId,
-  subscribeOnMessageReceive,
   userId
 }) => (
   <div className="videoChatContainer">
@@ -25,8 +25,8 @@ const VideoChat = ({
       <Chat
         userId={userId}
         companion={companion}
-        subscribeOnMessageReceive={subscribeOnMessageReceive}
-        sendMessage={sendMessage}
+        messages={messages}
+        onMessageSent={onMessageSent}
       />
     </div>
     <style jsx>{stylesheet}</style>
@@ -37,9 +37,9 @@ VideoChat.propTypes = {
   companion: PropTypes.object.isRequired,
   appointment: PropTypes.object.isRequired,
   setVideoViewId: PropTypes.func.isRequired,
-  subscribeOnMessageReceive: PropTypes.func.isRequired,
-  sendMessage: PropTypes.func.isRequired,
-  userId: PropTypes.string.isRequired
+  userId: PropTypes.string.isRequired,
+  onMessageSent: PropTypes.func.isRequired,
+  messages: PropTypes.array
 };
 
 export default VideoChat;
