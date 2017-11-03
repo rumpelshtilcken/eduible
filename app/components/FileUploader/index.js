@@ -15,18 +15,12 @@ class FileUploader extends React.Component {
   state = {
     file: '',
     imgPreviewUrl: this.props.previewImageUrl || ''
-    // uploadErrorMessage: ''
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
-    // const imgPreviewUrl = this.props;
     const file = this.state;
-
-    // if (file === imgPreviewUrl) {
-    //   this.setState({ uploadErrorMessage: 'Something went wrong' });
-    // }
     if (file !== null) {
       this.props.onCloseFileUploaderModal();
     }
@@ -75,9 +69,7 @@ class FileUploader extends React.Component {
             </div>
             <input type="file" id="upload" className="uploadInput" onChange={this.handleChange} />
             <label htmlFor="upload">{'Choose File'}</label>
-            {/* <label for ="upload">{label}</label> */}
             <div className="sampleUpload">{$imgPreview}</div>
-            {/* <div className="uploadErrorMessage"> {uploadErrorMessage}</div> */}
             <button onClick={this.handleSubmit} >
               {'Upload'}
             </button>

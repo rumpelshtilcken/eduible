@@ -1,8 +1,10 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { MuiButton, FileUploader } from 'components';
+import { MuiButton } from 'components';
 import TextFieldContainer from 'containers/TextFieldContainer';
 import DatePickerContainer from 'containers/DatePickerContainer';
+import FileUploaderContainer from 'containers/FileUploaderContainer';
 
 import stylesheet from './index.css';
 
@@ -142,7 +144,7 @@ const StudentProfileEdit = ({
                 label="Cancel"
                 backgroundColor="#E8E8E8"
                 labelStyle={{ color: 'black', fontSize: 11 }}
-              // onClick={onCancelButtonClick}
+                onClick={this.props.onCancelButtonClick}
               />
             </div>
             <div className="btn">
@@ -153,7 +155,7 @@ const StudentProfileEdit = ({
             </div>
           </div>
         </div>
-        <FileUploader
+        <FileUploaderContainer
           isFileUploaderModalOpen={this.state.isOpenModal}
           onCloseFileUploaderModal={this.handleCloseModal}
           previewImageUrl={this.state.imgUrl}
