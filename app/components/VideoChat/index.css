@@ -3,7 +3,7 @@
   max-width: 900px;
   position: relative;
   display: flex;
-  flex-flow: nowrap;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
   margin: 0;
@@ -22,6 +22,7 @@
 .videoConversationWrapper {
   order: 1;
   width: 100%;
+  min-height: 223px;
 
   @media screen and (min-width: 768px) {
     order: 2;
