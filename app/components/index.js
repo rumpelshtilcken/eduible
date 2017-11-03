@@ -4,7 +4,7 @@ export { default as BookingHeader } from './BookingHeader';
 export { default as CallRequest } from './CallRequest';
 export { default as Card } from './Card';
 export { default as CommingSoon } from './ComingSoon';
-export {default as FileUploaderModal } from './FileUploaderModal';
+export { default as FileUploader } from './FileUploader';
 export { default as Footer } from './Footer';
 export { default as FoundUniversities } from './SearchUniversity/FoundUniversities';
 export { default as InputRange } from '../components/InputRange';
