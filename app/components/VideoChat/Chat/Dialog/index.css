@@ -3,20 +3,27 @@
 }
 
 .chatInput {
+  width: 90%;
   height: 32px;
   outline: none;
-  padding-left: 8px;
+  padding: 0;
+  padding-left: 5%;
+  padding-right: 3%;
   border: 1px solid #fafafa;
   background-color: #f7f0f0;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  border-bottom: 0;
+  border-top: 0;
 }
 
 .sendButton {
-  width: 35px;
-  height: 35px;
+  width: 32px;
+  height: 32px;
   background: url('/static/sendButtonMobile.svg') no-repeat 90%;
+  padding: 0;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
-  border-color: transparent;
+  border: 1px transparent;
+  outline: none;
 }

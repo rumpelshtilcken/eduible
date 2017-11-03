@@ -7,11 +7,12 @@ import VideoConversation from './VideoConversation';
 import stylesheet from './index.css';
 
 const VideoChat = ({
-  companion,
   appointment,
+  companion,
+  sendMessage,
   setVideoViewId,
   subscribeOnMessageReceive,
-  sendMessage
+  userId
 }) => (
   <div className="videoChatContainer">
     <div className="videoConversationWrapper">
@@ -22,7 +23,8 @@ const VideoChat = ({
     </div>
     <div className="chatWrapper">
       <Chat
-        companionId={companion.id}
+        userId={userId}
+        companion={companion}
         subscribeOnMessageReceive={subscribeOnMessageReceive}
         sendMessage={sendMessage}
       />
@@ -36,7 +38,8 @@ VideoChat.propTypes = {
   appointment: PropTypes.object.isRequired,
   setVideoViewId: PropTypes.func.isRequired,
   subscribeOnMessageReceive: PropTypes.func.isRequired,
-  sendMessage: PropTypes.func.isRequired
+  sendMessage: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired
 };
 
 export default VideoChat;

@@ -201,10 +201,14 @@ class VideoChatContainer extends Component {
     this.handleAppointmentLoad();
 
     let companion;
+    let userId;
     if (!appointmentLoading) {
       companion = getCurrentUserData('sub') !== appointment.student.user.auth0UserId
         ? appointment.student
         : appointment.professional;
+      userId = getCurrentUserData('sub') === appointment.student.user.auth0UserId
+      ? appointment.student.user.id
+      : appointment.professional.user.id;
     }
 
     return (
@@ -212,6 +216,7 @@ class VideoChatContainer extends Component {
         {appointment &&
           <VideoChat
             companion={companion}
+            userId={userId}
             appointment={appointment}
             setVideoViewId={this.handleVideoViewLoaded}
             subscribeOnMessageReceive={this.props.subscribeOnMessageReceive}

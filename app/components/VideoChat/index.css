@@ -1,21 +1,27 @@
 .videoChatContainer {
   width: 100%;
+  max-width: 900px;
+  position: relative;
   display: flex;
   flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 
   @media screen and (min-width: 768px) {
-    width: 610px;
-    flex-wrap: wrap;
+    flex-flow: column;
+    margin-top: 56px;
   }
 
   @media screen and (min-width: 1024px) {
-    width: 900px;
+    margin: auto;
+    margin-top: 56px;
   }
 }
 
 .videoConversationWrapper {
   order: 1;
-  position: relative;
+  width: 100%;
 
   @media screen and (min-width: 768px) {
     order: 2;
@@ -30,20 +36,30 @@
 
 .profileInfoWrapper {
   order: 2;
-  width: 100%;
+  width: 243px;
+  padding: 30px 38px;
 
   @media screen and (min-width: 768px) {
     order: 1;
-    width: 243px;
+    width: 610px;
   }
 
   @media screen and (min-width: 1024px) {
+    width: 243px;
     order: 2;
   }
 }
 
 .chatWrapper {
   order: 3;
-  width: 100%;
+  width: 243px;
   padding: 30px 38px;
+
+  @media screen and (min-width: 768px) {
+    width: 593px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 243px;
+  }
 }

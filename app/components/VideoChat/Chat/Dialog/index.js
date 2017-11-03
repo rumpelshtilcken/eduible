@@ -10,14 +10,20 @@ class TextInputBox extends Component {
 
   state = {
     message: ''
-  }
+  };
 
-  handleChange = ({ target: value }) => this.setState({ message: value });
+  handleKeyPress = ({ key }) =>
+    (key === 'Enter') &&
+    this.handleSubmitButtonClick();
 
-  handleSubmit = () => {
-    this.props.onSubmitButtonClick(this.state.msg);
-    this.setState({ msg: '' });
-  }
+  handleChange = ({ target: { value } }) => this.setState({ message: value });
+
+  handleSubmitButtonClick = () => {
+    if (!this.state.message) return;
+
+    this.props.onSubmitButtonClick(this.state.message);
+    this.setState({ message: '' });
+  };
 
   render() {
     return (
@@ -28,8 +34,9 @@ class TextInputBox extends Component {
           onChange={this.handleChange}
           value={this.state.message}
           placeholder="Type message ..."
+          onKeyPress={this.handleKeyPress}
         />
-        <button className="sendButton" onClick={this.handleSubmit} />
+        <button className="sendButton" onClick={this.handleSubmitButtonClick} />
         <style jsx> {stylesheet} </style>
       </div>
     );

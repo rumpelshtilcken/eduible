@@ -10,8 +10,8 @@ const VideoConversation = ({ setVideoViewId }) => {
 
   return (
     <div className="videoContainer">
-      <div id="participantCamera" className="cameraOutput" />
-      <div id="userCamera" className="participantCameraOutput" />
+      <div id="participantCamera" className="participantCameraOutput" />
+      <div id="userCamera" className="userCameraOutput" />
       <style jsx>{stylesheet}</style>
     </div>
   );
