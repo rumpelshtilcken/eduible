@@ -1,7 +1,7 @@
-/* eslint-disable */
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { hoistStatics } from 'recompact';
+import { Message } from 'react-chat-ui';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 
@@ -38,7 +38,8 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
         remoteCameras: PropTypes.arrayOf(PropTypes.object),
         localCameraViewId: PropTypes.string,
         remoteCameraViewId: PropTypes.string
-      }
+      },
+      update: PropTypes.func.isRequired
     };
 
     componentWillMount() {
@@ -50,7 +51,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
 
     componentWillUnmount() {
       this.disconnectVideoChat();
-      this.props.update({name: 'videoChatState', value: true})
+      this.props.update({ name: 'videoChatState', value: true });
     }
 
     disconnectVideoChat = async () => {
@@ -76,24 +77,24 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
       switch (status.state) {
         case 'READY':
           this.handleDidVCLoad();
-          this.props.update({name: 'videoChatState', value: true})
+          this.props.update({ name: 'videoChatState', value: true });
           return;
 
         case 'RETRYING': // The library operating is temporarily paused
-        this.props.update({name: 'videoChatState', value: false})
+          this.props.update({ name: 'videoChatState', value: false });
           return `Temporarily unavailable retrying in ${status.nextTimeout / 1000} seconds`;
 
         case 'FAILED': // The library operating has stopped
-        this.props.update({name: 'videoChatState', value: false})
+          this.props.update({ name: 'videoChatState', value: false });
           return `Failed: ${status.description}`;
 
         case 'FAILEDVERSION': // The library operating has stopped
-        this.props.update({name: 'videoChatState', value: false})
+          this.props.update({ name: 'videoChatState', value: false });
           this.setState({ pluginUrl: getPluginUrl(status) });
           return `Failed: ${status.description}`;
 
         case 'NOTAVAILABLE': // The library is not available
-        this.props.update({name: 'videoChatState', value: false})
+          this.props.update({ name: 'videoChatState', value: false });
           this.setState({ pluginUrl: getPluginUrl(status) });
           return `Failed: ${status.description}`;
 
@@ -132,19 +133,28 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     sendMessage = message => console.log('qwerty: hoc', this.videoChat, message) ||
       this.videoChat.sendChatMessage(message);
 
-    listeners = [];
+    handleMessageReceive = (participant, message) => {
+      console.log('qwerty: Message receive', participant, message);
+      const { id, name } = this.props.videoChat.participant.user;
+      const { messagesHistory } = this.props.videoChat;
+      const nMessage = new Message({ id, message, senderName: name });
+      const messageHistory = messagesHistory
+        ? messagesHistory.slice()
+        : [];
+      messageHistory.push(nMessage);
+      this.props.update({ name: 'messagesHistory', value: messageHistory });
+    }
 
-    handleMessageReceive = (participant, chatMessage) => {
-      console.log('qwerty: Message receive', participant, chatMessage);
-      this.listeners.map(l => l(participant, chatMessage));
-    };
-
-    subscribeOnMessageReceive = (listener) => {
-      this.listeners.push(listener);
-      return () => {
-        this.listeners = this.listeners.filter(l => l === listener);
-      };
-    };
+    handleMessageSent = ({ id, message, senderName }) => {
+      console.log('qwerty: Message send', message);
+      const nMessage = new Message({ id, message, senderName });
+      const { messagesHistory } = this.props.videoChat;
+      const messageHistory = messagesHistory
+        ? messagesHistory.slice()
+        : [];
+      messageHistory.push(nMessage);
+      this.props.update({ name: 'messagesHistory', value: messageHistory });
+    }
 
     render() {
       return (
@@ -159,9 +169,8 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
           </Head>
 
           <WrappedComponent
-            subscribeOnMessageReceive={this.subscribeOnMessageReceive}
-            sendMessage={this.sendMessage}
             {...this.props}
+            onMessageSent={this.handleMessageSent}
           />
         </div>
       );
