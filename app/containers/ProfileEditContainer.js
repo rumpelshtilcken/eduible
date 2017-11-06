@@ -8,8 +8,16 @@ import { StatefulView } from 'components';
 import StudentProfileEditContainer from './StudentProfileEditContainer';
 import ProfessionalProfileEditContainer from './ProfessionalProfileEditContainer';
 
-const ProfileEditContainer = ({ user, loading, error, onCancelButtonClick, onDidProfileSave, onDidRemoveProfile }) => {
-  if (!process.browser) return null;
+const profileImgURL = 'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509977540/user_profile_photo_usqtkm.png';
+
+const ProfileEditContainer = ({
+  error,
+  loading,
+  onCancelButtonClick,
+  onDidProfileSave,
+  onDidRemoveProfile,
+  user
+}) => {
   if (error) return <div>{error}</div>;
 
   return (
@@ -17,12 +25,14 @@ const ProfileEditContainer = ({ user, loading, error, onCancelButtonClick, onDid
       {user.userType === 'Student'
         ? <StudentProfileEditContainer
           userId={user.id}
+          profileImgURL={profileImgURL}
           onCancelButtonClick={onCancelButtonClick}
           onDidProfileSave={onDidProfileSave}
           onDidRemoveProfile={onDidRemoveProfile}
         />
         : <ProfessionalProfileEditContainer
           userId={user.id}
+          profileImgURL={profileImgURL}
           onCancelButtonClick={onCancelButtonClick}
           onDidProfileSave={onDidProfileSave}
           onDidRemoveProfile={onDidRemoveProfile}

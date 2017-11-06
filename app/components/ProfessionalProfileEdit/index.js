@@ -9,6 +9,7 @@ import stylesheet from './index.css';
 
 class ProfessionalProfileEdit extends Component {
   static propTypes = {
+    profileImgURL: PropTypes.string.isRequired,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
       birthday: PropTypes.string,
@@ -17,6 +18,7 @@ class ProfessionalProfileEdit extends Component {
         price: PropTypes.number
       })
     }),
+    onCancelButtonClick: PropTypes.func.isRequired,
     onSaveButtonClick: PropTypes.func.isRequired
   };
 
@@ -33,7 +35,9 @@ class ProfessionalProfileEdit extends Component {
           childrens={[
             <ProfileEditTab
               user={this.props.user}
+              profileImgURL={this.props.profileImgURL}
               onSaveButtonClick={this.props.onSaveButtonClick}
+              onCancelButtonClick={this.props.onCancelButtonClick}
             />,
             <PayOut />
           ]}

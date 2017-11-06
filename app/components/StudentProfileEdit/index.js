@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { MuiButton } from 'components';
+import { MuiButton, FileUploader } from 'components';
 import TextFieldContainer from 'containers/TextFieldContainer';
 import DatePickerContainer from 'containers/DatePickerContainer';
-import FileUploaderContainer from 'containers/FileUploaderContainer';
 
 import stylesheet from './index.css';
 
@@ -12,14 +11,14 @@ class StudentProfileEdit extends React.Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     birthday: PropTypes.string.isRequired,
+    profileImgURL: PropTypes.string.isRequired,
     onSaveButtonClick: PropTypes.func.isRequired,
     onCancelButtonClick: PropTypes.func.isRequired,
     onRemoveAccountButtonClick: PropTypes.func.isRequired
   };
 
   state = {
-    isOpenModal: false,
-    imgUrl: 'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509977540/user_profile_photo_usqtkm.png'
+    isOpenModal: false
   }
 
   handleCloseModal = () => (this.setState({ isOpenModal: false }))
@@ -31,7 +30,7 @@ class StudentProfileEdit extends React.Component {
         <div className="profile">
           <p className="studentProfileTitle">{'Profile Edit'}</p>
           <div className="pickProfileImageContainer">
-            <img src={this.state.imgUrl} alt="profileImg" className="studentProfileImage" />
+            <img src={this.props.profileImgURL} alt="profileImg" className="studentProfileImage" />
             <input type="button" className="overlayButton" value="Change" onClick={this.handleImageChange} />
           </div>
           <div className="muiTextFieldBox">
@@ -84,11 +83,10 @@ class StudentProfileEdit extends React.Component {
             </div>
           </div>
         </div>
-        <FileUploaderContainer
+        <FileUploader
           isFileUploaderModalOpen={this.state.isOpenModal}
           onCloseFileUploaderModal={this.handleCloseModal}
           previewImageUrl={this.state.imgUrl}
-        // onFileUrlChange={this.handleFileUrlChange}
         />
         <style jsx>{stylesheet}</style>
         <FileUploaderModal

@@ -4,17 +4,18 @@ import PropTypes from 'prop-types';
 
 import DatePickerContainer from 'containers/DatePickerContainer';
 import TextFieldContainer from 'containers/TextFieldContainer';
-import FileUploaderContainer from 'containers/FileUploaderContainer';
-import { MuiButton, FileUploaderModal } from 'components';
+import { MuiButton, FileUploader } from 'components';
 
 import styles from './index.css';
 
-const professionalImage = 'https://dontlosehair.com/wp-content/uploads/2016/02/3_Problems_that_Bald_People_Face_on_a_Regular_Basis.jpg';
-const backgroundImage = '/static/prof/profileHeaderBackground.svg';
+ //const professionalImage = 'https://dontlosehair.com/wp-content/uploads/2016/02/3_Problems_that_Bald_People_Face_on_a_Regular_Basis.jpg';
+ const backgroundImage = 'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509975928/profileHeaderBackground_f5ev0i.svg';
 
 class ProfileEditTab extends Component {
   static propTypes = {
+    profileImgURL: PropTypes.string.isRequired,
     onSaveButtonClick: PropTypes.func.isRequired,
+    onCancelButtonClick: PropTypes.func.isRequired,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
       birthday: PropTypes.string,
@@ -54,15 +55,8 @@ class ProfileEditTab extends Component {
           <form className="professionalProfleEditFormContainer">
             <div className="profileImagesContainer">
               <div className="pickProfileImageContainer">
-                <img
-                  className="professionalProfileImage"
-                  src={professionalImage}
-                  alt="profileImage"
-                />
-                <button className="overlayButton" onClick={this.handleBackgroundImageChange}>
-                  {'Change'}
-                </button>
-                {/* <input type="file" accept="image/*" className="inputH" id="inputBack" /> */}
+                <img className="professionalProfileImage" src={this.props.profileImgURL}/>
+                <input type="button" className="overlayImg" onClick = {this.handleProfileImageLoader} value="Change"/>
               </div>
               <div className="pickProfileBackgroundImageContainer">
                 <img
@@ -150,7 +144,7 @@ class ProfileEditTab extends Component {
                   label="Cancel"
                   backgroundColor="#E8E8E8"
                   labelStyle={{ color: 'black', fontSize: 11 }}
-                  // onClick={onCancelButtonClick}
+                  onClick={this.props.onCancelButtonClick}
                 />
               </div>
               <div className="btn">
@@ -161,7 +155,7 @@ class ProfileEditTab extends Component {
               </div>
             </div>
           </form>
-          <FileUploaderContainer
+          <FileUploader
             isFileUploaderModalOpen={this.state.isModalOpen} 
             onCloseFileUploaderModal={this.handleCloseModal}
             previewImageUrl={''}

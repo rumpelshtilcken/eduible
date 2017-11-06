@@ -12,6 +12,7 @@ import * as formActions from 'actions/form';
 
 class StudentProfileEditContainer extends Component {
   static propTypes = {
+    profileImgURL: PropTypes.string.isRequired,
     onCancelButtonClick: PropTypes.func.isRequired,
     userId: PropTypes.string,
     user: PropTypes.shape({
@@ -75,13 +76,14 @@ class StudentProfileEditContainer extends Component {
   render() {
     if (this.props.error) return (<div>{`Error: ${this.props.error}`}</div>);
 
-    const { name, birthday } = this.props;
+    const { name, birthday, profileImgURL } = this.props;
     console.log(name, birthday);
     return (
       <StatefulView loading={this.props.loading}>
         <StudentProfileEdit
           name={name}
           birthday={birthday}
+          profileImgURL={profileImgURL}
           onCancelButtonClick={this.props.onCancelButtonClick}
           onRemoveAccountButtonClick={this.handleRemoveAccountButtonClick}
           onSaveButtonClick={this.handleSaveButtonClick}

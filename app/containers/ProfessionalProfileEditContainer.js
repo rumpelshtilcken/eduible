@@ -6,10 +6,11 @@ import { ProfessionalProfileEdit, StatefulView } from 'components';
 
 class ProfessionalProfileEditContainer extends Component {
   static propTypes = {
-    id: PropTypes.string.isRequired,
+    userId: PropTypes.string,
+    profileImgURL: PropTypes.string.isRequired,
     updateProfessional: PropTypes.func.isRequired,
     onCancelButtonClick: PropTypes.func,
-    onSaveButtonClick: PropTypes.func.isRequired,
+    onDidProfileSave: PropTypes.func.isRequired,
     loading: PropTypes.boolean,
     error: PropTypes.object,
     user: PropTypes.shape({
@@ -30,10 +31,8 @@ class ProfessionalProfileEditContainer extends Component {
         id: this.props.user.professional.id
       }
     });
-    this.props.onSaveButtonClick();
+    this.props.onDidProfileSave(this.props.userId);
   };
-
-  handleCancelButtonClick = () => this.props.onCancelButtonClick;
 
   render() {
     if (this.props.error) return <div>{`Error ${this.props.error}`}</div>;
@@ -42,7 +41,9 @@ class ProfessionalProfileEditContainer extends Component {
       <StatefulView loading={this.props.loading}>
         <ProfessionalProfileEdit
           user={this.props.user}
-          handleSaveButtonClick={this.handleSaveButtonClick}
+          profileImgURL={this.props.profileImgURL}
+          onSaveButtonClick={this.handleSaveButtonClick}
+          onCancelButtonClick={this.props.onCancelButtonClick}
         />
       </StatefulView>
     );
