@@ -13,7 +13,7 @@ const FoundUniversities = ({ univer }) => (
             <div className="mainInfo">
               <p className="title">{univer.title}</p>
               <p className="city">
-                <img className="placaholderIcon" src="../../static/placeholderIcon.svg" alt="" />
+                <img className="placaholderIcon" src="http://res.cloudinary.com/dsyyowxl0/image/upload/v1509976048/ic_location_ntugv6.svg" alt="" />
                 {univer.city}
               </p>
             </div>

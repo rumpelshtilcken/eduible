@@ -7,8 +7,8 @@ const ProfessionalRating = ({ rating }) => {
   /* eslint-disable */
   for (let i = 1; i <= MAX_RATING; i++) {
     if (i <= rating) {
-      obj.push(<img key={i} src="static/Icons/star_p.svg" className="purpleStar" alt="" />);
-    } else obj.push(<img key={i} src="static/Icons/star_g.svg" className="grayStar" alt="" />);
+      obj.push(<img key={i} src="http://res.cloudinary.com/dsyyowxl0/image/upload/v1509976468/star_p_vyahon.svg" className="purpleStar" alt="" />);
+    } else obj.push(<img key={i} src="http://res.cloudinary.com/dsyyowxl0/image/upload/v1509976492/star_g_ieotz2.svg" className="grayStar" alt="" />);
   }
 
   return <div>{obj}</div>;

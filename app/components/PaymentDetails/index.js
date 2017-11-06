@@ -15,7 +15,7 @@ const PaymentDetails = ({ onBackButtonClick, onRequestCallClick }) => (
           component: (
             <PaymentDetailsHeader
               profileName={'Migeul Carrera'}
-              profileImageUrl={'/static/miguel.jpg'}
+              profileImageUrl={'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509975927/Bitmap_onb30b.jpg'}
               conversationDetails={{
                 estimatedLength: '15 minutes',
                 date: 'August24,2017',

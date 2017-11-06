@@ -2,12 +2,12 @@ import React from 'react';
 
 import History from './History';
 import Conferece from './Conference';
-import style from './index.css';
+import style from './Conversation/index.css';
 
 const user = [
   {
     name: 'MIGUELL CARRERA',
-    imgUrl: '/static/profile.jpg',
+    imgUrl: 'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509975927/Bitmap_onb30b.jpg',
     conversation: {
       duration: '15 minutes',
       date: '28 August, 2017',
@@ -17,7 +17,7 @@ const user = [
   },
   {
     name: 'ANNA STARK',
-    imgUrl: '/static/anna.jpg',
+    imgUrl: 'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509977540/user_profile_photo_usqtkm.png',
     conversation: {
       duration: '7 minutes',
       date: '22 August, 2017',
@@ -27,7 +27,7 @@ const user = [
   },
   {
     name: 'Simona Kate',
-    imgUrl: '/static/anna.jpg',
+    imgUrl: 'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509977540/convImg_eal9bq.jpg',
     conversation: {
       duration: '17 minutes',
       date: '21 August, 2017',
@@ -37,7 +37,7 @@ const user = [
   },
   {
     name: 'Mona Albert',
-    imgUrl: '/static/mona.jpg',
+    imgUrl: 'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509977540/mona_hry8nj.jpg',
     conversation: {
       duration: '43 minutes',
       date: '04 August, 2017',

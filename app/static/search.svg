@@ -1,0 +1,21 @@
+<svg width="904" height="39" viewBox="0 0 904 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Input</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(3050 5372)">
+<g id="Input" filter="url(#filter0_d)">
+<use xlink:href="#path0_fill" transform="translate(-3048 -5372)" fill="#FFFFFF"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d" filterUnits="userSpaceOnUse" x="-3050" y="-5372" width="904" height="39" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 0"/>
+<feOffset dx="0" dy="2"/>
+<feGaussianBlur stdDeviation="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.122849 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+</filter>
+<path id="path0_fill" fill-rule="evenodd" d="M 0 4C 0 1.79086 1.79086 0 4 0L 896 0C 898.209 0 900 1.79086 900 4L 900 31C 900 33.2091 898.209 35 896 35L 4 35C 1.79086 35 0 33.2091 0 31L 0 4Z"/>
+</defs>
+</svg>

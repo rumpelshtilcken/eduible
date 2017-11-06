@@ -28,7 +28,7 @@
 }
 
 .universityLogo {
-  background: url("/static/uni-logo-placeholder.jpg") center center no-repeat;
+  background: url("http://res.cloudinary.com/dsyyowxl0/image/upload/v1509977045/uni-logo-placeholder_iadyzc.svg") center center no-repeat;
   background-size: cover;
   width: 70px;
   height: 70px;

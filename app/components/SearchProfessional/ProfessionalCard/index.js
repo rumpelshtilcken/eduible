@@ -29,7 +29,7 @@ const ProfessionalCard = ({ professional, onRequestButtonClick, onProfessionalCh
               <div className="cityIcon">
                 <img
                   className="placaholderIcon"
-                  src="../../static/placeholderIcon.svg"
+                  src="http://res.cloudinary.com/dsyyowxl0/image/upload/v1509976048/ic_location_ntugv6.svg"
                   alt=""
                 />
                 {professional.location && professional.location.country}

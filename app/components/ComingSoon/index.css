@@ -84,7 +84,7 @@ input::placeholder {
 .container {
   width: calc(100vw - 30px);
   height: calc(100vh - 48px - 30px - 36px - 36px);
-  background: url("/static/Image.jpg") center center /cover no-repeat;
+  background: url("http://res.cloudinary.com/dsyyowxl0/image/upload/v1509975259/Image_q3ensk.jpg") center center /cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,11 +93,11 @@ input::placeholder {
   padding: 15px;
 
   @media screen and (min-width: 768px) {
-    background: url("/static/middleImage.jpg") center center /cover no-repeat;
+    background: url("http://res.cloudinary.com/dsyyowxl0/image/upload/v1509975323/middleImage_p9nlnh.jpg") center center /cover no-repeat;
   }
 
   @media screen and (min-width: 1000px) {
-    background: url("/static/biggerImage.jpg") center center /cover no-repeat;
+    background: url("http://res.cloudinary.com/dsyyowxl0/image/upload/v1509975269/biggerImage_y8d8kc.jpg") center center /cover no-repeat;
   }
 }
 

@@ -62,13 +62,12 @@ class ProfessionalProfileInfo extends Component {
 
   renderProfileInfo = ({ headerText, bodyText }) => (
     <div className="list" key={headerText}>
-      <div className="profileItem">
-        {headerText && <p className="profileTitle">{headerText}</p>}
-        {bodyText && <div className="profileContent">
-          <img className="profileIcon" src={'static/ic_location.svg'} alt="location" />
-          <span className="profileText">{bodyText}</span>
-        </div>}
-      </div>
+      {headerText && <p className="profileTitle">{headerText}</p>}
+      {bodyText && <div className="profileContent">
+        <img className="profileIcon" src={'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509976048/ic_location_ntugv6.svg'} alt="location" />
+        <span className="profileText">{bodyText}</span>
+        <hr />
+      </div>}
       <style jsx>{stylesheet}</style>
     </div>
   )

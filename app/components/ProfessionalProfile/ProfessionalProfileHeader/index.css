@@ -16,7 +16,7 @@
 .professionalProfileheaderBackgroundImage {
   width: 100%;
   height: 130px;
-  background: url("/static/prof/profileHeaderBackground.svg") center center no-repeat;
+  background: url("http://res.cloudinary.com/dsyyowxl0/image/upload/v1509975928/profileHeaderBackground_f5ev0i.svg") center center no-repeat;
   background-size: cover;
   margin: auto;
   margin-top: 0;

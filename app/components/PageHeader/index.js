@@ -15,7 +15,7 @@ const PageHeader = ({ buttons, links, onLogoClick }) => (
           onClick={onLogoClick}
           className="logo"
         >
-          <img src={'static/Icons/logoColored.svg'} alt={'logo'} />
+          <img src={'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509975690/logoColored_p8kwhe.svg'} alt={'logo'} />
         </div>
         <ResponsiveMenu
           buttons={buttons}

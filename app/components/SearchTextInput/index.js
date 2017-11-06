@@ -27,7 +27,7 @@ class SearchTextInput extends Component {
           onChange={this.handleChange}
           placeholder={this.props.placeholder}
         />
-        <img className="searchIcon" src="/static/search.png" alt="search" />
+        <img className="searchIcon" src="http://res.cloudinary.com/dsyyowxl0/image/upload/v1509976838/search_q5onpq.svg" alt="search" />
         <style jsx>{stylesheet}</style>
       </div>
     );

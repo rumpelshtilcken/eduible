@@ -17,11 +17,11 @@ const Conversation = ({ user, title, btnStyle }) => (
     <div className="profileTools">
       <div className="conversationData">
         <div className="conversationDataBox1">
-          <img src="/static/Calendar.svg" alt="calendarIcon" />
+          <img src="http://res.cloudinary.com/dsyyowxl0/image/upload/v1509977630/Calendar_kvy3zh.svg" alt="calendarIcon" />
           <p>{user.conversation.date}</p>
         </div>
         <div className="conversationDataBox2">
-          <img src="/static/clock.svg" alt="timerIcon" />
+          <img src="http://res.cloudinary.com/dsyyowxl0/image/upload/v1509977650/clock_tj8g3l.svg" alt="timerIcon" />
           <p>{user.conversation.time}</p>
         </div>
       </div>

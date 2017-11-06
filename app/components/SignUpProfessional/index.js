@@ -9,6 +9,8 @@ import ValidationUtils from 'utils/ValidationUtils';
 import SignUpFormInputs from './SignUpFormInputs';
 import stylesheet from './index.css';
 
+const line = 'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509977252/Line_byba7g.jpg';
+
 class SignUpProfessional extends Component {
   static propTypes = {
     onContinueButtonClick: PropTypes.func.isRequired,
@@ -49,7 +51,7 @@ class SignUpProfessional extends Component {
                   <SignInSocialContainer renderButtons={['Linkedin']} />
                 </div>
                 <div className="signUpProfessionalLoginContainerIn">
-                  <img className="loginContainerLine" src="static/Line.jpg" alt="dividerLine" />
+                  <img className="loginContainerLine" src={line} alt="dividerLine" />
                   <p>{'Already a member?'.toUpperCase()}</p>
                   <button
                     className="loginButton"
@@ -68,7 +70,7 @@ class SignUpProfessional extends Component {
                 <SignInSocialContainer renderButtons={['Linkedin']} />
               </div>
               <div className="signUpProfessionalLoginContainer">
-                <img className="loginContainerLine" src="static/Line.jpg" alt="dividerLine" />
+                <img className="loginContainerLine" src={line} alt="dividerLine" />
                 <p>{'Already a member?'.toUpperCase()}</p>
                 <button
                   className="loginButton"
