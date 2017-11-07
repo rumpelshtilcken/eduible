@@ -1,21 +1,27 @@
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import stylesheet from './index.css';
 
-const VideoConversation = ({ setVideoViewId }) => {
-  setVideoViewId({
-    localCameraViewId: 'userCamera',
-    remoteCameraViewId: 'participantCamera'
-  });
+class VideoConversation extends Component {
+  componentWillMount() {
+    const { setVideoViewId } = this.props;
+    setVideoViewId({
+      localCameraViewId: 'userCamera',
+      remoteCameraViewId: 'participantCamera'
+    });
+  }
 
-  return (
-    <div className="videoContainer">
-      <div id="participantCamera" className="participantCameraOutput" />
-      <div id="userCamera" className="userCameraOutput" />
-      <style jsx>{stylesheet}</style>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="videoContainer">
+        <div id="participantCamera" className="participantCameraOutput" />
+        <div id="userCamera" className="userCameraOutput" />
+        <style jsx>{stylesheet}</style>
+      </div>
+    );
+  }
+}
 
 VideoConversation.propTypes = {
   setVideoViewId: PropTypes.func.isRequired
