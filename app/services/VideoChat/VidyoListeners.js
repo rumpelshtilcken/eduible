@@ -71,7 +71,7 @@ const VidyoListeners = {
 
   registerMessageEventListener: async (vidyoConnector, listener) =>
     vidyoConnector.RegisterMessageEventListener({
-      onChatMessageReceived: listener.handleChatMessageReceive
+      onChatMessageReceived: listener.onChatMessageReceived
     })
 };
 

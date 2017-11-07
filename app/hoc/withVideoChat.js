@@ -35,7 +35,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     };
 
     componentWillMount() {
-      if (process.browser && !window.VC) {
+      if (process.browser) {
         setListenerComponent(this);
       }
     }
@@ -69,10 +69,11 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     }
 
     disconnectVideoChat = async () => {
-      this.videoChat.disconnect();
-      window.ListenerComponent = null;
-      this.disconnectVideoChat();
-      this.props.update({ name: 'videoChatState', value: false });
+      if (window.ListenerComponent) {
+        this.videoChat.disconnect();
+        window.ListenerComponent = null;
+        this.props.update({ name: 'videoChatState', value: false });
+      }
     };
 
     handleDidLoadVidyoClient = (status) => {
@@ -127,14 +128,15 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     handleConnectionFailure = error =>
       console.log('qwerty: Failure ', error);
 
-    handleConnectionDisconnect = error =>
+    handleConnectionDisconnect = (error) => {
       console.log('qwerty: Disconnect', error);
+    }
 
     // Chat handler
     handleMessageReceive = (participant, message) => {
       console.log('qwerty: Message receive', participant, message);
       const { id, name } = this.props.videoChat.participant.user;
-      this.updateMessageHistory({ id, message, senderName: name });
+      this.updateMessageHistory({ id, message: message.body, senderName: name });
     }
 
     handleMessageSent = (params) => {

@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import { getCurrentUserData } from 'utils/auth';
 import { StatefulView, VideoChat } from 'components';
 import * as videoChatActions from 'actions/videoChat';
+import AppointmentUtils from 'utils/AppointmentUtils';
 import fetch from 'isomorphic-fetch';
 import withVideoChat from 'hoc/withVideoChat';
 
@@ -15,7 +16,8 @@ class VideoChatContainer extends Component {
   static propTypes = {
     videoChat: PropTypes.shape({
       callId: PropTypes.string,
-      messagesHistory: PropTypes.array
+      messagesHistory: PropTypes.array,
+      vidyoToken: PropTypes.string
     }),
     appointment: PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -34,7 +36,6 @@ class VideoChatContainer extends Component {
       })
     }),
     update: PropTypes.func.isRequired,
-    createCall: PropTypes.func.isRequired,
     onMessageSent: PropTypes.func.isRequired,
     appointmentLoading: PropTypes.bool,
     appointmentError: PropTypes.string,
@@ -42,7 +43,7 @@ class VideoChatContainer extends Component {
   };
 
   componentDidMount() {
-    this.handleAppointmentLoad();
+    if (!this.props.appointmentLoading) { this.handleDidAppointmentLoad(); }
   }
 
   shouldComponentUpdate(nextProps) {
@@ -74,78 +75,26 @@ class VideoChatContainer extends Component {
     this.props.resetValue({ name: 'messagesHistory' });
   }
 
-  getCallId = async () => {
-    try {
-      // check existed calls
-      if (this.props.appointment.calls) {
-        const requestedCall =
-        this.props.appointment.calls.filter(call => call.state === 'Request');
-
-        if (requestedCall.length !== 0) {
-          return this.props.update({ name: 'callId', value: requestedCall[0].id });
-        }
-      }
-
-      const {
-        id: appointmentId,
-        estimatedLength: duration,
-        student,
-        professional
-      } = this.props.appointment;
-
-      const currentAuth0UserId = getCurrentUserData('sub');
-
-      const callerId = currentAuth0UserId === student.user.auth0UserId
-        ? student.user.id
-        : professional.user.id;
-
-      const recevierId = currentAuth0UserId !== student.user.auth0UserId
-        ? student.user.id
-        : professional.user.id;
-      const res = await this.props.createCall({ appointmentId, duration, callerId, recevierId });
-
-      return this.props.update({ name: 'callId', value: res.data.createCall.id });
-    } catch (err) {
-      throw err;
-    }
-  };
-
-  handleAppointmentLoad = () => {
-    const { appointment, appointmentLoading, videoChat } = this.props;
-    if (!appointmentLoading && process.browser && !videoChat.videoChatState ) {
-      const { student, professional } = appointment;
-      const currentUserId = getCurrentUserData('sub');
-
-      if (student.user.auth0UserId !== currentUserId &&
-          professional.user.auth0UserId !== currentUserId) {
-        // TODO: wrong appointmentId
-        return;
-      }
-
-      if (appointment.state !== 'Approve') {
-        // TODO: not approved appointment
-        return;
-      }
-
-      this.handleDidAppointmentLoad();
-    }
-  };
-
   componentWillReceiveProp(nextProps) {
-    const { callId, appointmentLoading } = nextProps.videoChat;
-    const { callId: prevCallId } = this.props.videoChat;
-    if (!appointmentLoading && (callId !== prevCallId)) {
+    const { appointmentLoading } = nextProps.videoChat;
+    const { appointmentLoading: prevAppointmentLoading } = this.props;
+    if (!appointmentLoading && (prevAppointmentLoading !== appointmentLoading)) {
       this.handleDidAppointmentLoad();
     }
   }
 
   handleDidAppointmentLoad = async () => {
     try {
-      const callId = this.props.videoChat.callId;
-      if (!callId) {
-        return this.getCallId();
-      }
       const { appointment } = this.props;
+      const currentAuth0UserId = getCurrentUserData('sub');
+
+      if (!AppointmentUtils.isAppointmentValid({ appointment, currentAuth0UserId }) &&
+          !AppointmentUtils.isCallValid(this.appointment.calls)) {
+        throw new Error('Appointment or calls not valid');
+      }
+
+      const callId =
+        this.props.appointment.calls.filter(call => call.state === 'Request')[0].id;
 
       const userId = getCurrentUserData('sub') === appointment.student.user.auth0UserId
         ? appointment.student.user.id
@@ -161,12 +110,9 @@ class VideoChatContainer extends Component {
         resourceId: callId
       });
 
-      this.props.update({
-        name: 'participant',
-        value: participant
-      });
+      this.props.update({ name: 'participant', value: participant });
     } catch (err) {
-      return err;
+      console.log('Appointment error', err);
     }
   };
 
@@ -191,12 +137,8 @@ class VideoChatContainer extends Component {
         },
         body: JSON.stringify({ userName: userId, expiresInSeconds })
       });
-      console.log('qwerty: ', { userId, expiresInSeconds, resourceId });
       const json = await res.json();
-      this.handleDidVieoChatParamsLoad({
-        vidyoToken: json.vidyoToken, resourceId
-      });
-      console.log('qwerty: ', { vidyoToken: json.vidyoToken, resourceId });
+      this.handleDidVieoChatParamsLoad({ vidyoToken: json.vidyoToken, resourceId });
     } catch (error) {
       console.log('Fetch error: ', error);
     }
@@ -280,24 +222,6 @@ const getAppointment = gql`
   }
 `;
 
-const createCall = gql`
-  mutation createCall (
-    $appointmentId: ID!
-    $duration: Float!
-    $callerId: ID!
-    $recevierId: ID!
-  ) {
-    createCall (
-      appointmentId: $appointmentId
-      duration: $duration
-      callerId: $callerId
-      recevierId: $recevierId
-    ) {
-      id
-    }
-  }
-`;
-
 const mapStateToProps = ({ videoChat }) => ({ videoChat });
 
 const mapDispatchToProps = dispatch => ({
@@ -313,12 +237,6 @@ export default withVideoChat(compose(
       appointment: Appointment,
       appointmentLoading: loading,
       appointmentError: error
-    })
-  }),
-  graphql(createCall, {
-    props: ({ mutate }) => ({
-      createCall: ({ appointmentId, duration, callerId, recevierId }) =>
-        mutate({ variables: { appointmentId, duration, callerId, recevierId } })
     })
   })
 )(VideoChatContainer));
