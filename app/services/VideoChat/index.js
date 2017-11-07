@@ -78,13 +78,14 @@ const VideoChat = async ({
     });
 
     return {
-      sendChatMessage: message => console.log('qwerty: Service', message) || vidyoConnector.SendChatMessage(message),
+      sendChatMessage: message => vidyoConnector.SendChatMessage(message),
       disconnect: async () => {
         window.removeEventListener('resize', handleWindowResize);
         await vidyoConnector.Disconnect();
         await vidyoConnector.Destruct();
         vidyoConnector = null;
-      } };
+      }
+    };
   } catch (err) { throw err; }
 };
 

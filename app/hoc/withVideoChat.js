@@ -17,63 +17,66 @@ const setListenerComponent = (ListenerComponent) => {
 
 // Global function for handling VidyoSDK loading
 const handleDidLoadVidyoClient = (status) => {
+  console.log('qwerty: ListenerComponent', window.ListenerComponent);
   window.ListenerComponent.handleDidLoadVidyoClient(status);
 };
 
 const withVideoChat = hoistStatics((WrappedComponent) => {
   class WithVideoChat extends Component {
     static propTypes = {
-      videoChat: {
-        scriptVidyoSDK: PropTypes.string,
+      videoChat: PropTypes.shape({
         pluginUrl: PropTypes.string,
-        selectedCamera: PropTypes.object,
-        selectedMicrophone: PropTypes.object,
-        selectedSpeaker: PropTypes.object,
-        participant: PropTypes.object,
         vidyoToken: PropTypes.string,
         resourceId: PropTypes.string,
-        cameras: PropTypes.arrayOf(PropTypes.object),
-        microphones: PropTypes.arrayOf(PropTypes.object),
-        speakers: PropTypes.arrayOf(PropTypes.object),
-        remoteCameras: PropTypes.arrayOf(PropTypes.object),
         localCameraViewId: PropTypes.string,
         remoteCameraViewId: PropTypes.string
-      },
+      }),
       update: PropTypes.func.isRequired
     };
 
     componentWillMount() {
-      if (process.browser && !this.props.videoChat.scriptVidyoSDK) {
+      if (process.browser && !window.VC) {
         setListenerComponent(this);
-        this.loadVidyoSDK();
       }
+    }
+
+    shouldComponentUpdate(nextProps) {
+      const {
+        pluginUrl,
+        vidyoToken,
+        resourceId,
+        localCameraViewId,
+        remoteCameraViewId
+      } = nextProps.videoChat;
+
+      const {
+        pluginUrl: prevPluginUrl,
+        vidyoToken: prevVidyoToken,
+        resourceId: prevResourceId,
+        localCameraViewId: prevLocalCameraViewId,
+        remoteCameraViewId: prevRemoteCameraViewId
+      } = this.props.videoChat;
+
+      return pluginUrl !== prevPluginUrl
+      || vidyoToken !== prevVidyoToken
+      || resourceId !== prevResourceId
+      || localCameraViewId !== prevLocalCameraViewId
+      || remoteCameraViewId !== prevRemoteCameraViewId;
     }
 
     componentWillUnmount() {
       this.disconnectVideoChat();
-      this.props.update({ name: 'videoChatState', value: true });
     }
 
     disconnectVideoChat = async () => {
-      console.log('====================================');
-      console.log();
-      console.log('====================================');
-      console.log('====================================');
-      console.log();
-      console.log('====================================');
-      console.log('====================================');
-      console.log('qwerty', this.videoChat);
-      console.log('====================================');
       this.videoChat.disconnect();
       window.ListenerComponent = null;
-    };
-
-    loadVidyoSDK = () => {
-      const scriptSrc = generateVidyoSDKUrl(handleDidLoadVidyoClient);
-      this.setState({ scriptVidyoSDK: scriptSrc });
+      this.disconnectVideoChat();
+      this.props.update({ name: 'videoChatState', value: false });
     };
 
     handleDidLoadVidyoClient = (status) => {
+      // TODO: add an error type to the redux state
       switch (status.state) {
         case 'READY':
           this.handleDidVCLoad();
@@ -90,12 +93,12 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
 
         case 'FAILEDVERSION': // The library operating has stopped
           this.props.update({ name: 'videoChatState', value: false });
-          this.setState({ pluginUrl: getPluginUrl(status) });
+          // this.props.update({ name: 'pluginUrl', value: getPluginUrl(status) });
           return `Failed: ${status.description}`;
 
         case 'NOTAVAILABLE': // The library is not available
           this.props.update({ name: 'videoChatState', value: false });
-          this.setState({ pluginUrl: getPluginUrl(status) });
+          // this.props.update({ name: 'pluginUrl', value: getPluginUrl(status) });
           return `Failed: ${status.description}`;
 
         default:
@@ -104,14 +107,13 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     };
 
     handleDidVCLoad = async () => {
-      console.log('qwerty: ', this.props);
       this.videoChat = await VideoChat({
         VC: window.VC,
         vidyoToken: this.props.videoChat.vidyoToken,
         resourceId: this.props.videoChat.resourceId,
-        onSuccess: this.handleConnectSuccess,
-        onFailure: this.handleConnectFailure,
-        onDisconnected: this.handleConnectDisconnect,
+        onSuccess: this.handleConnectionSuccess,
+        onFailure: this.handleConnectionFailure,
+        onDisconnected: this.handleConnectionDisconnect,
         localCameraViewId: this.props.videoChat.localCameraViewId,
         remoteCameraViewId: this.props.videoChat.remoteCameraViewId,
         onChatMessageReceived: this.handleMessageReceive
@@ -119,34 +121,29 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     };
 
     // Connection handler
-    handleConnectSuccess = () => {
+    handleConnectionSuccess = () =>
       console.log('qwerty: Connect');
-    };
 
-    handleConnectFailure = (sss, sds) => {
-      console.log('qwerty: Failure ', sss, sds);
-    };
+    handleConnectionFailure = error =>
+      console.log('qwerty: Failure ', error);
 
-    handleConnectDisconnect = () => {};
+    handleConnectionDisconnect = error =>
+      console.log('qwerty: Disconnect', error);
 
     // Chat handler
-    sendMessage = message => console.log('qwerty: hoc', this.videoChat, message) ||
-      this.videoChat.sendChatMessage(message);
-
     handleMessageReceive = (participant, message) => {
       console.log('qwerty: Message receive', participant, message);
       const { id, name } = this.props.videoChat.participant.user;
-      const { messagesHistory } = this.props.videoChat;
-      const nMessage = new Message({ id, message, senderName: name });
-      const messageHistory = messagesHistory
-        ? messagesHistory.slice()
-        : [];
-      messageHistory.push(nMessage);
-      this.props.update({ name: 'messagesHistory', value: messageHistory });
+      this.updateMessageHistory({ id, message, senderName: name });
     }
 
-    handleMessageSent = ({ id, message, senderName }) => {
-      console.log('qwerty: Message send', message);
+    handleMessageSent = (params) => {
+      console.log('qwerty: Message send', params.message);
+      this.videoChat.sendChatMessage(params.message);
+      this.updateMessageHistory(params);
+    }
+
+    updateMessageHistory = ({ id, message, senderName }) => {
       const nMessage = new Message({ id, message, senderName });
       const { messagesHistory } = this.props.videoChat;
       const messageHistory = messagesHistory
@@ -154,19 +151,24 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
         : [];
       messageHistory.push(nMessage);
       this.props.update({ name: 'messagesHistory', value: messageHistory });
+    };
+
+    renderVidyoScripts = () => {
+      const vidyoSDKScript = generateVidyoSDKUrl();
+      return (
+        <Head>
+          <script src={vidyoSDKScript} />
+          <script
+            dangerouslySetInnerHTML={{ __html: `${handleDidLoadVidyoClient}` }}
+          />
+        </Head>
+      );
     }
 
     render() {
       return (
         <div>
-          <Head>
-            <script src={this.state.scriptVidyoSDK} />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `${handleDidLoadVidyoClient}`
-              }}
-            />
-          </Head>
+          {!window.VC && this.renderVidyoScripts()}
 
           <WrappedComponent
             {...this.props}

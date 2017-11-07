@@ -41,6 +41,10 @@ class VideoChatContainer extends Component {
     resetValue: PropTypes.func.isRequired
   };
 
+  componentDidMount() {
+    this.handleAppointmentLoad();
+  }
+
   shouldComponentUpdate(nextProps) {
     const { videoChat, appointment, appointmentLoading, appointmentError } = nextProps;
     const {
@@ -51,7 +55,9 @@ class VideoChatContainer extends Component {
     } = this.props;
     const { messagesHistory } = nextProps.videoChat;
     const { messagesHistory: prevMessagesHistory } = this.props.videoChat;
-    const isMessagesUpdated = !_.isEqual(messagesHistory.sort(), prevMessagesHistory.sort());
+    const isMessagesUpdated = (messagesHistory && prevMessagesHistory) ?
+      !_.isEqual(messagesHistory.sort(), prevMessagesHistory.sort())
+      : true;
     const isVideoChatUpdate = !_.isEqual(videoChat, prevVideoChat);
     const isAppointmentUpdate = !_.isEqual(appointment, prevAppointment);
     const isLoadingUpdate = !_.isEqual(appointmentLoading, prevAppointmentLoading);
@@ -104,20 +110,9 @@ class VideoChatContainer extends Component {
     }
   };
 
-  componentWillReceiveProp(nextProps) {
-    const { callId } = nextProps.videoChat;
-    const { callId: prevCallId } = this.props.videoChat;
-    if (callId && callId !== prevCallId) {
-      this.handleDidAppointmentLoad();
-    }
-  }
-
   handleAppointmentLoad = () => {
     const { appointment, appointmentLoading, videoChat } = this.props;
-    if (!appointmentLoading &&
-      process.browser &&
-      !videoChat.videoChatState
-    ) {
+    if (!appointmentLoading && process.browser && !videoChat.videoChatState ) {
       const { student, professional } = appointment;
       const currentUserId = getCurrentUserData('sub');
 
@@ -136,6 +131,14 @@ class VideoChatContainer extends Component {
     }
   };
 
+  componentWillReceiveProp(nextProps) {
+    const { callId, appointmentLoading } = nextProps.videoChat;
+    const { callId: prevCallId } = this.props.videoChat;
+    if (!appointmentLoading && (callId !== prevCallId)) {
+      this.handleDidAppointmentLoad();
+    }
+  }
+
   handleDidAppointmentLoad = async () => {
     try {
       const callId = this.props.videoChat.callId;
@@ -144,16 +147,16 @@ class VideoChatContainer extends Component {
       }
       const { appointment } = this.props;
 
-      const userName = getCurrentUserData('sub') === appointment.student.user.auth0UserId
-        ? appointment.student.user.name
-        : appointment.professional.user.name;
+      const userId = getCurrentUserData('sub') === appointment.student.user.auth0UserId
+        ? appointment.student.user.id
+        : appointment.professional.user.id;
 
       const participant = getCurrentUserData('sub') !== appointment.student.user.auth0UserId
         ? appointment.student
         : appointment.professional;
 
       this.generateToken({
-        userName: userName.slice(' ')[0],
+        userId,
         expiresInSeconds: (appointment.estimatedLength * 60),
         resourceId: callId
       });
@@ -178,7 +181,7 @@ class VideoChatContainer extends Component {
     });
   };
 
-  generateToken = async ({ userName, expiresInSeconds, resourceId }) => {
+  generateToken = async ({ userId, expiresInSeconds, resourceId }) => {
     try {
       const res = await fetch('/api/v1/videochat', {
         method: 'POST',
@@ -186,9 +189,9 @@ class VideoChatContainer extends Component {
           Accept: 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ userName, expiresInSeconds })
+        body: JSON.stringify({ userName: userId, expiresInSeconds })
       });
-      console.log('qwerty: ', { userName, expiresInSeconds, resourceId });
+      console.log('qwerty: ', { userId, expiresInSeconds, resourceId });
       const json = await res.json();
       this.handleDidVieoChatParamsLoad({
         vidyoToken: json.vidyoToken, resourceId
@@ -211,8 +214,6 @@ class VideoChatContainer extends Component {
       appointmentError
     } = this.props;
     if (appointmentError) return <div>{appointmentError}</div>;
-
-    this.handleAppointmentLoad();
 
     let companion;
     let userId;
