@@ -25,7 +25,6 @@ export { default as ProfessionalProfile } from './ProfessionalProfile';
 export { default as ProfessionalProfileEdit } from './ProfessionalProfileEdit';
 export { default as ProfessionalRating } from './SearchProfessional/ProfessionalRating';
 export { default as ProfessionalSearch } from './SearchProfessional';
-export { default as ProfileEdit } from './ProfileEdit';
 export { default as ProgressBar } from './ProgressBar';
 export { default as ResponsiveMenu } from './ResponsiveMenu';
 export { default as RoundedButton } from './RoundedButton';
