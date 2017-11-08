@@ -10,7 +10,6 @@ import getDisplayName from 'utils/getDisplayName';
 import VideoChat, { generateVidyoSDKUrl } from 'services/VideoChat';
 
 // status.downloadPathWebRTCExtension; - Screen share
-
 const setListenerComponent = (ListenerComponent) => {
   window.ListenerComponent = ListenerComponent;
 };
@@ -73,7 +72,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
       this.disconnectVideoChat();
     }
 
-    disconnectVideoChat = async () => {
+    disconnectVideoChat = () => {
       if (window.ListenerComponent && this.videoChat) {
         this.videoChat.disconnect();
         window.ListenerComponent = null;
@@ -89,27 +88,32 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
           return;
 
         case 'RETRYING': // The library operating is temporarily paused
-          this.props.update({ name: 'videoChatState', value: false });
-          return `Temporarily unavailable retrying in ${status.nextTimeout / 1000} seconds`;
+          this.handleVideoChatError(
+            `Temporarily unavailable retrying in ${status.nextTimeout / 1000} seconds`
+          );
+          return;
 
         case 'FAILED': // The library operating has stopped
-          this.props.update({ name: 'videoChatState', value: false });
-          return `Failed: ${status.description}`;
+          this.handleVideoChatError(`Failed: ${status.description}`);
+          return;
 
         case 'FAILEDVERSION': // The library operating has stopped
-          this.props.update({ name: 'videoChatState', value: false });
+          this.handleVideoChatError(`Failed: ${status.description}`);
           // this.props.update({ name: 'pluginUrl', value: getPluginUrl(status) });
-          return `Failed: ${status.description}`;
+          return;
 
         case 'NOTAVAILABLE': // The library is not available
-          this.props.update({ name: 'videoChatState', value: false });
+          this.handleVideoChatError(`Failed: ${status.description}`);
           // this.props.update({ name: 'pluginUrl', value: getPluginUrl(status) });
-          return `Failed: ${status.description}`;
+          return;
 
         default:
           return 'Unexpected error';
       }
     };
+
+    handleVideoChatError = error =>
+      this.props.update({ name: 'videoChatError', value: error });
 
     handleDidVCLoad = async () => {
       this.videoChat = await VideoChat({
@@ -129,6 +133,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     handleConnectionSuccess = () => {
       console.log('qwerty: Connect');
       this.props.update({ name: 'videoChatState', value: true });
+      this.props.update({ name: 'videoChatStarted', value: new Date() });
     }
 
     handleConnectionFailure = error =>
@@ -136,17 +141,16 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
 
     handleConnectionDisconnect = (error) => {
       console.log('qwerty: Disconnect', error);
+      this.props.update({ name: 'videoChatEnded', value: new Date() });
     }
 
     // Chat handler
     handleMessageReceive = (participant, message) => {
-      console.log('qwerty: Message receive', participant, message);
       const { id, name } = this.props.videoChat.participant.user;
       this.updateMessageHistory({ id, message: message.body, senderName: name });
     }
 
     handleMessageSent = (params) => {
-      console.log('qwerty: Message send', params.message);
       this.videoChat.sendChatMessage(params.message);
       this.updateMessageHistory(params);
     }
@@ -166,9 +170,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
       return (
         <Head>
           <script src={vidyoSDKScript} />
-          <script
-            dangerouslySetInnerHTML={{ __html: `${handleDidLoadVidyoClient}` }}
-          />
+          <script dangerouslySetInnerHTML={{ __html: `${handleDidLoadVidyoClient}` }} />
         </Head>
       );
     }
