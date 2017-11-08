@@ -107,7 +107,9 @@ class ProfessionalProfileContainer extends Component {
   }
 
   componentWillUnmount() {
-    this.subscription();
+    if (this.subscription) {
+      this.subscription();
+    }
   }
 
   handleDidAppointmentsUpdate = (

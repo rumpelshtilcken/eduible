@@ -20,7 +20,10 @@ import {
 class CallRequestContainer extends Component {
   static propTypes = {
     onBackButtonClick: PropTypes.func.isRequired,
-    professional: PropTypes.object,
+    professional: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      user: PropTypes.shape({ id: PropTypes.string.isRequired })
+    }),
     error: PropTypes.string,
     loading: PropTypes.bool,
     form: PropTypes.shape({
@@ -30,9 +33,10 @@ class CallRequestContainer extends Component {
       appointmentLength: PropTypes.number
     }),
     user: PropTypes.shape({
-      name: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
       student: PropTypes.shape({
-        id: PropTypes.string
+        id: PropTypes.string.isRequired
       })
     }),
     reset: PropTypes.func,
@@ -73,15 +77,17 @@ class CallRequestContainer extends Component {
     const { hour, minute } = time;
 
     const dateTime = convertDateToISO(`${year}-${month}-${dt} ${hour}:${minute}`);
-    const { id: professionalId } = this.props.professional;
-    const { id: studentId } = this.props.user.student;
+    const { id: professionalId, user: { id: professionalUserId } } = this.props.professional;
+    const { id: userId, student: { id: studentId } } = this.props.user;
 
     return {
       estimatedLength: parseInt(appointmentLength, 10),
       dateTime,
       professionalId,
       studentId,
-      message
+      message,
+      callerId: userId,
+      recevierId: professionalUserId
     };
   };
 
@@ -174,13 +180,17 @@ export default compose(
       message,
       professionalId,
       studentId,
-      estimatedLength
+      estimatedLength,
+      callerId,
+      recevierId
     }) => mutate({ variables: {
       dateTime,
       message,
       professionalId,
       studentId,
-      estimatedLength
+      estimatedLength,
+      callerId,
+      recevierId
     }
     })
   })

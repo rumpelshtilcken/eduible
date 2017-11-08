@@ -8,7 +8,7 @@ import { MuiTextField } from 'components';
 
 class TextFieldContainer extends Component {
   static propTypes = {
-    onContinueButtonClick: PropTypes.func.isRequired,
+    onContinueButtonClick: PropTypes.func,
     errorMessage: PropTypes.func,
     name: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
@@ -19,13 +19,15 @@ class TextFieldContainer extends Component {
     values: PropTypes.object.isRequired
   };
 
-
   componentDidMount() {
     if (this.props.validation) {
       this.validation(this.props.name, (this.props.values[name] || ''));
     }
   }
-  handleEnterKeyPress = event => (event.key === 'Enter') && this.props.onContinueButtonClick()
+
+  handleEnterKeyPress = event => (event.key === 'Enter') &&
+                                  this.props.onContinueButtonClick &&
+                                  this.props.onContinueButtonClick();
 
   handleChange = ({ target }) => {
     if (this.props.validation) this.validation(target.name, target.value);

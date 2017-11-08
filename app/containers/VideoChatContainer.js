@@ -1,4 +1,3 @@
-/* eslint-disable */
 import _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { Component } from 'react';
@@ -9,18 +8,22 @@ import PropTypes from 'prop-types';
 import { getCurrentUserData } from 'utils/auth';
 import { StatefulView, VideoChat } from 'components';
 import * as videoChatActions from 'actions/videoChat';
+import AppointmentUtils from 'utils/AppointmentUtils';
 import fetch from 'isomorphic-fetch';
 import withVideoChat from 'hoc/withVideoChat';
 
 class VideoChatContainer extends Component {
   static propTypes = {
     videoChat: PropTypes.shape({
-      callId: PropTypes.string
+      callId: PropTypes.string,
+      messagesHistory: PropTypes.array,
+      vidyoToken: PropTypes.string
     }),
     appointment: PropTypes.shape({
       id: PropTypes.string.isRequired,
       estimatedLength: PropTypes.number,
       state: PropTypes.string,
+      calls: PropTypes.array,
       professional: PropTypes.shape({
         user: PropTypes.shape({
           auth0UserId: PropTypes.string
@@ -32,9 +35,20 @@ class VideoChatContainer extends Component {
         })
       })
     }),
+    update: PropTypes.func.isRequired,
+    onMessageSent: PropTypes.func.isRequired,
     appointmentLoading: PropTypes.bool,
-    appointmentError: PropTypes.string
+    appointmentError: PropTypes.string,
+    resetValue: PropTypes.func.isRequired
   };
+
+  componentDidMount() {
+    if (!this.props.appointmentLoading) {
+      this.handleDidAppointmentLoad();
+      return;
+    }
+    console.log('qwerty: Appointment didn\'t loaded yet | ComponentDidMount');
+  }
 
   shouldComponentUpdate(nextProps) {
     const { videoChat, appointment, appointmentLoading, appointmentError } = nextProps;
@@ -44,6 +58,11 @@ class VideoChatContainer extends Component {
       appointmentLoading: prevAppointmentLoading,
       appointmentError: prevAppointmentError
     } = this.props;
+    const { messagesHistory } = nextProps.videoChat;
+    const { messagesHistory: prevMessagesHistory } = this.props.videoChat;
+    const isMessagesUpdated = (messagesHistory && prevMessagesHistory) ?
+      !_.isEqual(messagesHistory.sort(), prevMessagesHistory.sort())
+      : true;
     const isVideoChatUpdate = !_.isEqual(videoChat, prevVideoChat);
     const isAppointmentUpdate = !_.isEqual(appointment, prevAppointment);
     const isLoadingUpdate = !_.isEqual(appointmentLoading, prevAppointmentLoading);
@@ -52,90 +71,75 @@ class VideoChatContainer extends Component {
     return isVideoChatUpdate
     || isAppointmentUpdate
     || isLoadingUpdate
-    || isErrorUpdate;
+    || isErrorUpdate
+    || isMessagesUpdated;
   }
 
-  getCallId = async () => {
-    try {
-      // check existed calls
-      if (this.props.appointment.calls) {
-        const requestedCall =
-        this.props.appointment.calls.filter(call => call.state === 'Request');
+  componentWillUnmount() {
+    this.props.resetValue({ name: 'messagesHistory' });
+  }
 
-        if (requestedCall.length !== 0) {
-          return this.props.update({ name: 'callId', value: requestedCall[0].id });
-        }
-      }
-
-      const {
-        id: appointmentId,
-        estimatedLength: duration,
-        student,
-        professional
-      } = this.props.appointment;
-
-      const currentAuth0UserId = getCurrentUserData('sub');
-
-      const callerId = currentAuth0UserId === student.user.auth0UserId
-        ? student.user.id
-        : professional.user.id;
-
-      const recevierId = currentAuth0UserId !== student.user.auth0UserId
-        ? student.user.id
-        : professional.user.id;
-      const res = await this.props.createCall({ appointmentId, duration, callerId, recevierId });
-
-      return this.props.update({ name: 'callId', value: res.data.createCall.id });
-    } catch (err) {
-      throw err;
-    }
-  };
-
-  handleAppointmentLoad = () => {
-    const { appointment, appointmentLoading, videoChat } = this.props;
-    if (!appointmentLoading &&
-      process.browser &&
-      !videoChat.callId
-    ) {
-      const { student, professional } = appointment;
-      const currentUserId = getCurrentUserData('sub');
-
-      if (student.user.auth0UserId !== currentUserId &&
-          professional.user.auth0UserId !== currentUserId) {
-        // TODO: wrong appointmentId
-        return;
-      }
-
-      if (appointment.state !== 'Approve') {
-        // TODO: not approved appointment
-        return;
-      }
-
+  componentWillReceiveProp(nextProps) {
+    const { appointmentLoading } = nextProps.videoChat;
+    const { appointmentLoading: prevAppointmentLoading } = this.props;
+    if (!appointmentLoading && (prevAppointmentLoading !== appointmentLoading)) {
       this.handleDidAppointmentLoad();
+      return;
     }
-  };
+    console.log('qwerty: Appointment didn\'t loaded yet | Component Receive Prop');
+  }
 
   handleDidAppointmentLoad = async () => {
-    // Appointment loaded
-    // TODO: generate token
     try {
-      const callId = this.props.videoChat.callId;
-      if (!callId) {
-        return this.getCallId();
+      const { appointment } = this.props;
+      const { professional, student } = appointment;
+      const currentUserAuth0UserId = getCurrentUserData('sub');
+
+      if (!AppointmentUtils.isAppointmentValid({ appointment, currentUserAuth0UserId }) &&
+          !AppointmentUtils.isCallValid(this.appointment.calls)) {
+        throw new Error('Appointment or calls not valid');
       }
-      const {appointment} = this.props;
 
-      const userName = getCurrentUserData('sub') === appointment.student.user.auth0UserId
-      ? appointment.student.user.name
-      : appointment.professional.user.name;
+      const callId =
+        this.props.appointment.calls.filter(call => call.state === 'Request')[0].id;
 
-      this.generateToken({
-        userName, 
-        expiresInSeconds: appointment.estimatedLength,
+      const { user: { id: userId } } =
+        AppointmentUtils.getCurrentUser({ student, professional, currentUserAuth0UserId });
+      const participant =
+        AppointmentUtils.getParticipant({ student, professional, currentUserAuth0UserId });
+
+      if (!userId || !participant) throw new Error('User not loaded');
+
+      const { vidyoToken, resourceId } = await this.generateToken({
+        userId,
+        expiresInSeconds: (appointment.estimatedLength * 60),
         resourceId: callId
       });
+      console.log('qwerty: Appointment did load', { vidyoToken, resourceId, participant });
+      this.props.update({ name: 'vidyoToken', value: vidyoToken });
+      this.props.update({ name: 'resourceId', value: resourceId });
+      this.props.update({ name: 'participant', value: participant });
     } catch (err) {
-      return err;
+      console.log('qwerty: Appointment error', err);
+    }
+  };
+
+  generateToken = async ({ userId, expiresInSeconds, resourceId }) => {
+    try {
+      const res = await fetch('/api/v1/videochat', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userName: userId, expiresInSeconds })
+      });
+      const json = await res.json();
+      if (!json.vidyoToken && !resourceId) throw new Error('Token not loaded');
+      console.log('qwerty: Token generated ', { vidyoToken: json.vidyoToken, resourceId });
+      return { vidyoToken: json.vidyoToken, resourceId };
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -150,37 +154,6 @@ class VideoChatContainer extends Component {
     });
   };
 
-  generateToken = async ({ userName, expiresInSeconds, resourceId }) => {
-    try {
-      const res = await fetch('/api/v1/videochat', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ userName, expiresInSeconds })
-      });
-
-      const json = await res.json();
-      this.handleDidVieoChatParamsLoad({
-        vidyoToken: json.vidyoToken, resourceId
-      });
-    } catch (error) {
-      console.log('Fetch error: ', error);
-    }
-  };
-
-  handleDidVieoChatParamsLoad = ({ vidyoToken, resourceId }) => {
-    this.props.update({
-      name: 'vidyoToken',
-      value: 'json.vidyoToken'
-    });
-    this.props.update({
-      name: 'resourceId',
-      value: 'resourceId'
-    });
-  };
-
   render() {
     const {
       appointment,
@@ -189,24 +162,27 @@ class VideoChatContainer extends Component {
     } = this.props;
     if (appointmentError) return <div>{appointmentError}</div>;
 
-    this.handleAppointmentLoad();
-
     let companion;
+    let userId;
     if (!appointmentLoading) {
-      companion = getCurrentUserData('sub') !== appointment.student.user.auth0UserId
-        ? appointment.student
-        : appointment.professional;
+      const { student, professional } = appointment;
+      const currentUserAuth0UserId = getCurrentUserData('sub');
+      companion =
+        AppointmentUtils.getParticipant({ student, professional, currentUserAuth0UserId });
+      userId =
+        AppointmentUtils.getCurrentUser({ student, professional, currentUserAuth0UserId });
     }
 
     return (
       <StatefulView loading={appointmentLoading}>
         {appointment &&
           <VideoChat
+            messages={this.props.videoChat.messagesHistory}
             companion={companion}
+            userId={userId}
             appointment={appointment}
             setVideoViewId={this.handleVideoViewLoaded}
-            subscribeOnMessageReceive={this.props.subscribeOnMessageReceive}
-            sendMessage={this.props.sendMessage}
+            onMessageSent={this.props.onMessageSent}
           />}
       </StatefulView>
     );
@@ -251,24 +227,6 @@ const getAppointment = gql`
   }
 `;
 
-const createCall = gql`
-  mutation createCall (
-    $appointmentId: ID!
-    $duration: Float!
-    $callerId: ID!
-    $recevierId: ID!
-  ) {
-    createCall (
-      appointmentId: $appointmentId
-      duration: $duration
-      callerId: $callerId
-      recevierId: $recevierId
-    ) {
-      id
-    }
-  }
-`;
-
 const mapStateToProps = ({ videoChat }) => ({ videoChat });
 
 const mapDispatchToProps = dispatch => ({
@@ -284,12 +242,6 @@ export default withVideoChat(compose(
       appointment: Appointment,
       appointmentLoading: loading,
       appointmentError: error
-    })
-  }),
-  graphql(createCall, {
-    props: ({ mutate }) => ({
-      createCall: ({ appointmentId, duration, callerId, recevierId }) =>
-        mutate({ variables: { appointmentId, duration, callerId, recevierId } })
     })
   })
 )(VideoChatContainer));

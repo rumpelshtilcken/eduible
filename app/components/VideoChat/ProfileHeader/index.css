@@ -1,0 +1,42 @@
+.profileHeaderContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.professionalProfileImage {
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+}
+
+.professionalName {
+  margin: 0;
+  font-size: 11px;
+  font-weight: bold;
+  font-family: "Effra";
+  color: #383838;
+}
+
+.profileInfoContainer {
+  display: flex;
+}
+
+.professionalInfoWrapper {
+  margin-left: 15px;
+}
+
+.professionalLocationContainer {
+  display: flex;
+}
+
+.professionalLocation {
+  color: #afafaf;
+  padding-left: 4px;
+  margin: 0;
+}
+
+.appointmentEstimatedLength {
+  font-size: 24px;
+}

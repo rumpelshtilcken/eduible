@@ -65,9 +65,11 @@ const VideoChat = async ({
       chatListener: { onChatMessageReceived }
     });
 
+    console.log('qwerty: Token', vidyoToken);
+
     // connect vidyoConnector with Vidyo backend
     VidyoConnector.connectVidyoConnector(vidyoConnector, {
-      displayName: 'Eduible',
+      displayName: 'Eduible1',
       resourceId,
       vidyoToken,
       onSuccess: onSuccess || (() => {}),
@@ -82,7 +84,8 @@ const VideoChat = async ({
         await vidyoConnector.Disconnect();
         await vidyoConnector.Destruct();
         vidyoConnector = null;
-      } };
+      }
+    };
   } catch (err) { throw err; }
 };
 
