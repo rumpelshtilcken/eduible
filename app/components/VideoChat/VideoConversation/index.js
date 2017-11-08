@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { Spinner } from 'components';
+
 import stylesheet from './index.css';
 
 class VideoConversation extends Component {
@@ -15,8 +17,12 @@ class VideoConversation extends Component {
   render() {
     return (
       <div className="videoContainer">
-        <div id="participantCamera" className="participantCameraOutput" />
-        <div id="userCamera" className="userCameraOutput" />
+        <div id="participantCamera" className="participantCameraOutput">
+          <Spinner />
+        </div>
+        <div id="userCamera" className="userCameraOutput">
+          <Spinner />
+        </div>
         <style jsx>{stylesheet}</style>
       </div>
     );
