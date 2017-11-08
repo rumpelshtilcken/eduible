@@ -5,18 +5,28 @@ const AppointmentUtils = {
   isAppointmentNow: x => new Date(x) >= new Date(),
   isCallValid: (calls) => {
     const requestedCall = calls && calls.filter(call => call.state === 'Request');
-    return requestedCall.length !== 0;
+    return requestedCall && requestedCall.length !== 0;
   },
-  isAppointmentValid: ({ appointment, currentAuth0UserId }) => {
+  isAppointmentValid: ({ appointment, currentUserAuth0UserId }) => {
     const { student, professional, state } = appointment;
 
-    if ((student.user.auth0UserId !== currentAuth0UserId
-            && professional.user.auth0UserId !== currentAuth0UserId)
+    if ((student.user.auth0UserId !== currentUserAuth0UserId
+            && professional.user.auth0UserId !== currentUserAuth0UserId)
             || state !== 'Approve') {
       return false;
     }
 
     return true;
+  },
+  getCurrentUser: ({ student, professional, currentUserAuth0UserId }) => {
+    if (currentUserAuth0UserId === student.user.auth0UserId) return student;
+    if (currentUserAuth0UserId === professional.user.auth0UserId) return professional;
+    return null;
+  },
+  getParticipant: ({ student, professional, currentUserAuth0UserId }) => {
+    if (currentUserAuth0UserId !== student.user.auth0UserId) return student;
+    if (currentUserAuth0UserId !== professional.user.auth0UserId) return professional;
+    return null;
   }
 };
 

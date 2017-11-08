@@ -43,7 +43,11 @@ class VideoChatContainer extends Component {
   };
 
   componentDidMount() {
-    if (!this.props.appointmentLoading) { this.handleDidAppointmentLoad(); }
+    if (!this.props.appointmentLoading) {
+      this.handleDidAppointmentLoad();
+      return;
+    }
+    console.log('qwerty: Appointment didn\'t loaded yet | ComponentDidMount');
   }
 
   shouldComponentUpdate(nextProps) {
@@ -80,15 +84,18 @@ class VideoChatContainer extends Component {
     const { appointmentLoading: prevAppointmentLoading } = this.props;
     if (!appointmentLoading && (prevAppointmentLoading !== appointmentLoading)) {
       this.handleDidAppointmentLoad();
+      return;
     }
+    console.log('qwerty: Appointment didn\'t loaded yet | Component Receive Prop');
   }
 
   handleDidAppointmentLoad = async () => {
     try {
       const { appointment } = this.props;
-      const currentAuth0UserId = getCurrentUserData('sub');
+      const { professional, student } = appointment;
+      const currentUserAuth0UserId = getCurrentUserData('sub');
 
-      if (!AppointmentUtils.isAppointmentValid({ appointment, currentAuth0UserId }) &&
+      if (!AppointmentUtils.isAppointmentValid({ appointment, currentUserAuth0UserId }) &&
           !AppointmentUtils.isCallValid(this.appointment.calls)) {
         throw new Error('Appointment or calls not valid');
       }
@@ -96,23 +103,43 @@ class VideoChatContainer extends Component {
       const callId =
         this.props.appointment.calls.filter(call => call.state === 'Request')[0].id;
 
-      const userId = getCurrentUserData('sub') === appointment.student.user.auth0UserId
-        ? appointment.student.user.id
-        : appointment.professional.user.id;
+      const { user: { id: userId } } =
+        AppointmentUtils.getCurrentUser({ student, professional, currentUserAuth0UserId });
+      const participant =
+        AppointmentUtils.getParticipant({ student, professional, currentUserAuth0UserId });
 
-      const participant = getCurrentUserData('sub') !== appointment.student.user.auth0UserId
-        ? appointment.student
-        : appointment.professional;
+      if (!userId || !participant) throw new Error('User not loaded');
 
-      this.generateToken({
+      const { vidyoToken, resourceId } = await this.generateToken({
         userId,
         expiresInSeconds: (appointment.estimatedLength * 60),
         resourceId: callId
       });
-
+      console.log('qwerty: Appointment did load', { vidyoToken, resourceId, participant });
+      this.props.update({ name: 'vidyoToken', value: vidyoToken });
+      this.props.update({ name: 'resourceId', value: resourceId });
       this.props.update({ name: 'participant', value: participant });
     } catch (err) {
-      console.log('Appointment error', err);
+      console.log('qwerty: Appointment error', err);
+    }
+  };
+
+  generateToken = async ({ userId, expiresInSeconds, resourceId }) => {
+    try {
+      const res = await fetch('/api/v1/videochat', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userName: userId, expiresInSeconds })
+      });
+      const json = await res.json();
+      if (!json.vidyoToken && !resourceId) throw new Error('Token not loaded');
+      console.log('qwerty: Token generated ', { vidyoToken: json.vidyoToken, resourceId });
+      return { vidyoToken: json.vidyoToken, resourceId };
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -127,28 +154,6 @@ class VideoChatContainer extends Component {
     });
   };
 
-  generateToken = async ({ userId, expiresInSeconds, resourceId }) => {
-    try {
-      const res = await fetch('/api/v1/videochat', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ userName: userId, expiresInSeconds })
-      });
-      const json = await res.json();
-      this.handleDidVieoChatParamsLoad({ vidyoToken: json.vidyoToken, resourceId });
-    } catch (error) {
-      console.log('Fetch error: ', error);
-    }
-  };
-
-  handleDidVieoChatParamsLoad = ({ vidyoToken, resourceId }) => {
-    this.props.update({ name: 'vidyoToken', value: vidyoToken });
-    this.props.update({ name: 'resourceId', value: resourceId });
-  };
-
   render() {
     const {
       appointment,
@@ -160,12 +165,12 @@ class VideoChatContainer extends Component {
     let companion;
     let userId;
     if (!appointmentLoading) {
-      companion = getCurrentUserData('sub') !== appointment.student.user.auth0UserId
-        ? appointment.student
-        : appointment.professional;
-      userId = getCurrentUserData('sub') === appointment.student.user.auth0UserId
-        ? appointment.student.user.id
-        : appointment.professional.user.id;
+      const { student, professional } = appointment;
+      const currentUserAuth0UserId = getCurrentUserData('sub');
+      companion =
+        AppointmentUtils.getParticipant({ student, professional, currentUserAuth0UserId });
+      userId =
+        AppointmentUtils.getCurrentUser({ student, professional, currentUserAuth0UserId });
     }
 
     return (

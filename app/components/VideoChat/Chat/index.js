@@ -8,23 +8,17 @@ import style from './index.css';
 
 class ChatBox extends Component {
   static propTypes = {
-    messages: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      message: PropTypes.string.isRequired,
-      senderName: PropTypes.string
-    })),
+    messages: PropTypes.object.isRequired,
     userId: PropTypes.string,
     onMessageSent: PropTypes.func.isRequired
   };
 
-  handleSubmitButtonClick = (message) => {
-    console.log('qwerty: MessageSend', message);
+  handleSubmitButtonClick = message =>
     this.props.onMessageSent({
       id: this.props.userId,
       message,
       senderName: 'You'
     });
-  }
 
   render() {
     return (

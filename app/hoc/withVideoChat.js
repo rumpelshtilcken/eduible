@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import * as videoChatActions from 'actions/videoChat';
 import getDisplayName from 'utils/getDisplayName';
-import VideoChat, { generateVidyoSDKUrl, getPluginUrl } from 'services/VideoChat';
+import VideoChat, { generateVidyoSDKUrl } from 'services/VideoChat';
 
 // status.downloadPathWebRTCExtension; - Screen share
 
@@ -16,10 +16,8 @@ const setListenerComponent = (ListenerComponent) => {
 };
 
 // Global function for handling VidyoSDK loading
-const handleDidLoadVidyoClient = (status) => {
-  console.log('qwerty: ListenerComponent', window.ListenerComponent);
+const handleDidLoadVidyoClient = status =>
   window.ListenerComponent.handleDidLoadVidyoClient(status);
-};
 
 const withVideoChat = hoistStatics((WrappedComponent) => {
   class WithVideoChat extends Component {
@@ -29,7 +27,14 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
         vidyoToken: PropTypes.string,
         resourceId: PropTypes.string,
         localCameraViewId: PropTypes.string,
-        remoteCameraViewId: PropTypes.string
+        remoteCameraViewId: PropTypes.string,
+        messagesHistory: PropTypes.array,
+        participant: PropTypes.shape({
+          user: PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired
+          }).isRequired
+        })
       }),
       update: PropTypes.func.isRequired
     };
@@ -69,7 +74,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     }
 
     disconnectVideoChat = async () => {
-      if (window.ListenerComponent) {
+      if (window.ListenerComponent && this.videoChat) {
         this.videoChat.disconnect();
         window.ListenerComponent = null;
         this.props.update({ name: 'videoChatState', value: false });
@@ -81,7 +86,6 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
       switch (status.state) {
         case 'READY':
           this.handleDidVCLoad();
-          this.props.update({ name: 'videoChatState', value: true });
           return;
 
         case 'RETRYING': // The library operating is temporarily paused
@@ -122,8 +126,10 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     };
 
     // Connection handler
-    handleConnectionSuccess = () =>
+    handleConnectionSuccess = () => {
       console.log('qwerty: Connect');
+      this.props.update({ name: 'videoChatState', value: true });
+    }
 
     handleConnectionFailure = error =>
       console.log('qwerty: Failure ', error);
@@ -170,7 +176,7 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
     render() {
       return (
         <div>
-          {!window.VC && this.renderVidyoScripts()}
+          {this.renderVidyoScripts()}
 
           <WrappedComponent
             {...this.props}
