@@ -6,11 +6,26 @@ import FollowUs from './followUs';
 import stylesheet from './index.css';
 
 class Footer extends Component {
+  static propTypes = {
+    urlsMenu: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        links: PropTypes.arrayOf(
+          PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            url: PropTypes.string,
+            onClick: PropTypes.func
+          })
+        )
+      })
+    ).isRequired
+  };
+
   renderLinks = ({ title, url, onClick }, index) => (
     <div key={title}>
       {index !== 0 && <div className="gap" />}
       {onClick
-        ? <button prefetch className="linkButton" onClick={onClick}>{title}</button>
+        ? <button className="linkButton" onClick={onClick}>{title}</button>
         : <Link prefetch style={{ textDecoration: 'none', color: '#4f5362', fontSize: '14px', fontFamily: 'Effra', marginTop: '5px' }} href={url}>{title}</Link>}
       <style jsx>{stylesheet}</style>
     </div>);
@@ -35,16 +50,5 @@ class Footer extends Component {
     );
   }
 }
-
-Footer.propTypes = {
-  urlsMenu: PropTypes.arrayOf(
-    PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      url: PropTypes.string,
-      onClick: PropTypes.func
-    }))
-  ).isRequired
-
-};
 
 export default Footer;
