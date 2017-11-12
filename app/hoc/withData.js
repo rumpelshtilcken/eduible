@@ -89,14 +89,16 @@ export default ComposedComponent => class WithData extends React.Component {
       }
     }
 
+    renderContent = () => (this.state.loading
+      ? <StatefulView loading />
+      : <ComposedComponent {...this.props} />)
+
     render() {
       return (
         // No need to use the Redux Provider
         // because Apollo sets up the store for us
         <ApolloProvider client={this.apollo} store={this.redux}>
-          {this.state.loading
-            ? <StatefulView loading />
-            : <ComposedComponent {...this.props} />}
+          {this.renderContent()}
         </ApolloProvider>
       );
     }
