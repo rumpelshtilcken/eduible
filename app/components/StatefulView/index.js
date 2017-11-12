@@ -12,7 +12,7 @@ const StatefulView = ({ loading, children }) => (loading
 
 StatefulView.propTypes = {
   loading: PropTypes.bool,
-  children: PropTypes.element.isRequired
+  children: PropTypes.element
 };
 
 export default StatefulView;
