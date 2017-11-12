@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 export const getIdToken = () => {
   const idToken = localStorage.getItem('id_token');
   if (!idToken) {
-    throw new Error('No id token found');
+    return null;
   }
   return idToken;
 };
@@ -26,11 +26,6 @@ export const parseHash = (hash) => {
   }, {});
 
   return data;
-};
-
-export const getOriginAccessToken = () => {
-  const originAccessToken = localStorage.getItem('origin_access_token');
-  return originAccessToken;
 };
 
 export const decodeJwtToken = (idToken, claim) => jwtDecode(idToken)[claim];

@@ -2,7 +2,7 @@ import auth0 from 'auth0-js';
 import _ from 'lodash';
 
 import { auth0Config } from 'config';
-import { decodeJwtToken } from 'utils/auth';
+import { decodeJwtToken, getIdToken } from 'utils/auth';
 import GraphCool from 'utils/GraphCool';
 
 export default class Auth {
@@ -139,10 +139,12 @@ export default class Auth {
     });
   };
 
-  isAuthenticated = () => {
+  isAccessTokenExpired = () => {
     // Check whether the current time is past the
     // access token's expiry time
     const expiresAt = JSON.parse(window.localStorage.getItem('expires_at'));
-    return new Date().getTime() < expiresAt;
-  }
+    return expiresAt && new Date().getTime() > expiresAt;
+  };
+
+  isAuthenticated = () => getIdToken()
 }

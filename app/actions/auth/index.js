@@ -1,3 +1,5 @@
+import Auth from 'services/Auth';
+
 import {
   AUTH_USER,
   AUTH_IN_PROGRESS,
@@ -5,8 +7,6 @@ import {
   AUTH_ERROR,
   CLEARDOWN
 } from './authTypes';
-
-import Auth from './Auth';
 
 const auth = new Auth();
 
