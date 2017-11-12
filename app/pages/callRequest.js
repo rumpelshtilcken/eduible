@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Router from 'next/router';
 
 import withPage from 'hoc/withPage';
+import withAuth from 'hoc/withAuth';
 import CallRequestContainer from 'containers/CallRequestContainer';
 
 class CallRequest extends Component {
@@ -39,5 +40,5 @@ class CallRequest extends Component {
   }
 }
 
-export default withPage(CallRequest);
+export default withAuth(withPage(CallRequest));
 

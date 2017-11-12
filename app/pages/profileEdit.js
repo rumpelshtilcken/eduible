@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Router from 'next/router';
 import Head from 'next/head';
 
+import withAuth from 'hoc/withAuth';
 import ProfileEditContainer from 'containers/ProfileEditContainer';
 import withPage from 'hoc/withPage';
 
@@ -31,4 +32,4 @@ class profileEdit extends Component {
   }
 }
 
-export default withPage(profileEdit);
+export default withAuth(withPage(profileEdit));

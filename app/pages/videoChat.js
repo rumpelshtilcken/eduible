@@ -3,6 +3,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 
 import withPage from 'hoc/withPage';
+import withAuth from 'hoc/withAuth';
 import VideoChatContainer from 'containers/VideoChatContainer';
 
 class VideoChatPage extends Component {
@@ -34,4 +35,4 @@ class VideoChatPage extends Component {
   }
 }
 
-export default withPage(VideoChatPage);
+export default withAuth(withPage(VideoChatPage));
