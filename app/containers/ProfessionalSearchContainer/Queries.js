@@ -32,6 +32,8 @@ export const getProfessionals = gql`
         user {
           id
           name
+          socialImageUrl
+          cloudinaryId
         }
         job {
           id

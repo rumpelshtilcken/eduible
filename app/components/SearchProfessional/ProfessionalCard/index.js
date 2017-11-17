@@ -8,69 +8,75 @@ import stylesheet from './index.css';
 
 const professionalImage = 'https://dontlosehair.com/wp-content/uploads/2016/02/3_Problems_that_Bald_People_Face_on_a_Regular_Basis.jpg';
 
-const ProfessionalCard = ({ professional, onRequestButtonClick, onProfessionalChoose }) => (
-  <div className="professionalCardContainer">
-    <Card>
-      <div
-        role="button"
-        tabIndex={professional.id}
-        onClick={onProfessionalChoose}
-        className="prof"
-      >
-        <div className="infoHeader">
-          <img
-            className="picture"
-            alt="avatar"
-            src={professionalImage}
-          />
-          <div className="block">
-            <div className="step2">
-              <div className="name">{professional.user.name} </div>
-              <div className="cityIcon">
-                <img
-                  className="placaholderIcon"
-                  src="http://res.cloudinary.com/dsyyowxl0/image/upload/v1509976048/ic_location_ntugv6.svg"
-                  alt=""
-                />
-                {professional.location && professional.location.country}
+const ProfessionalCard = ({ professional, onRequestButtonClick, onProfessionalChoose }) => {
+  const image = professional.user.cloudinaryId
+  || professional.user.socialImageUrl
+  || professionalImage;
+
+  return (
+    <div className="professionalCardContainer">
+      <Card>
+        <div
+          role="button"
+          tabIndex={professional.id}
+          onClick={onProfessionalChoose}
+          className="prof"
+        >
+          <div className="infoHeader">
+            <img
+              className="picture"
+              alt="avatar"
+              src={image}
+            />
+            <div className="block">
+              <div className="step2">
+                <div className="name">{professional.user.name} </div>
+                <div className="cityIcon">
+                  <img
+                    className="placaholderIcon"
+                    src="http://res.cloudinary.com/dsyyowxl0/image/upload/v1509976048/ic_location_ntugv6.svg"
+                    alt=""
+                  />
+                  {professional.location && professional.location.country}
+                </div>
+              </div>
+              {professional.job && professional.job.jobTitle && professional.job.company &&
+              <div
+                key={professional.job.jobTitle.title + professional.job.company.name}
+                className="major"
+              >
+                {professional.job.jobTitle && professional.job.jobTitle.title}
+                {' at '}
+                {professional.job.company && professional.job.company.name}
+              </div>
+              }
+              <div className="about hidden">
+                {professional.about && (professional.about.length > 100
+                  ? `${professional.about.substring(0, 100)}...`
+                  : professional.about)}
               </div>
             </div>
-            {professional.job && professional.job.jobTitle && professional.job.company &&
-            <div
-              key={professional.job.jobTitle.title + professional.job.company.name}
-              className="major"
-            >
-              {professional.job.jobTitle && professional.job.jobTitle.title}
-              {' at '}
-              {professional.job.company && professional.job.company.name}
-            </div>
-            }
-            <div className="about hidden">
-              {professional.about && (professional.about.length > 100
-                ? `${professional.about.substring(0, 100)}...`
-                : professional.about)}
-            </div>
           </div>
-        </div>
-        <div className="about unhidden">
-          {professional.about && (professional.about.length > 100 ? `${professional.about.substring(0, 100)}...` : professional.about)}
-        </div>
-        <div className="infoFooter">
-          <div className="cost">
-            {professional.price && (<div>{`${professional.price}$ per minute`}</div>)}
-            <div className="rating">
-              <ProfessionalRating rating={professional.rating || 0} />
+          <div className="about unhidden">
+            {professional.about && (professional.about.length > 100 ? `${professional.about.substring(0, 100)}...` : professional.about)}
+          </div>
+          <div className="infoFooter">
+            <div className="cost">
+              {professional.price && (<div>{`${professional.price}$ per minute`}</div>)}
+              <div className="rating">
+                <ProfessionalRating rating={professional.rating || 0} />
 
-              <div className="reviews">&nbsp;({professional.reviews || 0} reviews)</div>
+                <div className="reviews">&nbsp;({professional.reviews || 0} reviews)</div>
+              </div>
             </div>
+            <RoundedButton onClick={onRequestButtonClick} title={'Request a Call'} />
           </div>
-          <RoundedButton onClick={onRequestButtonClick} title={'Request a Call'} />
         </div>
-      </div>
-    </Card>
-    <style jsx>{stylesheet}</style>
-  </div>
-);
+      </Card>
+      <style jsx>{stylesheet}</style>
+    </div>
+  );
+};
 
 ProfessionalCard.propTypes = {
   onRequestButtonClick: PropTypes.func,

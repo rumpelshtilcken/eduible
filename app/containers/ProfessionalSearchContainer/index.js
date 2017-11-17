@@ -119,7 +119,7 @@ export default compose(
 
       if (orderBy) variables.orderBy = orderBy;
 
-      return { variables };
+      return { variables, fetchPolicy: 'network-only' };
     },
     props: ({ allProfessionals }) => ({
       allProfessionals: allProfessionals && allProfessionals.allProfessionals,
