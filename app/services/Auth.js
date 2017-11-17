@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import { auth0Config } from 'config';
 import { decodeJwtToken, getIdToken } from 'utils/auth';
-import GraphCool from 'utils/GraphCool';
+import GraphCool from './GraphCool';
 
 export default class Auth {
   auth0 = new auth0.WebAuth(auth0Config);
@@ -34,9 +34,11 @@ export default class Auth {
         }
         try {
           const auth0UserId = decodeJwtToken(authResult.idToken, 'sub');
+          const picture = decodeJwtToken(authResult.idToken, 'picture');
           await this.graphCool.createUser({
             userType,
             auth0UserId,
+            picture,
             ...this.prepareAttributes(attrs)
           });
           this.setSession(authResult);
