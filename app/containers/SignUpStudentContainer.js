@@ -111,5 +111,4 @@ const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(snackbarActions, dispatch)
 });
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpStudentContainer);
