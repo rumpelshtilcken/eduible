@@ -10,6 +10,7 @@ const getPluginUrl = status => VidyoConnector.getPluginUrl(status);
 
 const VideoChat = async ({
   VC,
+  displayName,
   vidyoToken,
   resourceId,
   onSuccess,
@@ -69,7 +70,7 @@ const VideoChat = async ({
 
     // connect vidyoConnector with Vidyo backend
     VidyoConnector.connectVidyoConnector(vidyoConnector, {
-      displayName: 'Eduible1',
+      displayName,
       resourceId,
       vidyoToken,
       onSuccess: onSuccess || (() => {}),
