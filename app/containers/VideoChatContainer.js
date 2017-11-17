@@ -26,11 +26,13 @@ class VideoChatContainer extends Component {
       calls: PropTypes.array,
       professional: PropTypes.shape({
         user: PropTypes.shape({
+          id: PropTypes.string,
           auth0UserId: PropTypes.string
         })
       }),
       student: PropTypes.shape({
         user: PropTypes.shape({
+          id: PropTypes.string,
           auth0UserId: PropTypes.string
         })
       })
@@ -39,15 +41,14 @@ class VideoChatContainer extends Component {
     onMessageSent: PropTypes.func.isRequired,
     appointmentLoading: PropTypes.bool,
     appointmentError: PropTypes.string,
-    resetValue: PropTypes.func.isRequired
+    resetValue: PropTypes.func.isRequired,
+    createMessage: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     if (!this.props.appointmentLoading) {
       this.handleDidAppointmentLoad();
-      return;
     }
-    console.log('qwerty: Appointment didn\'t loaded yet | ComponentDidMount');
   }
 
   shouldComponentUpdate(nextProps) {
@@ -84,9 +85,7 @@ class VideoChatContainer extends Component {
     const { appointmentLoading: prevAppointmentLoading } = this.props;
     if (!appointmentLoading && (prevAppointmentLoading !== appointmentLoading)) {
       this.handleDidAppointmentLoad();
-      return;
     }
-    console.log('qwerty: Appointment didn\'t loaded yet | Component Receive Prop');
   }
 
   handleDidAppointmentLoad = async () => {
@@ -115,7 +114,7 @@ class VideoChatContainer extends Component {
         expiresInSeconds: (appointment.estimatedLength * 60),
         resourceId: callId
       });
-      console.log('qwerty: Appointment did load', { vidyoToken, resourceId, participant });
+
       this.props.update({ name: 'vidyoToken', value: vidyoToken });
       this.props.update({ name: 'resourceId', value: resourceId });
       this.props.update({ name: 'participant', value: participant });
@@ -123,18 +122,6 @@ class VideoChatContainer extends Component {
       console.log('qwerty: Appointment error', err);
     }
   }
-
-  // getCallId = () => {
-
-  // };
-
-  handleAppointmentLoad = () => {
-    // Appointment loaded
-    // TODO: create call
-    // TODO: create conversation
-    // TODO: generate token
-    // const callId = this.getCallId();
-  };
 
   generateToken = async ({ userId, expiresInSeconds, resourceId }) => {
     try {
@@ -166,6 +153,28 @@ class VideoChatContainer extends Component {
     });
   };
 
+  handleMessageSent = (params) => {
+    this.props.onMessageSent(params);
+    const currentUserAuth0UserId = getCurrentUserData('sub');
+    const { professional, student, id } = this.props.appointment;
+    const senderId = AppointmentUtils.getCurrentUser({
+      professional,
+      student,
+      currentUserAuth0UserId
+    }).user.id;
+    const recevierId = AppointmentUtils.getParticipant({
+      professional,
+      student,
+      currentUserAuth0UserId
+    }).user.id;
+    this.props.createMessage({
+      senderId,
+      recevierId,
+      appointmentId: id,
+      message: params.message
+    });
+  };
+
   render() {
     const {
       appointment,
@@ -194,7 +203,7 @@ class VideoChatContainer extends Component {
             userId={userId}
             appointment={appointment}
             setVideoViewId={this.handleVideoViewLoaded}
-            onMessageSent={this.props.onMessageSent}
+            onMessageSent={this.handleMessageSent}
           />}
       </StatefulView>
     );
@@ -213,6 +222,8 @@ const getAppointment = gql`
       }
       messages {
         id
+        sender { id }
+        recevier { id }
         message
       }
       professional {
@@ -239,6 +250,24 @@ const getAppointment = gql`
   }
 `;
 
+const createMessage = gql`
+  mutation createMessage (
+    $message: String!
+    $appointmentId: ID!
+    $recevierId: ID!
+    $senderId: ID!
+  ) {
+    createMessage (
+      message: $message
+      appointmentId: $appointmentId
+      recevierId: $recevierId
+      senderId: $senderId
+    ) {
+      id
+    }
+  }
+`;
+
 const mapStateToProps = ({ videoChat }) => ({ videoChat });
 
 const mapDispatchToProps = dispatch => ({
@@ -247,6 +276,12 @@ const mapDispatchToProps = dispatch => ({
 
 export default withVideoChat(compose(
   connect(mapStateToProps, mapDispatchToProps),
+  graphql(createMessage, { props: ({ mutate }) =>
+    ({
+      createMessage: ({ message, appointmentId, recevierId, senderId }) =>
+        mutate({ variables: { message, appointmentId, recevierId, senderId } })
+    })
+  }),
   graphql(getAppointment, {
     name: 'appointment',
     options: ({ appointmentId }) => ({ variables: { id: appointmentId } }),
