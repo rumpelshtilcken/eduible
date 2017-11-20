@@ -24,6 +24,8 @@ const appointmentSubscription = gql`
           user {
             id
             name
+            socialImageUrl
+            cloudinaryId
           }
         }
       }
@@ -174,6 +176,9 @@ const getProfessionalById = gql`
       user {
         id
         name
+        socialImageUrl
+        cloudinaryId
+        cloudinaryBackgroundId
       }
       id
       price
@@ -222,6 +227,9 @@ const getAppointmentByProfessionalId = gql`
         user {
           id
           name
+          socialImageUrl
+          cloudinaryId
+          cloudinaryBackgroundId
         }
       }
     }

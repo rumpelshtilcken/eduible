@@ -8,6 +8,8 @@ import ProfessionalProfileInfo from './ProfessionalProfileInfo';
 import stylesheet from './index.css';
 
 const professionalImage = 'https://dontlosehair.com/wp-content/uploads/2016/02/3_Problems_that_Bald_People_Face_on_a_Regular_Basis.jpg';
+const professionalBackgroundImage =
+  'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509975928/profileHeaderBackground_f5ev0i.svg';
 
 class ProfessionalProfileHeader extends Component {
   static propTypes = {
@@ -18,7 +20,10 @@ class ProfessionalProfileHeader extends Component {
       user: PropTypes.shape({
         id: PropTypes.string.isRequired,
         auth0UserId: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
+        name: PropTypes.string.isRequired,
+        socialImageUrl: PropTypes.string,
+        cloudinaryId: PropTypes.string,
+        cloudinaryBackgroundId: PropTypes.string
       }),
       id: PropTypes.string,
       about: PropTypes.string,
@@ -51,6 +56,10 @@ class ProfessionalProfileHeader extends Component {
 
   render() {
     const { professional } = this.props;
+    const imageUrl = professional.user.cloudinaryId
+      || professional.user.socialImageUrl
+      || professionalImage;
+    const backgroundImage = professional.cloudinaryBackgroundId || professionalBackgroundImage;
 
     return (
       <div className="professionalProfileHeader">
@@ -58,12 +67,17 @@ class ProfessionalProfileHeader extends Component {
           <div className="buttonContainer">
             {this.renderHeaderButton()}
           </div>
+          <img
+            className="professionalProfileBackgroundImage"
+            src={backgroundImage}
+            alt="profile background"
+          />
         </div>
 
         <div className="professionalProfileHeaderInfo">
           <img
             className="professionalProfileImage"
-            src={professionalImage}
+            src={imageUrl}
             alt="profile"
           />
 

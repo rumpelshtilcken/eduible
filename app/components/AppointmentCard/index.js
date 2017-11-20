@@ -22,7 +22,9 @@ class AppointmentCard extends Component {
       estimatedLength: PropTypes.number
     }).isRequired,
     user: PropTypes.shape({
-      name: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired,
+      socialImageUrl: PropTypes.string,
+      cloudinaryId: PropTypes.string
     }).isRequired,
     onConnectButtonClick: PropTypes.func,
     onAccepButtonClick: PropTypes.func,
@@ -99,7 +101,13 @@ class AppointmentCard extends Component {
 
   render() {
     const { estimatedLength } = this.props.appointment;
-    const { name } = this.props.user;
+    const {
+      name,
+      socialImageUrl,
+      cloudinaryId
+    } = this.props.user;
+    const profileImage = cloudinaryId || socialImageUrl || professionalImage;
+
     return (
       <Card key={this.props.appointment.id}>
         <div className="appointmentContainer">
@@ -107,7 +115,7 @@ class AppointmentCard extends Component {
             <img
               className="appointmentProfileImage"
               alt="appointment profile"
-              src={professionalImage}
+              src={profileImage}
             />
             <div>
               <p>{name}</p>

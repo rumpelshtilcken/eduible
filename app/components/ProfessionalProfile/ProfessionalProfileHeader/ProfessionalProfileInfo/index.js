@@ -66,7 +66,6 @@ class ProfessionalProfileInfo extends Component {
       {bodyText && <div className="profileContent">
         <img className="profileIcon" src={'http://res.cloudinary.com/dsyyowxl0/image/upload/v1509976048/ic_location_ntugv6.svg'} alt="location" />
         <span className="profileText">{bodyText}</span>
-        <hr />
       </div>}
       <style jsx>{stylesheet}</style>
     </div>
