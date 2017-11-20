@@ -14,7 +14,7 @@ class PageHeaderContainer extends Component {
   static propTypes = {
     user: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      name: PropTypes.string.name
+      name: PropTypes.string.isRequired
     }),
     signoutUser: PropTypes.func,
     showSignInModal: PropTypes.func.isRequired,

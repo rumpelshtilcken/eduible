@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { hoistStatics } from 'recompact';
 import getDisplayName from 'utils/getDisplayName';
-import PropTypes from 'prop-types';
 import Router from 'next/router';
 
 import { Spinner } from 'components';
@@ -10,9 +9,6 @@ import Auth from 'services/Auth';
 const withAuth = hoistStatics((WrappedComponent) => {
   const auth = new Auth();
   class WithAuth extends Component {
-    static propTypes = {
-      signoutUser: PropTypes.func.isRequired
-    };
     state = {
       loading: true
     };

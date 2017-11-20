@@ -191,7 +191,7 @@ class VideoChatContainer extends Component {
       companion =
         AppointmentUtils.getParticipant({ student, professional, currentUserAuth0UserId });
       userId =
-        AppointmentUtils.getCurrentUser({ student, professional, currentUserAuth0UserId });
+        AppointmentUtils.getCurrentUser({ student, professional, currentUserAuth0UserId }).user.id;
     }
 
     return (
