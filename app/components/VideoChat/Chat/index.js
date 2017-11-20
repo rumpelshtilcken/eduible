@@ -8,7 +8,7 @@ import style from './index.css';
 
 class ChatBox extends Component {
   static propTypes = {
-    messages: PropTypes.object.isRequired,
+    messages: PropTypes.object,
     userId: PropTypes.string,
     onMessageSent: PropTypes.func.isRequired
   };
@@ -29,7 +29,7 @@ class ChatBox extends Component {
           />
         </div>
         <div className="chatHistory">
-          <Scrollbars universal autohide>
+          <Scrollbars universal>
             <ChatFeed
               messages={this.props.messages || []}
               hasInputField={false}
