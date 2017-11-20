@@ -40,9 +40,8 @@ class ResponsiveMenu extends Component {
   );
 
   renderProfileButton = ({ title, onClick }) => (
-    <div>
+    <div key={title}>
       <div
-        key={title}
         className={cx('linkContainer', { hidden: true })}
       >
         <button
@@ -54,7 +53,6 @@ class ResponsiveMenu extends Component {
         <style jsx>{stylesheet}</style>
       </div>
       <div
-        key={`${title}1`}
         className={cx('linkContainer', { profile: true })}
       >
         <button
