@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
+
 import * as formActions from 'actions/form';
 
 import { MuiTextField } from 'components';

@@ -2,7 +2,7 @@ import { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-import { RoundedButton } from 'components';
+import { RoundedButton, Image } from 'components';
 
 import ProfessionalProfileInfo from './ProfessionalProfileInfo';
 import stylesheet from './index.css';
@@ -54,12 +54,46 @@ class ProfessionalProfileHeader extends Component {
       : <RoundedButton title={'Request call'} onClick={this.props.onRequestCallClick} />);
   }
 
+  renderProfileAvatar = () => (
+    <div>
+      {this.props.professional.user.cloudinaryId
+        ? (<div className="professionalProfileImage">
+          <Image publicId={this.props.professional.user.cloudinaryId} />
+        </div>)
+        : (
+          <img
+            className="professionalProfileImage"
+            src={this.props.professional.user.socialImageUrl || professionalImage}
+            alt="professional avatar"
+          />
+        )
+      }
+      <style jsx>{stylesheet}</style>
+    </div>
+  );
+
+  renderProfileBackground = () => (
+    <div>
+      {(this.props.professional.user.cloudinaryBackgroundId)
+        ? (<div className="professionalProfileBackgroundImage">
+          <Image
+            publicId={this.props.professional.user.cloudinaryBackgroundId}
+          />
+        </div>)
+        : (
+          <img
+            className="professionalProfileBackgroundImage"
+            src={professionalBackgroundImage}
+            alt="professional avatar"
+          />
+        )
+      }
+      <style jsx>{stylesheet}</style>
+    </div>
+  );
+
   render() {
     const { professional } = this.props;
-    const imageUrl = professional.user.cloudinaryId
-      || professional.user.socialImageUrl
-      || professionalImage;
-    const backgroundImage = professional.cloudinaryBackgroundId || professionalBackgroundImage;
 
     return (
       <div className="professionalProfileHeader">
@@ -67,20 +101,11 @@ class ProfessionalProfileHeader extends Component {
           <div className="buttonContainer">
             {this.renderHeaderButton()}
           </div>
-          <img
-            className="professionalProfileBackgroundImage"
-            src={backgroundImage}
-            alt="profile background"
-          />
+          {this.renderProfileBackground()}
         </div>
 
         <div className="professionalProfileHeaderInfo">
-          <img
-            className="professionalProfileImage"
-            src={imageUrl}
-            alt="profile"
-          />
-
+          {this.renderProfileAvatar()}
           <div className="professionalProfileBasicInfoContainer">
             <ProfessionalProfileInfo professional={professional} />
             <div className="mobileButtonWrapper">
@@ -96,7 +121,7 @@ class ProfessionalProfileHeader extends Component {
           >
             <div className="roundedContainer">
               <p className="additionalInfoContent">
-                {professional.price}
+                {`$${professional.price}`}
               </p>
             </div>
             <p className="additionalInfo">price</p>

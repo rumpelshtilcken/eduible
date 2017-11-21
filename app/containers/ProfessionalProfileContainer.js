@@ -35,7 +35,7 @@ const appointmentSubscription = gql`
 
 class ProfessionalProfileContainer extends Component {
   static propTypes = {
-    id: PropTypes.string.isRequired,
+    professionalId: PropTypes.string.isRequired,
     updateAppointment: PropTypes.func,
     isCurrentUser: PropTypes.bool,
     onRequestCallClick: PropTypes.func,
@@ -55,7 +55,6 @@ class ProfessionalProfileContainer extends Component {
         })
       })
     }),
-    professionalId: PropTypes.string,
     professional: PropTypes.shape({
       user: PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -84,7 +83,7 @@ class ProfessionalProfileContainer extends Component {
   };
 
   componentWillReceiveProps(newProps) {
-    if (!newProps.loading || !newProps.appointments.loading) {
+    if ((!newProps.loading || !newProps.appointments.loading) && newProps.isCurrentUser) {
       if (this.subscription) {
         if (AppointmentUtils.isArrayEqual(
           newProps.appointments.allAppointments,
@@ -154,10 +153,10 @@ class ProfessionalProfileContainer extends Component {
 
     return (
       <StatefulView loading={loading}>
-        {professional && appointments && appointments.allAppointments &&
+        {professional &&
           <ProfessionalProfile
             professional={professional}
-            appointments={appointments.allAppointments}
+            appointments={appointments && appointments.allAppointments}
             onRequestCallClick={this.handleRequestCallClick}
             onEditButtonClick={this.props.onEditButtonClick}
             onConnectButtonClick={this.props.onConnectButtonClick}
@@ -175,6 +174,7 @@ const getProfessionalById = gql`
     Professional(id: $id) {
       user {
         id
+        auth0UserId
         name
         socialImageUrl
         cloudinaryId
