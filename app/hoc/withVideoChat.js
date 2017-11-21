@@ -6,10 +6,8 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 
 import * as videoChatActions from 'actions/videoChat';
-import { getCurrentUserData } from 'utils/auth';
 import getDisplayName from 'utils/getDisplayName';
 import VideoChat, { generateVidyoSDKUrl } from 'services/VideoChat';
-import AppointmentUtils from 'utils/AppointmentUtils';
 
 // status.downloadPathWebRTCExtension; - Screen share
 const setListenerComponent = (ListenerComponent) => {
@@ -130,14 +128,15 @@ const withVideoChat = hoistStatics((WrappedComponent) => {
       this.props.update({ name: 'videoChatError', value: error });
 
     handleDidVCLoad = async () => {
-      const currentUserAuth0UserId = getCurrentUserData('sub');
-      const { student, professional } = this.props.appointment;
-      const { user: { name } } =
-        AppointmentUtils.getCurrentUser({ student, professional, currentUserAuth0UserId });
+      console.log(this.props);
+      // const currentUserAuth0UserId = getCurrentUserData('sub');
+      // const { student, professional } = this.props.appointment;
+      // const { user: { name } } =
+      //   AppointmentUtils.getCurrentUser({ student, professional, currentUserAuth0UserId });
 
       this.videoChat = await VideoChat({
         VC: window.VC,
-        displayName: name,
+        displayName: 'Participant',
         vidyoToken: this.props.videoChat.vidyoToken,
         resourceId: this.props.videoChat.resourceId,
         onSuccess: this.handleConnectionSuccess,

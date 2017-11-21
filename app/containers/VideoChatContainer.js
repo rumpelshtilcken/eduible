@@ -232,6 +232,8 @@ const getAppointment = gql`
           id
           auth0UserId
           name
+          socialImageUrl
+          cloudinaryId
         }
         location {
           id
@@ -244,6 +246,8 @@ const getAppointment = gql`
           id
           auth0UserId
           name
+          socialImageUrl
+          cloudinaryId
         }
       }
     }

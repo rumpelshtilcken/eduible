@@ -256,7 +256,7 @@ export default compose(
     name: 'appointments',
     skip: ({ isCurrentUser }) => !isCurrentUser,
     options: ({ professionalId }) => ({
-      forcePolicy: 'cache-and-network',
+      forcePolicy: 'network-only',
       variables: { id: professionalId }
     })
   }),

@@ -7,12 +7,16 @@ import PropTypes from 'prop-types';
 
 import { convertFromISOStringFormat, convertDateToISO } from 'utils/auth';
 import { StudentProfileEdit, StatefulView } from 'components';
+import Cloudinary from 'services/Cloudinary';
 import * as authActions from 'actions/auth';
 import * as formActions from 'actions/form';
+import * as snackbarActions from 'actions/snackbar';
 
 class StudentProfileEditContainer extends Component {
   static propTypes = {
-    profileImgURL: PropTypes.string.isRequired,
+    update: PropTypes.func.isRequired,
+    showSnackbar: PropTypes.func,
+    cloudinaryId: PropTypes.string.isRequired,
     onCancelButtonClick: PropTypes.func.isRequired,
     userId: PropTypes.string,
     user: PropTypes.shape({
@@ -25,7 +29,6 @@ class StudentProfileEditContainer extends Component {
     updateStudentProfile: PropTypes.func,
     name: PropTypes.string,
     birthday: PropTypes.string,
-    update: PropTypes.func,
     onDidProfileSave: PropTypes.func.isRequired,
     deleteProfile: PropTypes.func.isRequired,
     signoutUser: PropTypes.func.isRequired,
@@ -49,10 +52,13 @@ class StudentProfileEditContainer extends Component {
   handleSaveButtonClick = async () => {
     try {
       const birthday = convertDateToISO(this.props.birthday);
+      const { cloudinaryId } = this.props;
+
       await this.props.updateStudentProfile({
         id: this.props.userId,
         name: this.props.name,
-        birthday
+        birthday,
+        cloudinaryId
       });
       this.props.onDidProfileSave(this.props.userId);
     } catch (err) {
@@ -73,17 +79,26 @@ class StudentProfileEditContainer extends Component {
     }
   };
 
+  handleDidProfileAvataUpload = ({ error, publicId }) => {
+    if (error) this.props.showSnackbar({ messageType: 'error', message: error });
+    this.props.update({ name: 'cloudinaryId', value: publicId });
+  };
+
+  handleProfileAvatarChange = () =>
+    Cloudinary.uploadImageWidget(this.handleDidProfileAvataUpload);
+
   render() {
     if (this.props.error) return (<div>{`Error: ${this.props.error}`}</div>);
 
-    const { name, birthday, profileImgURL } = this.props;
-    console.log(name, birthday);
+    const { name, birthday, cloudinaryId, user } = this.props;
     return (
       <StatefulView loading={this.props.loading}>
         <StudentProfileEdit
+          user={user}
           name={name}
           birthday={birthday}
-          profileImgURL={profileImgURL}
+          onProfileAvatarChange={this.handleProfileAvatarChange}
+          cloudinaryId={cloudinaryId}
           onCancelButtonClick={this.props.onCancelButtonClick}
           onRemoveAccountButtonClick={this.handleRemoveAccountButtonClick}
           onSaveButtonClick={this.handleSaveButtonClick}
@@ -99,14 +114,29 @@ const getUserById = gql`
       id
       name
       birthday
+      cloudinaryId
+      socialImageUrl
       student { id }
     }
   }
 `;
 
 const updateStudentProfile = gql`
-  mutation UpdateStudentProfile($id: ID!, $name: String, $birthday: DateTime) {
-    updateUser ( id: $id, name: $name ,birthday: $birthday ) { id } 
+  mutation UpdateStudentProfile(
+    $id: ID!, 
+    $name: String, 
+    $birthday: DateTime 
+    $socialImageUrl: String
+    $cloudinaryId: String
+    $cloudinaryBackgroundId: String) {
+    updateUser ( 
+      id: $id, 
+      name: $name, 
+      birthday: $birthday 
+      socialImageUrl: $socialImageUrl
+      cloudinaryId: $cloudinaryId
+      cloudinaryBackgroundId: $cloudinaryBackgroundId
+    ) { id } 
   }
 `;
 
@@ -116,11 +146,13 @@ const deleteProfile = gql`
   }
 `;
 
-const mapStateToProps = ({ form: { birthday, name } }) => ({ name, birthday });
+const mapStateToProps = ({ form: { birthday, name, cloudinaryId } }) =>
+  ({ name, birthday, cloudinaryId });
 
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(authActions, dispatch),
-  ...bindActionCreators(formActions, dispatch)
+  ...bindActionCreators(formActions, dispatch),
+  ...bindActionCreators(snackbarActions, dispatch)
 });
 
 export default compose(
@@ -135,8 +167,8 @@ export default compose(
   }),
   graphql(updateStudentProfile, {
     props: ({ mutate }) => ({
-      updateStudentProfile: ({ birthday, name, id }) =>
-        mutate({ variables: { birthday, name, id } })
+      updateStudentProfile: ({ birthday, name, id, cloudinaryId }) =>
+        mutate({ variables: { birthday, name, id, cloudinaryId } })
     })
   }),
   graphql(deleteProfile, {

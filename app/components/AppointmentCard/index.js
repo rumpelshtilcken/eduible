@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Card, RoundedButton } from 'components';
+import { Card, RoundedButton, Image } from 'components';
 import { convertFromISOToObject } from 'utils/auth';
 import AppointmentUtils from 'utils/AppointmentUtils';
 
@@ -106,17 +106,23 @@ class AppointmentCard extends Component {
       socialImageUrl,
       cloudinaryId
     } = this.props.user;
-    const profileImage = cloudinaryId || socialImageUrl || professionalImage;
 
     return (
       <Card key={this.props.appointment.id}>
         <div className="appointmentContainer">
           <div className="professionalInfoContainer">
-            <img
-              className="appointmentProfileImage"
-              alt="appointment profile"
-              src={profileImage}
-            />
+            {cloudinaryId
+              ? (<div className="appointmentProfileImage">
+                <Image publicId={cloudinaryId} />
+              </div>)
+              : (
+                <img
+                  className="appointmentProfileImage"
+                  src={socialImageUrl || professionalImage}
+                  alt="professional avatar"
+                />
+              )
+            }
             <div>
               <p>{name}</p>
               <p>{`${estimatedLength} min`}</p>

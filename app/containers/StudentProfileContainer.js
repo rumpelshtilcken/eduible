@@ -126,6 +126,8 @@ const getStudentById = gql`
       user {
         id
         name
+        socialImageUrl
+        cloudinaryId
       }
     }
   }
@@ -142,7 +144,9 @@ const getAppointmentByStudentId = gql`
         id
         user {
           id
-          name
+          name,
+          socialImageUrl
+          cloudinaryId
         }
       }
     }
@@ -152,6 +156,7 @@ const getAppointmentByStudentId = gql`
 export default compose(
   graphql(getStudentById, {
     name: 'student',
+    forcePolicy: 'network-only',
     options: ({ studentId }) => ({
       variables: { id: studentId }
     }),
@@ -162,7 +167,7 @@ export default compose(
   graphql(getAppointmentByStudentId, {
     name: 'appointments',
     options: ({ studentId }) => ({
-      forcePolicy: 'cache-and-network',
+      forcePolicy: 'network-only',
       variables: { id: studentId }
     })
   })

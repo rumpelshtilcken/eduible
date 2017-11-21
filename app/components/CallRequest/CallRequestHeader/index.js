@@ -38,8 +38,8 @@ class CallRequestHeader extends Component {
       key: 'ProfesstionalBasicInfo',
       component: (
         <ProfesstionalBasicInfo
+          user={this.props.professional.user}
           profileName={this.props.professional.user.name}
-          profileImageUrl={'/static/miguel.jpg'}
         />
       )
     },

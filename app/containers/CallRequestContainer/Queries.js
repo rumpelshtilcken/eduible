@@ -46,6 +46,8 @@ export const getProfessional = gql`
         id
         name
         email
+        socialImageUrl
+        cloudinaryId
       }
       educations {
         id

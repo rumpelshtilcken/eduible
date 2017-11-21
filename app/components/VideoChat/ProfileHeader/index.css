@@ -7,15 +7,21 @@
   @media (min-width: 768px) {
     margin: 56px auto 20px;
     width: 610px;
-    order: -1;
   }
 
   @media (min-width: 1024px) {
     float: right;
     width: 243px;
-    margin-top: -548px;
     margin-right: 20px;
   }
+}
+
+.profileImage {
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
 }
 
 .section2 p {
@@ -24,12 +30,6 @@
   font-weight: bold;
   font-family: "Effra";
   color: #383838;
-}
-
-.profile-img img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
 }
 
 .profile-info {

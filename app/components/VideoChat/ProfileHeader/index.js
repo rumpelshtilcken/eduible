@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { Image } from 'components';
+
 import stylesheet from './index.css';
 
 const professionalImage = 'https://dontlosehair.com/wp-content/uploads/2016/02/3_Problems_that_Bald_People_Face_on_a_Regular_Basis.jpg';
@@ -6,9 +8,18 @@ const locationIcon = '/static/placeholderIcon.svg';
 
 const ProfileBox = ({ companion, appointment }) => (
   <div className="section2">
-    <div className="profile-img">
-      <img src={professionalImage} alt="profileImg" />
-    </div>
+    {companion.user.cloudinaryId
+      ? (<div className="profileImage">
+        <Image publicId={companion.user.cloudinaryId} />
+      </div>)
+      : (
+        <img
+          className="profileImage"
+          src={companion.user.socialImageUrl || professionalImage}
+          alt="professional avatar"
+        />
+      )
+    }
     <div className="profile-info">
       <div>
         <p>{companion.user.name.toUpperCase()}</p>

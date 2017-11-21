@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { MuiButton, FileUploader } from 'components';
+import { MuiButton, Image } from 'components';
 import TextFieldContainer from 'containers/TextFieldContainer';
 import DatePickerContainer from 'containers/DatePickerContainer';
 
@@ -9,29 +9,43 @@ import stylesheet from './index.css';
 
 class StudentProfileEdit extends React.Component {
   static propTypes = {
+    user: PropTypes.func,
+    cloudinaryId: PropTypes.func,
     name: PropTypes.string.isRequired,
     birthday: PropTypes.string.isRequired,
-    profileImgURL: PropTypes.string.isRequired,
     onSaveButtonClick: PropTypes.func.isRequired,
     onCancelButtonClick: PropTypes.func.isRequired,
-    onRemoveAccountButtonClick: PropTypes.func.isRequired
+    onRemoveAccountButtonClick: PropTypes.func.isRequired,
+    onProfileAvatarChange: PropTypes.func.isRequired
   };
 
-  state = {
-    isOpenModal: false
-  }
-
-  handleCloseModal = () => (this.setState({ isOpenModal: false }))
-  handleImageChange = () => (this.setState({ isOpenModal: true }))
+  handleProfileImageChange = (e) => {
+    e.preventDefault();
+    this.props.onProfileAvatarChange();
+  };
 
   render() {
+    const cloudinaryId = this.props.cloudinaryId || this.props.user.cloudinaryId;
     return (
       <div className="studentProfileContainer">
         <div className="profile">
           <p className="studentProfileTitle">{'Profile Edit'}</p>
           <div className="pickProfileImageContainer">
-            <img src={this.props.profileImgURL} alt="profileImg" className="studentProfileImage" />
-            <input type="button" className="overlayButton" value="Change" onClick={this.handleImageChange} />
+            {(cloudinaryId)
+              ? (<div className="studentProfileImage">
+                <Image publicId={cloudinaryId} />
+              </div>)
+              : (
+                <img
+                  className="studentProfileImage"
+                  src={this.props.user.socialImageUrl}
+                  alt="professional avatar"
+                />
+              )
+            }
+            <button className="overlayButton" onClick={this.handleProfileImageChange}>
+              {'Change'}
+            </button>
           </div>
           <div className="muiTextFieldBox">
             <TextFieldContainer
@@ -64,7 +78,7 @@ class StudentProfileEdit extends React.Component {
             role="button"
             tabIndex={0}
           >
-           I want to remove my account
+            I want to remove my account
           </div>
           <div className="muibtnBox">
             <div className="btn">
@@ -83,18 +97,7 @@ class StudentProfileEdit extends React.Component {
             </div>
           </div>
         </div>
-        <FileUploader
-          isFileUploaderModalOpen={this.state.isOpenModal}
-          onCloseFileUploaderModal={this.handleCloseModal}
-          previewImageUrl={this.state.imgUrl}
-        />
         <style jsx>{stylesheet}</style>
-        <FileUploaderModal
-          isFileUploaderModalOpen={this.state.isOpenModal}
-          onCloseFileUploaderModal={this.handleCloseModal}
-          previewImageUrl={this.state.imgUrl}
-          onFileUrlChange={this.handleFileUrlChange}
-        />
       </div>
     );
   }
