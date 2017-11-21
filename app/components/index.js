@@ -7,6 +7,7 @@ export { default as CommingSoon } from './ComingSoon';
 export { default as FileUploader } from './FileUploader';
 export { default as Footer } from './Footer';
 export { default as FoundUniversities } from './SearchUniversity/FoundUniversities';
+export { default as Image } from './Image';
 export { default as InputRange } from '../components/InputRange';
 export { default as Layout } from './Layout';
 export { default as Link } from './Link';
