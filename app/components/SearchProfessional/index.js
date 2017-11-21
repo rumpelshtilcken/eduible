@@ -1,10 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  InputRange,
-  Loader
-} from 'components';
+import { InputRange, Loader } from 'components';
 import SearchTextInputContainer from 'containers/SearchTextInputContainer';
 import SelectDropDownContainer from 'containers/SelectDropDownContainer';
 import ProfessionalCard from './ProfessionalCard';
