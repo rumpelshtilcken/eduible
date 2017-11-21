@@ -60,6 +60,7 @@ const withLayout = hoistStatics((CompositeComponent) => {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <link href="static/Fonts/Effra" rel="stylesheet" />
                 <link rel="icon" href="static/favicon.ico?v=1.1" />
+                <script src="//widget.cloudinary.com/global/all.js" type="text/javascript" />
               </Head>
               <ModalRootContainer />
               <PageHeaderContainer />

@@ -9,7 +9,10 @@ import stylesheet from './index.css';
 
 class ProfessionalProfileEdit extends Component {
   static propTypes = {
-    profileImgURL: PropTypes.string.isRequired,
+    profileAvaraId: PropTypes.string,
+    profileBackgroundId: PropTypes.string,
+    onProfileAvatarChange: PropTypes.func,
+    onProfileBackgroundChagne: PropTypes.func,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
       birthday: PropTypes.string,
@@ -35,9 +38,12 @@ class ProfessionalProfileEdit extends Component {
           childrens={[
             <ProfileEditTab
               user={this.props.user}
-              profileImgURL={this.props.profileImgURL}
+              profileAvaraId={this.props.profileAvaraId}
+              profileBackgroundId={this.props.profileBackgroundId}
               onSaveButtonClick={this.props.onSaveButtonClick}
               onCancelButtonClick={this.props.onCancelButtonClick}
+              onProfileAvatarChange={this.props.onProfileAvatarChange}
+              onProfileBackgroundChagne={this.props.onProfileBackgroundChagne}
             />,
             <PayOut />
           ]}
